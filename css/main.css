@@ -9,12 +9,21 @@ body {
 	font-family: 'Roboto', sans-serif;
 	line-height: 1.5em;
 }
-
+.head{
+	text-align: center;
+}
+img {
+	margin: auto;
+	
+}
 a {
 	color:#0078ff;
 }
-h1 {
+h1{
 	    color: chocolate;
+}
+h2 {
+	color: lavender;
 }
 
 b {
