@@ -1,0 +1,19 @@
+      body {
+      font-family: Monospace;
+      background-color: #000000;
+      margin: 0px;
+      overflow: hidden;
+      color: white;
+      }
+      #info {
+      color: #ffffff;
+      font-family: Monospace;
+      font-size: 13px;
+      text-align: center;
+      font-weight: bold;
+      position: absolute;
+      top: 5px; width: 100%;
+      }
+      a {
+      color: #0040ff;
+      }
