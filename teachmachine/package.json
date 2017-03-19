@@ -1,0 +1,16 @@
+{
+  "name": "g_lesson",
+  "version": "1.0.0",
+  "description": "The lesson",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Vitaliy Dyachuk",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
