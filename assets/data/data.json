@@ -1,0 +1,58 @@
+
+[
+	{
+		"years"  : "2006-2007",
+		"title"  : "Designer, Web-developer, 3D-modeler",
+		"company": "Nika(Ukraine)"
+	},
+	{
+		"years"  : "2007-2008",
+		"title"  : "Designer, Web-developer, 3D-modeler",
+		"company": "Freelance"
+	},
+	{
+		"years"  : "2008-2009",
+		"title"  : "Designer, Web-developer, 3D-modeler",
+		"company": "Web-City(Ukraine)"
+	},
+	{
+		"years"  : "2009-2014",
+		"title"  : "Designer, Web-developer(HTML, CSS, JavaScript, ActionScript), 3D-modeler",
+		"company": "Freelance"
+	},
+	{
+		"years"  : "2014-2014 (6 month)",
+		"title"  : "Web-developer (Web-design, HTML, CSS, JavaScript)",
+		"company": "WebMozaica(Ukraine)"
+	},
+	{
+		"years"  : "2014-2015",
+		"title"  : "Web-developer (Web-design, HTML5, CSS, WordPress, JavaScript, NodeJS, AngularJS)",
+		"company": "Freelance"
+	},
+	{
+		"years"  : "2016-2016",
+		"title"  : "Web-developer (rarely Web-design, sometimes HTML5(JADE), CSS(Sass), predominantly JavaScript(+ LiveScript), NodeJS, AngularJS)",
+		"company": "Adventure Bucket List(US)"
+	},
+	{
+		"years"  : "2016-2017",
+		"title"  : "Web-developer (rarely Web-design, WordPress, HTML5(JADE), CSS(Sass), predominantly JavaScript(+ LiveScript, TypeScrip), NodeJS, AngularJS, AngularJS-2 )",
+		"company": "Freelance"
+	},
+	{
+		"years"  : "2017 (6 month)",
+		"title"  : "Web-developer (HTML5, CSS(Scss), JavaScript, JQuery, AngularJS)",
+		"company": "Arsum(UA,Danmark)"
+	},
+	{
+		"years"  : "2017",
+		"title"  : "Web-developer (HTML5, CSS(Scss/sass), JavaScript, AngularJS, PHP)",
+		"company": "maintenence and development - skladovka.ua (UA)"
+	},
+	{
+		"years"  : "2017 current",
+		"title"  : "Web-developer (rarely Web-design, HTML5, CSS(Less), JavaScript, Angular 4)",
+		"company": "Omnie"
+	}
+]
