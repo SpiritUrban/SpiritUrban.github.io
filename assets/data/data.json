@@ -32,27 +32,32 @@
 	},
 	{
 		"years"  : "2016-2016",
-		"title"  : "Web-developer (rarely Web-design, sometimes HTML5(JADE), CSS(Sass), predominantly JavaScript(+ LiveScript), NodeJS, AngularJS)",
+		"title"  : "Web-developer (rarely Web-design, sometimes HTML5(JADE), CSS(Sass), predominantly JavaScript(+ LiveScript), NodeJS, AngularJS, MongoDB, MongooseJS)",
 		"company": "Adventure Bucket List(US)"
 	},
 	{
 		"years"  : "2016-2017",
-		"title"  : "Web-developer (rarely Web-design, WordPress, HTML5(JADE), CSS(Sass), predominantly JavaScript(+ LiveScript, TypeScrip), NodeJS, AngularJS, AngularJS-2 )",
+		"title"  : "Web-developer (rarely Web-design, WordPress, HTML5(JADE), CSS(Sass), predominantly JavaScript(+ LiveScript, TypeScrip), NodeJS, AngularJS, Angular 2, MongoDB, MongooseJS )",
 		"company": "Freelance"
 	},
 	{
 		"years"  : "2017 (6 month)",
-		"title"  : "Web-developer (HTML5, CSS(Scss), JavaScript, JQuery, AngularJS)",
+		"title"  : "Web-developer (HTML5, CSS(Scss), JavaScript, JQuery, AngularJS, Angular 2,  NodeJS, ExpressJS, MongoDB, MongooseJS)",
 		"company": "Arsum(UA,Danmark)"
 	},
 	{
 		"years"  : "2017",
-		"title"  : "Web-developer (HTML5, CSS(Scss/sass), JavaScript, AngularJS, PHP)",
+		"title"  : "Web-developer (HTML5, CSS(Scss/sass), JavaScript, AngularJS, NodeJS, ExpressJS, PHP, MongoDB, MongooseJS)",
 		"company": "maintenence and development - skladovka.ua (UA)"
 	},
 	{
-		"years"  : "2017 current",
-		"title"  : "Web-developer (rarely Web-design, HTML5, CSS(Less), JavaScript, Angular 4)",
-		"company": "Freelance"
-	}
+		"years"  : "2017",
+		"title"  : "Web-developer (JavaScript, AngularJS, Angular 4, NodeJS, ExpressJS 3, rarely Web-design, HTML5, CSS(Less), JADE, MongoDB, MongooseJS)",
+		"company": "OMNIE, OKM"
+	},
+	{
+		"years"  : "2018",
+		"title"  : "Web-developer (JavaScript, AngularJS, Angular 5, NodeJS, ExpressJS 4, MongoDB, MongooseJS)",
+		"company": "OKM, Freelance"
+	}	
 ]
