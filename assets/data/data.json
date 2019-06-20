@@ -58,6 +58,11 @@
 	{
 		"years"  : "2018",
 		"title"  : "Web-developer (JavaScript, AngularJS, Angular 5, NodeJS, ExpressJS 4, MongoDB, MongooseJS)",
-		"company": "OKM, Freelance"
+		"company": "OKM, Freelance, uboro.io"
+	},
+	{
+		"years"  : "2018-2019",
+		"title"  : "Mentor Web-developer (JavaScript, c++, Angular 6-7-8, React, NodeJS, ExpressJS 4, MongoDB, MongooseJS, Passport.js, WebRTC, blockchain, cryptocurrency, ethereum, web3.js, metamask, matter.js, Electron.js, security, optimization, PWA, ssl, CentOS, VPS)",
+		"company": "my self"
 	}	
 ]
