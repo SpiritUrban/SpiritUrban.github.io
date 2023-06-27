@@ -1,0 +1,134 @@
+[
+  {
+    "type": "Languages",
+    "data": [
+      { "title": "Ukrainian", "details": "Native" },
+      { "title": "Russian", "details": "Native" },
+      { "title": "English", "details": "Upper-Intermediate" },
+      { "title": "German", "details": "Starting" }
+    ]
+  },
+
+  {
+    "type": "Job-related skills",
+    "data": [
+      { "title": "JavaScript", "details": "8 years" },
+      { "title": "TypeScript", "details": "7 years" },
+      { "title": "NodeJS", "details": "8 years" },
+      { "title": "Express.js", "details": "8 years" },
+      { "title": "MongoDB", "details": "8 years" },
+      { "title": "HTML, CSS, SASS, LESS", "details": "9 years" },
+      { "title": "Angular", "details": "5 years" },
+      { "title": "AngularJS", "details": "3 years" },
+      { "title": "Vue", "details": "1 year" },
+      { "title": "Nuxt", "details": "half year" },
+      { "title": "Jade", "details": "1 year" },
+      { "title": "CoffeScript / LiveScript", "details": "1 year" },
+      { "title": "PHP", "details": "half year" },
+      { "title": "C++", "details": "half year" },
+      { "title": "MySQL", "details": "half year" },
+      { "title": "PostgreSQL", "details": "half year" },
+      { "title": "ActionScript", "details": "half year" },
+      { "title": "Java", "details": "Java - 2 month" }
+    ]
+  },
+
+
+  {
+    "type": "Frameworks",
+    "data": [
+      { "title": "Express.js", "details": "8 years" },
+      { "title": "Vue", "details": "1 year" },
+      { "title": "Nuxt", "details": "half year" },
+      { "title": "Angular", "details": "5 years" },
+      { "title": "AngularJS", "details": "3 years" }
+    ]
+  },
+
+  {
+    "type": "Server Administration",
+    "data": [
+      { "title": "VPS + NodeJS", "details": "from 2016" },
+      { "title": "Ubuntu", "details": "" },
+      { "title": "CentOS", "details": "" }
+    ]
+  },
+  
+  {
+    "type": "Worked with",
+    "data": [
+      { "title": "Linux", "details": "from version 14" },
+      { "title": "CentOS", "details": "version 6" },
+      { "title": "MacOS", "details": "" },
+      { "title": "Windows", "details": "95, 98, XP, 7, 10" },
+      { "title": "DOS", "details": "" }
+    ]
+  },
+  
+  {
+    "type": "Graphics",
+    "data": [
+      { "title": "Photoshop", "details": "from 2006  (13+)" },
+      { "title": "Adobe Illustrator", "details": "10+" },
+      { "title": "3DSMax", "details": "4+" },
+      { "title": "CorelDrow", "details": "4+" }
+    ]
+  },
+
+  {
+    "type": "More details",
+    "data": [
+      { "title": "WebRTC", "details": "Streaming API based on the current browser (the same principle that is running Skype)" },
+      { "title": "Cloud APIs", "details": "speech synthesis, recognition, translation, maps, payment systems (PayPall, Stripe, Privatbank, Monobank) " },
+      { "title": "OAuth", "details": "Authorization for social networks" },
+      { "title": "Socket.IO", "details": "Building architecture based protocol sockets" },
+      { "title": "File-API", "details": "Using the browser-based File-API" },
+      { "title": "Cross-window communication", "details": "Messaging communication between frames" },
+      { "title": "Crossdomain application architecture", "details": "Сreating a sustainable system located on different servers and operating as a single unit" }
+    ]
+  },
+
+  {
+    "type": "Intensive practice during study",
+    "data": [
+      { "title": "Paskal 3.0, 7.0", "details": "3 year" },
+      { "title": "C++", "details": "3 month" },
+      { "title": "Assembler", "details": "4 month" }
+    ]
+  },
+
+  {
+    "type": "Other experience",
+    "data": [
+      { "title": "Mentor", "details": "4 years" },
+      { "title": "Team lead", "details": "half year" },
+      { "title": "Own projects", "details": "" },
+      { "title": "Extensive experience of self-organization", "details": "" },
+      { "title": "The organizational work", "details": "" },
+      { "title": "Teaching", "details": "1 year" },
+      { "title": "Trainer", "details": "3 years" },
+      { "title": "Head of the circle", "details": "1 year" },
+      { "title": "Studied psychology", "details": "From the age of 16" }
+    ]
+  },
+
+  {
+    "type": "Many scattered experience",
+    "data": [
+      { "title": "CMS", "details": "Joomla, WordPress" },
+      { "title": "User experience", "details": "Fanatic and living with a computer since middle school (since 13 years old, since 1994)" }
+    ]
+  },
+
+
+  {
+    "type": "Learn and interested",
+    "data": [
+      { "title": "NativeScript", "details": "" },
+      { "title": "Neural Network, Artificial Intelligence, Big Data, Python", "details": "" },
+      { "title": "VR, Web-VR, Learning Technologies", "details": "" },
+      { "title": "Unity3d", "details": "" },
+      { "title": "IoT", "details": "" }
+    ]
+  }
+]
