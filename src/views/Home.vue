@@ -18,14 +18,12 @@
           </h2>
         </div>
 
-        <br>
-
         <!-- <div style="text-align: center;">
           <a class="an-1" target="_blank" href="https://github.com/SpiritUrban">My GitHub</a>
         </div> -->
 
-        <div style="text-align: center; z-index: 100;">
-          <SuperButton href="https://github.com/SpiritUrban"/>
+        <div class="super-button-container">
+          <SuperButton href="https://github.com/SpiritUrban" />
         </div>
 
       </div>
@@ -227,7 +225,8 @@
                 <tr v-for="(item, index)  of group.data" :key="`${index}-${group.type}`">
                   <td>
                     <!-- <div class="major-2">{{ item.title }}</div> -->
-                    <a :href="item.link" :class="item.shutdowned ? 'shutdowned' : 'an-1'" target="_blank">{{ item.title }}</a>
+                    <a :href="item.link" :class="item.shutdowned ? 'shutdowned' : 'an-1'" target="_blank">{{ item.title
+                    }}</a>
                   </td>
                   <td :style="item.details ? '' : 'padding:0'">
                     {{ item.details }}
@@ -266,7 +265,7 @@
 import { onMounted } from 'vue';
 import { useDisplay } from 'vuetify';
 // import HelloWorld from '@/components/HelloWorld.vue'
-import SuperButton  from '@/components/SuperButton.vue'
+import SuperButton from '@/components/SuperButton.vue'
 
 
 import workExperience from '@/assets/data/work-experience.json';
@@ -406,6 +405,12 @@ main {
   z-index: 10;
 }
 
+.super-button-container {
+  margin: 1.2rem auto .5rem auto;
+  text-align: center;
+  z-index: 100;
+}
+
 .major {
   color: rgb(255 255 255 / 88%);
 }
@@ -533,6 +538,7 @@ strong {
     // text-shadow: 5px 4px 4px black, 0 0 6px black, 0 0 6px black;
     // background: repeating-linear-gradient(45deg, rgba(39, 39, 39, 0.75), rgba(23, 23, 23, 0.53) 16px, rgba(105, 105, 105, 0.27) 10px, rgba(131, 131, 131, 0.4) 30px);
     text-decoration: none;
+
     &:hover {
       // background: repeating-linear-gradient(45deg, rgba(39, 39, 39, 0.75), rgba(23, 23, 23, 0.53) 16px, rgb(128, 128, 128) 10px, rgb(121, 121, 121) 30px);
     }
@@ -570,37 +576,46 @@ strong {
 
   &.personal-skils {
     padding: 1em 0;
+
     h1 {
       margin: 0 2rem;
       text-align: center;
     }
+
     .units {
       display: flex;
       flex-wrap: wrap;
       padding: 0 1rem;
+
       .unit {
         margin: 0 1rem;
       }
     }
+
     .v-table {
       width: fit-content;
       max-width: 30rem;
     }
   }
+
   &.works {
     padding: 1em 0;
+
     h1 {
       margin: 0 2rem;
       text-align: center;
     }
+
     .units {
       display: flex;
       flex-wrap: wrap;
       padding: 0 1rem;
+
       .unit {
         margin: 0 1rem;
       }
     }
+
     .v-table {
       width: fit-content;
       max-width: 30rem;
@@ -679,5 +694,4 @@ p {
   .page {}
 }
 
-@media screen and (max-width: 576px) {}
-</style>
+@media screen and (max-width: 576px) {}</style>
