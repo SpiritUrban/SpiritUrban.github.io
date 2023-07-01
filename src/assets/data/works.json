@@ -52,6 +52,13 @@
       },      
       {
         "shutdowned": "true",
+        "title": "crystalsystemnyc.com",
+        "link": "http://www.crystalsystemnyc.com",
+        "details": "Site for Cleaning Company. Teamwork"
+      },
+
+      {
+        "shutdowned": "true",
         "title": "nemportal.dk",
         "link": "http://www.nemportal.dk/frontpage.php",
         "details": "Send and receive electronic invoices. Teamwork"
