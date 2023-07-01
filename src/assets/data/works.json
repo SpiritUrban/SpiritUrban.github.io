@@ -67,7 +67,11 @@
         "shutdowned": "true",
         "title": "officient.dk",
         "link": "http://officient.dk/",
-        "details": "Send and receive electronic invoices. Teamwork"
+        "details": "Send and receive electronic invoices. Teamwork",
+        "panel": [
+          {"btn": "Example", "url": ""},
+          {"btn": "Code", "url": ""}
+        ]
       },
       {
         "shutdowned": "true",

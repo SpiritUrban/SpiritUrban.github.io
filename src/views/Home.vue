@@ -238,19 +238,8 @@
           </div>
         </div>
 
-
-        <!-- <div class="unit" v-for="(group, index) of works" :key="`${index}-${group.type}-main`">
-          <b>{{ group.type }}</b>
-          <div class="unit" v-for="(item, index)  of group.data" :key="`${index}-${group.type}`">
-            <a :href="item.link" :class="item.shutdowned ? 'shutdowned' : 'an-1'" target="_blank">{{ item.title }}</a>
-          </div>
-          <br>
-        </div> -->
-
       </div>
 
-      <br>
-      <br>
       <br>
       <br>
       <br>
