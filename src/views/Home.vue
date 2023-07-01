@@ -222,14 +222,26 @@
             <br>
             <v-table density="compact">
               <tbody>
-                <tr v-for="(item, index)  of group.data" :key="`${index}-${group.type}`">
+                <tr v-for="(item, index2)  of group.data" :key="`${index2}-${group.type}`">
                   <td>
                     <!-- <div class="major-2">{{ item.title }}</div> -->
                     <a :href="item.link" :class="item.shutdowned ? 'shutdowned' : 'an-1'" target="_blank">{{ item.title
                     }}</a>
                   </td>
-                  <td :style="item.details ? '' : 'padding:0'">
-                    {{ item.details }}
+
+                  <td @mouseover="detailsHover(index, index2)" @mouseleave="detailsLeave(index, index2)"
+                    style="position: relative; padding:0;" :style="item.details ? '' : 'padding:0'">
+
+                    <div class="details">
+                      {{ item.details }}
+                    </div>
+
+                    <div class="panel" :class="(item.hover) ? 'panel-on' : ''">
+                      <v-btn v-for="(b, index3)  of item.panel" :key="`${index3}-${group.type}-b`" :href="b.url" min-width="164" rel="noopener noreferrer"
+                        target="_blank" color="#7c4219" size="small">
+                        {{ b.btn }}
+                      </v-btn>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -251,17 +263,14 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useDisplay } from 'vuetify';
-// import HelloWorld from '@/components/HelloWorld.vue'
 import SuperButton from '@/components/SuperButton.vue'
-
-
 import workExperience from '@/assets/data/work-experience.json';
 import personalSkills from '@/assets/data/personal-skills.json';
-import works from '@/assets/data/works.json';
+import _works from '@/assets/data/works.json';
 workExperience.reverse()
-
+const works = ref(_works);
 
 const { mobile, name } = useDisplay()
 
@@ -269,12 +278,19 @@ onMounted(() => {
   console.log(mobile.value, name.value) // false
 })
 
+function detailsHover(i, i2) {
+  console.log(i, i2, works.value[i].data[i2])
+  works.value[i].data[i2].hover = true;
+}
+
+function detailsLeave(i, i2) {
+  console.log(i, i2, works.value[i].data[i2])
+  works.value[i].data[i2].hover = false;
+}
 
 
 
 const THREE = window.THREE;
-
-
 var mouseX = 0, mouseY = 0,
 
   windowHalfX = window.innerWidth / 2,
@@ -671,6 +687,34 @@ p {
   animation-iteration-count: infinite;
 }
 
+.details {
+  padding: 0 1rem;
+}
+
+.panel {
+  box-sizing: border-box;
+  position: absolute;
+  background: #2929297a;
+  color: black;
+  width: 0%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  overflow: hidden;
+  transition: .3s;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  .v-btn {
+    min-width: unset !important;;
+  }
+}
+
+.panel-on {
+  width: 100%;
+}
+
 @media screen and (min-width: 1400px) {}
 
 @media screen and (max-width: 1400px) {}
@@ -683,4 +727,5 @@ p {
   .page {}
 }
 
-@media screen and (max-width: 576px) {}</style>
+@media screen and (max-width: 576px) {}
+</style>

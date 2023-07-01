@@ -69,8 +69,8 @@
         "link": "http://officient.dk/",
         "details": "Send and receive electronic invoices. Teamwork",
         "panel": [
-          {"btn": "Example", "url": ""},
-          {"btn": "Code", "url": ""}
+          {"btn": "Example", "url": "https://spiriturban.github.io/Test/#"},
+          {"btn": "Code", "url": "https://github.com/SpiritUrban/Test/tree/master"}
         ]
       },
       {
