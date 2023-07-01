@@ -49,14 +49,19 @@
         "title": "rozvivalka.xyz",
         "link": "https://spiriturban.github.io/rozvivalka/",
         "details": ""
-      },      
+      },
       {
         "shutdowned": "true",
         "title": "crystalsystemnyc.com",
         "link": "http://www.crystalsystemnyc.com",
-        "details": "Site for Cleaning Company. Teamwork"
+        "details": "Site for Cleaning Company. Teamwork",
+        "panel": [
+          {
+            "btn": "Picture",
+            "url": "./src/assets/img/crystal.jpg"
+          }
+        ]
       },
-
       {
         "shutdowned": "true",
         "title": "nemportal.dk",
@@ -69,8 +74,14 @@
         "link": "http://officient.dk/",
         "details": "Send and receive electronic invoices. Teamwork",
         "panel": [
-          {"btn": "Example", "url": "https://spiriturban.github.io/Test/#"},
-          {"btn": "Code", "url": "https://github.com/SpiritUrban/Test/tree/master"}
+          {
+            "btn": "Example",
+            "url": "https://spiriturban.github.io/Test/#"
+          },
+          {
+            "btn": "Code",
+            "url": "https://github.com/SpiritUrban/Test/tree/master"
+          }
         ]
       },
       {

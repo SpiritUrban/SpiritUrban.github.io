@@ -237,10 +237,24 @@
                     </div>
 
                     <div class="panel" :class="(item.hover) ? 'panel-on' : ''">
-                      <v-btn v-for="(b, index3)  of item.panel" :key="`${index3}-${group.type}-b`" :href="b.url" min-width="164" rel="noopener noreferrer"
-                        target="_blank" color="#7c4219" size="small">
-                        {{ b.btn }}
-                      </v-btn>
+
+                      <div style="width: fit-content;" v-for="(b, index3)  of item.panel" :key="`${index3}-${group.type}-b`">
+
+                        <v-btn :href="b.url" min-width="164" rel="noopener noreferrer" target="_blank" color="#7c4219"
+                          size="small">
+                          {{ b.btn }}
+                        </v-btn>
+<!-- 
+                        <v-btn v-if="b.type=='img'" :href="b.url" min-width="164" rel="noopener noreferrer" target="_blank" color="#7c4219"
+                          size="small">
+                          {{ b.btn }}
+                        </v-btn>                         -->
+
+                      </div>
+
+                      <!-- window.open('http://example.com/someImage.png'); -->
+
+
                     </div>
                   </td>
                 </tr>
@@ -706,8 +720,10 @@ p {
   justify-content: space-evenly;
   align-items: center;
   backdrop-filter: blur(5px);
+
   .v-btn {
-    min-width: unset !important;;
+    min-width: unset !important;
+    ;
   }
 }
 
@@ -727,5 +743,4 @@ p {
   .page {}
 }
 
-@media screen and (max-width: 576px) {}
-</style>
+@media screen and (max-width: 576px) {}</style>
