@@ -58,7 +58,8 @@
         "panel": [
           {
             "btn": "Picture",
-            "url": "./src/assets/img/crystal.jpg"
+            "url": "https://raw.githubusercontent.com/SpiritUrban/SpiritUrban.github.io/master/src/assets/img/crystal.jpg",
+            "urlLocal": "./src/assets/img/crystal.jpg"
           }
         ]
       },
