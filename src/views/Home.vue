@@ -244,16 +244,14 @@
                           size="small">
                           {{ b.btn }}
                         </v-btn>
-<!-- 
+
+                        <!-- 
                         <v-btn v-if="b.type=='img'" :href="b.url" min-width="164" rel="noopener noreferrer" target="_blank" color="#7c4219"
                           size="small">
                           {{ b.btn }}
-                        </v-btn>                         -->
+                        </v-btn> -->
 
                       </div>
-
-                      <!-- window.open('http://example.com/someImage.png'); -->
-
 
                     </div>
                   </td>
@@ -293,12 +291,10 @@ onMounted(() => {
 })
 
 function detailsHover(i, i2) {
-  console.log(i, i2, works.value[i].data[i2])
   works.value[i].data[i2].hover = true;
 }
 
 function detailsLeave(i, i2) {
-  console.log(i, i2, works.value[i].data[i2])
   works.value[i].data[i2].hover = false;
 }
 
