@@ -9,7 +9,7 @@
     <div id="container" class="home-container">
 
       <!-- SHEET -->
-      <div class="sheet" style="text-align: center; width: fit-content;">
+      <div class="sheet" style="text-align: center; width: fit-content; z-index: 100; position: relative;">
         <div class="head">
           <img src="../assets/img/I.png">
           <h2 class="title"> I'm: <strong class="blink">Fullstack JS Developer</strong>
@@ -18,8 +18,14 @@
           </h2>
         </div>
 
-        <div style="text-align: center;">
+        <br>
+
+        <!-- <div style="text-align: center;">
           <a class="an-1" target="_blank" href="https://github.com/SpiritUrban">My GitHub</a>
+        </div> -->
+
+        <div style="text-align: center; z-index: 100;">
+          <SuperButton href="https://github.com/SpiritUrban"/>
         </div>
 
       </div>
@@ -256,10 +262,12 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { onMounted } from 'vue'
-import { useDisplay } from 'vuetify'
+<script setup>
+import { onMounted } from 'vue';
+import { useDisplay } from 'vuetify';
 // import HelloWorld from '@/components/HelloWorld.vue'
+import SuperButton  from '@/components/SuperButton.vue'
+
 
 import workExperience from '@/assets/data/work-experience.json';
 import personalSkills from '@/assets/data/personal-skills.json';
@@ -272,9 +280,6 @@ const { mobile, name } = useDisplay()
 onMounted(() => {
   console.log(mobile.value, name.value) // false
 })
-
-
-
 
 
 
