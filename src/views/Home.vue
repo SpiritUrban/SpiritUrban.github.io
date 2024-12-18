@@ -14,7 +14,7 @@
           <img src="../assets/img/I.png">
           <h2 class="title"> I'm: <strong class="blink">Fullstack JS Developer</strong>
             <br>
-            (Vue, Angular, NodeJS) Web-Design, Web-3D
+            (React, Vue, Angular, NodeJS) Web-Design, Web-3D, AI
           </h2>
         </div>
 
