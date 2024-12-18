@@ -140,8 +140,8 @@
                   <tr v-if="item.companyAdditionalSources?.length > 0">
                     <td>Additional:</td>
                     <td>
-                      <v-btn v-for="(item, i) in item.companyAdditionalSources" :key="i" icon :href="item" target="_blank"
-                        size="x-small" variant="outlined">
+                      <v-btn v-for="(item, i) in item.companyAdditionalSources" :key="i" icon :href="item"
+                        target="_blank" size="x-small" variant="outlined">
                         <v-icon icon="mdi-link"></v-icon>
                         &nbsp; {{ i + 1 }}
                       </v-btn>
@@ -226,7 +226,7 @@
                   <td>
                     <!-- <div class="major-2">{{ item.title }}</div> -->
                     <a :href="item.link" :class="item.shutdowned ? 'shutdowned' : 'an-1'" target="_blank">{{ item.title
-                    }}</a>
+                      }}</a>
                   </td>
 
                   <td @mouseover="detailsHover(index, index2)" @mouseleave="detailsLeave(index, index2)"
@@ -238,7 +238,8 @@
 
                     <div class="panel" :class="(item.hover) ? 'panel-on' : ''">
 
-                      <div style="width: fit-content;" v-for="(b, index3)  of item.panel" :key="`${index3}-${group.type}-b`">
+                      <div style="width: fit-content;" v-for="(b, index3)  of item.panel"
+                        :key="`${index3}-${group.type}-b`">
 
                         <v-btn :href="b.url" min-width="164" rel="noopener noreferrer" target="_blank" color="#7c4219"
                           size="small">
@@ -414,6 +415,8 @@ function render() {
 
 <style lang="scss">
 main {
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -739,4 +742,5 @@ p {
   .page {}
 }
 
-@media screen and (max-width: 576px) {}</style>
+@media screen and (max-width: 576px) {}
+</style>
