@@ -4,6 +4,12 @@
     "data": [
       {
         "shutdowned": "",
+        "title": "My repositories",
+        "link": "https://github.com/SpiritUrban?tab=repositories",
+        "details": "Мy portfolio includes links to commercial projects I worked on earlier, but they no longer reflect my current professional level. The most complex and advanced products I’ve worked on are in private repositories, so I can’t share them. However, you can visit my GitHub, where you’ll find public repositories that showcase my approach and skill level."
+      },
+      {
+        "shutdowned": "",
         "title": "adventurebucketlist.com",
         "link": "https://adventurebucketlist.com/",
         "details": "Teamwork"
@@ -147,6 +153,12 @@
   {
     "type": "Projects of my students",
     "data": [
+      {
+        "shutdowned": "true",
+        "title": "",
+        "link": "",
+        "details": "Over the 5 years of mentoring, my students have created numerous projects. This section is not yet complete and will be updated later. !!!!"
+      },
       {
         "shutdowned": "true",
         "title": "Photographer's site",

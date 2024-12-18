@@ -184,7 +184,6 @@
 		"technologies": "JavaScript, Telegram API, Whatsapp API, Google Apps Script, Google Sheets, NodeJS",
 		"product":"Chat bots, Teaching",
 		"productSite" : "",
-
 		"aboutProduct": "For business process automation staff."
 	},
 	{
@@ -193,9 +192,65 @@
 		"title"  : "Mentor, Web-developer",
 		"company": "Own",
 		"technologies": "JavaScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js",
-		"product": "Portfolio site, Teaching",
+		"product": "Portfolio n my project sites, Teaching",
 		"productSite" : "https://spiriturban.github.io/",
+		"companyAdditionalSources": ["https://spiriturban.github.io/about-me/#en", "https://spiriturban.github.io/constructor-universe/"],
+		"aboutProduct": "Portfolio about my experience and projects."
+	},
 
-		"aboutProduct": "Portfolio about my experience."
+	{
+		"year"  : "2023",
+		"years"  : "2023",
+		"title"  : "Mentor, Web-developer",
+		"company": "Own",
+		"technologies": "JavaScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js",
+		"product": "Video lessons and exploaring, Teaching",
+		"companyAdditionalSources": ["https://www.youtube.com/watch?v=JrDoYdbOYxQ&list=PLpemT0gHXC9v9FYs2oOeyRZ0dC6BsWGOO&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=ufAZjYtJB-w&list=PLpemT0gHXC9sJPjQuavc8mvNEU8VDxskW&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=oqDM876vmjQ&list=PLpemT0gHXC9sSN0YHyJrNGpfo7Br-7oVm&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=KOPe7ZRCf3s&list=PLpemT0gHXC9u9oRKxNyYxSK8lmrIlakY4&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=FW_wBA8DAs0&list=PLpemT0gHXC9umTj-cc0ounWRqWKaFOtfP&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=uVjHg90dSGo&list=PLpemT0gHXC9u7NSiZP_spHD-Yl2NWd2Qk&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=KtCc5dRKsJ4&list=PLpemT0gHXC9vyVE2mGXp0ckJdkBZbjSXt&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=6p-hJIQBQns&list=PLpemT0gHXC9vejvHvQd4xtuN7MysO7vV1&ab_channel=STRONGEST%21%21%21"],
+		"aboutProduct": "Portfolio about my experience and projects."
+	},
+
+	{
+		"year"  : "2024",
+		"years"  : "2024",
+		"title"  : "Mentor, Web-developer",
+		"company": "Own",
+		"technologies": "Vue, NuxtJS, Socket.IO, ...",
+		"product": "'MENTOR-JS' project (site and lessons), Teaching",
+		"productSite" : "https://mentor-js.vercel.app/",
+		"aboutProduct": "NuxtJS (Vue + SSR) lessons and site with this videos."
+	},
+
+	{
+		"year"  : "2024",
+		"years"  : "2024",
+		"title"  : "Mentor, Web-developer",
+		"company": "Own",
+		"technologies": "Jest, AWS, Three.js, Godot, ... ",
+		"product": "Video lessons and exploaring, Teaching",
+		"companyAdditionalSources": ["https://www.youtube.com/watch?v=qCEiq4P9tf0&list=PLpemT0gHXC9uWsjcaKbsyMC1pbbjuv9at&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=MksvaoirdJI&list=PLpemT0gHXC9tC_8Tdd9B18kXCHftTEy7j&index=2&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=h4e_l3U7vio&list=PLpemT0gHXC9uO0GLh85Hx6EWXBJnO5Pa-&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=5XpsAqCDaUQ&list=PLpemT0gHXC9svDnzhzMAyqe_WD8pRNgWm&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=D491I0CazXQ&list=PLpemT0gHXC9s3apxeXQfwFoqT0IVmORBf&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=fwE5kHL7USY&list=PLpemT0gHXC9v2Pz-CLanu5kZFfL_H6Gql&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=vzNzj0oVQVo&list=PLpemT0gHXC9vSgbwZemvrRU1OQuHaoh0f&ab_channel=STRONGEST%21%21%21"],
+		"aboutProduct": "A series of video lessons about web development."
+	},
+
+	{
+		"year"  : "2024",
+		"years"  : "2024",
+		"title"  : "Mentor, Web-developer",
+		"company": "Own",
+		"technologies": "React, RTK, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render, ...",
+		"product": "'JS-MANTRA' community project, Teaching",
+		"productSite" : "https://js-mantra.vercel.app/",
+		"aboutProduct": "Resources for web development, trainings, community organization."
+	},
+
+	{
+		"year"  : "2024",
+		"years"  : "2024",
+		"title"  : "Mentor, Web-developer",
+		"company": "Own",
+		"technologies": "AI APIs, Machine Learning, Google AI API Gemini, OpenAI API ChatGPT, ReactFlow, React, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render, ...",
+		"product": "Video lessons and exploaring, Teaching",
+		"companyAdditionalSources": ["https://www.youtube.com/watch?v=XlcgsRjU0aA&list=PLpemT0gHXC9v0DKgFGdEKnR-Q4B4Dy1W-&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=nRO4OB6HLGE&list=PLpemT0gHXC9sHIAdTw5vqMEZusUoDxTdK&ab_channel=STRONGEST%21%21%21", "https://www.youtube.com/watch?v=ObZXh5IeYw0&list=PLpemT0gHXC9tSikxDy3zjZEoPHBm3olQT&ab_channel=STRONGEST%21%21%21"],
+		"aboutProduct": "A series of video lessons about: AI APIs and other technologies."
 	}
+
 ]

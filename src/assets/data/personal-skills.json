@@ -12,16 +12,18 @@
   {
     "type": "Job-related skills",
     "data": [
-      { "title": "JavaScript", "details": "8 years" },
-      { "title": "TypeScript", "details": "7 years" },
-      { "title": "NodeJS", "details": "8 years" },
-      { "title": "Express.js", "details": "8 years" },
-      { "title": "MongoDB", "details": "8 years" },
-      { "title": "HTML, CSS, SASS, LESS", "details": "9 years" },
+      { "title": "JavaScript", "details": "10 years" },
+      { "title": "TypeScript", "details": "9 years" },
+      { "title": "NodeJS", "details": "10 years" },
+      { "title": "Express.js", "details": "10 years" },
+      { "title": "MongoDB", "details": "10 years" },
+      { "title": "HTML, CSS, SASS, LESS", "details": "11 years" },
       { "title": "Angular", "details": "5 years" },
       { "title": "AngularJS", "details": "3 years" },
-      { "title": "Vue", "details": "1 year" },
-      { "title": "Nuxt", "details": "half year" },
+      { "title": "Vue", "details": "3 year" },
+      { "title": "Nuxt", "details": "2" },
+      { "title": "React", "details": "2 year" },
+      { "title": "Next", "details": "2 year" },
       { "title": "Jade", "details": "1 year" },
       { "title": "CoffeScript / LiveScript", "details": "1 year" },
       { "title": "PHP", "details": "half year" },
@@ -37,9 +39,13 @@
   {
     "type": "Frameworks",
     "data": [
-      { "title": "Express.js", "details": "8 years" },
-      { "title": "Vue", "details": "1 year" },
-      { "title": "Nuxt", "details": "half year" },
+      { "title": "Express.js", "details": "10 years" },
+      { "title": "Vue", "details": "3 year" },
+      { "title": "Nuxt", "details": "2 year" },
+
+      { "title": "React", "details": "2 year" },
+      { "title": "Next", "details": "2 year" },
+
       { "title": "Angular", "details": "5 years" },
       { "title": "AngularJS", "details": "3 years" }
     ]
@@ -50,7 +56,8 @@
     "data": [
       { "title": "VPS + NodeJS", "details": "from 2016" },
       { "title": "Ubuntu", "details": "" },
-      { "title": "CentOS", "details": "" }
+      { "title": "CentOS", "details": "" },
+      { "title": "AWS", "details": "" }
     ]
   },
   
@@ -60,7 +67,7 @@
       { "title": "Linux", "details": "from version 14" },
       { "title": "CentOS", "details": "version 6" },
       { "title": "MacOS", "details": "" },
-      { "title": "Windows", "details": "95, 98, XP, 7, 10" },
+      { "title": "Windows", "details": "95, 98, XP, 7, 10, 11" },
       { "title": "DOS", "details": "" }
     ]
   },
@@ -71,6 +78,7 @@
       { "title": "Photoshop", "details": "from 2006  (13+)" },
       { "title": "Adobe Illustrator", "details": "10+" },
       { "title": "3DSMax", "details": "4+" },
+      { "title": "Blender", "details": "1" },
       { "title": "CorelDrow", "details": "4+" }
     ]
   },
@@ -78,13 +86,31 @@
   {
     "type": "More details",
     "data": [
-      { "title": "WebRTC", "details": "Streaming API based on the current browser (the same principle that is running Skype)" },
-      { "title": "Cloud APIs", "details": "speech synthesis, recognition, translation, maps, payment systems (PayPall, Stripe, Privatbank, Monobank) " },
+      { "title": "WebRTC", "details": "Streaming API based on the current browser (same principle as Skype)" },
+      { "title": "Cloud APIs", "details": "Speech synthesis, recognition, translation, maps, payment systems (PayPal, Stripe, PrivatBank, Monobank)" },
       { "title": "OAuth", "details": "Authorization for social networks" },
-      { "title": "Socket.IO", "details": "Building architecture based protocol sockets" },
-      { "title": "File-API", "details": "Using the browser-based File-API" },
-      { "title": "Cross-window communication", "details": "Messaging communication between frames" },
-      { "title": "Crossdomain application architecture", "details": "Сreating a sustainable system located on different servers and operating as a single unit" }
+      { "title": "Socket.IO", "details": "Architecture development using socket protocol" },
+      { "title": "File-API", "details": "Using browser-based File-API" },
+      { "title": "Cross-window communication", "details": "Message exchange between frames" },
+      { "title": "Crossdomain application architecture", "details": "Creating a robust system located on different servers functioning as a single unit" },
+      { "title": "Vue.js", "details": "Development of modern and responsive interfaces using Vue.js, including Vue CLI and Vuex for state management" },
+      { "title": "Nuxt.js", "details": "Server-side rendering and static generation for Vue.js applications, including Nuxt 3 configuration and SEO optimization" },
+      { "title": "React.js", "details": "Building powerful and dynamic user interfaces with React, including hooks and Context API" },
+      { "title": "Next.js", "details": "Development of scalable applications with SSR and static generation on React" },
+      { "title": "Machine Learning (ML) and Artificial Intelligence (AI)", "details": "Study and application of machine learning and artificial intelligence methods" },
+      { "title": "Three.js", "details": "Creating 3D graphics in web applications" },
+      { "title": "Web 3.0 and decentralized applications (dApps)", "details": "Development of blockchain-based applications" },
+      { "title": "Cryptocurrencies and Blockchain", "details": "In-depth understanding and work with blockchain technologies and cryptocurrencies" },
+      { "title": "Node.js", "details": "Development of server-side applications using JavaScript" },
+      { "title": "Angular", "details": "Creating dynamic web applications using Angular" },
+      { "title": "IoT, Mobile Applications, AR/VR", "details": "Development of solutions for Internet of Things, mobile apps, augmented and virtual reality" },
+      { "title": "Teaching and Mentorship", "details": "Conducting online lessons and mentoring in JavaScript and web development" },
+      { "title": "GraphQL", "details": "API creation with Apollo Server and client, Prisma ORM integration" },
+      { "title": "D3.js", "details": "Creating interactive data visualizations" },
+      { "title": "Godot", "details": "Using Godot Engine for game development and 3D scenes" },
+      { "title": "Electron.js", "details": "Desktop application development using web technologies" },
+      { "title": "Server-Sent Events (SSE)", "details": "Streaming data for real-time updates" },
+      { "title": "PostgreSQL + Prisma ORM", "details": "Optimizing database operations via ORM and complex queries" }
     ]
   },
 
