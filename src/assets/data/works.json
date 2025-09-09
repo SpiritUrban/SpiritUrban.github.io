@@ -4,6 +4,30 @@
     "data": [
       {
         "shutdowned": "",
+        "title": "books-online",
+        "link": "https://spiriturban.github.io/books-online/",
+        "details": "Онлайн-каталог книг и учебных материалов (GitHub Pages, reader.js, LocalStorage, теги/фильтры)."
+      },
+      {
+        "shutdowned": "",
+        "title": "mentor-js",
+        "link": "https://mentor-js.vercel.app/",
+        "details": "Сайт и уроки по NuxtJS (Vue + SSR). Учебный контент и примеры."
+      },
+      {
+        "shutdowned": "",
+        "title": "js-mantra",
+        "link": "https://js-mantra.vercel.app/",
+        "details": "Комьюнити-ресурсы по веб-разработке: тренинги, организация обучения, полезные материалы."
+      },
+      {
+        "shutdowned": "",
+        "title": "artifacts / yt-dlp subtitles",
+        "link": "https://spiriturban.github.io/artifacts/youtube-subs-yt-dlp/",
+        "details": "Гайд: субтитры YouTube через yt-dlp, cookies/DPAPI, .srt, ретраи/паузы."
+      },
+      {
+        "shutdowned": "",
         "title": "My repositories",
         "link": "https://github.com/SpiritUrban?tab=repositories",
         "details": "Мy portfolio includes links to commercial projects I worked on earlier, but they no longer reflect my current professional level. The most complex and advanced products I’ve worked on are in private repositories, so I can’t share them. However, you can visit my GitHub, where you’ll find public repositories that showcase my approach and skill level."
@@ -200,10 +224,12 @@
         "details": "Серия из 18+ томов о пути автора: от кризиса 2017 года до трансформации и наставничества в 2025. Включает автобиографию, философию, практики, IT и стратегию."
       },
       {
-        "title": "НАСТАВНИК (series, 2017–2025)",
-        "link": "https://spiriturban.github.io/books-online/",
-        "details": " философию, практики, IT и стратегию."
+        "title": "Учебник: Новое программирование ИИ",
+        "link": "https://spiriturban.github.io/books-online/books/uchebnik-novoe-programmirovanie-ii/",
+        "details": "Учебник и курс по работе с искусственным интеллектом как новым типом программирования. Структура уровней владения ИИ, контексты, пайплайны, примеры интеграции в веб-проекты."
       }
+      
+      
     ]
   }
 ]
