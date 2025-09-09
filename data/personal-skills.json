@@ -1,0 +1,441 @@
+[
+  {
+    "type": "Languages",
+    "data": [
+      {
+        "title": "Ukrainian",
+        "details": "Native"
+      },
+      {
+        "title": "Russian",
+        "details": "Native"
+      },
+      {
+        "title": "English",
+        "details": "Upper-Intermediate"
+      }
+    ]
+  },
+  {
+    "type": "Job-related skills",
+    "data": [
+      {
+        "title": "Next.js",
+        "details": "2+ years (SSR/SSG)"
+      },
+      {
+        "title": "GitHub Pages & Actions (CI/CD)",
+        "details": "Static hosting and pipelines"
+      },
+      {
+        "title": "JavaScript",
+        "details": "10 years"
+      },
+      {
+        "title": "TypeScript",
+        "details": "9 years"
+      },
+      {
+        "title": "NodeJS",
+        "details": "10 years"
+      },
+      {
+        "title": "Express.js",
+        "details": "10 years"
+      },
+      {
+        "title": "MongoDB",
+        "details": "10 years"
+      },
+      {
+        "title": "HTML, CSS, SASS, LESS",
+        "details": "11 years"
+      },
+      {
+        "title": "Angular",
+        "details": "5 years"
+      },
+      {
+        "title": "AngularJS",
+        "details": "3 years"
+      },
+      {
+        "title": "Vue",
+        "details": "3 year"
+      },
+      {
+        "title": "Nuxt",
+        "details": "2"
+      },
+      {
+        "title": "React",
+        "details": "2 year"
+      },
+      {
+        "title": "Next",
+        "details": "2 year"
+      },
+      {
+        "title": "Jade",
+        "details": "1 year"
+      },
+      {
+        "title": "CoffeScript / LiveScript",
+        "details": "1 year"
+      },
+      {
+        "title": "PHP",
+        "details": "half year"
+      },
+      {
+        "title": "C++",
+        "details": "half year"
+      },
+      {
+        "title": "MySQL",
+        "details": "half year"
+      },
+      {
+        "title": "PostgreSQL",
+        "details": "half year"
+      },
+      {
+        "title": "ActionScript",
+        "details": "half year"
+      },
+      {
+        "title": "Java",
+        "details": "Java - 2 month"
+      }
+    ]
+  },
+  {
+    "type": "Frameworks",
+    "data": [
+      {
+        "title": "Express.js",
+        "details": "10 years"
+      },
+      {
+        "title": "Vue",
+        "details": "3 year"
+      },
+      {
+        "title": "Nuxt",
+        "details": "2 year"
+      },
+      {
+        "title": "React",
+        "details": "2 year"
+      },
+      {
+        "title": "Next",
+        "details": "2 year"
+      },
+      {
+        "title": "Angular",
+        "details": "5 years"
+      },
+      {
+        "title": "AngularJS",
+        "details": "3 years"
+      }
+    ]
+  },
+  {
+    "type": "Server Administration",
+    "data": [
+      {
+        "title": "VPS + NodeJS",
+        "details": "from 2016"
+      },
+      {
+        "title": "Ubuntu",
+        "details": ""
+      },
+      {
+        "title": "CentOS",
+        "details": ""
+      },
+      {
+        "title": "AWS",
+        "details": ""
+      }
+    ]
+  },
+  {
+    "type": "Worked with",
+    "data": [
+      {
+        "title": "Linux",
+        "details": "from version 14"
+      },
+      {
+        "title": "CentOS",
+        "details": "version 6"
+      },
+      {
+        "title": "MacOS",
+        "details": ""
+      },
+      {
+        "title": "Windows",
+        "details": "95, 98, XP, 7, 10, 11"
+      },
+      {
+        "title": "DOS",
+        "details": ""
+      }
+    ]
+  },
+  {
+    "type": "Graphics",
+    "data": [
+      {
+        "title": "Photoshop",
+        "details": "from 2006  (13+)"
+      },
+      {
+        "title": "Adobe Illustrator",
+        "details": "10+"
+      },
+      {
+        "title": "3DSMax",
+        "details": "4+"
+      },
+      {
+        "title": "Blender",
+        "details": "1"
+      },
+      {
+        "title": "CorelDrow",
+        "details": "4+"
+      }
+    ]
+  },
+  {
+    "type": "More details",
+    "data": [
+      {
+        "title": "OpenAI API (ChatGPT)",
+        "details": "Прототипирование, код-ассист, интеграции"
+      },
+      {
+        "title": "Google Gemini",
+        "details": "AI-интеграции, генерация/анализ контента"
+      },
+      {
+        "title": "React Flow",
+        "details": "Нотация/редакторы потоков, визуальные пайплайны"
+      },
+      {
+        "title": "YouTube Production & SEO",
+        "details": "Сценарии, таймкоды, теги, описания, карусель контента"
+      },
+      {
+        "title": "CapCut / видеомонтаж",
+        "details": "Монтаж, ритм, эффекты; интеграция с контент-пайплайном"
+      },
+      {
+        "title": "GitHub Pages (Reader.js)",
+        "details": "Живые страницы/читатель, state в LocalStorage"
+      },
+      {
+        "title": "WebRTC",
+        "details": "Streaming API based on the current browser (same principle as Skype)"
+      },
+      {
+        "title": "Cloud APIs",
+        "details": "Speech synthesis, recognition, translation, maps, payment systems (PayPal, Stripe, PrivatBank, Monobank)"
+      },
+      {
+        "title": "OAuth",
+        "details": "Authorization for social networks"
+      },
+      {
+        "title": "Socket.IO",
+        "details": "Architecture development using socket protocol"
+      },
+      {
+        "title": "File-API",
+        "details": "Using browser-based File-API"
+      },
+      {
+        "title": "Cross-window communication",
+        "details": "Message exchange between frames"
+      },
+      {
+        "title": "Crossdomain application architecture",
+        "details": "Creating a robust system located on different servers functioning as a single unit"
+      },
+      {
+        "title": "Vue.js",
+        "details": "Development of modern and responsive interfaces using Vue.js, including Vue CLI and Vuex for state management"
+      },
+      {
+        "title": "Nuxt.js",
+        "details": "Server-side rendering and static generation for Vue.js applications, including Nuxt 3 configuration and SEO optimization"
+      },
+      {
+        "title": "React.js",
+        "details": "Building powerful and dynamic user interfaces with React, including hooks and Context API"
+      },
+      {
+        "title": "Next.js",
+        "details": "Development of scalable applications with SSR and static generation on React"
+      },
+      {
+        "title": "Machine Learning (ML) and Artificial Intelligence (AI)",
+        "details": "Study and application of machine learning and artificial intelligence methods"
+      },
+      {
+        "title": "Three.js",
+        "details": "Creating 3D graphics in web applications"
+      },
+      {
+        "title": "Web 3.0 and decentralized applications (dApps)",
+        "details": "Development of blockchain-based applications"
+      },
+      {
+        "title": "Cryptocurrencies and Blockchain",
+        "details": "In-depth understanding and work with blockchain technologies and cryptocurrencies"
+      },
+      {
+        "title": "Node.js",
+        "details": "Development of server-side applications using JavaScript"
+      },
+      {
+        "title": "Angular",
+        "details": "Creating dynamic web applications using Angular"
+      },
+      {
+        "title": "IoT, Mobile Applications, AR/VR",
+        "details": "Development of solutions for Internet of Things, mobile apps, augmented and virtual reality"
+      },
+      {
+        "title": "Teaching and Mentorship",
+        "details": "Conducting online lessons and mentoring in JavaScript and web development"
+      },
+      {
+        "title": "GraphQL",
+        "details": "API creation with Apollo Server and client, Prisma ORM integration"
+      },
+      {
+        "title": "D3.js",
+        "details": "Creating interactive data visualizations"
+      },
+      {
+        "title": "Godot",
+        "details": "Using Godot Engine for game development and 3D scenes"
+      },
+      {
+        "title": "Electron.js",
+        "details": "Desktop application development using web technologies"
+      },
+      {
+        "title": "Server-Sent Events (SSE)",
+        "details": "Streaming data for real-time updates"
+      },
+      {
+        "title": "PostgreSQL + Prisma ORM",
+        "details": "Optimizing database operations via ORM and complex queries"
+      }
+    ]
+  },
+  {
+    "type": "Intensive practice during study",
+    "data": [
+      {
+        "title": "Paskal 3.0, 7.0",
+        "details": "3 year"
+      },
+      {
+        "title": "C++",
+        "details": "3 month"
+      },
+      {
+        "title": "Assembler",
+        "details": "4 month"
+      }
+    ]
+  },
+  {
+    "type": "Other experience",
+    "data": [
+      {
+        "title": "Mentor",
+        "details": "4 years"
+      },
+      {
+        "title": "Team lead",
+        "details": "half year"
+      },
+      {
+        "title": "Own projects",
+        "details": ""
+      },
+      {
+        "title": "Extensive experience of self-organization",
+        "details": ""
+      },
+      {
+        "title": "The organizational work",
+        "details": ""
+      },
+      {
+        "title": "Teaching",
+        "details": "1 year"
+      },
+      {
+        "title": "Trainer",
+        "details": "3 years"
+      },
+      {
+        "title": "Head of the circle",
+        "details": "1 year"
+      },
+      {
+        "title": "Studied psychology",
+        "details": "From the age of 16"
+      }
+    ]
+  },
+  {
+    "type": "Many scattered experience",
+    "data": [
+      {
+        "title": "CMS",
+        "details": "Joomla, WordPress"
+      },
+      {
+        "title": "User experience",
+        "details": "Fanatic and living with a computer since middle school (since 13 years old, since 1994)"
+      }
+    ]
+  },
+  {
+    "type": "Learn and interested",
+    "data": [
+      {
+        "title": "NativeScript",
+        "details": ""
+      },
+      {
+        "title": "Neural Network, Artificial Intelligence, Big Data, Python",
+        "details": ""
+      },
+      {
+        "title": "VR, Web-VR, Learning Technologies",
+        "details": ""
+      },
+      {
+        "title": "Unity3d",
+        "details": ""
+      },
+      {
+        "title": "IoT",
+        "details": ""
+      }
+    ]
+  }
+]

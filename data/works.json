@@ -1,0 +1,235 @@
+[
+  {
+    "type": "Projects",
+    "data": [
+      {
+        "shutdowned": "",
+        "title": "books-online",
+        "link": "https://spiriturban.github.io/books-online/",
+        "details": "Онлайн-каталог книг и учебных материалов (GitHub Pages, reader.js, LocalStorage, теги/фильтры)."
+      },
+      {
+        "shutdowned": "",
+        "title": "mentor-js",
+        "link": "https://mentor-js.vercel.app/",
+        "details": "Сайт и уроки по NuxtJS (Vue + SSR). Учебный контент и примеры."
+      },
+      {
+        "shutdowned": "",
+        "title": "js-mantra",
+        "link": "https://js-mantra.vercel.app/",
+        "details": "Комьюнити-ресурсы по веб-разработке: тренинги, организация обучения, полезные материалы."
+      },
+      {
+        "shutdowned": "",
+        "title": "artifacts / yt-dlp subtitles",
+        "link": "https://spiriturban.github.io/artifacts/youtube-subs-yt-dlp/",
+        "details": "Гайд: субтитры YouTube через yt-dlp, cookies/DPAPI, .srt, ретраи/паузы."
+      },
+      {
+        "shutdowned": "",
+        "title": "My repositories",
+        "link": "https://github.com/SpiritUrban?tab=repositories",
+        "details": "Мy portfolio includes links to commercial projects I worked on earlier, but they no longer reflect my current professional level. The most complex and advanced products I’ve worked on are in private repositories, so I can’t share them. However, you can visit my GitHub, where you’ll find public repositories that showcase my approach and skill level."
+      },
+      {
+        "shutdowned": "",
+        "title": "adventurebucketlist.com",
+        "link": "https://adventurebucketlist.com/",
+        "details": "Teamwork"
+      },
+      {
+        "shutdowned": "",
+        "title": "inter tools for jopwell.com",
+        "link": "https://www.jopwell.com/",
+        "details": "Teamwork"
+      },
+      {
+        "shutdowned": "",
+        "title": "uboro.io",
+        "link": "https://uboro.io",
+        "details": "Teamwork"
+      },
+      {
+        "shutdowned": "",
+        "title": "Inner organization system (MBC)",
+        "link": "https://mvs.gov.ua/",
+        "details": "Ministry of Internal Affairs of Ukraine. (Frontend on Angular) (Mentor)"
+      },
+      {
+        "shutdowned": "",
+        "title": "primeairtime.com",
+        "link": "https://clients.primeairtime.com/",
+        "details": "Teamwork"
+      },
+      {
+        "shutdowned": "",
+        "title": "skladovka.ua",
+        "link": "https://www.skladovka.ua/",
+        "details": ""
+      },
+      {
+        "shutdowned": "",
+        "title": "writtent.com",
+        "link": "http://writtent.com/",
+        "details": "Teamwork"
+      },
+      {
+        "shutdowned": "",
+        "title": "rozvivalka.xyz",
+        "link": "https://spiriturban.github.io/rozvivalka/",
+        "details": ""
+      },
+      {
+        "shutdowned": "true",
+        "title": "crystalsystemnyc.com",
+        "link": "http://www.crystalsystemnyc.com",
+        "details": "Site for Cleaning Company. Teamwork",
+        "panel": [
+          {
+            "btn": "Picture",
+            "url": "https://raw.githubusercontent.com/SpiritUrban/SpiritUrban.github.io/master/src/assets/img/crystal.jpg",
+            "urlLocal": "./src/assets/img/crystal.jpg"
+          }
+        ]
+      },
+      {
+        "shutdowned": "true",
+        "title": "nemportal.dk",
+        "link": "http://www.nemportal.dk/frontpage.php",
+        "details": "Send and receive electronic invoices. Teamwork"
+      },
+      {
+        "shutdowned": "true",
+        "title": "officient.dk",
+        "link": "http://officient.dk/",
+        "details": "Send and receive electronic invoices. Teamwork",
+        "panel": [
+          {
+            "btn": "Example",
+            "url": "https://spiriturban.github.io/Test/#"
+          },
+          {
+            "btn": "Code",
+            "url": "https://github.com/SpiritUrban/Test/tree/master"
+          }
+        ]
+      },
+      {
+        "shutdowned": "true",
+        "title": "officient.com",
+        "link": "http://officient.com/",
+        "details": "Teamwork"
+      },
+      {
+        "shutdowned": "true",
+        "title": "Air Networks",
+        "link": "https://airnetworks.com.au/",
+        "details": "Teamwork"
+      },
+      {
+        "shutdowned": "true",
+        "title": "Recharge of mobile phones",
+        "link": "http://r4.okm.pub/",
+        "details": "Only my Work"
+      },
+      {
+        "shutdowned": "true",
+        "title": "Limousine rental",
+        "link": "http://northstar-limos.squarespace.com",
+        "details": ""
+      },
+      {
+        "shutdowned": "true",
+        "title": "www.miprosco.com",
+        "link": "https://ide.c9.io/spiriturban/miprosco",
+        "details": ""
+      },
+      {
+        "shutdowned": "true",
+        "title": "Social network",
+        "link": "https://ide.c9.io/spiriturban/rest-ex4",
+        "details": ""
+      },
+      {
+        "shutdowned": "true",
+        "title": "paleoyums.com",
+        "link": "http://paleoyums.com/",
+        "details": "Teamwork"
+      }
+    ]
+  },
+  {
+    "type": "Designs",
+    "data": [
+      {
+        "title": "Behance",
+        "link": "http://www.behance.net/spirit_urban",
+        "details": ""
+      },
+      {
+        "title": "Vitaly Dyachuk - graphic designer",
+        "link": "http://www.thecoldwarera.com/aboutus.html",
+        "details": ""
+      }
+    ]
+  },
+  {
+    "type": "Projects of my students",
+    "data": [
+      {
+        "shutdowned": "true",
+        "title": "",
+        "link": "",
+        "details": "Over the 5 years of mentoring, my students have created numerous projects. This section is not yet complete and will be updated later. !!!!"
+      },
+      {
+        "shutdowned": "true",
+        "title": "Photographer's site",
+        "link": "http://alinapiatyhor.com/novorozhdennye-stoimost",
+        "details": "work with mail, generation of site structure from data. (Express.js)"
+      },
+      {
+        "shutdowned": "",
+        "title": "RomanPeredrii",
+        "link": "https://github.com/RomanPeredrii",
+        "details": "Express.js, React.js, WebRTS, socket.io, MongoDB, Firebird"
+      },
+      {
+        "shutdowned": "",
+        "title": "Totoro",
+        "link": "https://github.com/Mooninghnk",
+        "details": "Node.js, Express.js, ethereum, web3.js, metamask, socket.io, MongoDB, FileAPI"
+      },
+      {
+        "shutdowned": "",
+        "title": "Taras Ostasha",
+        "link": "https://github.com/TarasOstasha",
+        "details": "Node.js, Express.js, Angular, Passport.js"
+      },
+      {
+        "shutdowned": "",
+        "title": "Sergiy Semeguk ",
+        "link": "https://github.com/semeguk",
+        "details": "JS, Node.js, Express.js, Angular"
+      }
+    ]
+  },
+  {
+    "type": "Books",
+    "data": [
+      {
+        "title": "НАСТАВНИК (series, 2017–2025)",
+        "link": "https://spiriturban.github.io/books-online/",
+        "details": "Серия из 18+ томов о пути автора: от кризиса 2017 года до трансформации и наставничества в 2025. Включает автобиографию, философию, практики, IT и стратегию."
+      },
+      {
+        "title": "Учебник: Новое программирование ИИ",
+        "link": "https://spiriturban.github.io/books-online/books/uchebnik-novoe-programmirovanie-ii/",
+        "details": "Учебник и курс по работе с искусственным интеллектом как новым типом программирования. Структура уровней владения ИИ, контексты, пайплайны, примеры интеграции в веб-проекты."
+      }
+      
+      
+    ]
+  }
+]
