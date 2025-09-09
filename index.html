@@ -29,27 +29,78 @@
     .content-wrapper {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 0 20px 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: minmax(100px, auto);
       gap: 20px;
       grid-auto-flow: dense;
       align-items: start;
     }
     
-    /* Make sections take only the width they need */
-    .container {
+    header {
+      grid-column: 1 / -1;
       width: 100%;
-      max-width: 100%;
-      margin: 0;
       padding: 0;
+      margin: 0 0 20px 0;
     }
     
-    /* Make sections fit their content */
-    section {
-      width: fit-content;
-      height: fit-content;
+    header .container {
+      max-width: 100% !important;
+      padding: 0;
       margin: 0;
+    }
+    
+    /* Card sizing classes */
+    .cyber-tile {
+      height: 100%;
+      box-sizing: border-box;
+      min-width: 0; /* Allows content to dictate width */
+    }
+    
+    .card-small {
+      grid-row: span 1;
+    }
+    
+    .card-medium {
+      grid-row: span 2;
+    }
+    
+    .card-large {
+      grid-row: span 3;
+    }
+    
+    /* Wide card variants */
+    .card-wide {
+      grid-column: span 6; /* Half width on large screens */
+    }
+    
+    .card-full {
+      grid-column: 1 / -1; /* Full width */
+    }
+    
+    /* Ensure content doesn't overflow */
+    .cyber-tile {
+      overflow: hidden;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .content-wrapper {
+        grid-template-columns: repeat(6, 1fr);
+      }
+      .card-wide {
+        grid-column: span 6;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .content-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .card-wide, .card-full {
+        grid-column: 1 / -1;
+      }
     }
     .mt-4 { margin-top: 2rem; }
     .mb-4 { margin-bottom: 2rem; }
@@ -58,12 +109,11 @@
 </head>
 <body class="bg-black">
   <div class="content-wrapper">
+
   <!-- Header with Cyberpunk styling -->
-  <header class="cyber-razor-bottom p-4">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="cyber-tile-big bg-blue fg-white p-4">
+  <header class="cyber-razor-bottom  card-full" style="margin: 0 -20px; padding: 20px 0;">
+    <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+      <div class="cyber-tile-big bg-blue fg-white p-4" style="width: 100%;">
             <div class="row">
               <div class="col-3">
                 <img src="your-photo.jpg" alt="Dyachuk Vitaliy" class="cyber-img" style="max-width: 200px; border: 2px solid #00f0ff;">
@@ -77,16 +127,14 @@
                 </a>
               </div>
             </div>
-          </div>
-        </div>
       </div>
     </div>
   </header>
 
-  <!-- About Me -->
-  <div class="cyber-tile bg-dark fg-white p-4">
+  <!-- About Me - 3 columns -->
+  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
     <h2 class="cyber-h fg-pink">About Me</h2>
-      <div class="cyber-table">
+    <div class="cyber-table">
         <table>
           <tbody>
             <tr class="cyber-tr">
@@ -110,16 +158,16 @@
       </div>
   </div>
 
-  <!-- Education -->
-  <div class="cyber-tile bg-dark fg-white p-4">
+  <!-- Education - 3 columns -->
+  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
     <h2 class="cyber-h fg-pink">Education</h2>
     <ul class="cyber-list">
       <li class="cyber-li">1999–2001 — College (Electrician)</li>
       <li class="cyber-li">2001–2005 — Higher Education (Teacher of Physical Education and Valeology)</li>
     </ul>
   </div>
-  <!-- Skills -->
-  <div class="cyber-tile bg-dark fg-white p-4">
+  <!-- Personal Skills - 3 columns -->
+  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
     <h2 class="cyber-h fg-pink">Personal Skills</h2>
     
     <!-- Languages -->
@@ -165,8 +213,8 @@
     </div>
   </div>
 
-  <!-- Additional Skills -->
-  <div class="cyber-tile bg-dark fg-white p-4">
+  <!-- Additional Skills - 2 columns -->
+  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
     <h2 class="cyber-h fg-pink">Additional Skills</h2>
     <div class="cyber-tile bg-darker p-3">
       <div class="cyber-tag bg-green fg-black">Web Design</div>
@@ -181,10 +229,12 @@
     </div>
   </div>
 
-  <!-- Interests -->
-  <div class="cyber-tile bg-dark fg-white p-4">
+  <!-- Learning & Interests - 3 columns -->
+  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
     <h2 class="cyber-h fg-pink">Learning & Interests</h2>
-    <div class="cyber-tile bg-darker p-3">
+    
+    <div class="cyber-tile bg-darker p-3 mb-4">
+      <h3 class="cyber-h fg-yellow mb-3">Technologies & Skills</h3>
       <div class="cyber-tag bg-purple fg-white">Python</div>
       <div class="cyber-tag bg-purple fg-white">Big Data</div>
       <div class="cyber-tag bg-purple fg-white">AI/ML</div>
@@ -194,28 +244,21 @@
       <div class="cyber-tag bg-purple fg-white">VR/Web-VR</div>
       <div class="cyber-tag bg-purple fg-white">Learning Tech</div>
     </div>
-  </div>
-  </section>
-  
-  <!-- More details -->
-  <section class="container mb-4">
-    <div class="cyber-tile bg-dark fg-white p-4">
-      <h2 class="cyber-h fg-pink">Additional Details</h2>
-      <div class="cyber-tile bg-darker p-3 mt-2">
-        <ul class="cyber-list">
-          <li class="cyber-li"><span class="fg-yellow">AI/ML:</span> OpenAI API, Google Gemini, Neural nets</li>
-          <li class="cyber-li"><span class="fg-yellow">3D/VR:</span> Three.js, Web-VR, Godot, Unity3D</li>
-          <li class="cyber-li"><span class="fg-yellow">Blockchain:</span> Web3, dApps, Cryptocurrencies</li>
-          <li class="cyber-li"><span class="fg-yellow">Data & APIs:</span> GraphQL, D3.js, Cloud APIs, SSE</li>
-          <li class="cyber-li"><span class="fg-yellow">Other:</span> Mentorship, YouTube/SEO, Electron, IoT</li>
-        </ul>
-      </div>
+    
+    <div class="cyber-tile bg-darker p-3">
+      <h3 class="cyber-h fg-yellow mb-3">Additional Expertise</h3>
+      <ul class="cyber-list">
+        <li class="cyber-li"><span class="fg-yellow">AI/ML:</span> OpenAI API, Google Gemini, Neural nets</li>
+        <li class="cyber-li"><span class="fg-yellow">3D/VR:</span> Three.js, Web-VR, Godot, Unity3D</li>
+        <li class="cyber-li"><span class="fg-yellow">Blockchain:</span> Web3, dApps, Cryptocurrencies</li>
+        <li class="cyber-li"><span class="fg-yellow">Data & APIs:</span> GraphQL, D3.js, Cloud APIs, SSE</li>
+        <li class="cyber-li"><span class="fg-yellow">Other:</span> Mentorship, YouTube/SEO, Electron, IoT</li>
+      </ul>
     </div>
-  </section>
+  </div>
   
-  <!-- Other Experience Section -->
-  <section class="container mb-4">
-    <div class="cyber-tile bg-dark fg-white p-4">
+  <!-- Other Experience - 2 columns -->
+  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 5;">
       <h2 class="cyber-h fg-pink">Other Experience</h2>
       <div class="cyber-tile bg-darker p-3 mt-2">
         <ul class="cyber-list">
@@ -225,31 +268,16 @@
         </ul>
       </div>
     </div>
-  </section>
 
-  <!-- Interests Section -->
-  <section class="container mb-4">
-    <div class="cyber-tile bg-dark fg-white p-4">
-      <h2 class="cyber-h fg-pink">Learn & Interested</h2>
-      <div class="cyber-tile bg-darker p-3 mt-2">
-        <ul class="cyber-list">
-          <li class="cyber-li">Python, Big Data, AI</li>
-          <li class="cyber-li">NativeScript, Unity3D, IoT</li>
-          <li class="cyber-li">VR/Web-VR, Learning Technologies</li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
   <!-- Works & Projects Section -->
-  <section class="container mb-4">
-    <div class="cyber-tile bg-dark fg-white p-4">
+  <div class="cyber-tile bg-dark fg-white p-6 card-full">
       <h2 class="cyber-h fg-pink">Works & Projects</h2>
       
       <!-- Active Projects -->
       <div class="mt-4">
         <h3 class="cyber-h fg-yellow" id="w-active">Active Projects</h3>
-        <div class="grid-container">
+        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; width: 100%;">
           <!-- Project Card -->
           <div class="card">
             <div class="cyber-tile bg-darker p-3">
@@ -369,45 +397,127 @@
         </div> <!-- Close grid-container -->
   
         <!-- Closed Projects -->
-          <div class="mt-4">
-            <h3 class="cyber-h fg-yellow" id="w-closed">Closed Projects</h3>
-            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
-              <ul class="cyber-list">
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">crystalsystemnyc.com</a> — Site for Cleaning Company. Teamwork (закрыт; материалы: Picture).
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">nemportal.dk</a> — Send and receive electronic invoices. Teamwork (закрыт).
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">primeairtime.com</a> — Teamwork (закрыт)
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">officient.dk</a> — Send and receive electronic invoices. Teamwork (закрыт; материалы: Example, Code).
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">officient.com</a> — Teamwork (закрыт).
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">Air Networks</a> — Teamwork (закрыт).
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">Recharge of mobile phones</a> — Only my Work (закрыт).
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">Limousine rental</a> — (закрыт).
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">www.miprosco.com</a> — (закрыт).
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">Social network</a> — (закрыт).
-                </li>
-                <li class="cyber-li">
-                  <a href="#" class="cyber-a fg-yellow">paleoyums.com</a> — Teamwork (закрыт).
-                </li>
-              </ul>
+        <div class="mt-6">
+          <h3 class="cyber-h fg-yellow" id="w-closed">Closed Projects</h3>
+          <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; width: 100%;">
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">Crystal System NYC</h4>
+                <p>Site for Cleaning Company</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Teamwork</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
             </div>
+
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">NemPortal</h4>
+                <p>Send and receive electronic invoices</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Teamwork</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">Prime Airtime</h4>
+                <p>Telecommunications platform</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Teamwork</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">Officient.dk</h4>
+                <p>Electronic invoicing platform</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Teamwork</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">Officient.com</h4>
+                <p>Business management platform</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Teamwork</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">Air Networks</h4>
+                <p>Telecommunications services</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Teamwork</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">Mobile Recharge</h4>
+                <p>Mobile top-up service</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Solo Project</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">Limo Rental</h4>
+                <p>Luxury transportation service</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Development</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">MiProSco</h4>
+                <p>Professional services website</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Development</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">Social Network</h4>
+                <p>Community platform</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Development</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+            <!-- Project Card -->
+            <div class="card">
+              <div class="cyber-tile bg-darker p-3">
+                <h4 class="cyber-h fg-cyan">PaleoYums</h4>
+                <p>Paleo diet recipes and resources</p>
+                <p><span class="fg-yellow">Status:</span> Closed</p>
+                <p><span class="fg-yellow">Role:</span> Teamwork</p>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+              </div>
+            </div>
+          </div>
           </div>
           
           <!-- Student Projects -->
@@ -475,8 +585,6 @@
           </div>
           </div>
         </div>
-      </div>
-    </div>
   </div>
 
   <!-- Footer -->
