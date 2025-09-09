@@ -190,5 +190,20 @@
         "details": "JS, Node.js, Express.js, Angular"
       }
     ]
+  },
+  {
+    "type": "Books",
+    "data": [
+      {
+        "title": "НАСТАВНИК (series, 2017–2025)",
+        "link": "https://spiriturban.github.io/books-online/",
+        "details": "Серия из 18+ томов о пути автора: от кризиса 2017 года до трансформации и наставничества в 2025. Включает автобиографию, философию, практики, IT и стратегию."
+      },
+      {
+        "title": "НАСТАВНИК (series, 2017–2025)",
+        "link": "https://spiriturban.github.io/books-online/",
+        "details": " философию, практики, IT и стратегию."
+      }
+    ]
   }
 ]

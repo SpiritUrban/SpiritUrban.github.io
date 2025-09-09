@@ -214,7 +214,6 @@
       <div class="sheet works" style="width: fit-content;">
         <h1>WORKS</h1>
 
-
         <div class="units">
           <div class="unit" v-for="(group, index) of works" :key="`${index}-${group.type}-works`">
             <b>{{ group.type }}</b>
@@ -222,38 +221,24 @@
             <br>
             <v-table density="compact">
               <tbody>
-                <tr v-for="(item, index2)  of group.data" :key="`${index2}-${group.type}`">
+                <tr v-for="(item, index2) of group.data" :key="`${index2}-${group.type}`">
                   <td>
-                    <!-- <div class="major-2">{{ item.title }}</div> -->
-                    <a :href="item.link" :class="item.shutdowned ? 'shutdowned' : 'an-1'" target="_blank">{{ item.title
-                      }}</a>
+                    <a :href="item.link" :class="item.shutdowned ? 'shutdowned' : 'an-1'" target="_blank">
+                      <template v-if="group.type === 'Books'">
+                        <div class="book-title">{{ item.title.split(' (')[0] }}</div>
+                        <div class="book-series" v-if="item.title.includes('(')">
+                          {{ item.title.match(/\(([^)]+)\)/)[1] }}
+                        </div>
+                      </template>
+                      <template v-else>
+                        {{ item.title }}
+                      </template>
+                    </a>
                   </td>
-
                   <td @mouseover="detailsHover(index, index2)" @mouseleave="detailsLeave(index, index2)"
                     style="position: relative; padding:0;" :style="item.details ? '' : 'padding:0'">
-
-                    <div class="details">
+                    <div class="details" :class="{ 'book-details': group.type === 'Books' }">
                       {{ item.details }}
-                    </div>
-
-                    <div class="panel" :class="(item.hover) ? 'panel-on' : ''">
-
-                      <div style="width: fit-content;" v-for="(b, index3)  of item.panel"
-                        :key="`${index3}-${group.type}-b`">
-
-                        <v-btn :href="b.url" min-width="164" rel="noopener noreferrer" target="_blank" color="#7c4219"
-                          size="small">
-                          {{ b.btn }}
-                        </v-btn>
-
-                        <!-- 
-                        <v-btn v-if="b.type=='img'" :href="b.url" min-width="164" rel="noopener noreferrer" target="_blank" color="#7c4219"
-                          size="small">
-                          {{ b.btn }}
-                        </v-btn> -->
-
-                      </div>
-
                     </div>
                   </td>
                 </tr>
@@ -442,6 +427,26 @@ main {
 .second {
   color: grey;
   font-size: .8rem;
+}
+
+/* Book specific styles */
+.book-title {
+  font-weight: 500;
+  color: #e0e0e0;
+  margin-bottom: 2px;
+}
+
+.book-series {
+  font-size: 0.85em;
+  color: #9e9e9e;
+  font-style: italic;
+}
+
+.book-details {
+  max-width: 400px;
+  line-height: 1.5;
+  font-size: 0.9em;
+  color: #bdbdbd;
 }
 
 .head {
