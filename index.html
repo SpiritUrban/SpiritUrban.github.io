@@ -29,7 +29,27 @@
     .content-wrapper {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+      grid-auto-flow: dense;
+      align-items: start;
+    }
+    
+    /* Make sections take only the width they need */
+    .container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Make sections fit their content */
+    section {
+      width: fit-content;
+      height: fit-content;
+      margin: 0;
     }
     .mt-4 { margin-top: 2rem; }
     .mb-4 { margin-bottom: 2rem; }
@@ -63,10 +83,9 @@
     </div>
   </header>
 
-  <!-- About Me Section -->
-  <section class="container mt-4 mb-4">
-    <div class="cyber-tile bg-dark fg-white p-4">
-      <h2 class="cyber-h fg-pink">About Me</h2>
+  <!-- About Me -->
+  <div class="cyber-tile bg-dark fg-white p-4">
+    <h2 class="cyber-h fg-pink">About Me</h2>
       <div class="cyber-table">
         <table>
           <tbody>
@@ -89,97 +108,93 @@
           </tbody>
         </table>
       </div>
-    </div>
-  </section>
+  </div>
 
-  <!-- Education Section -->
-  <section class="container mb-4">
-    <div class="cyber-tile bg-dark fg-white p-4">
-      <h2 class="cyber-h fg-pink">Education</h2>
-      <ul class="cyber-list">
-        <li class="cyber-li">1999–2001 — College (Electrician)</li>
-        <li class="cyber-li">2001–2005 — Higher Education (Teacher of Physical Education and Valeology)</li>
-      </ul>
-    </div>
-  </section>
-  <!-- Skills Section -->
-  <section id="skills" class="container mb-4">
-    <div class="cyber-tile bg-dark fg-white p-4">
-      <h2 class="cyber-h fg-pink">Personal Skills</h2>
-      
-      <!-- Languages -->
-      <div class="mt-4">
-        <h3 class="cyber-h fg-yellow">Languages</h3>
-        <div class="cyber-tile bg-darker p-3">
-          <div class="cyber-table">
-            <table>
-              <tbody>
-                <tr class="cyber-tr">
-                  <td class="cyber-td fg-cyan">Ukrainian</td>
-                  <td class="cyber-td">Native</td>
-                </tr>
-                <tr class="cyber-tr">
-                  <td class="cyber-td fg-cyan">Russian</td>
-                  <td class="cyber-td">Native</td>
-                </tr>
-                <tr class="cyber-tr">
-                  <td class="cyber-td fg-cyan">English</td>
-                  <td class="cyber-td">Upper-Intermediate</td>
-                </tr>
-                <tr class="cyber-tr">
-                  <td class="cyber-td fg-cyan">German</td>
-                  <td class="cyber-td">Starting</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Core Stack -->
-      <div class="mt-4">
-        <h3 class="cyber-h fg-yellow">Core Stack</h3>
-        <div class="cyber-tile bg-darker p-3">
-          <div class="cyber-tag bg-blue fg-black">React</div>
-          <div class="cyber-tag bg-blue fg-black">Vue</div>
-          <div class="cyber-tag bg-blue fg-black">Angular</div>
-          <div class="cyber-tag bg-blue fg-black">Node.js</div>
-          <div class="cyber-tag bg-blue fg-black">TypeScript</div>
-          <div class="cyber-tag bg-blue fg-black">JavaScript (ES6+)</div>
-        </div>
-      </div>
-
-      <!-- Additional Skills -->
-      <div class="mt-4">
-        <h3 class="cyber-h fg-yellow">Additional Skills</h3>
-        <div class="cyber-tile bg-darker p-3">
-          <div class="cyber-tag bg-green fg-black">Web Design</div>
-          <div class="cyber-tag bg-green fg-black">UI/UX</div>
-          <div class="cyber-tag bg-green fg-black">Responsive Design</div>
-          <div class="cyber-tag bg-green fg-black">Git</div>
-          <div class="cyber-tag bg-green fg-black">Docker</div>
-          <div class="cyber-tag bg-green fg-black">RESTful APIs</div>
-          <div class="cyber-tag bg-green fg-black">GraphQL</div>
-          <div class="cyber-tag bg-green fg-black">MongoDB</div>
-          <div class="cyber-tag bg-green fg-black">PostgreSQL</div>
-        </div>
-      </div>
-
-      <!-- Learn & Interested -->
-      <div class="mt-4">
-        <h3 class="cyber-h fg-yellow">Learn & Interested</h3>
-        <div class="cyber-tile bg-darker p-3">
-          <div class="cyber-tag bg-purple fg-white">Python</div>
-          <div class="cyber-tag bg-purple fg-white">Big Data</div>
-          <div class="cyber-tag bg-purple fg-white">AI/ML</div>
-          <div class="cyber-tag bg-purple fg-white">NativeScript</div>
-          <div class="cyber-tag bg-purple fg-white">Unity3D</div>
-          <div class="cyber-tag bg-purple fg-white">IoT</div>
-          <div class="cyber-tag bg-purple fg-white">VR/Web-VR</div>
-          <div class="cyber-tag bg-purple fg-white">Learning Technologies</div>
+  <!-- Education -->
+  <div class="cyber-tile bg-dark fg-white p-4">
+    <h2 class="cyber-h fg-pink">Education</h2>
+    <ul class="cyber-list">
+      <li class="cyber-li">1999–2001 — College (Electrician)</li>
+      <li class="cyber-li">2001–2005 — Higher Education (Teacher of Physical Education and Valeology)</li>
+    </ul>
+  </div>
+  <!-- Skills -->
+  <div class="cyber-tile bg-dark fg-white p-4">
+    <h2 class="cyber-h fg-pink">Personal Skills</h2>
+    
+    <!-- Languages -->
+    <div class="mt-4">
+      <h3 class="cyber-h fg-yellow">Languages</h3>
+      <div class="cyber-tile bg-darker p-3">
+        <div class="cyber-table">
+          <table>
+            <tbody>
+              <tr class="cyber-tr">
+                <td class="cyber-td fg-cyan">Ukrainian</td>
+                <td class="cyber-td">Native</td>
+              </tr>
+              <tr class="cyber-tr">
+                <td class="cyber-td fg-cyan">Russian</td>
+                <td class="cyber-td">Native</td>
+              </tr>
+              <tr class="cyber-tr">
+                <td class="cyber-td fg-cyan">English</td>
+                <td class="cyber-td">Upper-Intermediate</td>
+              </tr>
+              <tr class="cyber-tr">
+                <td class="cyber-td fg-cyan">German</td>
+                <td class="cyber-td">Starting</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+
+    <!-- Core Stack -->
+    <div class="mt-4">
+      <h3 class="cyber-h fg-yellow">Core Stack</h3>
+      <div class="cyber-tile bg-darker p-3">
+        <div class="cyber-tag bg-blue fg-black">React</div>
+        <div class="cyber-tag bg-blue fg-black">Vue</div>
+        <div class="cyber-tag bg-blue fg-black">Angular</div>
+        <div class="cyber-tag bg-blue fg-black">Node.js</div>
+        <div class="cyber-tag bg-blue fg-black">TypeScript</div>
+        <div class="cyber-tag bg-blue fg-black">JavaScript (ES6+)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Skills -->
+  <div class="cyber-tile bg-dark fg-white p-4">
+    <h2 class="cyber-h fg-pink">Additional Skills</h2>
+    <div class="cyber-tile bg-darker p-3">
+      <div class="cyber-tag bg-green fg-black">Web Design</div>
+      <div class="cyber-tag bg-green fg-black">UI/UX</div>
+      <div class="cyber-tag bg-green fg-black">Responsive Design</div>
+      <div class="cyber-tag bg-green fg-black">Git</div>
+      <div class="cyber-tag bg-green fg-black">Docker</div>
+      <div class="cyber-tag bg-green fg-black">RESTful APIs</div>
+      <div class="cyber-tag bg-green fg-black">GraphQL</div>
+      <div class="cyber-tag bg-green fg-black">MongoDB</div>
+      <div class="cyber-tag bg-green fg-black">PostgreSQL</div>
+    </div>
+  </div>
+
+  <!-- Interests -->
+  <div class="cyber-tile bg-dark fg-white p-4">
+    <h2 class="cyber-h fg-pink">Learning & Interests</h2>
+    <div class="cyber-tile bg-darker p-3">
+      <div class="cyber-tag bg-purple fg-white">Python</div>
+      <div class="cyber-tag bg-purple fg-white">Big Data</div>
+      <div class="cyber-tag bg-purple fg-white">AI/ML</div>
+      <div class="cyber-tag bg-purple fg-white">NativeScript</div>
+      <div class="cyber-tag bg-purple fg-white">Unity3D</div>
+      <div class="cyber-tag bg-purple fg-white">IoT</div>
+      <div class="cyber-tag bg-purple fg-white">VR/Web-VR</div>
+      <div class="cyber-tag bg-purple fg-white">Learning Tech</div>
+    </div>
+  </div>
   </section>
   
   <!-- More details -->
@@ -233,50 +248,127 @@
       
       <!-- Active Projects -->
       <div class="mt-4">
-            <h3 class="cyber-h fg-yellow" id="w-active">Active Projects</h3>
-            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
-              <ul class="cyber-list">
-                <li class="cyber-li">
-                  <a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener" class="cyber-a">books-online</a> — Онлайн-каталог книг и учебных материалов (GitHub Pages, reader.js, LocalStorage, теги/фильтры).
-                </li>
-                <li class="cyber-li">
-                  <a href="https://mentor-js.vercel.app/" target="_blank" rel="noopener" class="cyber-a">mentor-js</a> — Сайт и уроки по NuxtJS (Vue + SSR). Учебный контент и примеры.
-                </li>
-                <li class="cyber-li">
-                  <a href="https://js-mantra.vercel.app/" target="_blank" rel="noopener" class="cyber-a">js-mantra</a> — Комьюнити-ресурсы по веб-разработке: тренинги, организация обучения, полезные материалы.
-                </li>
-                <li class="cyber-li">
-                  <a href="https://spiriturban.github.io/artifacts/youtube-subs-yt-dlp/" target="_blank" rel="noopener" class="cyber-a">artifacts / yt-dlp subtitles</a> — Гайд: субтитры YouTube через yt-dlp, cookies/DPAPI, .srt, ретраи/паузы.
-                </li>
-                <li class="cyber-li">
-                  <a href="https://github.com/SpiritUrban?tab=repositories" target="_blank" rel="noopener" class="cyber-a">My repositories</a> — Мy portfolio includes links to commercial projects I worked on earlier, but they no longer reflect my current professional level. The most complex and advanced products I've worked on are in private repositories, so I can't share them. However, you can visit my GitHub, where you'll find public repositories that showcase my approach and skill level.
-                </li>
-                <li class="cyber-li">
-                  <a href="https://adventurebucketlist.com/" target="_blank" rel="noopener" class="cyber-a">adventurebucketlist.com</a> — Teamwork
-                </li>
-                <li class="cyber-li">
-                  <a href="https://www.jopwell.com/" target="_blank" rel="noopener" class="cyber-a">inter tools for jopwell.com</a> — Teamwork
-                </li>
-                <li class="cyber-li">
-                  <a href="https://uboro.io" target="_blank" rel="noopener" class="cyber-a">uboro.io</a> — Teamwork
-                </li>
-                <li class="cyber-li">
-                  <a href="https://mvs.gov.ua/" target="_blank" rel="noopener" class="cyber-a">Inner organization system (MBC)</a> — Ministry of Internal Affairs of Ukraine. (Frontend on Angular) (Mentor)
-                </li>
-                <li class="cyber-li">
-                  <a href="https://www.skladovka.ua/" target="_blank" rel="noopener" class="cyber-a">skladovka.ua</a>
-                </li>
-                <li class="cyber-li">
-                  <a href="http://writtent.com/" target="_blank" rel="noopener" class="cyber-a">writtent.com</a> — Teamwork
-                </li>
-                <li class="cyber-li">
-                  <a href="https://spiriturban.github.io/rozvivalka/" target="_blank" rel="noopener" class="cyber-a">rozvivalka.xyz</a>
-                </li>
-              </ul>
+        <h3 class="cyber-h fg-yellow" id="w-active">Active Projects</h3>
+        <div class="grid-container">
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">Books Online</h4>
+              <p>Онлайн-каталог книг и учебных материалов</p>
+              <p><span class="fg-yellow">Tech:</span> GitHub Pages, reader.js, LocalStorage</p>
+              <a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
             </div>
           </div>
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">Mentor JS</h4>
+              <p>Сайт и уроки по NuxtJS (Vue + SSR)</p>
+              <p><span class="fg-yellow">Tech:</span> Nuxt.js, Vue, SSR, Vercel</p>
+              <a href="https://mentor-js.vercel.app/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
+            </div>
+          </div>
+
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">JS Mantra</h4>
+              <p>Комьюнити-ресурсы по веб-разработке</p>
+              <p><span class="fg-yellow">Features:</span> Тренинги, организация обучения, материалы</p>
+              <a href="https://js-mantra.vercel.app/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
+            </div>
+          </div>
+
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">YouTube Subtitles Guide</h4>
+              <p>Гайд по работе с субтитрами YouTube</p>
+              <p><span class="fg-yellow">Tools:</span> yt-dlp, cookies/DPAPI, .srt</p>
+              <a href="https://spiriturban.github.io/artifacts/youtube-subs-yt-dlp/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Guide</a>
+            </div>
+          </div>
+
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">GitHub Repositories</h4>
+              <p>Collection of my public projects and contributions</p>
+              <p><span class="fg-yellow">Note:</span> Includes various projects showcasing different skills</p>
+              <a href="https://github.com/SpiritUrban?tab=repositories" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View on GitHub</a>
+            </div>
+          </div>
+
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">Adventure Bucket List</h4>
+              <p>Team collaboration project</p>
+              <p><span class="fg-yellow">Role:</span> Team Member</p>
+              <a href="https://adventurebucketlist.com/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+            </div>
+          </div>
+
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">Jopwell Tools</h4>
+              <p>Internal tools development</p>
+              <p><span class="fg-yellow">Role:</span> Team Member</p>
+              <a href="https://www.jopwell.com/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
+            </div>
+          </div>
+
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">Uboro</h4>
+              <p>Team collaboration project</p>
+              <p><span class="fg-yellow">Role:</span> Team Member</p>
+              <a href="https://uboro.io" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+            </div>
+          </div>
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">MVS Ukraine System</h4>
+              <p>Ministry of Internal Affairs of Ukraine</p>
+              <p><span class="fg-yellow">Role:</span> Frontend Mentor (Angular)</p>
+              <a href="https://mvs.gov.ua/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
+            </div>
+          </div>
+
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">Skladovka</h4>
+              <p>Warehouse management system</p>
+              <p><span class="fg-yellow">Role:</span> Development Team</p>
+              <a href="https://www.skladovka.ua/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+            </div>
+          </div>
+
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">Writtent</h4>
+              <p>Content marketing platform</p>
+              <p><span class="fg-yellow">Role:</span> Team Member</p>
+              <a href="http://writtent.com/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+            </div>
+          </div>
+          <!-- Project Card -->
+          <div class="card">
+            <div class="cyber-tile bg-darker p-3">
+              <h4 class="cyber-h fg-cyan">Rozvivalka</h4>
+              <p>Educational platform for children</p>
+              <p><span class="fg-yellow">Tech:</span> Web Development</p>
+              <a href="https://spiriturban.github.io/rozvivalka/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+            </div>
+          </div>
+        </div> <!-- Close grid-container -->
   
-          <!-- Closed Projects -->
+        <!-- Closed Projects -->
           <div class="mt-4">
             <h3 class="cyber-h fg-yellow" id="w-closed">Closed Projects</h3>
             <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
