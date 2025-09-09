@@ -18,11 +18,18 @@
       color: #fff;
       font-family: 'Oxanium', sans-serif;
       line-height: 1.6;
+      margin: 0;
+      padding: 0;
     }
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 15px;
+    }
+    .content-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
     .mt-4 { margin-top: 2rem; }
     .mb-4 { margin-bottom: 2rem; }
@@ -30,6 +37,7 @@
   </style>
 </head>
 <body class="bg-black">
+  <div class="content-wrapper">
   <!-- Header with Cyberpunk styling -->
   <header class="cyber-razor-bottom p-4">
     <div class="container">
@@ -219,12 +227,12 @@
   </section>
 
   <!-- Works & Projects Section -->
-  <section class="container-fluid px-0">
+  <section class="container mb-4">
     <div class="cyber-tile bg-dark fg-white p-4">
-          <h2 class="cyber-h fg-pink">Works & Projects</h2>
-          
-          <!-- Active Projects -->
-          <div class="mt-4">
+      <h2 class="cyber-h fg-pink">Works & Projects</h2>
+      
+      <!-- Active Projects -->
+      <div class="mt-4">
             <h3 class="cyber-h fg-yellow" id="w-active">Active Projects</h3>
             <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
               <ul class="cyber-list">
@@ -389,7 +397,8 @@
         </div>
       </div>
     </div>
-  </footer>
+    </div>
+</footer>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
