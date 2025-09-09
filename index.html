@@ -1,53 +1,155 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Portfolio — Dyachuk Vitaliy</title>
+  
+  <!-- Cyberpunk CSS -->
+  <link rel="stylesheet" href="cyberpunk.css">
+  <link rel="stylesheet" href="demo/cyber-grid.css">
+  <link rel="stylesheet" href="demo/style.css">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #fff;
+      font-family: 'Oxanium', sans-serif;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    .mt-4 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 2rem; }
+    .p-3 { padding: 1.5rem; }
+  </style>
 </head>
-<body>
-  <!-- Верхний блок -->
-  <header>
-    <img src="your-photo.jpg" alt="Dyachuk Vitaliy" />
-    <h1>Fullstack JS Developer</h1>
-    <p>(React, Vue, Angular, NodeJS, Web-Design, Web-3D, AI)</p>
-    <a href="https://github.com/yourusername">My GitHub</a>
+<body class="bg-black">
+  <!-- Header with Cyberpunk styling -->
+  <header class="cyber-razor-bottom p-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="cyber-tile-big bg-blue fg-white p-4">
+            <div class="row">
+              <div class="col-3">
+                <img src="your-photo.jpg" alt="Dyachuk Vitaliy" class="cyber-img" style="max-width: 200px; border: 2px solid #00f0ff;">
+              </div>
+              <div class="col-9">
+                <h1 class="cyber-h fg-pink">Dyachuk Vitaliy</h1>
+                <h2 class="cyber-h fg-yellow">Fullstack JS Developer</h2>
+                <p class="fg-cyan">(React, Vue, Angular, NodeJS, Web-Design, Web-3D, AI)</p>
+                <a href="https://github.com/yourusername" class="cyber-button bg-green fg-black">
+                  <span class="cyber-button-content">My GitHub</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Обо мне -->
-  <section>
-    <h2>About Me</h2>
-    <ul>
-      <li><strong>Name:</strong> Dyachuk Vitaliy</li>
-      <li><strong>Location:</strong> Khmelnytskyi, Ukraine</li>
-      <li><strong>Date of Birth:</strong> 03.06.1983</li>
-      <li><strong>Nationality:</strong> Ukrainian</li>
-    </ul>
-  </section>
+  <!-- About Me Section -->
+  <section class="container mt-4 mb-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="cyber-tile bg-dark fg-white p-4">
+          <h2 class="cyber-h fg-pink">About Me</h2>
+          <div class="cyber-table">
+            <table>
+              <tbody>
+                <tr class="cyber-tr">
+                  <td class="cyber-td fg-yellow">Name:</td>
+                  <td class="cyber-td">Dyachuk Vitaliy</td>
+                </tr>
+                <tr class="cyber-tr">
+                  <td class="cyber-td fg-yellow">Location:</td>
+                  <td class="cyber-td">Khmelnytskyi, Ukraine</td>
+                </tr>
+                <tr class="cyber-tr">
+                  <td class="cyber-td fg-yellow">Date of Birth:</td>
+                  <td class="cyber-td">03.06.1983</td>
+                </tr>
+                <tr class="cyber-tr">
+                  <td class="cyber-td fg-yellow">Nationality:</td>
+                  <td class="cyber-td">Ukrainian</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Образование -->
-  <section>
-    <h2>Education</h2>
-    <ul>
-      <li>1999–2001 — College (Electrician)</li>
-      <li>2001–2005 — Higher Education (Teacher of Physical Education and Valeology)</li>
-    </ul>
-  </section>
-  <section id="skills">
-    <h2>Personal Skills</h2>
+  <!-- Education Section -->
+  <section class="container mb-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="cyber-tile bg-dark fg-white p-4">
+          <h2 class="cyber-h fg-pink">Education</h2>
+          <ul class="cyber-list">
+            <li class="cyber-li">1999–2001 — College (Electrician)</li>
+            <li class="cyber-li">2001–2005 — Higher Education (Teacher of Physical Education and Valeology)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Skills Section -->
+  <section id="skills" class="container mb-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="cyber-tile bg-dark fg-white p-4">
+          <h2 class="cyber-h fg-pink">Personal Skills</h2>
+          
+          <!-- Languages -->
+          <div class="mt-4">
+            <h3 class="cyber-h fg-yellow">Languages</h3>
+            <div class="cyber-tile bg-darker p-3">
+              <div class="cyber-table">
+                <table>
+                  <tbody>
+                    <tr class="cyber-tr">
+                      <td class="cyber-td fg-cyan">Ukrainian</td>
+                      <td class="cyber-td">Native</td>
+                    </tr>
+                    <tr class="cyber-tr">
+                      <td class="cyber-td fg-cyan">Russian</td>
+                      <td class="cyber-td">Native</td>
+                    </tr>
+                    <tr class="cyber-tr">
+                      <td class="cyber-td fg-cyan">English</td>
+                      <td class="cyber-td">Upper-Intermediate</td>
+                    </tr>
+                    <tr class="cyber-tr">
+                      <td class="cyber-td fg-cyan">German</td>
+                      <td class="cyber-td">Starting</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
   
-    <!-- Languages -->
-    <section>
-      <h3>Languages</h3>
-      <ul>
-        <li>Ukrainian — Native</li>
-        <li>Russian — Native</li>
-        <li>English — Upper-Intermediate</li>
-        <li>German — Starting</li>
-      </ul>
-    </section>
-  
-    <!-- Core Stack -->
+            <!-- Core Stack -->
+          <div class="mt-4">
+            <h3 class="cyber-h fg-yellow">Core Stack</h3>
+            <div class="cyber-tile bg-darker p-3">
+              <div class="cyber-tag bg-blue fg-black">React</div>
+              <div class="cyber-tag bg-blue fg-black">Vue</div>
+              <div class="cyber-tag bg-blue fg-black">Angular</div>
+              <div class="cyber-tag bg-blue fg-black">Node.js</div>
+              <div class="cyber-tag bg-blue fg-black">TypeScript</div>
+              <div class="cyber-tag bg-blue fg-black">JavaScript (ES6+)</div>
+            </div>
+          </div>
     <section>
       <h3>Core Stack</h3>
       <ul>
@@ -120,86 +222,199 @@
     </section>
   </section>
 
-  <section id="works">
-    <h2>Works & Projects</h2>
+  <!-- Works & Projects Section -->
+  <div class="container-fluid px-0">
+    <div class="row no-gutters">
+      <div class="col-12">
+        <div class="cyber-tile bg-dark fg-white p-4">
+          <h2 class="cyber-h fg-pink">Works & Projects</h2>
+          
+          <!-- Active Projects -->
+          <div class="mt-4">
+            <h3 class="cyber-h fg-yellow" id="w-active">Active Projects</h3>
+            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
+              <ul class="cyber-list">
+                <li class="cyber-li">
+                  <a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener" class="cyber-a">books-online</a> — Онлайн-каталог книг и учебных материалов (GitHub Pages, reader.js, LocalStorage, теги/фильтры).
+                </li>
+                <li class="cyber-li">
+                  <a href="https://mentor-js.vercel.app/" target="_blank" rel="noopener" class="cyber-a">mentor-js</a> — Сайт и уроки по NuxtJS (Vue + SSR). Учебный контент и примеры.
+                </li>
+                <li class="cyber-li">
+                  <a href="https://js-mantra.vercel.app/" target="_blank" rel="noopener" class="cyber-a">js-mantra</a> — Комьюнити-ресурсы по веб-разработке: тренинги, организация обучения, полезные материалы.
+                </li>
+                <li class="cyber-li">
+                  <a href="https://spiriturban.github.io/artifacts/youtube-subs-yt-dlp/" target="_blank" rel="noopener" class="cyber-a">artifacts / yt-dlp subtitles</a> — Гайд: субтитры YouTube через yt-dlp, cookies/DPAPI, .srt, ретраи/паузы.
+                </li>
+                <li class="cyber-li">
+                  <a href="https://github.com/SpiritUrban?tab=repositories" target="_blank" rel="noopener" class="cyber-a">My repositories</a> — Мy portfolio includes links to commercial projects I worked on earlier, but they no longer reflect my current professional level. The most complex and advanced products I've worked on are in private repositories, so I can't share them. However, you can visit my GitHub, where you'll find public repositories that showcase my approach and skill level.
+                </li>
+                <li class="cyber-li">
+                  <a href="https://adventurebucketlist.com/" target="_blank" rel="noopener" class="cyber-a">adventurebucketlist.com</a> — Teamwork
+                </li>
+                <li class="cyber-li">
+                  <a href="https://www.jopwell.com/" target="_blank" rel="noopener" class="cyber-a">inter tools for jopwell.com</a> — Teamwork
+                </li>
+                <li class="cyber-li">
+                  <a href="https://uboro.io" target="_blank" rel="noopener" class="cyber-a">uboro.io</a> — Teamwork
+                </li>
+                <li class="cyber-li">
+                  <a href="https://mvs.gov.ua/" target="_blank" rel="noopener" class="cyber-a">Inner organization system (MBC)</a> — Ministry of Internal Affairs of Ukraine. (Frontend on Angular) (Mentor)
+                </li>
+                <li class="cyber-li">
+                  <a href="https://www.skladovka.ua/" target="_blank" rel="noopener" class="cyber-a">skladovka.ua</a>
+                </li>
+                <li class="cyber-li">
+                  <a href="http://writtent.com/" target="_blank" rel="noopener" class="cyber-a">writtent.com</a> — Teamwork
+                </li>
+                <li class="cyber-li">
+                  <a href="https://spiriturban.github.io/rozvivalka/" target="_blank" rel="noopener" class="cyber-a">rozvivalka.xyz</a>
+                </li>
+              </ul>
+            </div>
+          </div>
   
-    <!-- Active Projects -->
-    <section aria-labelledby="w-active">
-      <h3 id="w-active">Active Projects</h3>
-      <ul class="links">
-        <li><a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener">books-online</a> — Онлайн-каталог книг и учебных материалов (GitHub Pages, reader.js, LocalStorage, теги/фильтры).</li>
-        <li><a href="https://mentor-js.vercel.app/" target="_blank" rel="noopener">mentor-js</a> — Сайт и уроки по NuxtJS (Vue + SSR). Учебный контент и примеры.</li>
-        <li><a href="https://js-mantra.vercel.app/" target="_blank" rel="noopener">js-mantra</a> — Комьюнити-ресурсы по веб-разработке: тренинги, организация обучения, полезные материалы.</li>
-        <li><a href="https://spiriturban.github.io/artifacts/youtube-subs-yt-dlp/" target="_blank" rel="noopener">artifacts / yt-dlp subtitles</a> — Гайд: субтитры YouTube через yt-dlp, cookies/DPAPI, .srt, ретраи/паузы.</li>
-        <li><a href="https://github.com/SpiritUrban?tab=repositories" target="_blank" rel="noopener">My repositories</a> — Мy portfolio includes links to commercial projects I worked on earlier, but they no longer reflect my current professional level. The most complex and advanced products I’ve worked on are in private repositories, so I can’t share them. However, you can visit my GitHub, where you’ll find public repositories that showcase my approach and skill level.</li>
-        <li><a href="https://adventurebucketlist.com/" target="_blank" rel="noopener">adventurebucketlist.com</a> — Teamwork</li>
-        <li><a href="https://www.jopwell.com/" target="_blank" rel="noopener">inter tools for jopwell.com</a> — Teamwork</li>
-        <li><a href="https://uboro.io" target="_blank" rel="noopener">uboro.io</a> — Teamwork</li>
-        <li><a href="https://mvs.gov.ua/" target="_blank" rel="noopener">Inner organization system (MBC)</a> — Ministry of Internal Affairs of Ukraine. (Frontend on Angular) (Mentor)</li>
-        <li><a href="https://www.skladovka.ua/" target="_blank" rel="noopener">skladovka.ua</a></li>
-        <li><a href="http://writtent.com/" target="_blank" rel="noopener">writtent.com</a> — Teamwork</li>
-        <li><a href="https://spiriturban.github.io/rozvivalka/" target="_blank" rel="noopener">rozvivalka.xyz</a></li>
-      </ul>
-    </section>
-  
-    <!-- Closed Projects -->
-    <section aria-labelledby="w-closed">
-      <h3 id="w-closed">Closed Projects</h3>
-      <ul class="links closed">
-        <li><span>crystalsystemnyc.com</span> — Site for Cleaning Company. Teamwork (закрыт; материалы: Picture).</li>
-        <li><span>nemportal.dk</span> — Send and receive electronic invoices. Teamwork (закрыт).</li>
-        <li><span>primeairtime.com</span> — Teamwork (закрыт)</li>
-        <li><span>officient.dk</span> — Send and receive electronic invoices. Teamwork (закрыт; материалы: Example, Code).</li>
-        <li><span>officient.com</span> — Teamwork (закрыт).</li>
-        <li><span>Air Networks</span> — Teamwork (закрыт).</li>
-        <li><span>Recharge of mobile phones</span> — Only my Work (закрыт).</li>
-        <li><span>Limousine rental</span> — (закрыт).</li>
-        <li><span>www.miprosco.com</span> — (закрыт).</li>
-        <li><span>Social network</span> — (закрыт).</li>
-        <li><span>paleoyums.com</span> — Teamwork (закрыт).</li>
-      </ul>
-    </section>
-  
-    <!-- Designs -->
-    <section aria-labelledby="w-designs">
-      <h3 id="w-designs">Designs</h3>
-      <ul class="links">
-        <li><a href="http://www.behance.net/spirit_urban" target="_blank" rel="noopener">Behance</a></li>
-        <li><a href="http://www.thecoldwarera.com/aboutus.html" target="_blank" rel="noopener">Vitaly Dyachuk - graphic designer</a></li>
-      </ul>
-    </section>
-  
-    <!-- Students' Projects -->
-    <section aria-labelledby="w-students">
-      <h3 id="w-students">Projects of my students</h3>
-  
-      <h4>Active</h4>
-      <ul class="links">
-        <li><a href="https://github.com/RomanPeredrii" target="_blank" rel="noopener">RomanPeredrii</a> — Express.js, React.js, WebRTS, socket.io, MongoDB, Firebird</li>
-        <li><a href="https://github.com/Mooninghnk" target="_blank" rel="noopener">Totoro</a> — Node.js, Express.js, ethereum, web3.js, metamask, socket.io, MongoDB, FileAPI</li>
-        <li><a href="https://github.com/TarasOstasha" target="_blank" rel="noopener">Taras Ostasha</a> — Node.js, Express.js, Angular, Passport.js</li>
-        <li><a href="https://github.com/semeguk" target="_blank" rel="noopener">Sergiy Semeguk</a> — JS, Node.js, Express.js, Angular</li>
-      </ul>
-  
-      <h4>Closed</h4>
-      <ul class="links closed">
-        <li><span>Photographer's site</span> — work with mail, generation of site structure from data. (Express.js) (закрыт).</li>
-        <li><em>Over the 5 years of mentoring, my students have created numerous projects. This section is not yet complete and will be updated later. !!!!</em></li>
-      </ul>
-    </section>
-  
-    <!-- Books -->
-    <section aria-labelledby="w-books">
-      <h3 id="w-books">Books</h3>
-      <ul class="links">
-        <li><a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener">НАСТАВНИК (series, 2017–2025)</a> — Серия из 18+ томов о пути автора: от кризиса 2017 года до трансформации и наставничества в 2025. Включает автобиографию, философию, практики, IT и стратегию.</li>
-        <li><a href="https://spiriturban.github.io/books-online/books/uchebnik-novoe-programmirovanie-ii/" target="_blank" rel="noopener">Учебник: Новое программирование ИИ</a> — Учебник и курс по работе с искусственным интеллектом как новым типом программирования. Структура уровней владения ИИ, контексты, пайплайны, примеры интеграции в веб-проекты.</li>
-      </ul>
-    </section>
-  </section>
-  
-  
+          <!-- Closed Projects -->
+          <div class="mt-4">
+            <h3 class="cyber-h fg-yellow" id="w-closed">Closed Projects</h3>
+            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
+              <ul class="cyber-list">
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">crystalsystemnyc.com</a> — Site for Cleaning Company. Teamwork (закрыт; материалы: Picture).
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">nemportal.dk</a> — Send and receive electronic invoices. Teamwork (закрыт).
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">primeairtime.com</a> — Teamwork (закрыт)
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">officient.dk</a> — Send and receive electronic invoices. Teamwork (закрыт; материалы: Example, Code).
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">officient.com</a> — Teamwork (закрыт).
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">Air Networks</a> — Teamwork (закрыт).
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">Recharge of mobile phones</a> — Only my Work (закрыт).
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">Limousine rental</a> — (закрыт).
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">www.miprosco.com</a> — (закрыт).
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">Social network</a> — (закрыт).
+                </li>
+                <li class="cyber-li">
+                  <a href="#" class="cyber-a fg-yellow">paleoyums.com</a> — Teamwork (закрыт).
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Student Projects -->
+          <div class="mt-4">
+            <h3 class="cyber-h fg-yellow" id="w-students">Projects of my students</h3>
+            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
+              <h4 class="cyber-h fg-cyan">Active</h4>
+              <ul class="cyber-list">
+                <li class="cyber-li">
+                  <a href="https://github.com/RomanPeredrii" target="_blank" rel="noopener" class="cyber-a">RomanPeredrii</a> — Express.js, React.js, WebRTS, socket.io, MongoDB, Firebird
+                </li>
+                <li class="cyber-li">
+                  <a href="https://github.com/Mooninghnk" target="_blank" rel="noopener" class="cyber-a">Totoro</a> — Node.js, Express.js, ethereum, web3.js, metamask, socket.io, MongoDB, FileAPI
+                </li>
+                <li class="cyber-li">
+                  <a href="https://github.com/TarasOstasha" target="_blank" rel="noopener" class="cyber-a">Taras Ostasha</a> — Node.js, Express.js, Angular, Passport.js
+                </li>
+                <li class="cyber-li">
+                  <a href="https://github.com/semeguk" target="_blank" rel="noopener" class="cyber-a">Sergiy Semeguk</a> — JS, Node.js, Express.js, Angular
+                </li>
+              </ul>
 
+              <h4 class="cyber-h fg-cyan mt-4">Closed</h4>
+              <div class="cyber-tile bg-dark p-3 mt-2">
+                <ul class="cyber-list">
+                  <li class="cyber-li">
+                    <span class="fg-yellow">Photographer's site</span> — work with mail, generation of site structure from data. (Express.js) (закрыт).
+                  </li>
+                </ul>
+                <p class="mt-2"><em>Over the 5 years of mentoring, my students have created numerous projects. This section is not yet complete and will be updated later.</em></p>
+              </div>
+            </div>
+          </div>
 
+          <!-- Designs Section -->
+          <div class="mt-4">
+            <h3 class="cyber-h fg-yellow" id="w-designs">Designs</h3>
+            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
+              <ul class="cyber-list">
+                <li class="cyber-li">
+                  <a href="http://www.behance.net/spirit_urban" target="_blank" rel="noopener" class="cyber-a">Behance</a>
+                </li>
+                <li class="cyber-li">
+                  <a href="http://www.thecoldwarera.com/aboutus.html" target="_blank" rel="noopener" class="cyber-a">Vitaly Dyachuk - graphic designer</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Books Section -->
+          <div class="mt-4">
+            <h3 class="cyber-h fg-yellow" id="w-books">Books</h3>
+            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
+              <ul class="cyber-list">
+                <li class="cyber-li">
+                  <a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener" class="cyber-a">НАСТАВНИК (series, 2017–2025)</a>
+                  <p class="mt-1">Серия из 18+ томов о пути автора: от кризиса 2017 года до трансформации и наставничества в 2025. Включает автобиографию, философию, практики, IT и стратегию.</p>
+                </li>
+                <li class="cyber-li mt-3">
+                  <a href="https://spiriturban.github.io/books-online/books/uchebnik-novoe-programmirovanie-ii/" target="_blank" rel="noopener" class="cyber-a">Учебник: Новое программирование ИИ</a>
+                  <p class="mt-1">Учебник и курс по работе с искусственным интеллектом как новым типом программирования. Структура уровней владения ИИ, контексты, пайплайны, примеры интеграции в веб-проекты.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="cyber-razor-top bg-black fg-white p-4 mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <p>© 2023 Dyachuk Vitaliy - Fullstack JS Developer</p>
+        <p>Made with <span class="fg-red">❤</span> and Cyberpunk CSS</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  // Add any interactive functionality here
+  $(document).ready(function() {
+    // Add smooth scrolling to all links
+    $("a").on('click', function(event) {
+      if (this.hash !== "") {
+        event.preventDefault();
+        var hash = this.hash;
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function(){
+          window.location.hash = hash;
+        });
+      }
+    });
+  });
+</script>
 </body>
 </html>

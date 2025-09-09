@@ -594,16 +594,18 @@ body
 .cyber-tile-small,
 .cyber-tile-big
 {
-    --tile-width: 360px;
     --tile-padding: 4px;
     --tile-edges: 20px;
     --label-margins: calc(var(--tile-edges) - var(--tile-padding));
     --og-clip-path: polygon(0 0, 0 calc(100% - var(--tile-edges)), var(--tile-edges) 100%, 100% 100%, 100% var(--tile-edges), calc(100% - var(--tile-edges)) 0);
-    width: var(--tile-width);
+    display: inline-block;
+    min-width: 200px;
+    width: auto;
     min-height: 60px;
     clip-path: var(--og-clip-path);
     padding: var(--tile-padding);
     padding-bottom: var(--tile-edges);
+    margin: 0 10px 10px 0;
 }
 
 .cyber-tile img,
@@ -633,14 +635,12 @@ body
 /*Overriding the values*/
 .cyber-tile-small
 {
-    --tile-width: 240px;
     --tile-edges: 14px;
 }
 
 /*Overriding the values*/
 .cyber-tile-big
 {
-    --tile-width: 480px;
     --tile-edges: 26px;
 }
 
