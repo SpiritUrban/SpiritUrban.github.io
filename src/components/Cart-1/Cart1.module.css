@@ -50,7 +50,15 @@
   width: 100%;
   height: 110%;
   background: rgba(16, 18, 27, 0.6);
+  /* Cut all 4 corners at 45 degrees */
+  clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px);
+
+  /* Cut top left and bottom right */
   clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+
+  /* cut left top and left bottom   */
+  clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+
   display: flex;
   justify-content: center;
   align-items: center;
