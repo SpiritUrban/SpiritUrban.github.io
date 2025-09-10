@@ -20,25 +20,52 @@ const Minimap: React.FC<MinimapProps> = ({
   const [viewportHeight, setViewportHeight] = useState(0);
   const [scrollRatio, setScrollRatio] = useState(0);
 
+  // Log initial refs
+  useEffect(() => {
+    console.log('Minimap mounted with refs:', {
+      contentRef: contentRef?.current ? 'Set' : 'Not set',
+      viewportRef: viewportRef?.current ? 'Set' : 'Not set',
+      minimapRef: minimapRef.current ? 'Set' : 'Not set'
+    });
+  }, []);
+
   // Update dimensions when content changes
   useEffect(() => {
-    if (!contentRef?.current) return;
+    console.log('Updating dimensions...');
+    if (!contentRef?.current) {
+      console.log('Content ref not set, skipping dimension update');
+      return;
+    }
 
     const updateDimensions = () => {
       if (contentRef?.current) {
-        setContentHeight(contentRef.current.scrollHeight);
+        const scrollHeight = contentRef.current.scrollHeight;
+        console.log('Content scroll height:', scrollHeight);
+        setContentHeight(scrollHeight);
         
+        // Always use the visible viewport height, not the scrollable content height
         let vh = window.innerHeight;
-        if (viewportRef?.current) {
-          // Check if it's a window-like object or an element
-          if ('clientHeight' in viewportRef.current) {
-            vh = viewportRef.current.clientHeight;
-          } else if ('innerHeight' in viewportRef.current) {
-            vh = (viewportRef.current as Window).innerHeight;
-          }
+        
+        if (viewportRef?.current && viewportRef.current !== document.documentElement) {
+          // If we have a specific viewport container, use its client height
+          // but only if it's not the document element
+          const container = viewportRef.current;
+          const style = window.getComputedStyle(container);
+          const paddingTop = parseFloat(style.paddingTop) || 0;
+          const paddingBottom = parseFloat(style.paddingBottom) || 0;
+          
+          vh = container.clientHeight - paddingTop - paddingBottom;
+          console.log('Using container viewport height:', vh);
+        } else {
+          // Default to window height minus any fixed headers/footers if needed
+          vh = window.innerHeight;
+          console.log('Using window viewport height:', vh);
         }
         
+        console.log('Setting viewport height:', vh);
         setViewportHeight(vh);
+      } else {
+        console.log('Content ref not available for dimension update');
       }
     };
 
@@ -53,39 +80,101 @@ const Minimap: React.FC<MinimapProps> = ({
 
     // Set up scroll event listener
     const handleScroll = () => {
-      if (!contentRef.current) return;
-      const { scrollTop, scrollHeight, clientHeight } = contentRef.current;
+      const scrollElement = viewportRef?.current || document.documentElement;
+      const contentElement = contentRef.current;
+      
+      if (!contentElement) {
+        console.log('Scroll: Content ref not available');
+        return;
+      }
+      
+      // Get scroll position from the correct element
+      const scrollTop = scrollElement === document.documentElement 
+        ? window.scrollY 
+        : scrollElement.scrollTop;
+        
+      const scrollHeight = contentElement.scrollHeight;
+      const clientHeight = scrollElement.clientHeight;
       const maxScroll = scrollHeight - clientHeight;
-      setScrollRatio(maxScroll > 0 ? scrollTop / maxScroll : 0);
+      const ratio = maxScroll > 0 ? scrollTop / maxScroll : 0;
+      
+      console.log('Scroll event:', {
+        scrollElement: scrollElement === document.documentElement ? 'document' : 'custom',
+        scrollTop,
+        scrollHeight,
+        clientHeight,
+        maxScroll,
+        ratio
+      });
+      
+      setScrollRatio(ratio);
     };
 
-    const scrollElement = viewportRef?.current || window;
-    scrollElement.addEventListener('scroll', handleScroll, { passive: true });
+    // Set up scroll listener on the correct element
+    const scrollElement = viewportRef?.current || document.documentElement;
+    const scrollTarget = scrollElement === document.documentElement ? window : scrollElement;
+    
+    console.log('Adding scroll listener to:', 
+      scrollElement === document.documentElement ? 'window' : 'custom element');
+    
+    scrollTarget.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
+      console.log('Cleaning up minimap listeners');
       resizeObserver.disconnect();
-      scrollElement.removeEventListener('scroll', handleScroll);
+      scrollTarget.removeEventListener('scroll', handleScroll);
     };
   }, [contentRef, viewportRef]);
 
   // Handle minimap click/drag
   const handleMinimapInteraction = (e: React.MouseEvent) => {
-    if (!minimapRef.current || !contentRef.current) return;
+    console.log('Minimap interaction:', e.type);
+    
+    if (!minimapRef.current) {
+      console.log('Minimap ref not set');
+      return;
+    }
+    
+    if (!contentRef.current) {
+      console.log('Content ref not set');
+      return;
+    }
     
     const rect = minimapRef.current.getBoundingClientRect();
     const y = e.clientY - rect.top;
     const ratio = Math.min(Math.max(y / rect.height, 0), 1);
     
-    const scrollElement = viewportRef?.current || window;
-    const maxScroll = contentHeight - viewportHeight;
-    const newScrollTop = ratio * maxScroll;
+    console.log('Interaction details:', {
+      clientY: e.clientY,
+      rectTop: rect.top,
+      rectHeight: rect.height,
+      calculatedY: y,
+      ratio,
+      contentHeight,
+      viewportHeight
+    });
     
-    if (scrollElement instanceof Window) {
-      scrollElement.scrollTo({
+    const scrollElement = viewportRef?.current || document.documentElement;
+    const maxScroll = contentHeight - viewportHeight;
+    const newScrollTop = Math.max(0, Math.min(ratio * maxScroll, maxScroll));
+    
+    console.log('Scrolling to:', {
+      scrollElement: scrollElement === document.documentElement ? 'document' : 'custom element',
+      maxScroll,
+      newScrollTop,
+      contentHeight,
+      viewportHeight,
+      ratio
+    });
+    
+    if (scrollElement === document.documentElement) {
+      // For document scrolling
+      window.scrollTo({
         top: newScrollTop,
         behavior: 'smooth',
       });
     } else if (scrollElement) {
+      // For custom container scrolling
       scrollElement.scrollTo({
         top: newScrollTop,
         behavior: 'smooth',
