@@ -46,8 +46,11 @@ const Cart1: React.FC<Cart1Props> = ({
                 {/* Left Section - Image */}
                 <div className={styles.leftSection}>
                     <div className={styles.imageContainer}>
-                        {/* Replace this with your image */}
-                        <span>Image</span>
+                        <img 
+                            src="/src/assets/photo.jpg" 
+                            alt="Project" 
+                            className={styles.image}
+                        />
                     </div>
                 </div>
 
