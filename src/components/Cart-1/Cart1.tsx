@@ -16,7 +16,14 @@ const Cart1: React.FC<Cart1Props> = ({
 }) => {
     return (
         <div className={styles.cart}>
-            <svg viewBox="0 0 518 219" fill="none" preserveAspectRatio="xMidYMid meet" className={styles.responsiveSvg} xmlns="http://www.w3.org/2000/svg">
+            {/* Background SVG */}
+            <svg 
+                viewBox="0 0 518 219" 
+                fill="none" 
+                className={styles.backgroundSvg} 
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+            >
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M230.939 13.3297H504.209L517.619 26.7397V205.21L503.969 218.86H169.409L149.849 199.3H12.0294L1.10938 188.38C1.10938 188.38 1.61937 23.9197 1.22937 23.9197L23.9994 1.17969H218.789L230.939 13.3297ZM24.2394 1.77969L1.85938 24.1597C1.91938 24.9097 1.91937 26.6797 1.94937 31.0897C1.97937 35.3797 1.97937 41.6797 1.97937 49.7797C1.97937 63.4297 1.97937 82.4497 1.91937 106.3C1.82937 145.24 1.70938 184.63 1.70938 188.14L12.2994 198.7H150.119L150.299 198.88L169.649 218.26H503.729L517.019 204.97V26.9797L503.969 13.9297H230.699L230.519 13.7497L218.549 1.77969H24.2394Z" fill="#0BA0F9" />
                 <g opacity="0.1">
                     <path d="M1.22937 23.9197L23.9994 1.17969H218.789L230.939 13.3297H504.209L517.619 26.7097V205.21L503.969 218.86H169.409L149.849 199.3H12.0294L1.10938 188.38C1.10938 188.38 1.61937 23.5297 1.22937 23.9197Z" fill="#0BA0F9" />
@@ -34,6 +41,32 @@ const Cart1: React.FC<Cart1Props> = ({
                 <path d="M517.321 185.68L492.391 210.61H344.791L336.811 218.59H503.971L517.471 205.09C517.471 205.09 517.831 186.19 517.321 185.68Z" fill="#0BA0F9" />
             </svg>
 
+            {/* Content */}
+            <div className={styles.content}>
+                {/* Left Section - Image */}
+                <div className={styles.leftSection}>
+                    <div className={styles.imageContainer}>
+                        {/* Replace this with your image */}
+                        <span>Image</span>
+                    </div>
+                </div>
+
+                {/* Right Section - Text and Button */}
+                <div className={styles.rightSection}>
+                    <div>
+                        <h2 className={styles.title}>{title}</h2>
+                        <p className={styles.description}>
+                            {description}
+                        </p>
+                    </div>
+                    <button 
+                        className={styles.button}
+                        onClick={onAddToCart}
+                    >
+                        Learn More
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
