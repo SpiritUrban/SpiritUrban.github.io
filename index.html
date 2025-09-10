@@ -27,15 +27,66 @@
       padding: 0 15px;
     }
     .content-wrapper {
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 0 auto;
-      padding: 0 20px 20px;
+      padding: 0 60px 60px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: minmax(100px, auto);
-      gap: 20px;
-      grid-auto-flow: dense;
+      gap: 36px;
       align-items: start;
+    }
+    
+    /* Main content area */
+    .main-content {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 36px;
+    }
+    
+    /* Sidebar sections */
+    .sidebar-section {
+      grid-column: span 4;
+    }
+    
+    /* Main sections */
+    .main-section {
+      grid-column: span 8;
+    }
+    
+    /* Full width sections */
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .cyber-h::after {
+  content: ' ';
+  width: 100%;
+  height: 6px;
+  display: block;
+  background-color: #515151;
+  clip-path: polygon(0 0, 0 100%, 10% 100%, calc(10% + 4px) 2px, 100% 2px, 100% 0);
+}
+    
+    @media (max-width: 1400px) {
+      .sidebar-section,
+      .main-section {
+        grid-column: span 6;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .content-wrapper {
+        padding: 0 24px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      
+      .sidebar-section,
+      .main-section {
+        width: 100%;
+      }
     }
     
     header {
@@ -53,21 +104,48 @@
     
     /* Card sizing classes */
     .cyber-tile {
-      height: 100%;
+      min-height: 300px;
       box-sizing: border-box;
-      min-width: 0; /* Allows content to dictate width */
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      /* border: 1px solid rgba(0, 240, 255, 0.3); */
+      border-radius: 6px;
+      padding: 28px;
+      background: linear-gradient(145deg, #0a0a0a, #111);
+      background: linear-gradient(145deg, #0a0a0a, #392662);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .cyber-tile:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 240, 255, 0.6);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    
+    .cyber-tile > * {
+      flex: 0 0 auto;
+    }
+    
+    .cyber-tile .cyber-table,
+    .cyber-tile .cyber-list,
+    .cyber-tile .cyber-tag-container {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
     }
     
     .card-small {
-      grid-row: span 1;
+      grid-row: auto;
     }
     
     .card-medium {
-      grid-row: span 2;
+      grid-row: auto;
     }
     
     .card-large {
-      grid-row: span 3;
+      grid-row: auto;
     }
     
     /* Wide card variants */
@@ -131,8 +209,11 @@
     </div>
   </header>
 
-  <!-- About Me - 3 columns -->
-  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
+  <main class="main-content">
+    <!-- Sidebar -->
+    <aside class="sidebar-section">
+      <!-- About Me -->
+      <div class="cyber-tile bg-dark fg-white p-4">
     <h2 class="cyber-h fg-pink">About Me</h2>
     <div class="cyber-table">
         <table>
@@ -156,18 +237,22 @@
           </tbody>
         </table>
       </div>
-  </div>
+      </div>
 
-  <!-- Education - 3 columns -->
-  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
+      <!-- Education -->
+      <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
     <h2 class="cyber-h fg-pink">Education</h2>
     <ul class="cyber-list">
       <li class="cyber-li">1999–2001 — College (Electrician)</li>
       <li class="cyber-li">2001–2005 — Higher Education (Teacher of Physical Education and Valeology)</li>
     </ul>
-  </div>
-  <!-- Personal Skills - 3 columns -->
-  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-section">
+      <!-- Personal Skills -->
+      <div class="cyber-tile bg-dark fg-white p-4">
     <h2 class="cyber-h fg-pink">Personal Skills</h2>
     
     <!-- Languages -->
@@ -211,10 +296,10 @@
         <div class="cyber-tag bg-blue fg-black">JavaScript (ES6+)</div>
       </div>
     </div>
-  </div>
+      </div>
 
-  <!-- Additional Skills - 2 columns -->
-  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
+      <!-- Additional Skills -->
+      <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
     <h2 class="cyber-h fg-pink">Additional Skills</h2>
     <div class="cyber-tile bg-darker p-3">
       <div class="cyber-tag bg-green fg-black">Web Design</div>
@@ -227,10 +312,10 @@
       <div class="cyber-tag bg-green fg-black">MongoDB</div>
       <div class="cyber-tag bg-green fg-black">PostgreSQL</div>
     </div>
-  </div>
+      </div>
 
-  <!-- Learning & Interests - 3 columns -->
-  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 3;">
+      <!-- Learning & Interests -->
+      <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
     <h2 class="cyber-h fg-pink">Learning & Interests</h2>
     
     <div class="cyber-tile bg-darker p-3 mb-4">
@@ -255,10 +340,10 @@
         <li class="cyber-li"><span class="fg-yellow">Other:</span> Mentorship, YouTube/SEO, Electron, IoT</li>
       </ul>
     </div>
-  </div>
-  
-  <!-- Other Experience - 2 columns -->
-  <div class="cyber-tile bg-dark fg-white p-4" style="grid-column: span 5;">
+      </div>
+
+      <!-- Other Experience -->
+      <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
       <h2 class="cyber-h fg-pink">Other Experience</h2>
       <div class="cyber-tile bg-darker p-3 mt-2">
         <ul class="cyber-list">
@@ -267,17 +352,18 @@
           <li class="cyber-li">Psychology (since 16), Own projects</li>
         </ul>
       </div>
+      </div>
     </div>
-
+  </main>
 
   <!-- Works & Projects Section -->
-  <div class="cyber-tile bg-dark fg-white p-6 card-full">
+  <div class="cyber-tile bg-dark fg-white p-6 full-width">
       <h2 class="cyber-h fg-pink">Works & Projects</h2>
       
       <!-- Active Projects -->
-      <div class="mt-4">
-        <h3 class="cyber-h fg-yellow" id="w-active">Active Projects</h3>
-        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; width: 100%;">
+      <div class="mt-6">
+        <h3 class="cyber-h fg-yellow mb-4" id="w-active" style="font-size: 1.5rem;">Active Projects</h3>
+        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; width: 100%;">
           <!-- Project Card -->
           <div class="card">
             <div class="cyber-tile bg-darker p-3">
