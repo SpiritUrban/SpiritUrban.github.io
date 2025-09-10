@@ -14,6 +14,40 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* Compact project cards */
+    .card .cyber-tile {
+      padding: 10px 14px !important;
+      min-height: 120px !important;
+      height: 100%;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h4 {
+      font-size: 1.1rem !important;
+      margin: 0 0 6px 0 !important;
+      line-height: 1.2;
+    }
+    .card p {
+      font-size: 0.85rem !important;
+      margin: 0 0 4px 0 !important;
+      line-height: 1.25 !important;
+      color: #ccc !important;
+    }
+    .card .cyber-h {
+      margin: 0 0 6px 0 !important;
+      font-size: 1.1em !important;
+    }
+    .grid-container {
+      gap: 12px !important;
+    }
+    .card {
+      height: 100%;
+    }
+    .card .cyber-tile p:last-child {
+      margin-bottom: 0;
+    }
+
     body {
       background-color: #0a0a0a;
       color: #fff;
@@ -529,10 +563,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">Crystal System NYC</h4>
                 <p>Site for Cleaning Company</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -541,10 +572,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">NemPortal</h4>
                 <p>Send and receive electronic invoices</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -553,10 +581,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">Prime Airtime</h4>
                 <p>Telecommunications platform</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
             <!-- Project Card -->
@@ -564,10 +589,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">Officient.dk</h4>
                 <p>Electronic invoicing platform</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -576,10 +598,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">Officient.com</h4>
                 <p>Business management platform</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -588,10 +607,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">Air Networks</h4>
                 <p>Telecommunications services</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
             <!-- Project Card -->
@@ -599,10 +615,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">Mobile Recharge</h4>
                 <p>Mobile top-up service</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Solo Project</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -611,10 +624,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">Limo Rental</h4>
                 <p>Luxury transportation service</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Development</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -623,10 +633,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">MiProSco</h4>
                 <p>Professional services website</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Development</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -635,10 +642,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">Social Network</h4>
                 <p>Community platform</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Development</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
             <!-- Project Card -->
@@ -646,10 +650,7 @@
               <div class="cyber-tile bg-darker p-3">
                 <h4 class="cyber-h fg-cyan">PaleoYums</h4>
                 <p>Paleo diet recipes and resources</p>
-                <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
-                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
           </div>
