@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Portfolio — Dyachuk Vitaliy</title>
-  
+
   <!-- Cyberpunk CSS -->
   <link rel="stylesheet" href="cyberpunk.css">
   <link rel="stylesheet" href="demo/cyber-grid.css">
   <link rel="stylesheet" href="demo/style.css">
-  
+
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -21,11 +22,13 @@
       margin: 0;
       padding: 0;
     }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 15px;
     }
+
     .content-wrapper {
       max-width: 1600px;
       margin: 0 auto;
@@ -35,7 +38,7 @@
       gap: 36px;
       align-items: start;
     }
-    
+
     /* Main content area */
     .main-content {
       grid-column: 1 / -1;
@@ -43,38 +46,39 @@
       grid-template-columns: repeat(12, 1fr);
       gap: 36px;
     }
-    
+
     /* Sidebar sections */
     .sidebar-section {
       grid-column: span 4;
     }
-    
+
     /* Main sections */
     .main-section {
       grid-column: span 8;
     }
-    
+
     /* Full width sections */
     .full-width {
       grid-column: 1 / -1;
     }
 
     .cyber-h::after {
-  content: ' ';
-  width: 100%;
-  height: 6px;
-  display: block;
-  background-color: #515151;
-  clip-path: polygon(0 0, 0 100%, 10% 100%, calc(10% + 4px) 2px, 100% 2px, 100% 0);
-}
-    
+      content: ' ';
+      width: 100%;
+      height: 6px;
+      display: block;
+      background-color: #515151;
+      clip-path: polygon(0 0, 0 100%, 10% 100%, calc(10% + 4px) 2px, 100% 2px, 100% 0);
+    }
+
     @media (max-width: 1400px) {
+
       .sidebar-section,
       .main-section {
         grid-column: span 6;
       }
     }
-    
+
     @media (max-width: 900px) {
       .content-wrapper {
         padding: 0 24px 40px;
@@ -82,26 +86,26 @@
         flex-direction: column;
         gap: 24px;
       }
-      
+
       .sidebar-section,
       .main-section {
         width: 100%;
       }
     }
-    
+
     header {
       grid-column: 1 / -1;
       width: 100%;
       padding: 0;
       margin: 0 0 20px 0;
     }
-    
+
     header .container {
       max-width: 100% !important;
       padding: 0;
       margin: 0;
     }
-    
+
     /* Card sizing classes */
     .cyber-tile {
       min-height: 300px;
@@ -117,17 +121,17 @@
       background: linear-gradient(145deg, #0a0a0a, #392662);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
-    
+
     .cyber-tile:hover {
       transform: translateY(-5px);
       border-color: rgba(0, 240, 255, 0.6);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
-    
-    .cyber-tile > * {
+
+    .cyber-tile>* {
       flex: 0 0 auto;
     }
-    
+
     .cyber-tile .cyber-table,
     .cyber-tile .cyber-list,
     .cyber-tile .cyber-tag-container {
@@ -135,242 +139,264 @@
       min-height: 0;
       overflow: hidden;
     }
-    
+
     .card-small {
       grid-row: auto;
     }
-    
+
     .card-medium {
       grid-row: auto;
     }
-    
+
     .card-large {
       grid-row: auto;
     }
-    
+
     /* Wide card variants */
     .card-wide {
-      grid-column: span 6; /* Half width on large screens */
+      grid-column: span 6;
+      /* Half width on large screens */
     }
-    
+
     .card-full {
-      grid-column: 1 / -1; /* Full width */
+      grid-column: 1 / -1;
+      /* Full width */
     }
-    
+
     /* Ensure content doesn't overflow */
     .cyber-tile {
       overflow: hidden;
     }
-    
+
     /* Responsive adjustments */
     @media (max-width: 1024px) {
       .content-wrapper {
         grid-template-columns: repeat(6, 1fr);
       }
+
       .card-wide {
         grid-column: span 6;
       }
     }
-    
+
     @media (max-width: 768px) {
       .content-wrapper {
         grid-template-columns: 1fr;
       }
-      .card-wide, .card-full {
+
+      .card-wide,
+      .card-full {
         grid-column: 1 / -1;
       }
     }
-    .mt-4 { margin-top: 2rem; }
-    .mb-4 { margin-bottom: 2rem; }
-    .p-3 { padding: 1.5rem; }
+
+    .mt-4 {
+      margin-top: 2rem;
+    }
+
+    .mb-4 {
+      margin-bottom: 2rem;
+    }
+
+    .p-3 {
+      padding: 1.5rem;
+    }
   </style>
 </head>
+
 <body class="bg-black">
   <div class="content-wrapper">
 
-  <!-- Header with Cyberpunk styling -->
-  <header class="cyber-razor-bottom  card-full" style="margin: 0 -20px; padding: 20px 0;">
-    <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
-      <div class="cyber-tile-big bg-blue fg-white p-4" style="width: 100%;">
-            <div class="row">
-              <div class="col-3">
-                <img src="your-photo.jpg" alt="Dyachuk Vitaliy" class="cyber-img" style="max-width: 200px; border: 2px solid #00f0ff;">
-              </div>
-              <div class="col-9">
-                <h1 class="cyber-h fg-pink">Dyachuk Vitaliy</h1>
-                <h2 class="cyber-h fg-yellow">Fullstack JS Developer</h2>
-                <p class="fg-cyan">(React, Vue, Angular, NodeJS, Web-Design, Web-3D, AI)</p>
-                <a href="https://github.com/yourusername" class="cyber-button bg-green fg-black">
-                  <span class="cyber-button-content">My GitHub</span>
-                </a>
-              </div>
+    <!-- Header with Cyberpunk styling -->
+    <header class="cyber-razor-bottom  card-full" style="margin: 0 -20px; padding: 20px 0;">
+      <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px;">
+        <div class="cyber-tile-big bg-blue fg-white p-4" style="width: 100%;">
+          <div class="row">
+            <div class="col-3" style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          ">
+              <img src="photo.jpg" alt="Dyachuk Vitaliy" class="cyber-img"
+                style="max-width: 200px; border: 2px solid #00f0ff;">
             </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="main-content">
-    <!-- Sidebar -->
-    <aside class="sidebar-section">
-      <!-- About Me -->
-      <div class="cyber-tile bg-dark fg-white p-4">
-    <h2 class="cyber-h fg-pink">About Me</h2>
-    <div class="cyber-table">
-        <table>
-          <tbody>
-            <tr class="cyber-tr">
-              <td class="cyber-td fg-yellow">Name:</td>
-              <td class="cyber-td">Dyachuk Vitaliy</td>
-            </tr>
-            <tr class="cyber-tr">
-              <td class="cyber-td fg-yellow">Location:</td>
-              <td class="cyber-td">Khmelnytskyi, Ukraine</td>
-            </tr>
-            <tr class="cyber-tr">
-              <td class="cyber-td fg-yellow">Date of Birth:</td>
-              <td class="cyber-td">03.06.1983</td>
-            </tr>
-            <tr class="cyber-tr">
-              <td class="cyber-td fg-yellow">Nationality:</td>
-              <td class="cyber-td">Ukrainian</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      </div>
-
-      <!-- Education -->
-      <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
-    <h2 class="cyber-h fg-pink">Education</h2>
-    <ul class="cyber-list">
-      <li class="cyber-li">1999–2001 — College (Electrician)</li>
-      <li class="cyber-li">2001–2005 — Higher Education (Teacher of Physical Education and Valeology)</li>
-    </ul>
-      </div>
-    </aside>
-
-    <!-- Main Content -->
-    <div class="main-section">
-      <!-- Personal Skills -->
-      <div class="cyber-tile bg-dark fg-white p-4">
-    <h2 class="cyber-h fg-pink">Personal Skills</h2>
-    
-    <!-- Languages -->
-    <div class="mt-4">
-      <h3 class="cyber-h fg-yellow">Languages</h3>
-      <div class="cyber-tile bg-darker p-3">
-        <div class="cyber-table">
-          <table>
-            <tbody>
-              <tr class="cyber-tr">
-                <td class="cyber-td fg-cyan">Ukrainian</td>
-                <td class="cyber-td">Native</td>
-              </tr>
-              <tr class="cyber-tr">
-                <td class="cyber-td fg-cyan">Russian</td>
-                <td class="cyber-td">Native</td>
-              </tr>
-              <tr class="cyber-tr">
-                <td class="cyber-td fg-cyan">English</td>
-                <td class="cyber-td">Upper-Intermediate</td>
-              </tr>
-              <tr class="cyber-tr">
-                <td class="cyber-td fg-cyan">German</td>
-                <td class="cyber-td">Starting</td>
-              </tr>
-            </tbody>
-          </table>
+            <div class="col-9">
+              <h1 class="cyber-h fg-pink">Dyachuk Vitaliy</h1>
+              <h2 class="cyber-h fg-yellow">Fullstack JS Developer</h2>
+              <p class="fg-cyan">(React, Vue, Angular, NodeJS, Web-Design, Web-3D, AI)</p>
+              <a href="https://github.com/yourusername" class="cyber-button bg-green fg-black">
+                <span class="cyber-button-content">My GitHub</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
 
-    <!-- Core Stack -->
-    <div class="mt-4">
-      <h3 class="cyber-h fg-yellow">Core Stack</h3>
-      <div class="cyber-tile bg-darker p-3">
-        <div class="cyber-tag bg-blue fg-black">React</div>
-        <div class="cyber-tag bg-blue fg-black">Vue</div>
-        <div class="cyber-tag bg-blue fg-black">Angular</div>
-        <div class="cyber-tag bg-blue fg-black">Node.js</div>
-        <div class="cyber-tag bg-blue fg-black">TypeScript</div>
-        <div class="cyber-tag bg-blue fg-black">JavaScript (ES6+)</div>
-      </div>
-    </div>
-      </div>
+    <main class="main-content">
+      <!-- Sidebar -->
+      <aside class="sidebar-section">
+        <!-- About Me -->
+        <div class="cyber-tile bg-dark fg-white p-4">
+          <h2 class="cyber-h fg-pink">About Me</h2>
+          <div class="cyber-table">
+            <table>
+              <tbody>
+                <tr class="cyber-tr">
+                  <td class="cyber-td fg-yellow">Name:</td>
+                  <td class="cyber-td">Dyachuk Vitaliy</td>
+                </tr>
+                <tr class="cyber-tr">
+                  <td class="cyber-td fg-yellow">Location:</td>
+                  <td class="cyber-td">Khmelnytskyi, Ukraine</td>
+                </tr>
+                <tr class="cyber-tr">
+                  <td class="cyber-td fg-yellow">Date of Birth:</td>
+                  <td class="cyber-td">03.06.1983</td>
+                </tr>
+                <tr class="cyber-tr">
+                  <td class="cyber-td fg-yellow">Nationality:</td>
+                  <td class="cyber-td">Ukrainian</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-      <!-- Additional Skills -->
-      <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
-    <h2 class="cyber-h fg-pink">Additional Skills</h2>
-    <div class="cyber-tile bg-darker p-3">
-      <div class="cyber-tag bg-green fg-black">Web Design</div>
-      <div class="cyber-tag bg-green fg-black">UI/UX</div>
-      <div class="cyber-tag bg-green fg-black">Responsive Design</div>
-      <div class="cyber-tag bg-green fg-black">Git</div>
-      <div class="cyber-tag bg-green fg-black">Docker</div>
-      <div class="cyber-tag bg-green fg-black">RESTful APIs</div>
-      <div class="cyber-tag bg-green fg-black">GraphQL</div>
-      <div class="cyber-tag bg-green fg-black">MongoDB</div>
-      <div class="cyber-tag bg-green fg-black">PostgreSQL</div>
-    </div>
-      </div>
+        <!-- Education -->
+        <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
+          <h2 class="cyber-h fg-pink">Education</h2>
+          <ul class="cyber-list">
+            <li class="cyber-li">1999–2001 — College (Electrician)</li>
+            <li class="cyber-li">2001–2005 — Higher Education (Teacher of Physical Education and Valeology)</li>
+          </ul>
+        </div>
+      </aside>
 
-      <!-- Learning & Interests -->
-      <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
-    <h2 class="cyber-h fg-pink">Learning & Interests</h2>
-    
-    <div class="cyber-tile bg-darker p-3 mb-4">
-      <h3 class="cyber-h fg-yellow mb-3">Technologies & Skills</h3>
-      <div class="cyber-tag bg-purple fg-white">Python</div>
-      <div class="cyber-tag bg-purple fg-white">Big Data</div>
-      <div class="cyber-tag bg-purple fg-white">AI/ML</div>
-      <div class="cyber-tag bg-purple fg-white">NativeScript</div>
-      <div class="cyber-tag bg-purple fg-white">Unity3D</div>
-      <div class="cyber-tag bg-purple fg-white">IoT</div>
-      <div class="cyber-tag bg-purple fg-white">VR/Web-VR</div>
-      <div class="cyber-tag bg-purple fg-white">Learning Tech</div>
-    </div>
-    
-    <div class="cyber-tile bg-darker p-3">
-      <h3 class="cyber-h fg-yellow mb-3">Additional Expertise</h3>
-      <ul class="cyber-list">
-        <li class="cyber-li"><span class="fg-yellow">AI/ML:</span> OpenAI API, Google Gemini, Neural nets</li>
-        <li class="cyber-li"><span class="fg-yellow">3D/VR:</span> Three.js, Web-VR, Godot, Unity3D</li>
-        <li class="cyber-li"><span class="fg-yellow">Blockchain:</span> Web3, dApps, Cryptocurrencies</li>
-        <li class="cyber-li"><span class="fg-yellow">Data & APIs:</span> GraphQL, D3.js, Cloud APIs, SSE</li>
-        <li class="cyber-li"><span class="fg-yellow">Other:</span> Mentorship, YouTube/SEO, Electron, IoT</li>
-      </ul>
-    </div>
-      </div>
+      <!-- Main Content -->
+      <div class="main-section">
+        <!-- Personal Skills -->
+        <div class="cyber-tile bg-dark fg-white p-4">
+          <h2 class="cyber-h fg-pink">Personal Skills</h2>
 
-      <!-- Other Experience -->
-      <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
-      <h2 class="cyber-h fg-pink">Other Experience</h2>
-      <div class="cyber-tile bg-darker p-3 mt-2">
-        <ul class="cyber-list">
-          <li class="cyber-li">Mentor (4y), Team lead (0.5y)</li>
-          <li class="cyber-li">Trainer (3y), Teacher (1y), Head of circle (1y)</li>
-          <li class="cyber-li">Psychology (since 16), Own projects</li>
-        </ul>
-      </div>
-      </div>
-    </div>
-  </main>
+          <!-- Languages -->
+          <div class="mt-4">
+            <h3 class="cyber-h fg-yellow">Languages</h3>
+            <div class="cyber-tile bg-darker p-3">
+              <div class="cyber-table">
+                <table>
+                  <tbody>
+                    <tr class="cyber-tr">
+                      <td class="cyber-td fg-cyan">Ukrainian</td>
+                      <td class="cyber-td">Native</td>
+                    </tr>
+                    <tr class="cyber-tr">
+                      <td class="cyber-td fg-cyan">Russian</td>
+                      <td class="cyber-td">Native</td>
+                    </tr>
+                    <tr class="cyber-tr">
+                      <td class="cyber-td fg-cyan">English</td>
+                      <td class="cyber-td">Upper-Intermediate</td>
+                    </tr>
+                    <tr class="cyber-tr">
+                      <td class="cyber-td fg-cyan">German</td>
+                      <td class="cyber-td">Starting</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
-  <!-- Works & Projects Section -->
-  <div class="cyber-tile bg-dark fg-white p-6 full-width">
+          <!-- Core Stack -->
+          <div class="mt-4">
+            <h3 class="cyber-h fg-yellow">Core Stack</h3>
+            <div class="cyber-tile bg-darker p-3">
+              <div class="cyber-tag bg-blue fg-black">React</div>
+              <div class="cyber-tag bg-blue fg-black">Vue</div>
+              <div class="cyber-tag bg-blue fg-black">Angular</div>
+              <div class="cyber-tag bg-blue fg-black">Node.js</div>
+              <div class="cyber-tag bg-blue fg-black">TypeScript</div>
+              <div class="cyber-tag bg-blue fg-black">JavaScript (ES6+)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Skills -->
+        <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
+          <h2 class="cyber-h fg-pink">Additional Skills</h2>
+          <div class="cyber-tile bg-darker p-3">
+            <div class="cyber-tag bg-green fg-black">Web Design</div>
+            <div class="cyber-tag bg-green fg-black">UI/UX</div>
+            <div class="cyber-tag bg-green fg-black">Responsive Design</div>
+            <div class="cyber-tag bg-green fg-black">Git</div>
+            <div class="cyber-tag bg-green fg-black">Docker</div>
+            <div class="cyber-tag bg-green fg-black">RESTful APIs</div>
+            <div class="cyber-tag bg-green fg-black">GraphQL</div>
+            <div class="cyber-tag bg-green fg-black">MongoDB</div>
+            <div class="cyber-tag bg-green fg-black">PostgreSQL</div>
+          </div>
+        </div>
+
+        <!-- Learning & Interests -->
+        <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
+          <h2 class="cyber-h fg-pink">Learning & Interests</h2>
+
+          <div class="cyber-tile bg-darker p-3 mb-4">
+            <h3 class="cyber-h fg-yellow mb-3">Technologies & Skills</h3>
+            <div class="cyber-tag bg-purple fg-white">Python</div>
+            <div class="cyber-tag bg-purple fg-white">Big Data</div>
+            <div class="cyber-tag bg-purple fg-white">AI/ML</div>
+            <div class="cyber-tag bg-purple fg-white">NativeScript</div>
+            <div class="cyber-tag bg-purple fg-white">Unity3D</div>
+            <div class="cyber-tag bg-purple fg-white">IoT</div>
+            <div class="cyber-tag bg-purple fg-white">VR/Web-VR</div>
+            <div class="cyber-tag bg-purple fg-white">Learning Tech</div>
+          </div>
+
+          <div class="cyber-tile bg-darker p-3">
+            <h3 class="cyber-h fg-yellow mb-3">Additional Expertise</h3>
+            <ul class="cyber-list">
+              <li class="cyber-li"><span class="fg-yellow">AI/ML:</span> OpenAI API, Google Gemini, Neural nets</li>
+              <li class="cyber-li"><span class="fg-yellow">3D/VR:</span> Three.js, Web-VR, Godot, Unity3D</li>
+              <li class="cyber-li"><span class="fg-yellow">Blockchain:</span> Web3, dApps, Cryptocurrencies</li>
+              <li class="cyber-li"><span class="fg-yellow">Data & APIs:</span> GraphQL, D3.js, Cloud APIs, SSE</li>
+              <li class="cyber-li"><span class="fg-yellow">Other:</span> Mentorship, YouTube/SEO, Electron, IoT</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Other Experience -->
+        <div class="cyber-tile bg-dark fg-white p-4" style="margin-top: 36px;">
+          <h2 class="cyber-h fg-pink">Other Experience</h2>
+          <div class="cyber-tile bg-darker p-3 mt-2">
+            <ul class="cyber-list">
+              <li class="cyber-li">Mentor (4y), Team lead (0.5y)</li>
+              <li class="cyber-li">Trainer (3y), Teacher (1y), Head of circle (1y)</li>
+              <li class="cyber-li">Psychology (since 16), Own projects</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Works & Projects Section -->
+    <div class="cyber-tile bg-dark fg-white p-6 full-width">
       <h2 class="cyber-h fg-pink">Works & Projects</h2>
-      
+
       <!-- Active Projects -->
       <div class="mt-6">
         <h3 class="cyber-h fg-yellow mb-4" id="w-active" style="font-size: 1.5rem;">Active Projects</h3>
-        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; width: 100%;">
+        <div class="grid-container"
+          style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; width: 100%;">
           <!-- Project Card -->
           <div class="card">
             <div class="cyber-tile bg-darker p-3">
               <h4 class="cyber-h fg-cyan">Books Online</h4>
               <p>Онлайн-каталог книг и учебных материалов</p>
               <p><span class="fg-yellow">Tech:</span> GitHub Pages, reader.js, LocalStorage</p>
-              <a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
+              <a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">View Project</a>
             </div>
           </div>
           <!-- Project Card -->
@@ -379,7 +405,8 @@
               <h4 class="cyber-h fg-cyan">Mentor JS</h4>
               <p>Сайт и уроки по NuxtJS (Vue + SSR)</p>
               <p><span class="fg-yellow">Tech:</span> Nuxt.js, Vue, SSR, Vercel</p>
-              <a href="https://mentor-js.vercel.app/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
+              <a href="https://mentor-js.vercel.app/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">View Project</a>
             </div>
           </div>
 
@@ -389,7 +416,8 @@
               <h4 class="cyber-h fg-cyan">JS Mantra</h4>
               <p>Комьюнити-ресурсы по веб-разработке</p>
               <p><span class="fg-yellow">Features:</span> Тренинги, организация обучения, материалы</p>
-              <a href="https://js-mantra.vercel.app/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
+              <a href="https://js-mantra.vercel.app/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">View Project</a>
             </div>
           </div>
 
@@ -399,7 +427,8 @@
               <h4 class="cyber-h fg-cyan">YouTube Subtitles Guide</h4>
               <p>Гайд по работе с субтитрами YouTube</p>
               <p><span class="fg-yellow">Tools:</span> yt-dlp, cookies/DPAPI, .srt</p>
-              <a href="https://spiriturban.github.io/artifacts/youtube-subs-yt-dlp/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Guide</a>
+              <a href="https://spiriturban.github.io/artifacts/youtube-subs-yt-dlp/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">View Guide</a>
             </div>
           </div>
 
@@ -409,7 +438,8 @@
               <h4 class="cyber-h fg-cyan">GitHub Repositories</h4>
               <p>Collection of my public projects and contributions</p>
               <p><span class="fg-yellow">Note:</span> Includes various projects showcasing different skills</p>
-              <a href="https://github.com/SpiritUrban?tab=repositories" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View on GitHub</a>
+              <a href="https://github.com/SpiritUrban?tab=repositories" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">View on GitHub</a>
             </div>
           </div>
 
@@ -419,7 +449,8 @@
               <h4 class="cyber-h fg-cyan">Adventure Bucket List</h4>
               <p>Team collaboration project</p>
               <p><span class="fg-yellow">Role:</span> Team Member</p>
-              <a href="https://adventurebucketlist.com/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+              <a href="https://adventurebucketlist.com/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
             </div>
           </div>
 
@@ -429,7 +460,8 @@
               <h4 class="cyber-h fg-cyan">Jopwell Tools</h4>
               <p>Internal tools development</p>
               <p><span class="fg-yellow">Role:</span> Team Member</p>
-              <a href="https://www.jopwell.com/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
+              <a href="https://www.jopwell.com/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">View Project</a>
             </div>
           </div>
 
@@ -439,7 +471,8 @@
               <h4 class="cyber-h fg-cyan">Uboro</h4>
               <p>Team collaboration project</p>
               <p><span class="fg-yellow">Role:</span> Team Member</p>
-              <a href="https://uboro.io" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+              <a href="https://uboro.io" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit
+                Site</a>
             </div>
           </div>
           <!-- Project Card -->
@@ -448,7 +481,8 @@
               <h4 class="cyber-h fg-cyan">MVS Ukraine System</h4>
               <p>Ministry of Internal Affairs of Ukraine</p>
               <p><span class="fg-yellow">Role:</span> Frontend Mentor (Angular)</p>
-              <a href="https://mvs.gov.ua/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">View Project</a>
+              <a href="https://mvs.gov.ua/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">View Project</a>
             </div>
           </div>
 
@@ -458,7 +492,8 @@
               <h4 class="cyber-h fg-cyan">Skladovka</h4>
               <p>Warehouse management system</p>
               <p><span class="fg-yellow">Role:</span> Development Team</p>
-              <a href="https://www.skladovka.ua/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+              <a href="https://www.skladovka.ua/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
             </div>
           </div>
 
@@ -468,7 +503,8 @@
               <h4 class="cyber-h fg-cyan">Writtent</h4>
               <p>Content marketing platform</p>
               <p><span class="fg-yellow">Role:</span> Team Member</p>
-              <a href="http://writtent.com/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+              <a href="http://writtent.com/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
             </div>
           </div>
           <!-- Project Card -->
@@ -477,15 +513,17 @@
               <h4 class="cyber-h fg-cyan">Rozvivalka</h4>
               <p>Educational platform for children</p>
               <p><span class="fg-yellow">Tech:</span> Web Development</p>
-              <a href="https://spiriturban.github.io/rozvivalka/" target="_blank" rel="noopener" class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
+              <a href="https://spiriturban.github.io/rozvivalka/" target="_blank" rel="noopener"
+                class="cyber-button bg-blue fg-white mt-2">Visit Site</a>
             </div>
           </div>
         </div> <!-- Close grid-container -->
-  
+
         <!-- Closed Projects -->
         <div class="mt-6">
           <h3 class="cyber-h fg-yellow" id="w-closed">Closed Projects</h3>
-          <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; width: 100%;">
+          <div class="grid-container"
+            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; width: 100%;">
             <!-- Project Card -->
             <div class="card">
               <div class="cyber-tile bg-darker p-3">
@@ -493,7 +531,8 @@
                 <p>Site for Cleaning Company</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -504,7 +543,8 @@
                 <p>Send and receive electronic invoices</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -515,7 +555,8 @@
                 <p>Telecommunications platform</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
             <!-- Project Card -->
@@ -525,7 +566,8 @@
                 <p>Electronic invoicing platform</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -536,7 +578,8 @@
                 <p>Business management platform</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -547,7 +590,8 @@
                 <p>Telecommunications services</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
             <!-- Project Card -->
@@ -557,7 +601,8 @@
                 <p>Mobile top-up service</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Solo Project</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -568,7 +613,8 @@
                 <p>Luxury transportation service</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Development</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -579,7 +625,8 @@
                 <p>Professional services website</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Development</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
 
@@ -590,7 +637,8 @@
                 <p>Community platform</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Development</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
             <!-- Project Card -->
@@ -600,77 +648,89 @@
                 <p>Paleo diet recipes and resources</p>
                 <p><span class="fg-yellow">Status:</span> Closed</p>
                 <p><span class="fg-yellow">Role:</span> Teamwork</p>
-                <a href="#" class="cyber-button bg-yellow fg-black mt-2" style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
+                <a href="#" class="cyber-button bg-yellow fg-black mt-2"
+                  style="opacity: 0.7; cursor: not-allowed;">Project Closed</a>
               </div>
             </div>
-          </div>
-          </div>
-          
-          <!-- Student Projects -->
-          <div class="mt-4">
-            <h3 class="cyber-h fg-yellow" id="w-students">Projects of my students</h3>
-            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
-              <h4 class="cyber-h fg-cyan">Active</h4>
-              <ul class="cyber-list">
-                <li class="cyber-li">
-                  <a href="https://github.com/RomanPeredrii" target="_blank" rel="noopener" class="cyber-a">RomanPeredrii</a> — Express.js, React.js, WebRTS, socket.io, MongoDB, Firebird
-                </li>
-                <li class="cyber-li">
-                  <a href="https://github.com/Mooninghnk" target="_blank" rel="noopener" class="cyber-a">Totoro</a> — Node.js, Express.js, ethereum, web3.js, metamask, socket.io, MongoDB, FileAPI
-                </li>
-                <li class="cyber-li">
-                  <a href="https://github.com/TarasOstasha" target="_blank" rel="noopener" class="cyber-a">Taras Ostasha</a> — Node.js, Express.js, Angular, Passport.js
-                </li>
-                <li class="cyber-li">
-                  <a href="https://github.com/semeguk" target="_blank" rel="noopener" class="cyber-a">Sergiy Semeguk</a> — JS, Node.js, Express.js, Angular
-                </li>
-              </ul>
-
-              <h4 class="cyber-h fg-cyan mt-4">Closed</h4>
-              <div class="cyber-tile bg-dark p-3 mt-2">
-                <ul class="cyber-list">
-                  <li class="cyber-li">
-                    <span class="fg-yellow">Photographer's site</span> — work with mail, generation of site structure from data. (Express.js) (закрыт).
-                  </li>
-                </ul>
-                <p class="mt-2"><em>Over the 5 years of mentoring, my students have created numerous projects. This section is not yet complete and will be updated later.</em></p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Designs Section -->
-          <div class="mt-4">
-            <h3 class="cyber-h fg-yellow" id="w-designs">Designs</h3>
-            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
-              <ul class="cyber-list">
-                <li class="cyber-li">
-                  <a href="http://www.behance.net/spirit_urban" target="_blank" rel="noopener" class="cyber-a">Behance</a>
-                </li>
-                <li class="cyber-li">
-                  <a href="http://www.thecoldwarera.com/aboutus.html" target="_blank" rel="noopener" class="cyber-a">Vitaly Dyachuk - graphic designer</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Books Section -->
-          <div class="mt-4">
-            <h3 class="cyber-h fg-yellow" id="w-books">Books</h3>
-            <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
-              <ul class="cyber-list">
-                <li class="cyber-li">
-                  <a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener" class="cyber-a">НАСТАВНИК (series, 2017–2025)</a>
-                  <p class="mt-1">Серия из 18+ томов о пути автора: от кризиса 2017 года до трансформации и наставничества в 2025. Включает автобиографию, философию, практики, IT и стратегию.</p>
-                </li>
-                <li class="cyber-li mt-3">
-                  <a href="https://spiriturban.github.io/books-online/books/uchebnik-novoe-programmirovanie-ii/" target="_blank" rel="noopener" class="cyber-a">Учебник: Новое программирование ИИ</a>
-                  <p class="mt-1">Учебник и курс по работе с искусственным интеллектом как новым типом программирования. Структура уровней владения ИИ, контексты, пайплайны, примеры интеграции в веб-проекты.</p>
-                </li>
-              </ul>
-            </div>
-          </div>
           </div>
         </div>
+
+        <!-- Student Projects -->
+        <div class="mt-4">
+          <h3 class="cyber-h fg-yellow" id="w-students">Projects of my students</h3>
+          <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
+            <h4 class="cyber-h fg-cyan">Active</h4>
+            <ul class="cyber-list">
+              <li class="cyber-li">
+                <a href="https://github.com/RomanPeredrii" target="_blank" rel="noopener"
+                  class="cyber-a">RomanPeredrii</a> — Express.js, React.js, WebRTS, socket.io, MongoDB, Firebird
+              </li>
+              <li class="cyber-li">
+                <a href="https://github.com/Mooninghnk" target="_blank" rel="noopener" class="cyber-a">Totoro</a> —
+                Node.js, Express.js, ethereum, web3.js, metamask, socket.io, MongoDB, FileAPI
+              </li>
+              <li class="cyber-li">
+                <a href="https://github.com/TarasOstasha" target="_blank" rel="noopener" class="cyber-a">Taras
+                  Ostasha</a> — Node.js, Express.js, Angular, Passport.js
+              </li>
+              <li class="cyber-li">
+                <a href="https://github.com/semeguk" target="_blank" rel="noopener" class="cyber-a">Sergiy Semeguk</a> —
+                JS, Node.js, Express.js, Angular
+              </li>
+            </ul>
+
+            <h4 class="cyber-h fg-cyan mt-4">Closed</h4>
+            <div class="cyber-tile bg-dark p-3 mt-2">
+              <ul class="cyber-list">
+                <li class="cyber-li">
+                  <span class="fg-yellow">Photographer's site</span> — work with mail, generation of site structure from
+                  data. (Express.js) (закрыт).
+                </li>
+              </ul>
+              <p class="mt-2"><em>Over the 5 years of mentoring, my students have created numerous projects. This
+                  section is not yet complete and will be updated later.</em></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Designs Section -->
+        <div class="mt-4">
+          <h3 class="cyber-h fg-yellow" id="w-designs">Designs</h3>
+          <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
+            <ul class="cyber-list">
+              <li class="cyber-li">
+                <a href="http://www.behance.net/spirit_urban" target="_blank" rel="noopener" class="cyber-a">Behance</a>
+              </li>
+              <li class="cyber-li">
+                <a href="http://www.thecoldwarera.com/aboutus.html" target="_blank" rel="noopener"
+                  class="cyber-a">Vitaly Dyachuk - graphic designer</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Books Section -->
+        <div class="mt-4">
+          <h3 class="cyber-h fg-yellow" id="w-books">Books</h3>
+          <div class="cyber-tile bg-darker p-3 mt-2" style="max-width: none;">
+            <ul class="cyber-list">
+              <li class="cyber-li">
+                <a href="https://spiriturban.github.io/books-online/" target="_blank" rel="noopener"
+                  class="cyber-a">НАСТАВНИК (series, 2017–2025)</a>
+                <p class="mt-1">Серия из 18+ томов о пути автора: от кризиса 2017 года до трансформации и наставничества
+                  в 2025. Включает автобиографию, философию, практики, IT и стратегию.</p>
+              </li>
+              <li class="cyber-li mt-3">
+                <a href="https://spiriturban.github.io/books-online/books/uchebnik-novoe-programmirovanie-ii/"
+                  target="_blank" rel="noopener" class="cyber-a">Учебник: Новое программирование ИИ</a>
+                <p class="mt-1">Учебник и курс по работе с искусственным интеллектом как новым типом программирования.
+                  Структура уровней владения ИИ, контексты, пайплайны, примеры интеграции в веб-проекты.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -684,21 +744,21 @@
       </div>
     </div>
     </div>
-</footer>
+  </footer>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     // Add any interactive functionality here
-    $(document).ready(function() {
+    $(document).ready(function () {
       // Add smooth scrolling to all links
-      $("a").on('click', function(event) {
+      $("a").on('click', function (event) {
         if (this.hash !== "") {
           event.preventDefault();
           var hash = this.hash;
           $('html, body').animate({
             scrollTop: $(hash).offset().top
-          }, 800, function(){
+          }, 800, function () {
             window.location.hash = hash;
           });
         }
@@ -706,4 +766,5 @@
     });
   </script>
 </body>
+
 </html>
