@@ -6,8 +6,186 @@ function App() {
 
   return (
     <>
-    <Cart1 />
-   
+      <Cart1 />
+
+      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />      <hr />
+      <br />
+      <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />    <hr />
+      <br />
+
     </>
   )
 }

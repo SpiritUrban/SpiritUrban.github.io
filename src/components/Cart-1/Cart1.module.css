@@ -46,29 +46,55 @@
   max-width: 60%;
 }
 
+/* ВНЕШНЯЯ ОБЁРТКА: тут тень */
+.shadowWrap {
+  display: inline-block;
+  /* чтобы тень была вокруг содержимого */
+  filter: drop-shadow(0 0 22px rgba(11, 160, 249, 0.8)) drop-shadow(0 0 2px rgba(11, 160, 249, 0.9));
+  /* двойное свечение поярче */
+  filter: drop-shadow(0 0 11px rgba(11, 160, 249, 0.6)) drop-shadow(0 0 2px rgba(25, 160, 249, 0.5));
+  isolation: isolate;
+  /* своя контекстная область, иногда помогает с фильтрами */
+  overflow: visible;
+  /* важно: не режем тень! */
+  height: 100%;
+  width: 100%;
+}
+
+/* ВНУТРЕННИЙ БЛОК: форма и фон */
 .imageContainer {
+  position: relative;
   width: 100%;
   height: 110%;
   background: rgba(16, 18, 27, 0.6);
-  /* Cut left corners (top and bottom) and bottom-right corner at 45 degrees */
-  clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px));
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid rgba(11, 160, 249, 0.3);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
+  clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px),
+      calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px));
   overflow: hidden;
+  /* можно оставить здесь, но не на обёртке и не у её предков */
   margin-top: -23px;
 }
+
+/* Картинка по вкусу */
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+
+
+
+
 
 .image {
   width: 100%;
   height: 110%;
   object-fit: cover;
   object-position: center 40%;
-  margin-top: 5%;
+  margin-top: -1%;
 }
 
 .title {

@@ -17,10 +17,10 @@ const Cart1: React.FC<Cart1Props> = ({
     return (
         <div className={styles.cart}>
             {/* Background SVG */}
-            <svg 
-                viewBox="0 0 518 219" 
-                fill="none" 
-                className={styles.backgroundSvg} 
+            <svg
+                viewBox="0 0 518 219"
+                fill="none"
+                className={styles.backgroundSvg}
                 xmlns="http://www.w3.org/2000/svg"
                 preserveAspectRatio="none"
             >
@@ -45,13 +45,16 @@ const Cart1: React.FC<Cart1Props> = ({
             <div className={styles.content}>
                 {/* Left Section - Image */}
                 <div className={styles.leftSection}>
-                    <div className={styles.imageContainer}>
-                        <img 
-                            src="/src/assets/photo.jpg" 
-                            alt="Project" 
-                            className={styles.image}
-                        />
+                    <div className={styles.shadowWrap}>
+                        <div className={styles.imageContainer}>
+                            <img
+                                src="/src/assets/photo.jpg"
+                                alt="Project"
+                                className={styles.image}
+                            />
+                        </div>
                     </div>
+
                 </div>
 
                 {/* Right Section - Text and Button */}
@@ -62,7 +65,7 @@ const Cart1: React.FC<Cart1Props> = ({
                             {description}
                         </p>
                     </div>
-                    <button 
+                    <button
                         className={styles.button}
                         onClick={onAddToCart}
                     >
