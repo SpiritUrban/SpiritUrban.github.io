@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import React from 'react';
 import './App.css'
 import Cart1 from './components/Cart-1/Cart1';
@@ -8,9 +8,20 @@ function App() {
   const contentRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
 
+  // Add scrollable class to body on mount
+  useEffect(() => {
+    document.body.classList.add('scrollable-page');
+    document.documentElement.classList.add('scrollable-page');
+    
+    return () => {
+      document.body.classList.remove('scrollable-page');
+      document.documentElement.classList.remove('scrollable-page');
+    };
+  }, []);
+
   return (
-    <div ref={viewportRef} className="app-container">
-      <div ref={contentRef} className="content-wrapper">
+    <div className="app-container">
+      <div ref={contentRef}>
         <Cart1 />
         
         {/* Content that will be scrolled */}

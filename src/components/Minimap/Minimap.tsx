@@ -43,23 +43,24 @@ const Minimap: React.FC<MinimapProps> = ({
         console.log('Content scroll height:', scrollHeight);
         setContentHeight(scrollHeight);
         
-        // Always use the visible viewport height, not the scrollable content height
+        // Always use the window's inner height as the viewport height
+        // This ensures we're using the visible area height, not the scrollable content
         let vh = window.innerHeight;
         
-        if (viewportRef?.current && viewportRef.current !== document.documentElement) {
-          // If we have a specific viewport container, use its client height
-          // but only if it's not the document element
+        console.log('Viewport height set to:', vh);
+        
+        // If we have a specific viewport container, log its dimensions for debugging
+        if (viewportRef?.current) {
           const container = viewportRef.current;
           const style = window.getComputedStyle(container);
-          const paddingTop = parseFloat(style.paddingTop) || 0;
-          const paddingBottom = parseFloat(style.paddingBottom) || 0;
-          
-          vh = container.clientHeight - paddingTop - paddingBottom;
-          console.log('Using container viewport height:', vh);
-        } else {
-          // Default to window height minus any fixed headers/footers if needed
-          vh = window.innerHeight;
-          console.log('Using window viewport height:', vh);
+          console.log('Viewport container dimensions:', {
+            clientHeight: container.clientHeight,
+            offsetHeight: container.clientHeight,
+            scrollHeight: container.scrollHeight,
+            paddingTop: style.paddingTop,
+            paddingBottom: style.paddingBottom,
+            computedHeight: style.height
+          });
         }
         
         console.log('Setting viewport height:', vh);
@@ -80,7 +81,6 @@ const Minimap: React.FC<MinimapProps> = ({
 
     // Set up scroll event listener
     const handleScroll = () => {
-      const scrollElement = viewportRef?.current || document.documentElement;
       const contentElement = contentRef.current;
       
       if (!contentElement) {
@@ -88,21 +88,30 @@ const Minimap: React.FC<MinimapProps> = ({
         return;
       }
       
-      // Get scroll position from the correct element
-      const scrollTop = scrollElement === document.documentElement 
-        ? window.scrollY 
-        : scrollElement.scrollTop;
-        
-      const scrollHeight = contentElement.scrollHeight;
-      const clientHeight = scrollElement.clientHeight;
-      const maxScroll = scrollHeight - clientHeight;
-      const ratio = maxScroll > 0 ? scrollTop / maxScroll : 0;
+      // Always use window for scrolling
+      const scrollTop = window.scrollY;
+      const scrollHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.body.clientHeight,
+        document.documentElement.clientHeight
+      );
+      
+      const currentViewportHeight = window.innerHeight;
+      const maxScroll = Math.max(1, scrollHeight - currentViewportHeight);
+      const ratio = Math.min(scrollTop / maxScroll, 1);
+      
+      // Update viewport height in state if needed
+      if (currentViewportHeight !== viewportHeight) {
+        setViewportHeight(currentViewportHeight);
+      }
       
       console.log('Scroll event:', {
-        scrollElement: scrollElement === document.documentElement ? 'document' : 'custom',
         scrollTop,
         scrollHeight,
-        clientHeight,
+        viewportHeight: currentViewportHeight,
         maxScroll,
         ratio
       });
@@ -110,19 +119,14 @@ const Minimap: React.FC<MinimapProps> = ({
       setScrollRatio(ratio);
     };
 
-    // Set up scroll listener on the correct element
-    const scrollElement = viewportRef?.current || document.documentElement;
-    const scrollTarget = scrollElement === document.documentElement ? window : scrollElement;
-    
-    console.log('Adding scroll listener to:', 
-      scrollElement === document.documentElement ? 'window' : 'custom element');
-    
-    scrollTarget.addEventListener('scroll', handleScroll, { passive: true });
+    // Always use window for scrolling
+    console.log('Adding scroll listener to window');
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       console.log('Cleaning up minimap listeners');
       resizeObserver.disconnect();
-      scrollTarget.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [contentRef, viewportRef]);
 
@@ -144,42 +148,23 @@ const Minimap: React.FC<MinimapProps> = ({
     const y = e.clientY - rect.top;
     const ratio = Math.min(Math.max(y / rect.height, 0), 1);
     
-    console.log('Interaction details:', {
-      clientY: e.clientY,
-      rectTop: rect.top,
-      rectHeight: rect.height,
-      calculatedY: y,
-      ratio,
-      contentHeight,
-      viewportHeight
-    });
-    
-    const scrollElement = viewportRef?.current || document.documentElement;
-    const maxScroll = contentHeight - viewportHeight;
+    // Always use window for scrolling
+    const maxScroll = contentHeight - window.innerHeight;
     const newScrollTop = Math.max(0, Math.min(ratio * maxScroll, maxScroll));
     
     console.log('Scrolling to:', {
-      scrollElement: scrollElement === document.documentElement ? 'document' : 'custom element',
       maxScroll,
       newScrollTop,
       contentHeight,
-      viewportHeight,
+      viewportHeight: window.innerHeight,
       ratio
     });
     
-    if (scrollElement === document.documentElement) {
-      // For document scrolling
-      window.scrollTo({
-        top: newScrollTop,
-        behavior: 'smooth',
-      });
-    } else if (scrollElement) {
-      // For custom container scrolling
-      scrollElement.scrollTo({
-        top: newScrollTop,
-        behavior: 'smooth',
-      });
-    }
+    // Always scroll the window
+    window.scrollTo({
+      top: newScrollTop,
+      behavior: 'smooth',
+    });
   };
 
   // Calculate viewport indicator position and height
@@ -197,21 +182,14 @@ const Minimap: React.FC<MinimapProps> = ({
     }
   }, [indicatorTop, indicatorHeight]);
 
-  // Set container dimensions
-  const containerClasses = [
-    styles.minimapContainer,
-    width && styles.hasCustomWidth,
-    height && styles.hasCustomHeight
-  ].filter(Boolean).join(' ');
+  // Set container dimensions using CSS variables
+  const containerStyle = {
+    '--minimap-width': `${width}px`,
+    '--minimap-height': `${height}px`,
+  } as React.CSSProperties;
 
   return (
-    <div 
-      className={containerClasses}
-      style={{
-        '--minimap-width': `${width}px`,
-        '--minimap-height': `${height}px`,
-      } as React.CSSProperties}
-    >
+    <div className={styles.minimapContainer} style={containerStyle}>
       <div 
         ref={minimapRef}
         className={styles.minimap}
