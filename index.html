@@ -64,10 +64,35 @@
       text-align: right;
       float: right;
       clear: both;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card .cyber-button:hover {
+      animation: cyber-glitch-2 0.5s linear infinite;
     }
     
     .card .cyber-button:hover {
       transform: translateY(-1px) !important;
+      text-shadow: 0 0 5px var(--cyan), 0 0 10px var(--cyan);
+    }
+    
+    @keyframes cyber-glitch-2 {
+      0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateX(0); text-shadow: none; }
+      2% { clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); transform: translateX(0); text-shadow: 0 0 5px var(--cyan), 0 0 10px var(--cyan); }
+      4% { clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); transform: translateX(2px); }
+      5% { clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); transform: translateX(-2px); }
+      6% { clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); transform: translateX(2px); }
+      7% { clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); transform: translateX(-2px); }
+      8% { clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%); transform: translateX(0); }
+      10% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateX(0); text-shadow: none; }
+      50% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateX(0); text-shadow: none; }
+      52% { clip-path: polygon(0 30%, 100% 30%, 100% 70%, 0 70%); transform: translateX(0); text-shadow: 0 0 5px var(--yellow), 0 0 10px var(--yellow); }
+      54% { clip-path: polygon(0 30%, 100% 30%, 100% 70%, 0 70%); transform: translateX(2px); }
+      55% { clip-path: polygon(0 30%, 100% 30%, 100% 70%, 0 70%); transform: translateX(-2px); }
+      56% { clip-path: polygon(0 30%, 100% 30%, 100% 70%, 0 70%); transform: translateX(2px); }
+      57% { clip-path: polygon(0 30%, 100% 30%, 100% 70%, 0 70%); transform: translateX(-2px); }
+      58% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); transform: translateX(0); text-shadow: none; }
     }
 
     body {
