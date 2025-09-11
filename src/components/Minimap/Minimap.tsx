@@ -1,7 +1,18 @@
-import React, { useRef, useEffect, useState } from 'react';
-import styles from './Minimap.module.css';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
+import './Minimap.css';
 
-interface MinimapProps {
+// Custom interface for slider props
+interface SliderProps {
+  'aria-valuenow': number;
+  'aria-valuemin': number;
+  'aria-valuemax': number;
+  'aria-valuetext'?: string;
+  'aria-orientation'?: 'vertical' | 'horizontal';
+  'aria-label'?: string;
+  [key: string]: any; // Allow other props
+}
+
+interface MinimapProps extends Omit<React.HTMLAttributes<HTMLDivElement>, keyof SliderProps>, SliderProps {
   contentRef: React.RefObject<HTMLElement | null>;
   viewportRef?: React.RefObject<HTMLElement | null>;
   width?: number;
@@ -15,184 +26,169 @@ const Minimap: React.FC<MinimapProps> = ({
   height = 300,
 }) => {
   const minimapRef = useRef<HTMLDivElement>(null);
+  const [indicatorPosition, setIndicatorPosition] = useState({ 
+    top: '0%', 
+    height: '20%' 
+  });
   const [isDragging, setIsDragging] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
-  const [viewportHeight, setViewportHeight] = useState(0);
-  const [scrollRatio, setScrollRatio] = useState(0);
+  // Used to store the current scroll position for accessibility
+  const [scrollPosition, setScrollPosition] = useState(0);
 
-  // Log initial refs
-  useEffect(() => {
-    console.log('Minimap mounted with refs:', {
-      contentRef: contentRef?.current ? 'Set' : 'Not set',
-      viewportRef: viewportRef?.current ? 'Set' : 'Not set',
-      minimapRef: minimapRef.current ? 'Set' : 'Not set'
+  // Update indicator position based on scroll
+  const updateIndicatorPosition = useCallback(() => {
+    // Get the current scroll position from the window
+    const scrollTop = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+    
+    // Get the maximum scrollable height
+    const scrollHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight,
+      document.documentElement.offsetHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight
+    );
+    
+    const viewportHeight = window.innerHeight;
+    const maxScroll = Math.max(1, scrollHeight - viewportHeight);
+    const ratio = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+    
+    const indicatorHeight = Math.max((viewportHeight / scrollHeight) * 100, 5);
+    const indicatorTop = Math.max(0, Math.min(ratio * (100 - indicatorHeight), 100 - indicatorHeight));
+    
+    // Update scroll position for accessibility
+    const newScrollPosition = Math.round(ratio * 100);
+    setScrollPosition(newScrollPosition);
+    
+    // Update CSS variables directly on the container
+    if (minimapRef.current) {
+      minimapRef.current.style.setProperty('--indicator-top', `${indicatorTop}%`);
+      minimapRef.current.style.setProperty('--indicator-height', `${indicatorHeight}%`);
+    }
+    
+    setIndicatorPosition({
+      top: `${indicatorTop}%`,
+      height: `${indicatorHeight}%`
     });
   }, []);
 
-  // Update dimensions when content changes
-  useEffect(() => {
-    console.log('Updating dimensions...');
-    if (!contentRef?.current) {
-      console.log('Content ref not set, skipping dimension update');
-      return;
-    }
-
-    const updateDimensions = () => {
-      if (contentRef?.current) {
-        const scrollHeight = contentRef.current.scrollHeight;
-        console.log('Content scroll height:', scrollHeight);
-        setContentHeight(scrollHeight);
-        
-        // Always use the window's inner height as the viewport height
-        // This ensures we're using the visible area height, not the scrollable content
-        let vh = window.innerHeight;
-        
-        console.log('Viewport height set to:', vh);
-        
-        // If we have a specific viewport container, log its dimensions for debugging
-        if (viewportRef?.current) {
-          const container = viewportRef.current;
-          const style = window.getComputedStyle(container);
-          console.log('Viewport container dimensions:', {
-            clientHeight: container.clientHeight,
-            offsetHeight: container.clientHeight,
-            scrollHeight: container.scrollHeight,
-            paddingTop: style.paddingTop,
-            paddingBottom: style.paddingBottom,
-            computedHeight: style.height
-          });
-        }
-        
-        console.log('Setting viewport height:', vh);
-        setViewportHeight(vh);
-      } else {
-        console.log('Content ref not available for dimension update');
-      }
-    };
-
-    // Initial update
-    updateDimensions();
-
-    // Set up ResizeObserver to track content size changes
-    const resizeObserver = new ResizeObserver(updateDimensions);
-    if (contentRef.current) {
-      resizeObserver.observe(contentRef.current);
-    }
-
-    // Set up scroll event listener
-    const handleScroll = () => {
-      const contentElement = contentRef.current;
-      
-      if (!contentElement) {
-        console.log('Scroll: Content ref not available');
-        return;
-      }
-      
-      // Always use window for scrolling
-      const scrollTop = window.scrollY;
-      const scrollHeight = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.offsetHeight,
-        document.body.clientHeight,
-        document.documentElement.clientHeight
-      );
-      
-      const currentViewportHeight = window.innerHeight;
-      const maxScroll = Math.max(1, scrollHeight - currentViewportHeight);
-      const ratio = Math.min(scrollTop / maxScroll, 1);
-      
-      // Update viewport height in state if needed
-      if (currentViewportHeight !== viewportHeight) {
-        setViewportHeight(currentViewportHeight);
-      }
-      
-      console.log('Scroll event:', {
-        scrollTop,
-        scrollHeight,
-        viewportHeight: currentViewportHeight,
-        maxScroll,
-        ratio
-      });
-      
-      setScrollRatio(ratio);
-    };
-
-    // Always use window for scrolling
-    console.log('Adding scroll listener to window');
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      console.log('Cleaning up minimap listeners');
-      resizeObserver.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [contentRef, viewportRef]);
-
   // Handle minimap click/drag
-  const handleMinimapInteraction = (e: React.MouseEvent) => {
-    console.log('Minimap interaction:', e.type);
-    
-    if (!minimapRef.current) {
-      console.log('Minimap ref not set');
-      return;
-    }
-    
-    if (!contentRef.current) {
-      console.log('Content ref not set');
-      return;
-    }
+  const handleMinimapInteraction = useCallback((e: React.MouseEvent) => {
+    if (!minimapRef.current) return;
     
     const rect = minimapRef.current.getBoundingClientRect();
     const y = e.clientY - rect.top;
     const ratio = Math.min(Math.max(y / rect.height, 0), 1);
     
-    // Always use window for scrolling
-    const maxScroll = contentHeight - window.innerHeight;
-    const newScrollTop = Math.max(0, Math.min(ratio * maxScroll, maxScroll));
+    // Get the maximum scrollable height
+    const scrollHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight,
+      document.documentElement.offsetHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight
+    );
     
-    console.log('Scrolling to:', {
-      maxScroll,
-      newScrollTop,
-      contentHeight,
-      viewportHeight: window.innerHeight,
-      ratio
-    });
+    const viewportHeight = window.innerHeight;
+    const maxScroll = Math.max(1, scrollHeight - viewportHeight);
+    const newScrollTop = ratio * maxScroll;
     
-    // Always scroll the window
+    // Scroll the window to the new position
     window.scrollTo({
       top: newScrollTop,
       behavior: 'smooth',
     });
-  };
+    
+    // Force update the indicator position
+    requestAnimationFrame(() => {
+      updateIndicatorPosition();
+    });
+  }, [contentRef, viewportRef]);
 
-  // Calculate viewport indicator position and height
-  const indicatorHeight = contentHeight > 0 && viewportHeight > 0
-    ? Math.max((viewportHeight / contentHeight) * 100, 5)
-    : 20; // Default height if not calculated yet
+  // Set up scroll and resize listeners with requestAnimationFrame for smoother updates
+  useEffect(() => {
+    let animationFrameId: number;
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        animationFrameId = requestAnimationFrame(() => {
+          updateIndicatorPosition();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    const handleResize = () => {
+      if (!ticking) {
+        animationFrameId = requestAnimationFrame(() => {
+          updateIndicatorPosition();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    // Add event listeners to the window
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+    
+    // Also add scroll listener to the content element if it's different from the document
+    const contentElement = contentRef.current;
+    if (contentElement && contentElement !== document.documentElement && contentElement !== document.body) {
+      contentElement.addEventListener('scroll', handleScroll, { passive: true });
+    }
+    
+    // Initial calculation
+    updateIndicatorPosition();
+    
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+      
+      // Clean up content element listener if it was added
+      if (contentElement && contentElement !== document.documentElement && contentElement !== document.body) {
+        contentElement.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [updateIndicatorPosition, contentRef]);
+
+  // Calculate container class names
+  const containerClasses = [
+    'minimap-container',
+    width !== 150 ? 'has-custom-width' : '',
+    height !== 300 ? 'has-custom-height' : ''
+  ].filter(Boolean).join(' ');
+
+  // Calculate indicator classes
+  const indicatorClasses = 'viewport-indicator active';
   
-  const indicatorTop = contentHeight > 0 ? scrollRatio * (100 - indicatorHeight) : 0;
-
-  // Set custom properties directly on the container
+  // Set indicator position classes
+  const indicatorPositionClass = `pos-${Math.round(parseFloat(indicatorPosition.top))}`;
+  const indicatorHeightClass = `h-${Math.round(parseFloat(indicatorPosition.height))}`;
+  // Set container style with width and height
   useEffect(() => {
     if (minimapRef.current) {
-      minimapRef.current.style.setProperty('--indicator-top', `${indicatorTop}%`);
-      minimapRef.current.style.setProperty('--indicator-height', `${indicatorHeight}%`);
+      minimapRef.current.style.setProperty('--minimap-width', `${width}px`);
+      minimapRef.current.style.setProperty('--minimap-height', `${height}px`);
     }
-  }, [indicatorTop, indicatorHeight]);
+  }, [width, height]);
 
-  // Set container dimensions using CSS variables
-  const containerStyle = {
-    '--minimap-width': `${width}px`,
-    '--minimap-height': `${height}px`,
-  } as React.CSSProperties;
+  // Calculate the current scroll position as a string
+  const currentScrollPosition = Math.round(scrollPosition).toString();
 
   return (
-    <div className={styles.minimapContainer} style={containerStyle}>
+    <div 
+      ref={minimapRef}
+      className={containerClasses}
+      role="region"
+      aria-label="Page navigation"
+    >
       <div 
-        ref={minimapRef}
-        className={styles.minimap}
+        className="minimap"
         onClick={handleMinimapInteraction}
         onMouseDown={(e) => {
           setIsDragging(true);
@@ -205,8 +201,19 @@ const Minimap: React.FC<MinimapProps> = ({
         }}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}
+        role="slider"
+        tabIndex={0}
+        aria-valuenow={currentScrollPosition as any}
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuetext={`${currentScrollPosition}% scrolled`}
+        aria-orientation="vertical"
+        aria-label="Document scroll position"
       >
-        <div className={styles.viewportIndicator} />
+        <div 
+          className={`${indicatorClasses} ${indicatorPositionClass} ${indicatorHeightClass}`}
+          aria-hidden="true"
+        />
       </div>
     </div>
   );

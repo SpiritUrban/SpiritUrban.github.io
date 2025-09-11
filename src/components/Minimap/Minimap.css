@@ -1,0 +1,59 @@
+/* Minimap Container */
+.minimap-container {
+  --minimap-width: 150px;
+  --minimap-height: 300px;
+  --indicator-top: 0%;
+  --indicator-height: 20%;
+  
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--minimap-width);
+  height: var(--minimap-height);
+  background-color: rgba(16, 18, 27, 0.8);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* Minimap Track */
+.minimap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Viewport Indicator */
+.viewport-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--indicator-top);
+  height: var(--indicator-height);
+  background-color: rgba(11, 160, 249, 0.2);
+  border: 1px solid rgba(11, 160, 249, 0.8);
+  box-sizing: border-box;
+  transition: top 0.1s ease-out, height 0.1s ease-out;
+  pointer-events: none;
+}
+
+.viewport-indicator.active {
+  opacity: 1;
+}
+
+/* Custom width and height classes */
+.has-custom-width {
+  width: var(--minimap-width) !important;
+}
+
+.has-custom-height {
+  height: var(--minimap-height) !important;
+}

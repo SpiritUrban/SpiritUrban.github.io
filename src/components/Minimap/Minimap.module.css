@@ -1,4 +1,4 @@
-.minimapContainer {
+.minimap-container {
   --minimap-width: 150px;
   --minimap-height: 300px;
   
@@ -6,15 +6,46 @@
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1000;
   width: var(--minimap-width);
   height: var(--minimap-height);
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
+  background-color: rgba(16, 18, 27, 0.8);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+}
+
+.minimap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.viewport-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: rgba(11, 160, 249, 0.2);
+  border: 1px solid rgba(11, 160, 249, 0.8);
+  box-sizing: border-box;
+  transition: top 0.1s ease-out, height 0.1s ease-out;
   pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+}
+
+.viewport-indicator.active {
+  opacity: 1;
+}
+
+/* Custom width and height classes */
+.has-custom-width {
+  width: var(--minimap-width) !important;
+}
+
+.has-custom-height {
+  height: var(--minimap-height) !important;
 }
 
 /* Additional classes for dynamic sizing */
@@ -60,20 +91,26 @@
 }
 
 .viewportIndicator {
-  --indicator-top: 0;
-  --indicator-height: 20%;
-  
+  /* Initial state - hidden */
+  opacity: 0;
+  pointer-events: none;
   position: absolute;
   left: 0;
   right: 0;
-  top: var(--indicator-top);
-  height: var(--indicator-height);
+  top: 0;
+  height: 0;
   background: rgba(11, 160, 249, 0.2);
-  border: 1px solid rgba(11, 160, 249, 0.6);
+  border: 1px solid rgba(11, 160, 249, 0.8);
   border-left: none;
   border-right: none;
-  transition: top 0.1s ease-out, height 0.1s ease-out;
-  pointer-events: none;
+  transition: top 0.05s linear, height 0.05s linear, opacity 0.1s ease;
+  will-change: top, height;
+  box-shadow: 0 0 0 1px rgba(11, 160, 249, 0.3);
+  z-index: 2;
+}
+
+.viewportIndicator.active {
+  opacity: 1;
 }
 
 .viewportIndicator::before,

@@ -41,6 +41,12 @@ function App() {
         viewportRef={viewportRef}
         width={120}
         height={300}
+        aria-valuenow={0}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuetext="0% scrolled"
+        aria-orientation="vertical"
+        aria-label="Document scroll position"
       />
     </div>
   );
