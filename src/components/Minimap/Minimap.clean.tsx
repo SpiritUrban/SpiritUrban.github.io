@@ -10,7 +10,7 @@ interface SliderProps {
   'aria-valuetext'?: string;
   'aria-orientation'?: 'vertical' | 'horizontal';
   'aria-label'?: string;
-  [key: string]: any;
+  'aria-labelledby'?: string;
 }
 
 interface MinimapProps extends Omit<React.HTMLAttributes<HTMLDivElement>, keyof SliderProps>, SliderProps {
@@ -24,8 +24,7 @@ const Minimap: React.FC<MinimapProps> = ({
   contentRef,
   viewportRef,
   width = 200,
-  height = 400,
-  ...props
+  height = 400
 }) => {
   const minimapRef = useRef<HTMLDivElement>(null);
   const [thumbnail, setThumbnail] = useState<string>('');

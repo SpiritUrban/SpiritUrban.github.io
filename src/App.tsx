@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import React from 'react';
 import './App.css'
 import Cart1 from './components/Cart-1/Cart1';

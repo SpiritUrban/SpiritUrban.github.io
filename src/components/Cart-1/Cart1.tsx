@@ -11,7 +11,6 @@ interface Cart1Props {
 const Cart1: React.FC<Cart1Props> = ({
     title = 'Dyachuk Vitaliy',
     description = 'Fullstack JS Developer\n(React, Vue, Angular, NodeJS, Web-Design, Web-3D, AI)',
-    price = 0,
     onAddToCart = () => { window.open('https://github.com/SpiritUrban', '_blank'); },
 }) => {
     return (
