@@ -5,6 +5,7 @@ import Cart1 from './components/Cart-1/Cart1';
 import Minimap from './components/Minimap/Minimap';
 
 function App() {
+  // Create refs for the content and viewport elements
   const contentRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
 

@@ -108,18 +108,11 @@ const Minimap: React.FC<MinimapProps> = ({
         style: {
           transform: `scale(${width / contentRef.current.offsetWidth})`,
           transformOrigin: 'top left'
-        },
-        // Add font options to handle font-related issues
-        fontFixes: true,
-        fontEmbedCSS: '',
-        // Skip fonts to avoid the trim error
-        skipFonts: true
+        }
       });
       setThumbnail(dataUrl);
     } catch (error) {
       console.error('Error capturing thumbnail:', error);
-      // Fallback to a solid color background if thumbnail generation fails
-      setThumbnail('');
     }
   }, [contentRef, width]);
   
