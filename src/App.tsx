@@ -27,13 +27,16 @@ function App() {
         
         {/* Content that will be scrolled */}
         <div className="content-spacer">
-          {Array.from({ length: 200 }).map((_, i) => (
+          {Array.from({ length: 20 }).map((_, i) => (
             <React.Fragment key={i}>
               <br />
               <hr />
             </React.Fragment>
           ))}
         </div>
+
+        <Cart1 />
+
       </div>
 
       {/* Minimap */}

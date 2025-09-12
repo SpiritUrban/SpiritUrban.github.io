@@ -43,6 +43,7 @@
   background-color: #161616;
   background-image: var(--minimap-thumbnail-bg);
   background-size: 100% auto;
+  /* background-size: cover; */
   background-repeat: no-repeat;
   background-position: top;
   background-origin: border-box;
