@@ -9,7 +9,7 @@ import TechnologiesList from '../../components/TechnologiesList/TechnologiesList
 const Home: FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
-  
+
   // Create type-safe refs for the Minimap component
   const minimapContentRef = contentRef as unknown as RefObject<HTMLElement>;
   const minimapViewportRef = viewportRef as unknown as RefObject<HTMLElement>;
@@ -22,7 +22,7 @@ const Home: FC = () => {
       <div className="center">
         <div ref={contentRef}>
           <Cart1 />
-          
+
           {/* Content that will be scrolled */}
           <div className="content-spacer">
             {Array.from({ length: 0 }).map((_, i) => (
@@ -42,7 +42,7 @@ const Home: FC = () => {
         </div>
 
         {/* Minimap */}
-        <Minimap 
+        <Minimap
           contentRef={minimapContentRef}
           viewportRef={minimapViewportRef}
           width={120}
@@ -58,6 +58,9 @@ const Home: FC = () => {
       <div className="right">
         <Link to="/dev/icons" className="dev-link">
           Icons Browser
+        </Link>
+        <Link to="/dev/devicons" className="dev-link">
+          Devicons Browser
         </Link>
       </div>
     </div>
