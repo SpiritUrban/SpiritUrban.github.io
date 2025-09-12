@@ -1,8 +1,9 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react';
 import React from 'react';
-import './App.css'
+import './App.css';
 import Cart1 from './components/Cart-1/Cart1';
 import Minimap from './components/Minimap/Minimap';
+import Timeline from './components/Timeline/Timeline';
 
 function App() {
   // Create refs for the content and viewport elements
@@ -27,7 +28,7 @@ function App() {
         
         {/* Content that will be scrolled */}
         <div className="content-spacer">
-          {Array.from({ length: 200 }).map((_, i) => (
+          {Array.from({ length: 0 }).map((_, i) => (
             <React.Fragment key={i}>
               <br />
               <hr />
@@ -36,8 +37,12 @@ function App() {
           ))}
         </div>
 
-        <Cart1 />
+      </div>
 
+      {/* Timeline Section */}
+      <div className="section-container">
+        <h2 className="section-title">Work Experience</h2>
+        <Timeline />
       </div>
 
       {/* Minimap */}

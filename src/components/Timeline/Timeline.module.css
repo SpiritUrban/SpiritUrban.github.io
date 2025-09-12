@@ -1,0 +1,147 @@
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: #e0e0e0;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background: rgba(66, 153, 225, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -2px;
+  border-radius: 2px;
+}
+
+.timelineItem {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  box-sizing: border-box;
+  margin: 20px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.timelineItem.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timelineItem:nth-child(odd) {
+  left: 0;
+  padding-right: 30px;
+  text-align: right;
+}
+
+.timelineItem:nth-child(even) {
+  left: 50%;
+  padding-left: 30px;
+  text-align: left;
+}
+
+.timelineDot {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -10px;
+  background: #3b82f6;
+  border: 3px solid #1e40af;
+  border-radius: 50%;
+  z-index: 1;
+  top: 15px;
+}
+
+.timelineItem:nth-child(even) .timelineDot {
+  left: -10px;
+  right: auto;
+}
+
+.timelineContent {
+  padding: 20px;
+  background: rgba(16, 18, 27, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timelineItem:hover .timelineContent {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.timelineYear {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #3b82f6;
+  margin-bottom: 8px;
+}
+
+.timelineTitle {
+  font-size: 1.3rem;
+  margin: 0 0 10px 0;
+  color: #ffffff;
+}
+
+.companyLink {
+  color: #93c5fd;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.companyLink:hover {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.timelineDescription,
+.timelineTech,
+.timelineProduct,
+.timelineAbout {
+  margin: 8px 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+}
+
+timelineDescription strong,
+.timelineTech strong,
+.timelineProduct strong,
+.timelineAbout strong {
+  color: #a5b4fc;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 31px;
+  }
+  
+  .timelineItem {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    text-align: left !important;
+  }
+  
+  .timelineItem:nth-child(even) {
+    left: 0;
+    padding-left: 70px;
+  }
+  
+  .timelineDot {
+    left: 21px !important;
+    right: auto !important;
+  }
+}
