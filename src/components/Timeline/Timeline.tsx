@@ -20,6 +20,45 @@ const Timeline: React.FC = () => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
   const timelineRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
+
+  // Функция для логирования видимых элементов
+  const logVisibleItems = () => {
+    if (!timelineRef.current) return;
+    
+    const items = Array.from(timelineRef.current.querySelectorAll(`.${styles.timelineItem}`));
+    const visible = items.filter(item => {
+      const rect = item.getBoundingClientRect();
+      return (
+        rect.top <= window.innerHeight * 0.9 &&
+        rect.bottom >= window.innerHeight * 0.1
+      );
+    });
+
+    console.log('Visible items:', visible.length);
+  };
+
+  // Эффект для логирования при монтировании и скролле
+  useEffect(() => {
+    if (isFirstRender.current) {
+      console.log('Timeline mounted');
+      isFirstRender.current = false;
+    }
+
+    // Первый вызов при монтировании
+    logVisibleItems();
+
+    // Обработчик скролла
+    const handleScroll = () => {
+      logVisibleItems();
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const toggleExpand = (index: number) => {
     setExpandedItems(prev => 
