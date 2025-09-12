@@ -11,76 +11,97 @@ const DeviconBrowser: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
+  const [showAllIcons, setShowAllIcons] = useState(true);
   const [icons, setIcons] = useState<Devicon[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load all devicon classes from the stylesheet
+  // Load predefined list of popular devicon icons
   useEffect(() => {
     const loadIcons = () => {
-      const deviconIcons: Devicon[] = [];
-      const processedIcons = new Set<string>();
+      // List of popular devicon icons with their categories
+      const popularIcons = [
+        // JavaScript/TypeScript
+        { name: 'javascript', category: 'plain-colored' },
+        { name: 'typescript', category: 'plain-colored' },
+        { name: 'nodejs', category: 'plain-colored' },
+        { name: 'react', category: 'plain-colored' },
+        { name: 'vuejs', category: 'plain-colored' },
+        { name: 'angular', category: 'plain-colored' },
+        { name: 'svelte', category: 'plain-colored' },
+        { name: 'nextjs', category: 'plain-colored' },
+        { name: 'nuxtjs', category: 'plain-colored' },
+        
+        // Backend
+        { name: 'python', category: 'plain-colored' },
+        { name: 'java', category: 'plain-colored' },
+        { name: 'php', category: 'plain-colored' },
+        { name: 'ruby', category: 'plain-colored' },
+        { name: 'go', category: 'plain-colored' },
+        { name: 'rust', category: 'plain-colored' },
+        { name: 'csharp', category: 'plain-colored' },
+        { name: 'cplusplus', category: 'plain-colored' },
+        
+        // Databases
+        { name: 'mongodb', category: 'plain-colored' },
+        { name: 'postgresql', category: 'plain-colored' },
+        { name: 'mysql', category: 'plain-colored' },
+        { name: 'redis', category: 'plain-colored' },
+        { name: 'sqlite', category: 'plain-colored' },
+        
+        // Cloud & DevOps
+        { name: 'docker', category: 'plain-colored' },
+        { name: 'kubernetes', category: 'plain-colored' },
+        { name: 'aws', category: 'plain-colored' },
+        { name: 'azure', category: 'plain-colored' },
+        { name: 'googlecloud', category: 'plain-colored' },
+        { name: 'firebase', category: 'plain-colored' },
+        { name: 'heroku', category: 'plain-colored' },
+        
+        // Tools & Other
+        { name: 'git', category: 'plain-colored' },
+        { name: 'github', category: 'plain-colored' },
+        { name: 'gitlab', category: 'plain-colored' },
+        { name: 'bitbucket', category: 'plain-colored' },
+        { name: 'vscode', category: 'plain-colored' },
+        { name: 'visualstudio', category: 'plain-colored' },
+        { name: 'intellij', category: 'plain-colored' },
+        { name: 'webstorm', category: 'plain-colored' },
+        { name: 'sass', category: 'plain-colored' },
+        { name: 'less', category: 'plain-colored' },
+        { name: 'bootstrap', category: 'plain-colored' },
+        { name: 'tailwindcss', category: 'plain-colored' },
+        { name: 'materialui', category: 'plain-colored' },
+        { name: 'redux', category: 'plain-colored' },
+        { name: 'graphql', category: 'plain-colored' },
+        { name: 'webpack', category: 'plain-colored' },
+        { name: 'babel', category: 'plain-colored' },
+        { name: 'jest', category: 'plain-colored' },
+        { name: 'mocha', category: 'plain-colored' },
+        { name: 'jasmine', category: 'plain-colored' },
+        { name: 'karma', category: 'plain-colored' },
+        { name: 'nginx', category: 'plain-colored' },
+        { name: 'apache', category: 'plain-colored' },
+        { name: 'linux', category: 'plain-colored' },
+        { name: 'ubuntu', category: 'plain-colored' },
+        { name: 'debian', category: 'plain-colored' },
+        { name: 'windows', category: 'plain-colored' },
+        { name: 'apple', category: 'plain-colored' },
+        { name: 'android', category: 'plain-colored' }
+      ];
 
-      // Get all style rules from the document
-      for (let i = 0; i < document.styleSheets.length; i++) {
-        try {
-          const styleSheet = document.styleSheets[i] as CSSStyleSheet;
-          if (!styleSheet.href || !styleSheet.href.includes('devicon')) continue;
-          
-          const rules = styleSheet.cssRules || styleSheet.rules;
-          
-          for (let j = 0; j < rules.length; j++) {
-            const rule = rules[j] as CSSStyleRule;
-            const selector = rule.selectorText;
-            
-            if (selector && selector.startsWith('.devicon-') && !selector.startsWith('.devicon-:') && !selector.includes('::before')) {
-              // Extract icon name and variant
-              const match = selector.match(/\.devicon-(.+?)(?:-|$)/);
-              if (!match) continue;
-              
-              const baseName = match[1];
-              const iconKey = `${baseName}-${selector}`;
-              
-              // Skip if we've already processed this icon
-              if (processedIcons.has(iconKey)) continue;
-              processedIcons.add(iconKey);
-              
-              // Determine category based on class name
-              let category = 'other';
-              if (selector.includes('-plain-')) {
-                category = 'plain-colored';
-              } else if (selector.includes('-original-')) {
-                category = 'original';
-              } else if (selector.includes('-line-')) {
-                category = 'line';
-              } else if (selector.includes('-wordmark')) {
-                category = 'wordmark';
-              }
-              
-              // Add the icon if we haven't seen this base name in this category
-              const iconExists = deviconIcons.some(
-                icon => icon.name === baseName && icon.category === category
-              );
-              
-              if (!iconExists) {
-                deviconIcons.push({
-                  name: baseName,
-                  iconClass: `devicon-${baseName}-plain`,
-                  category
-                });
-              }
-            }
-          }
-        } catch (e) {
-          console.warn('Could not read styles from stylesheet', e);
-        }
-      }
+      // Transform to the format expected by the component
+      const deviconIcons = popularIcons.map(icon => ({
+        name: icon.name,
+        iconClass: `devicon-${icon.name}-${icon.category}`,
+        category: icon.category
+      }));
       
       setIcons(deviconIcons);
       setIsLoading(false);
     };
 
     // Small delay to ensure devicon CSS is loaded
-    const timer = setTimeout(loadIcons, 500);
+    const timer = setTimeout(loadIcons, 100);
     return () => clearTimeout(timer);
   }, []);
 
@@ -93,10 +114,17 @@ const DeviconBrowser: React.FC = () => {
   const categories = ['all', 'plain-colored', 'original', 'line', 'wordmark', 'other'];
   
   const filteredIcons = icons.filter(icon => {
-    const matchesSearch = icon.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = searchTerm === '' || 
+      icon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      icon.iconClass.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = activeCategory === 'all' || icon.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
+
+  // Show all icons by default, or filtered results if search or category is active
+  const displayIcons = showAllIcons && !searchTerm && activeCategory === 'all' 
+    ? icons 
+    : filteredIcons;
 
   const formatName = (name: string) => {
     return name
@@ -121,28 +149,69 @@ const DeviconBrowser: React.FC = () => {
         <div className="search-container">
           <input
             type="text"
-            placeholder="Search icons..."
+            placeholder="Search icons by name or class..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              if (e.target.value) setShowAllIcons(false);
+            }}
             className="search-input"
           />
+          <button 
+            className="clear-button"
+            onClick={() => {
+              setSearchTerm('');
+              setActiveCategory('all');
+              setShowAllIcons(true);
+            }}
+            disabled={showAllIcons && !searchTerm && activeCategory === 'all'}
+          >
+            Show All Icons
+          </button>
         </div>
         <div className="categories">
           {categories.map(category => (
             <button
               key={category}
               className={`category-tab ${activeCategory === category ? 'active' : ''}`}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => {
+                setActiveCategory(category);
+                if (category !== 'all') setShowAllIcons(false);
+              }}
             >
               {category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' ')}
+              {activeCategory === category && (
+                <span className="icon-count-badge">
+                  {icons.filter(i => i.category === category).length}
+                </span>
+              )}
             </button>
           ))}
         </div>
       </div>
       
+      <div className="browser-info">
+        {!isLoading && (
+          <div className="results-count">
+            Showing {displayIcons.length} of {icons.length} icons
+            {(searchTerm || activeCategory !== 'all') && (
+              <button 
+                className="show-all-link" 
+                onClick={() => {
+                  setSearchTerm('');
+                  setActiveCategory('all');
+                  setShowAllIcons(true);
+                }}
+              >
+                Show all icons
+              </button>
+            )}
+          </div>
+        )}
+      </div>
       <div className="icons-grid">
-        {filteredIcons.length > 0 ? (
-          filteredIcons.map((icon) => (
+        {displayIcons.length > 0 ? (
+          displayIcons.map((icon) => (
             <div key={`${icon.name}-${icon.category}`} className="icon-item">
               <div className="icon-container">
                 <i className={icon.iconClass} />

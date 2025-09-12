@@ -11,6 +11,7 @@
   text-align: center;
   border-bottom: 2px solid #00ff9d;
   padding-bottom: 1.5rem;
+  background: rgba(19, 96, 42, 0.95);
 }
 
 .browser-header h1 {
@@ -22,10 +23,16 @@
 
 .search-container {
   margin: 1.5rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .search-input {
-  width: 100%;
+  flex: 1;
+  min-width: 300px;
   max-width: 500px;
   padding: 0.75rem 1rem;
   font-size: 1.1rem;
@@ -43,16 +50,46 @@
   border-color: #00cc7a;
 }
 
+.browser-info {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  text-align: center;
+  color: #00cc7a;
+}
+
+.results-count {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.show-all-link {
+  background: none;
+  border: none;
+  color: #00ff9d;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.show-all-link:hover {
+  color: #00cc7a;
+}
+
 .categories {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
   margin-top: 1rem;
+  position: relative;
 }
 
 .category-tab {
-  padding: 0.5rem 1rem;
+  position: relative;
+  padding: 0.5rem 1rem 0.5rem 1.5rem;
   background: transparent;
   border: 1px solid #00ff9d;
   color: #00ff9d;
@@ -61,6 +98,9 @@
   font-family: 'Oxanium', sans-serif;
   transition: all 0.3s ease;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .category-tab:hover {
@@ -123,6 +163,46 @@
   align-items: center;
   width: 100%;
   margin-top: auto;
+}
+
+.icon-count-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #00ff9d;
+  color: #000;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.clear-button {
+  background: rgba(0, 255, 157, 0.1);
+  border: 1px solid #00ff9d;
+  color: #00ff9d;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.clear-button:hover:not(:disabled) {
+  background: rgba(0, 255, 157, 0.2);
+  transform: translateY(-1px);
+}
+
+.clear-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .copy-button {
