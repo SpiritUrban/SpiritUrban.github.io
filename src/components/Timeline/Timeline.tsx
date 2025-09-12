@@ -17,7 +17,16 @@ interface WorkExperience {
 const Timeline: React.FC = () => {
   const experiences = workExperience as WorkExperience[];
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const [expandedItems, setExpandedItems] = useState<number[]>([]);
   const timelineRef = useRef<HTMLDivElement>(null);
+
+  const toggleExpand = (index: number) => {
+    setExpandedItems(prev => 
+      prev.includes(index)
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,44 +58,55 @@ const Timeline: React.FC = () => {
 
   return (
     <div ref={timelineRef} className={styles.timeline}>
-      {reversedExperiences.map((exp, index) => (
-        <div 
-          key={index} 
-          className={`${styles.timelineItem} ${visibleItems.includes(index) ? styles.visible : ''}`}
-        >
-          <div className={styles.timelineDot}></div>
-          <div className={styles.timelineContent}>
-            <div className={styles.timelineYear}>{exp.years}</div>
-            <h3 className={styles.timelineTitle}>
-              {exp.title} at{' '}
-              {exp.companySite ? (
-                <a 
-                  href={exp.companySite} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className={styles.companyLink}
-                >
-                  {exp.company}
-                </a>
-              ) : (
-                <span>{exp.company}</span>
+      {reversedExperiences.map((exp, index) => {
+        const isExpanded = expandedItems.includes(index);
+        return (
+          <div 
+            key={index} 
+            className={`${styles.timelineItem} ${visibleItems.includes(index) ? styles.visible : ''} ${isExpanded ? styles.expanded : ''}`}
+            onClick={() => toggleExpand(index)}
+          >
+            <div className={styles.timelineDot}></div>
+            <div className={styles.timelineContent}>
+              <div className={styles.timelineYear}>{exp.years}</div>
+              <h3 className={styles.timelineTitle}>
+                {exp.title} at {exp.company}
+              </h3>
+              
+              <div className={styles.technologies}>
+                {exp.technologies.split(',').map((tech, i) => (
+                  <span key={i} className={styles.techTag}>{tech.trim()}</span>
+                ))}
+              </div>
+              
+              {isExpanded && (
+                <div className={styles.expandedContent}>
+                  {exp.companySite && (
+                    <a 
+                      href={exp.companySite} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className={styles.companyLink}
+                      onClick={e => e.stopPropagation()}
+                    >
+                      Visit Company Website
+                    </a>
+                  )}
+                  <p className={styles.timelineDescription}>
+                    <strong>About company:</strong> {exp.aboutCompany}
+                  </p>
+                  <p className={styles.timelineProduct}>
+                    <strong>Product:</strong> {exp.product}
+                  </p>
+                  <p className={styles.timelineAbout}>
+                    <strong>About:</strong> {exp.aboutProduct}
+                  </p>
+                </div>
               )}
-            </h3>
-            <p className={styles.timelineDescription}>
-              <strong>About company:</strong> {exp.aboutCompany}
-            </p>
-            <p className={styles.timelineTech}>
-              <strong>Technologies:</strong> {exp.technologies}
-            </p>
-            <p className={styles.timelineProduct}>
-              <strong>Product:</strong> {exp.product}
-            </p>
-            <p className={styles.timelineAbout}>
-              <strong>About:</strong> {exp.aboutProduct}
-            </p>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
