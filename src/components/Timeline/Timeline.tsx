@@ -1,6 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import type { FC } from 'react';
 import styles from './Timeline.module.css';
 import workExperience from '../../assets/data/work-experience.json';
+import { setVisibleItems } from '../../features/timeline/timelineSlice';
 import { TechIcons } from '../../utils/techIcons';
 
 interface WorkExperience {
@@ -15,12 +18,12 @@ interface WorkExperience {
   aboutProduct: string;
 }
 
-const Timeline: React.FC = () => {
+const Timeline: FC = () => {
   const experiences = workExperience as WorkExperience[];
-  const [visibleItems, setVisibleItems] = useState<number[]>([]);
-  const [expandedItems, setExpandedItems] = useState<number[]>([]);
+  const dispatch = useDispatch();
   const timelineRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
+  const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
   // Функция для получения координат элемента
   const getElementPosition = (element: Element) => {
@@ -41,102 +44,134 @@ const Timeline: React.FC = () => {
     };
   };
 
-  // Функция для логирования видимых элементов
-  const logVisibleItems = () => {
+
+  // Функция для обновления видимых элементов
+  const updateVisibleItems = useCallback(() => {
     if (!timelineRef.current) return;
     
     const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
-    
     const items = Array.from(timelineRef.current.querySelectorAll(`.${styles.timelineItem}`));
-    const visibleItems = items.map((item, index) => {
-      const rect = item.getBoundingClientRect();
-      const isVisible = rect.top <= viewportHeight * 0.9 &&
-                      rect.bottom >= viewportHeight * 0.1;
-      
-      if (isVisible) {
-        const title = item.querySelector(`.${styles.timelineTitle}`)?.textContent || 'No title';
-        const year = item.querySelector(`.${styles.timelineYear}`)?.textContent || 'No year';
-        
-        // Получаем технологии и их координаты
-        const techElements = Array.from(item.querySelectorAll(`.${styles.techIcon}`));
-        const technologies = techElements.map(tech => ({
-          name: tech.getAttribute('title') || tech.textContent?.trim() || 'Unknown',
-          position: getElementPosition(tech)
-        }));
-        
-        // Рассчитываем процент видимости элемента
-        const visibleHeight = Math.min(rect.bottom, viewportHeight * 0.9) - 
-                            Math.max(rect.top, viewportHeight * 0.1);
-        const visibilityPercentage = Math.round((visibleHeight / rect.height) * 100);
-        
-        return {
-          index,
-          title: title.trim(),
-          year: year.trim(),
-          visibility: `${visibilityPercentage}%`,
-          screenPosition: {
-            ...getElementPosition(item),
-            // Процентное положение на экране
-            percentage: {
-              fromTop: Math.round((rect.top / viewportHeight) * 100) + '%',
-              fromLeft: Math.round((rect.left / viewportWidth) * 100) + '%',
-              visibleHeight: visibilityPercentage + '%'
-            }
-          },
-          technologies,
-          viewport: {
-            width: viewportWidth,
-            height: viewportHeight,
-            scrollY: window.scrollY,
-            scrollX: window.scrollX
-          }
-        };
-      }
-      return null;
-    }).filter(Boolean);
-
-    console.log('Visible timeline items:', {
-      timestamp: new Date().toISOString(),
+    
+    // Определяем тип для видимого элемента
+    interface VisibleItem {
+      index: number;
+      title: string;
+      year: string;
+      visibility: string;
+      screenPosition: any; // Упрощаем для примера
+      technologies: Array<{name: string, position: any}>;
       viewport: {
-        width: viewportWidth,
-        height: viewportHeight,
-        scrollY: window.scrollY,
-        scrollX: window.scrollX
-      },
-      items: visibleItems
-    });
-  };
+        width: number;
+        height: number;
+        scrollY: number;
+        scrollX: number;
+      };
+    }
+    
+    const visibleItems: VisibleItem[] = items.map((item, index) => {
+      const rect = item.getBoundingClientRect();
+      const isVisible = rect.top <= viewportHeight * 0.9 && rect.bottom >= viewportHeight * 0.1;
+      
+      if (!isVisible) return null;
+      
+      const title = item.querySelector(`.${styles.timelineTitle}`)?.textContent || 'No title';
+      const year = item.querySelector(`.${styles.timelineYear}`)?.textContent || 'No year';
+      
+      // Get technologies and their positions
+      const techElements = Array.from(item.querySelectorAll(`.${styles.techIcon}`));
+      const technologies = techElements.map(tech => ({
+        name: tech.getAttribute('title') || tech.textContent?.trim() || 'Unknown',
+        position: getElementPosition(tech)
+      }));
+      
+      const visibleHeight = Math.min(rect.bottom, viewportHeight * 0.9) - 
+                          Math.max(rect.top, viewportHeight * 0.1);
+      const visibilityPercentage = Math.round((visibleHeight / rect.height) * 100);
+      
+      return {
+        index,
+        title: title.trim(),
+        year: year.trim(),
+        visibility: `${visibilityPercentage}%`,
+        screenPosition: {
+          ...getElementPosition(item),
+          percentage: {
+            fromTop: `${Math.round((rect.top / viewportHeight) * 100)}%`,
+            fromLeft: '50%',
+            visibleHeight: `${visibilityPercentage}%`
+          }
+        },
+        technologies,
+        viewport: {
+          width: window.innerWidth,
+          height: viewportHeight,
+          scrollY: window.scrollY,
+          scrollX: window.scrollX
+        }
+      };
+    }).filter((item): item is VisibleItem => item !== null);
+    
+    dispatch(setVisibleItems(visibleItems));
+    
+    // Debug logging
+    if (process.env.NODE_ENV === 'development' && visibleItems.length > 0) {
+      console.log('Visible timeline items updated:', {
+        timestamp: new Date().toISOString(),
+        count: visibleItems.length,
+        items: visibleItems.map(item => ({
+          index: item.index,
+          title: item.title,
+          year: item.year,
+          visibility: item.visibility,
+          technologies: item.technologies.map(t => t.name)
+        }))
+      });
+    }
+  }, [dispatch]);
 
-  // Эффект для логирования при монтировании и скролле
+  // Эффект для обновления видимых элементов при монтировании и скролле
   useEffect(() => {
     if (isFirstRender.current) {
       console.log('Timeline mounted');
       isFirstRender.current = false;
     }
 
-    // Первый вызов при монтировании
-    logVisibleItems();
+    // Initial update
+    updateVisibleItems();
 
-    // Обработчик скролла
+    // Throttle scroll events
+    let ticking = false;
     const handleScroll = () => {
-      logVisibleItems();
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateVisibleItems();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
+    // Add event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateVisibleItems);
     
+    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateVisibleItems);
     };
-  }, []);
+  }, [updateVisibleItems]);
 
-  const toggleExpand = (index: number) => {
-    setExpandedItems(prev => 
+  const toggleExpand = useCallback((index: number) => {
+    setExpandedItems((prev: number[]) => 
       prev.includes(index)
-        ? prev.filter(i => i !== index)
+        ? prev.filter((i: number) => i !== index)
         : [...prev, index]
     );
-  };
+  }, []);
+
+  // Track visible items with IntersectionObserver
+  const [visibleIndices, setVisibleIndices] = useState<number[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -144,7 +179,7 @@ const Timeline: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = parseInt(entry.target.getAttribute('data-index') || '0', 10);
-            setVisibleItems((prev) => [...new Set([...prev, index])]);
+            setVisibleIndices(prev => [...new Set([...prev, index])]);
           }
         });
       },
@@ -173,7 +208,7 @@ const Timeline: React.FC = () => {
         return (
           <div 
             key={index} 
-            className={`${styles.timelineItem} ${visibleItems.includes(index) ? styles.visible : ''} ${isExpanded ? styles.expanded : ''}`}
+            className={`${styles.timelineItem} ${visibleIndices.includes(index) ? styles.visible : ''} ${isExpanded ? styles.expanded : ''}`}
             onClick={() => toggleExpand(index)}
           >
             <div className={styles.timelineDot}></div>
