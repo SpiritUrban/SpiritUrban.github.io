@@ -1,11 +1,12 @@
-import React, { useRef, RefObject } from 'react';
+import React, { useRef } from 'react';
+import type { RefObject, FC } from 'react';
 import { Link } from 'react-router-dom';
 import Cart1 from '../../components/Cart-1/Cart1';
 import Timeline from '../../components/Timeline/Timeline';
-import Minimap, { MinimapProps } from '../../components/Minimap/Minimap';
+import Minimap from '../../components/Minimap/Minimap';
 import TechnologiesList from '../../components/TechnologiesList/TechnologiesList';
 
-const Home: React.FC = () => {
+const Home: FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   
