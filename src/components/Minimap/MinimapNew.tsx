@@ -19,27 +19,41 @@ const Minimap: React.FC<MinimapProps> = ({
 }) => {
   const minimapRef = useRef<HTMLDivElement>(null);
   const [thumbnail, setThumbnail] = useState<string>('');
-  const [isDragging, setIsDragging] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [indicatorHeight, setIndicatorHeight] = useState('20%');
+  const [isLoading, setIsLoading] = useState(false);
 
   // Capture page thumbnail
   const captureThumbnail = useCallback(async () => {
     if (!contentRef.current) return;
     
+    setIsLoading(true);
     const minimapElement = minimapRef.current;
     if (minimapElement) {
       minimapElement.classList.add(styles['hidden']);
     }
     
     try {
+      const contentWidth = contentRef.current.offsetWidth;
+      const contentHeight = contentRef.current.scrollHeight;
+      const scale = width / contentWidth;
+      
+      console.log('Capturing screenshot with dimensions:', {
+        contentWidth,
+        contentHeight,
+        scale,
+        minimapWidth: width,
+        minimapHeight: height
+      });
+      
       const dataUrl = await toPng(contentRef.current, {
-        width: contentRef.current.offsetWidth,
-        height: contentRef.current.scrollHeight,
-        skipFonts: true,
+        width: contentWidth,
+        height: contentHeight,
+        backgroundColor: 'transparent',
         pixelRatio: 1,
         cacheBust: true,
-        backgroundColor: 'transparent'
+        style: {
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left'
+        }
       });
       
       setThumbnail(dataUrl);
@@ -47,13 +61,16 @@ const Minimap: React.FC<MinimapProps> = ({
       console.error('Error capturing thumbnail:', error);
       setThumbnail('');
     } finally {
-      if (minimapElement) {
+      setIsLoading(false);
+      if (minimapRef.current) {
         setTimeout(() => {
-          minimapElement.classList.remove(styles['hidden']);
+          if (minimapRef.current) {
+            minimapRef.current.classList.remove(styles['hidden']);
+          }
         }, 100);
       }
     }
-  }, [contentRef]);
+  }, [contentRef, width, height]);
 
   // Update thumbnail when content changes
   useEffect(() => {
@@ -93,15 +110,13 @@ const Minimap: React.FC<MinimapProps> = ({
     
     const indicator = minimapRef.current.querySelector(`.${styles['minimap-indicator']}`) as HTMLElement;
     if (indicator) {
-      const indicatorHeightValue = (viewportHeight / scrollHeight) * 100;
-      const maxPosition = 100 - indicatorHeightValue;
+      const indicatorHeight = (viewportHeight / scrollHeight) * 100;
+      const maxPosition = 100 - indicatorHeight;
       const position = ratio * maxPosition;
       
       indicator.style.setProperty('--indicator-top', `${position}%`);
-      indicator.style.setProperty('--indicator-height', `${indicatorHeightValue}%`);
+      indicator.style.setProperty('--indicator-height', `${indicatorHeight}%`);
     }
-    
-    setScrollPosition(ratio * 100);
   }, [contentRef, viewportRef]);
 
   // Set up scroll and resize listeners
@@ -167,13 +182,6 @@ const Minimap: React.FC<MinimapProps> = ({
           onMouseUp={() => setIsDragging(false)}
           onMouseLeave={() => setIsDragging(false)}
           tabIndex={0}
-          role="slider"
-          aria-valuenow={Math.round(scrollPosition)}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuetext={`Scrolled to ${Math.round(scrollPosition)}% of the page`}
-          aria-orientation="vertical"
-          aria-label="Document scroll position"
         />
         <div 
           className={styles['minimap-indicator']}

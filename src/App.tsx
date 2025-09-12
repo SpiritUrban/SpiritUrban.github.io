@@ -31,6 +31,7 @@ function App() {
             <React.Fragment key={i}>
               <br />
               <hr />
+              ХХХ
             </React.Fragment>
           ))}
         </div>

@@ -17,8 +17,8 @@
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  width: var(--minimap-width);
-  height: var(--minimap-height);
+  width: var(--minimap-width, 200px);
+  height: var(--minimap-height, 400px);
   background-color: rgba(16, 18, 27, 0.8);
   clip-path: polygon(
     0 15px,
@@ -33,6 +33,7 @@
   pointer-events: auto;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-right: none;
+  overflow: hidden;
 }
 
 .minimap-thumbnail {
@@ -43,13 +44,14 @@
   background-color: #161616;
   background-image: var(--minimap-thumbnail-bg);
   background-size: 100% auto;
-  /* background-size: cover; */
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: top left;
   background-origin: border-box;
   background-clip: border-box;
   border: none;
   border-radius: 0;
+  /* Remove transform scaling - we'll handle scaling in the screenshot capture */
+  will-change: transform;
 }
 
 .minimap-interaction-layer {
@@ -78,12 +80,20 @@
   top: var(--indicator-top);
   height: var(--indicator-height);
   background-color: rgba(66, 153, 225, 0.3);
-  border: 2px solid rgba(66, 153, 225, 0.8);
+  border: 2px solid rgba(66, 153, 225, 0.27);
   border-radius: 3px;
   box-sizing: border-box;
   transition: top 0.1s ease-out;
   pointer-events: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  clip-path: polygon(
+    0 15px,
+    15px 0,
+    100% 0,
+    100% 100%,
+    15px 100%,
+    0 calc(100% - 15px)
+  );
 }
 
 /* Visibility classes */
