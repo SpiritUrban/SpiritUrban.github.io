@@ -27,15 +27,29 @@ const Timeline: React.FC = () => {
     if (!timelineRef.current) return;
     
     const items = Array.from(timelineRef.current.querySelectorAll(`.${styles.timelineItem}`));
-    const visible = items.filter(item => {
+    const visibleItems = items.map((item, index) => {
       const rect = item.getBoundingClientRect();
-      return (
-        rect.top <= window.innerHeight * 0.9 &&
-        rect.bottom >= window.innerHeight * 0.1
-      );
-    });
+      const isVisible = rect.top <= window.innerHeight * 0.9 &&
+                      rect.bottom >= window.innerHeight * 0.1;
+      
+      if (isVisible) {
+        const title = item.querySelector(`.${styles.timelineTitle}`)?.textContent || 'No title';
+        const year = item.querySelector(`.${styles.timelineYear}`)?.textContent || 'No year';
+        return {
+          index,
+          title: title.trim(),
+          year: year.trim(),
+          position: {
+            top: Math.round(rect.top),
+            bottom: Math.round(rect.bottom),
+            height: Math.round(rect.height)
+          }
+        };
+      }
+      return null;
+    }).filter(Boolean);
 
-    console.log('Visible items:', visible.length);
+    console.log('Visible items:', visibleItems);
   };
 
   // Эффект для логирования при монтировании и скролле
