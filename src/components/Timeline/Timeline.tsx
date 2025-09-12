@@ -26,30 +26,72 @@ const Timeline: React.FC = () => {
   const logVisibleItems = () => {
     if (!timelineRef.current) return;
     
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+    
     const items = Array.from(timelineRef.current.querySelectorAll(`.${styles.timelineItem}`));
     const visibleItems = items.map((item, index) => {
       const rect = item.getBoundingClientRect();
-      const isVisible = rect.top <= window.innerHeight * 0.9 &&
-                      rect.bottom >= window.innerHeight * 0.1;
+      const isVisible = rect.top <= viewportHeight * 0.9 &&
+                      rect.bottom >= viewportHeight * 0.1;
       
       if (isVisible) {
         const title = item.querySelector(`.${styles.timelineTitle}`)?.textContent || 'No title';
         const year = item.querySelector(`.${styles.timelineYear}`)?.textContent || 'No year';
+        
+        // Рассчитываем процент видимости элемента
+        const visibleHeight = Math.min(rect.bottom, viewportHeight * 0.9) - 
+                            Math.max(rect.top, viewportHeight * 0.1);
+        const visibilityPercentage = Math.round((visibleHeight / rect.height) * 100);
+        
         return {
           index,
           title: title.trim(),
           year: year.trim(),
-          position: {
-            top: Math.round(rect.top),
-            bottom: Math.round(rect.bottom),
-            height: Math.round(rect.height)
+          visibility: `${visibilityPercentage}%`,
+          screenPosition: {
+            // Координаты относительно окна просмотра
+            viewport: {
+              top: Math.round(rect.top),
+              right: Math.round(rect.right),
+              bottom: Math.round(rect.bottom),
+              left: Math.round(rect.left),
+              width: Math.round(rect.width),
+              height: Math.round(rect.height)
+            },
+            // Процентное положение на экране
+            percentage: {
+              fromTop: Math.round((rect.top / viewportHeight) * 100) + '%',
+              fromLeft: Math.round((rect.left / viewportWidth) * 100) + '%',
+              visibleHeight: visibilityPercentage + '%'
+            },
+            // Абсолютные координаты (если нужно)
+            absolute: {
+              top: Math.round(rect.top + window.scrollY),
+              left: Math.round(rect.left + window.scrollX)
+            }
+          },
+          viewport: {
+            width: viewportWidth,
+            height: viewportHeight,
+            scrollY: window.scrollY,
+            scrollX: window.scrollX
           }
         };
       }
       return null;
     }).filter(Boolean);
 
-    console.log('Visible items:', visibleItems);
+    console.log('Visible timeline items:', {
+      timestamp: new Date().toISOString(),
+      viewport: {
+        width: viewportWidth,
+        height: viewportHeight,
+        scrollY: window.scrollY,
+        scrollX: window.scrollX
+      },
+      items: visibleItems
+    });
   };
 
   // Эффект для логирования при монтировании и скролле
