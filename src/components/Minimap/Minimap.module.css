@@ -43,9 +43,9 @@
   overflow: hidden;
   background-color: #161616;
   background-image: var(--minimap-thumbnail-bg);
-  background-size: 100% auto;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: top left;
+  background-position: top center;
   background-origin: border-box;
   background-clip: border-box;
   border: none;
