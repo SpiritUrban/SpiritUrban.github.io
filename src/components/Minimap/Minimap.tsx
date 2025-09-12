@@ -118,13 +118,32 @@ const Minimap: React.FC<MinimapProps> = ({
     };
   }, [updateScrollPosition]);
 
-  // Handle minimap click/drag
+  // Handle minimap click/drag with edge detection
   const handleMinimapInteraction = useCallback((e: React.MouseEvent) => {
     if (!minimapRef.current || !contentRef.current) return;
     
     const rect = minimapRef.current.getBoundingClientRect();
     const y = e.clientY - rect.top;
-    const ratio = Math.min(Math.max(y / rect.height, 0), 1);
+    const height = rect.height;
+    
+    // Define edge threshold (10% from top and bottom)
+    const edgeThreshold = height * 0.1;
+    let ratio = y / height;
+    
+    // Check if near edges
+    const nearTop = y < edgeThreshold;
+    const nearBottom = y > height - edgeThreshold;
+    
+    // Adjust ratio if near edges
+    if (nearTop) {
+      ratio = 0; // Snap to top
+    } else if (nearBottom) {
+      ratio = 1; // Snap to bottom
+    } else {
+      // Normalize ratio to exclude edge threshold areas
+      ratio = (y - edgeThreshold) / (height - edgeThreshold * 2);
+      ratio = Math.min(Math.max(ratio, 0), 1);
+    }
     
     const scrollHeight = Math.max(
       document.documentElement.scrollHeight,
@@ -133,7 +152,11 @@ const Minimap: React.FC<MinimapProps> = ({
     
     const viewportHeight = viewportRef?.current?.clientHeight || window.innerHeight;
     const maxScroll = Math.max(1, scrollHeight - viewportHeight);
-    const newScrollTop = ratio * maxScroll;
+    let newScrollTop = ratio * maxScroll;
+    
+    // Add a small offset to ensure we reach the very top/bottom
+    if (nearTop) newScrollTop = 0;
+    if (nearBottom) newScrollTop = maxScroll;
 
     window.scrollTo({
       top: newScrollTop,
