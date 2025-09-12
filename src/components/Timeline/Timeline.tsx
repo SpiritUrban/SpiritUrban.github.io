@@ -44,9 +44,12 @@ const Timeline: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Create a reversed copy of the experiences array
+  const reversedExperiences = [...experiences].reverse();
+
   return (
     <div ref={timelineRef} className={styles.timeline}>
-      {experiences.map((exp, index) => (
+      {reversedExperiences.map((exp, index) => (
         <div 
           key={index} 
           className={`${styles.timelineItem} ${visibleItems.includes(index) ? styles.visible : ''}`}
