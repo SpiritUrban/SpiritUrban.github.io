@@ -32,7 +32,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #f0f0f0;
+  background-color: #161616;
   background-image: var(--minimap-thumbnail-bg);
   background-size: 100% auto;
   background-repeat: no-repeat;
