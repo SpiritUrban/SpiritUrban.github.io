@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUniqueTechnologies } from '../../features/timeline/timelineSelectors';
 import type { FC } from 'react';
 import styles from './Timeline.module.css';
 import workExperience from '../../assets/data/work-experience.json';
@@ -21,8 +22,14 @@ interface WorkExperience {
 const Timeline: FC = () => {
   const experiences = workExperience as WorkExperience[];
   const dispatch = useDispatch();
+  const uniqueTechs = useSelector(selectUniqueTechnologies);
   const timelineRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
+  
+  // Log unique technologies when they change
+  useEffect(() => {
+    console.log('Unique technologies in store:', uniqueTechs);
+  }, [uniqueTechs]);
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
   // Функция для получения координат элемента
@@ -53,20 +60,55 @@ const Timeline: FC = () => {
     const items = Array.from(timelineRef.current.querySelectorAll(`.${styles.timelineItem}`));
     
     // Определяем тип для видимого элемента
-    interface VisibleItem {
+    type VisibleItem = {
       index: number;
       title: string;
       year: string;
+      company: string;
       visibility: string;
-      screenPosition: any; // Упрощаем для примера
-      technologies: Array<{name: string, position: any}>;
+      screenPosition: {
+        viewport: {
+          top: number;
+          right: number;
+          bottom: number;
+          left: number;
+          width: number;
+          height: number;
+        };
+        absolute: {
+          top: number;
+          left: number;
+        };
+        percentage: {
+          fromTop: string;
+          fromLeft: string;
+          visibleHeight: string;
+        };
+      };
+      technologies: Array<{ 
+        name: string; 
+        position: {
+          viewport: {
+            top: number;
+            right: number;
+            bottom: number;
+            left: number;
+            width: number;
+            height: number;
+          };
+          absolute: {
+            top: number;
+            left: number;
+          };
+        } 
+      }>;
       viewport: {
         width: number;
         height: number;
         scrollY: number;
         scrollX: number;
       };
-    }
+    };
     
     const visibleItems: VisibleItem[] = items.map((item, index) => {
       const rect = item.getBoundingClientRect();
@@ -77,11 +119,20 @@ const Timeline: FC = () => {
       const title = item.querySelector(`.${styles.timelineTitle}`)?.textContent || 'No title';
       const year = item.querySelector(`.${styles.timelineYear}`)?.textContent || 'No year';
       
-      // Get technologies and their positions
+      // Get technologies from work experience data
+      const experience = experiences[experiences.length - 1 - index];
+      const techNames = experience?.technologies
+        ? experience.technologies.split(',').map(t => t.trim())
+        : [];
+        
+      // Get positions from DOM elements
       const techElements = Array.from(item.querySelectorAll(`.${styles.techIcon}`));
-      const technologies = techElements.map(tech => ({
-        name: tech.getAttribute('title') || tech.textContent?.trim() || 'Unknown',
-        position: getElementPosition(tech)
+      const technologies = techNames.map((name, i) => ({
+        name: name || 'Unknown',
+        position: techElements[i] ? getElementPosition(techElements[i]) : {
+          viewport: { top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0 },
+          absolute: { top: 0, left: 0 }
+        }
       }));
       
       const visibleHeight = Math.min(rect.bottom, viewportHeight * 0.9) - 
@@ -92,6 +143,7 @@ const Timeline: FC = () => {
         index,
         title: title.trim(),
         year: year.trim(),
+        company: experiences[experiences.length - 1 - index]?.company || 'Unknown Company',
         visibility: `${visibilityPercentage}%`,
         screenPosition: {
           ...getElementPosition(item),
