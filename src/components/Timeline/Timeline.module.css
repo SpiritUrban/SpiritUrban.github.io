@@ -116,26 +116,79 @@
   flex-wrap: wrap;
   gap: 8px;
   margin: 12px 0;
+  position: relative;
 }
 
 .techIconsContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  position: relative;
 }
 
 .techIcon {
   width: 24px;
   height: 24px;
   color: #93c5fd;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0.8;
+  position: relative;
+  cursor: help;
 }
 
 .techIcon:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.1);
   opacity: 1;
   color: #60a5fa;
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.5));
+}
+
+/* Tooltip styles */
+.techIconContainer {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  cursor: help;
+}
+
+/* Style the default tooltip */
+.techIconContainer[title] {
+  position: relative;
+  display: inline-block;
+}
+
+.techIconContainer[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: rgba(30, 41, 59, 0.95);
+  color: #f8fafc;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.techIconContainer[title]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-15px);
+}
+
+/* Ensure the container is positioned for the tooltip */
+.technologies {
+  position: relative;
+  z-index: 1;
 }
 
 /* For the default emoji icon */
@@ -149,6 +202,13 @@
   background: rgba(147, 197, 253, 0.1);
   border-radius: 4px;
   padding: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-icon:hover {
+  background: rgba(147, 197, 253, 0.2);
+  transform: translateY(-2px) scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.3));
 }
 
 .expandedContent {

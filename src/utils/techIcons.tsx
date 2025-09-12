@@ -1,10 +1,11 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as SiIcons from 'react-icons/si';
+import styles from '../components/Timeline/Timeline.module.css';
 
 // Default icon for technologies without a specific match
-const DefaultIcon = ({ className = '', title = '' }: { className?: string; title?: string }) => (
-  <div className={`${className} tech-icon`} title={title}>💻</div>
+const DefaultIcon = ({ className = '' }: { className?: string; title?: string }) => (
+  <div className={`${styles.techIcon} ${className}`}>💻</div>
 );
 
 type IconComponentProps = {
@@ -136,20 +137,26 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
 
     if (entry && entry[1]) {
       const [_, IconComponent] = entry;
-      // Create a new component that wraps the icon and adds the title as a tooltip
-      const IconWithTitle = () => (
-        <div className="relative group" title={name}>
-          <IconComponent className={`${className} tech-icon`} />
+      return (
+        <div className={styles.techIconContainer} title={name}>
+          <IconComponent className={`${styles.techIcon} ${className}`} />
         </div>
       );
-      return <IconWithTitle />;
     }
     
     // Fallback to default icon if no match found
-    return <DefaultIcon className={className} title={name} />;
+    return (
+      <div className={styles.techIconContainer} title={name}>
+        <DefaultIcon className={className} />
+      </div>
+    );
   } catch (error) {
     console.error(`Error rendering icon for ${name}:`, error);
-    return <DefaultIcon className={className} title={name} />;
+    return (
+      <div className={styles.techIconContainer} title={name}>
+        <div className={`${styles.techIcon} ${className}`}>💻</div>
+      </div>
+    );
   }
 };
 
@@ -171,9 +178,13 @@ export const TechIcons: React.FC<TechIconsProps> = ({
     : techs.split(',').map(t => t.trim()).filter(Boolean);
 
   return (
-    <div className={`flex flex-wrap gap-2 ${className}`}>
+    <div className={`${className}`}>
       {techArray.map((tech, index) => (
-        <TechIcon key={`${tech}-${index}`} name={tech} className={iconClassName} />
+        <TechIcon 
+          key={`${tech}-${index}`} 
+          name={tech} 
+          className={`${iconClassName} ${styles.techIconContainer}`} 
+        />
       ))}
     </div>
   );
