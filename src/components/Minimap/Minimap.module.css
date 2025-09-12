@@ -20,11 +20,19 @@
   width: var(--minimap-width);
   height: var(--minimap-height);
   background-color: rgba(16, 18, 27, 0.8);
-  border-radius: 4px;
-  overflow: hidden;
+  clip-path: polygon(
+    0 15px,
+    15px 0,
+    100% 0,
+    100% 100%,
+    15px 100%,
+    0 calc(100% - 15px)
+  );
   z-index: 1000;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   pointer-events: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: none;
 }
 
 .minimap-thumbnail {
@@ -39,8 +47,8 @@
   background-position: top;
   background-origin: border-box;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+  border: none;
+  border-radius: 0;
 }
 
 .minimap-interaction-layer {

@@ -29,8 +29,8 @@ function App() {
         <div className="content-spacer">
           {Array.from({ length: 200 }).map((_, i) => (
             <React.Fragment key={i}>
-              <hr />
               <br />
+              <hr />
             </React.Fragment>
           ))}
         </div>
