@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Timeline.module.css';
 import workExperience from '../../assets/data/work-experience.json';
+import { TechIcons } from '../../utils/techIcons';
 
 interface WorkExperience {
   year: string;
@@ -74,9 +75,11 @@ const Timeline: React.FC = () => {
               </h3>
               
               <div className={styles.technologies}>
-                {exp.technologies.split(',').map((tech, i) => (
-                  <span key={i} className={styles.techTag}>{tech.trim()}</span>
-                ))}
+                <TechIcons 
+                  techs={exp.technologies} 
+                  className={styles.techIconsContainer}
+                  iconClassName={styles.techIcon}
+                />
               </div>
               
               {isExpanded && (
