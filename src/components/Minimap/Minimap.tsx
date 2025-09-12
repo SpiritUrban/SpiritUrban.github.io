@@ -79,7 +79,7 @@ const Minimap: React.FC<MinimapProps> = ({
     );
     const viewportHeight = viewportRef?.current?.clientHeight || window.innerHeight;
     const maxScroll = Math.max(1, scrollHeight - viewportHeight);
-    const ratio = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
+    const ratio = maxScroll > 0 ? Math.min(Math.max(scrollTop / maxScroll, 0), 1) : 0;
     
     setScrollPosition(ratio * 100);
   }, [contentRef, viewportRef]);
@@ -172,8 +172,11 @@ const Minimap: React.FC<MinimapProps> = ({
     tabIndex: 0
   };
   
-  // Calculate indicator position
-  const indicatorTop = `calc(${scrollPosition}% - ${parseFloat(indicatorHeight) / 2}%)`;
+  // Calculate indicator position with bounds checking
+  const indicatorHeightValue = parseFloat(indicatorHeight);
+  const maxPosition = 100 - indicatorHeightValue;
+  const boundedPosition = Math.min(Math.max(scrollPosition, 0), maxPosition);
+  const indicatorTop = `${boundedPosition}%`;
   
   // Update CSS custom properties for the minimap
   useEffect(() => {
