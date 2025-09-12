@@ -5,3 +5,17 @@
     text-align: center;
     font-size: 2rem;
 }
+.base-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+.base-container .left {
+    flex: 1;
+}
+.base-container .center {
+    flex: 3;
+}
+.base-container .right {
+    flex: 1;
+}
