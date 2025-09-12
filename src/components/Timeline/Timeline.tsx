@@ -22,6 +22,25 @@ const Timeline: React.FC = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
 
+  // Функция для получения координат элемента
+  const getElementPosition = (element: Element) => {
+    const rect = element.getBoundingClientRect();
+    return {
+      viewport: {
+        top: Math.round(rect.top),
+        right: Math.round(rect.right),
+        bottom: Math.round(rect.bottom),
+        left: Math.round(rect.left),
+        width: Math.round(rect.width),
+        height: Math.round(rect.height)
+      },
+      absolute: {
+        top: Math.round(rect.top + window.scrollY),
+        left: Math.round(rect.left + window.scrollX)
+      }
+    };
+  };
+
   // Функция для логирования видимых элементов
   const logVisibleItems = () => {
     if (!timelineRef.current) return;
@@ -39,6 +58,13 @@ const Timeline: React.FC = () => {
         const title = item.querySelector(`.${styles.timelineTitle}`)?.textContent || 'No title';
         const year = item.querySelector(`.${styles.timelineYear}`)?.textContent || 'No year';
         
+        // Получаем технологии и их координаты
+        const techElements = Array.from(item.querySelectorAll(`.${styles.techIcon}`));
+        const technologies = techElements.map(tech => ({
+          name: tech.getAttribute('title') || tech.textContent?.trim() || 'Unknown',
+          position: getElementPosition(tech)
+        }));
+        
         // Рассчитываем процент видимости элемента
         const visibleHeight = Math.min(rect.bottom, viewportHeight * 0.9) - 
                             Math.max(rect.top, viewportHeight * 0.1);
@@ -50,27 +76,15 @@ const Timeline: React.FC = () => {
           year: year.trim(),
           visibility: `${visibilityPercentage}%`,
           screenPosition: {
-            // Координаты относительно окна просмотра
-            viewport: {
-              top: Math.round(rect.top),
-              right: Math.round(rect.right),
-              bottom: Math.round(rect.bottom),
-              left: Math.round(rect.left),
-              width: Math.round(rect.width),
-              height: Math.round(rect.height)
-            },
+            ...getElementPosition(item),
             // Процентное положение на экране
             percentage: {
               fromTop: Math.round((rect.top / viewportHeight) * 100) + '%',
               fromLeft: Math.round((rect.left / viewportWidth) * 100) + '%',
               visibleHeight: visibilityPercentage + '%'
-            },
-            // Абсолютные координаты (если нужно)
-            absolute: {
-              top: Math.round(rect.top + window.scrollY),
-              left: Math.round(rect.left + window.scrollX)
             }
           },
+          technologies,
           viewport: {
             width: viewportWidth,
             height: viewportHeight,
