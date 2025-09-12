@@ -116,12 +116,12 @@ const Minimap: React.FC<MinimapProps> = ({
         skipFonts: true,
         pixelRatio: 1,
         cacheBust: true,
-        backgroundColor: 'white',
         style: {
           transform: `scale(${width / contentRef.current.offsetWidth})`,
           transformOrigin: 'top left',
           width: `${contentRef.current.offsetWidth}px`,
-          height: 'auto'
+          height: 'auto',
+          background: 'transparent'
         }
       });
       
