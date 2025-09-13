@@ -8,6 +8,7 @@ interface ConnectionLinesProps {
 
 const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRef }) => {
   const svgRef = useRef<SVGSVGElement>(null);
+  const leftPanelRef = useRef<HTMLElement | null>(null);
   const rafId = useRef<number | null>(null);
   
   // Update paths on scroll/resize or when items change
@@ -39,21 +40,56 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
       }
     };
 
-    // More aggressive update function for scroll events
+    // Force immediate update for scroll events
     const handleScroll = () => {
-      updateAllPaths();
+      // Force synchronous update
+      if (svgRef.current) {
+        svgRef.current.classList.toggle('force-update');
+        // Force reflow
+        svgRef.current.getBoundingClientRect();
+        svgRef.current.classList.toggle('force-update');
+      }
     };
 
     // Add event listeners
     const container = containerRef.current;
     
+    // Find the left panel element
+    leftPanelRef.current = document.querySelector('.left');
+    
     // Use different approaches for different events
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', throttledUpdate);
     
-    // Listen to scroll on container with more direct handling
-    if (container) {
-      container.addEventListener('scroll', handleScroll, { passive: true });
+    // Listen to scroll on the .left panel which contains the technologies list
+    if (leftPanelRef.current) {
+      // Add multiple event types to catch all possible scroll scenarios
+      const scrollEvents = ['scroll', 'wheel', 'touchmove', 'pointermove'];
+      scrollEvents.forEach(event => {
+        leftPanelRef.current?.addEventListener(event, handleScroll, { passive: true });
+      });
+      
+      // Add intersection observer to track when elements come into view
+      const observer = new IntersectionObserver(
+        () => handleScroll(),
+        { root: leftPanelRef.current, threshold: 0.1 }
+      );
+      
+      // Observe all technology items
+      itemRefs.forEach(ref => {
+        if (ref.current) observer.observe(ref.current);
+      });
+      
+      // Initial update with a small delay to ensure DOM is ready
+      const timer = setTimeout(() => {
+        handleScroll();
+      }, 100);
+      
+      // Cleanup function for the observer and timer
+      return () => {
+        clearTimeout(timer);
+        observer.disconnect();
+      };
     }
     
     // Initial update
@@ -85,10 +121,14 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', throttledUpdate);
       
-      // Clean up container listeners
-      const container = containerRef.current;
-      if (container) {
-        container.removeEventListener('scroll', handleScroll);
+      // Clean up left panel listeners
+      if (leftPanelRef.current) {
+        leftPanelRef.current.removeEventListener('scroll', handleScroll);
+        leftPanelRef.current.removeEventListener('wheel', handleScroll);
+      }
+      
+      // Clean up observer
+      if (containerRef.current) {
         observer.disconnect();
       }
       
