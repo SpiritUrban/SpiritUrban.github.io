@@ -7,6 +7,7 @@ interface Devicon {
   name: string;
   iconClass: string;
   category: string;
+  key: string;
 }
 
 const DeviconBrowser: React.FC = () => {
@@ -85,9 +86,7 @@ const DeviconBrowser: React.FC = () => {
       'devicon-dotnetcore-plain colored',
       'devicon-nestjs-plain colored',
       'devicon-spring-plain colored',
-      'devicon-flask-original colored',
       'devicon-fastapi-plain colored',
-      'devicon-nginx-original colored',
       'devicon-apache-plain colored',
       
       // Databases
@@ -112,7 +111,6 @@ const DeviconBrowser: React.FC = () => {
       'devicon-github-original colored',
       'devicon-gitlab-plain colored',
       'devicon-bitbucket-original colored',
-      'devicon-nginx-original colored',
       'devicon-amazonwebservices-original colored',
       'devicon-googlecloud-plain colored',
       'devicon-azure-plain colored',
@@ -170,11 +168,33 @@ const DeviconBrowser: React.FC = () => {
       'devicon-ssh-original colored'
     ];
     
-    const deviconIcons = iconList.map(iconClass => ({
-      name: iconClass.split('-')[1], // Extract name from class
-      iconClass,
-      category: 'plain-colored'
-    }));
+    // Track unique icons and duplicates
+    const uniqueIcons = new Map<string, string>();
+    const duplicates: string[] = [];
+    
+    const deviconIcons = iconList
+      .filter(iconClass => {
+        const key = iconClass.replace(/ /g, '-');
+        if (uniqueIcons.has(key)) {
+          duplicates.push(`Duplicate: ${key} (${uniqueIcons.get(key)} and ${iconClass})`);
+          return false;
+        }
+        uniqueIcons.set(key, iconClass);
+        return true;
+      })
+      .map(iconClass => ({
+        name: iconClass.split(' ')[0].replace('devicon-', '').replace(/-/g, ' '),
+        iconClass,
+        category: 'plain-colored',
+        key: iconClass.replace(/ /g, '-')
+      }));
+    
+    // Log any duplicates found
+    if (duplicates.length > 0) {
+      console.group('Duplicate Icons Removed');
+      duplicates.forEach(dup => console.warn(dup));
+      console.groupEnd();
+    }
     
     setIcons(deviconIcons);
     setIsLoading(false);
@@ -199,8 +219,22 @@ const DeviconBrowser: React.FC = () => {
     ? icons 
     : filteredIcons;
 
-  // Test panel functions
+  // Test if Devicon CSS is loaded when component mounts
+  useEffect(() => {
+    const testIcon = document.createElement('i');
+    testIcon.className = 'devicon-react-original colored';
+    testIcon.style.position = 'absolute';
+    testIcon.style.left = '-9999px';
+    document.body.appendChild(testIcon);
+    
+    const isLoaded = window.getComputedStyle(testIcon, '::before').content !== 'normal';
+    console.log('Devicon CSS loaded:', isLoaded);
+    
+    // Clean up
+    setTimeout(() => document.body.removeChild(testIcon), 100);
+  }, []);
 
+  // Test panel functions
   const formatName = (name: string) => {
     return name
       .split('-')
@@ -218,37 +252,27 @@ const DeviconBrowser: React.FC = () => {
   }
 
   const testIcon = () => {
-    // Simple test to see if the icon class exists in the stylesheet
-    const styleSheets = document.styleSheets;
-    let found = false;
+    // Create a test element to check if the icon renders
+    const testElement = document.createElement('i');
+    testElement.className = testIconClass;
+    testElement.style.visibility = 'hidden';
+    testElement.style.position = 'absolute';
+    document.body.appendChild(testElement);
     
-    // Check all stylesheets for the icon class
-    for (let i = 0; i < styleSheets.length; i++) {
-      try {
-        const rules = styleSheets[i].cssRules || styleSheets[i].rules;
-        if (rules) {
-          for (let j = 0; j < rules.length; j++) {
-            const rule = rules[j] as CSSStyleRule;
-            if (rule.selectorText && 
-                (rule.selectorText.includes(`.${testIconClass}`) || 
-                 rule.selectorText.includes(`.${testIconClass}::before`))) {
-              found = true;
-              break;
-            }
-          }
-        }
-      } catch (e) {
-        // Skip cross-origin stylesheets
-        continue;
-      }
-      if (found) break;
-    }
+    // Check if the icon has content
+    const hasContent = window.getComputedStyle(testElement, '::before').content !== 'none';
+    const hasFontFamily = window.getComputedStyle(testElement, '::before').fontFamily.includes('devicon');
+    
+    // Clean up
+    document.body.removeChild(testElement);
+    
+    const isIconValid = hasContent && hasFontFamily;
     
     setTestResult({
-      success: found,
-      message: found 
-        ? '✅ Icon found in stylesheet!' 
-        : '❌ Icon not found. Try a different class.'
+      success: isIconValid,
+      message: isIconValid 
+        ? '✅ Icon is valid and should display correctly!'
+        : '❌ Icon not found or not displaying correctly. Try a different class or check Devicon CSS.'
     });
   };
 
@@ -272,12 +296,19 @@ const DeviconBrowser: React.FC = () => {
         {testResult && (
           <div className={`test-result ${testResult.success ? 'success' : 'error'}`}>
             {testResult.message}
-            {testResult.success && (
-              <div className="test-icon-preview">
-                <i className={`${testIconClass} test-icon`}></i>
-                <span>{testIconClass}</span>
+            <div className="test-icon-preview">
+              <i className={`${testIconClass} test-icon-display`}></i>
+              <div className="test-icon-classes">
+                {testIconClass.split(' ').map((cls, i) => (
+                  <span key={i} className="test-icon-class">{cls}</span>
+                ))}
               </div>
-            )}
+              {testResult.success && (
+                <div className="test-icon-html">
+                  HTML: <code>{`<i class="${testIconClass}"></i>`}</code>
+                </div>
+              )}
+            </div>
           </div>
         )}
         <div className="test-suggestions">
@@ -375,24 +406,35 @@ const DeviconBrowser: React.FC = () => {
       </div>
       <div className="icons-grid">
         {displayIcons.length > 0 ? (
-          displayIcons.map((icon) => (
-            <div key={`${icon.name}-${icon.category}`} className="icon-item">
-              <div className="icon-container">
-                <i className={icon.iconClass} />
-              </div>
-              <div className="icon-name">{formatName(icon.name)}</div>
-              <div className="icon-actions">
-                <button 
-                  onClick={() => copyToClipboard(icon.iconClass)}
-                  className="copy-button"
-                  title="Copy class name"
-                >
-                  {copied === icon.iconClass ? 'Copied!' : 'Copy'}
-                </button>
-                <span className="icon-category">{icon.category}</span>
-              </div>
-            </div>
-          ))
+          (() => {
+            console.log('Rendering', displayIcons.length, 'icons');
+            const seenKeys = new Set();
+            return displayIcons.map((icon) => {
+              if (seenKeys.has(icon.key)) {
+                console.error(`❌ Duplicate key in render: ${icon.key} (${icon.iconClass})`);
+              } else {
+                seenKeys.add(icon.key);
+              }
+              return (
+                <div key={icon.key} className="icon-item">
+                  <div className="icon-container">
+                    <i className={icon.iconClass} />
+                  </div>
+                  <div className="icon-name">{formatName(icon.name)}</div>
+                  <div className="icon-actions">
+                    <button 
+                      onClick={() => copyToClipboard(icon.iconClass)}
+                      className="copy-button"
+                      title="Copy class name"
+                    >
+                      {copied === icon.iconClass ? 'Copied!' : 'Copy'}
+                    </button>
+                    <span className="icon-category">{icon.category}</span>
+                  </div>
+                </div>
+              );
+            });
+          })()
         ) : (
           <div className="no-results">
             No icons found matching "{searchTerm}"
