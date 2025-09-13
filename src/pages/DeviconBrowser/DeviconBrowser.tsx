@@ -1,78 +1,21 @@
-import React, { useState, useCallback, useEffect } from 'react';
-// Import individual icons to reduce bundle size and catch missing icons at compile time
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   FaReact, FaVuejs, FaAngular, FaJs, FaQuestionCircle, FaNodeJs, FaHtml5, FaCss3Alt,
   FaSass, FaLess, FaServer, FaCode, FaMarkdown, FaGitAlt, FaGithub, FaGitlab,
-  FaBitbucket, FaNpm, FaYarn, FaDocker, FaAws, FaPython, FaJava, FaRust, FaGem
+  FaBitbucket, FaNpm, FaYarn, FaDocker, FaAws, FaPython, FaJava, FaRust, FaGem,
+  FaPhp, FaSwift, FaBootstrap, FaFigma, FaSketch, FaSlack, FaDiscord, FaTrello,
+  FaJira, FaTerminal, FaLinux, FaWindows, FaApple, FaAndroid, FaAppStoreIos
 } from 'react-icons/fa';
-import { FaPhp } from 'react-icons/fa';
-import { FaSwift } from 'react-icons/fa';
-import { FaBootstrap } from 'react-icons/fa';
-import { FaFigma } from 'react-icons/fa';
-import { FaSketch } from 'react-icons/fa';
-import { FaSlack } from 'react-icons/fa';
-import { FaDiscord } from 'react-icons/fa';
-import { FaTrello } from 'react-icons/fa';
-import { FaJira } from 'react-icons/fa';
-import { FaTerminal } from 'react-icons/fa';
-import { FaLinux } from 'react-icons/fa';
-import { FaWindows } from 'react-icons/fa';
-import { FaApple } from 'react-icons/fa';
-import { FaAndroid } from 'react-icons/fa';
-import { FaAppStoreIos } from 'react-icons/fa';
-
-// Simple Icons
-import { SiExpress } from 'react-icons/si';
-import { SiWebpack } from 'react-icons/si';
-import { SiBabel } from 'react-icons/si';
-import { SiGraphql } from 'react-icons/si';
-import { SiPnpm } from 'react-icons/si';
-// Using SiMicrosoft as fallback for Azure
-// Note: SiMicrosoft might not be available in all versions of react-icons
-import { SiNestjs } from 'react-icons/si';
-import { SiNextdotjs } from 'react-icons/si';
-import { SiNuxtdotjs } from 'react-icons/si';
-import { SiGatsby } from 'react-icons/si';
-import { SiRedux } from 'react-icons/si';
-import { SiMobx } from 'react-icons/si';
-import { SiJest } from 'react-icons/si';
-import { SiMongodb } from 'react-icons/si';
-import { SiPostgresql } from 'react-icons/si';
-import { SiMysql } from 'react-icons/si';
-import { SiSqlite } from 'react-icons/si';
-import { SiRedis } from 'react-icons/si';
-import { SiFirebase } from 'react-icons/si';
-import { SiKubernetes } from 'react-icons/si';
-import { SiGooglecloud } from 'react-icons/si';
-import { SiHeroku } from 'react-icons/si';
-import { SiNetlify } from 'react-icons/si';
-import { SiVercel } from 'react-icons/si';
-import { SiDigitalocean } from 'react-icons/si';
-import { SiCplusplus } from 'react-icons/si';
-import { SiKotlin } from 'react-icons/si';
-import { SiDart } from 'react-icons/si';
-import { SiScala } from 'react-icons/si';
-import { SiR } from 'react-icons/si';
-// Removed unused import
-import { SiTailwindcss } from 'react-icons/si';
-import { SiMaterialdesign } from 'react-icons/si';
-import { SiChakraui } from 'react-icons/si';
-import { SiAntdesign } from 'react-icons/si';
-import { SiBulma } from 'react-icons/si';
-import { SiStyledcomponents } from 'react-icons/si';
-import { SiTestinglibrary } from 'react-icons/si';
-import { SiGithubactions } from 'react-icons/si';
-import { SiPostman } from 'react-icons/si';
-import { SiAdobexd } from 'react-icons/si';
-import { SiConfluence } from 'react-icons/si';
-import { SiNotion } from 'react-icons/si';
-import { SiVim } from 'react-icons/si';
-
-// Devicons
+import {
+  SiExpress, SiWebpack, SiBabel, SiGraphql, SiPnpm, SiNestjs, SiNextdotjs, SiNuxtdotjs,
+  SiGatsby, SiRedux, SiMobx, SiJest, SiMongodb, SiPostgresql, SiMysql, SiSqlite,
+  SiRedis, SiFirebase, SiKubernetes, SiGooglecloud, SiHeroku, SiNetlify, SiVercel,
+  SiDigitalocean, SiCplusplus, SiKotlin, SiDart, SiScala, SiR, SiTailwindcss,
+  SiMaterialdesign, SiChakraui, SiAntdesign, SiBulma, SiStyledcomponents,
+  SiTestinglibrary, SiGithubactions, SiPostman, SiAdobexd, SiConfluence, SiNotion, SiVim
+} from 'react-icons/si';
 import { DiVisualstudio } from 'react-icons/di';
 import './DeviconBrowser.css';
-
-// Import Devicon CSS directly from CDN in index.html
 
 interface Devicon {
   name: string;
@@ -91,44 +34,39 @@ const MissingIcon: React.FC<{ name: string }> = ({ name }) => {
   );
 };
 
+const REACT_ICONS: Record<string, JSX.Element> = {
+  'React': <FaReact />, 'Vue': <FaVuejs />, 'Angular': <FaAngular />, 'JavaScript': <FaJs />,
+  'HTML5': <FaHtml5 />, 'CSS3': <FaCss3Alt />, 'Sass': <FaSass />, 'Less': <FaLess />,
+  'Webpack': <SiWebpack />, 'Babel': <SiBabel />, 'GraphQL': <SiGraphql />, 'REST': <FaServer />,
+  'JSON': <FaCode />, 'Markdown': <FaMarkdown />, 'Git': <FaGitAlt />, 'GitHub': <FaGithub />,
+  'GitLab': <FaGitlab />, 'Bitbucket': <FaBitbucket />, 'Express': <SiExpress />,
+  'NestJS': <SiNestjs />, 'Next.js': <SiNextdotjs />, 'Nuxt.js': <SiNuxtdotjs />,
+  'Gatsby': <SiGatsby />, 'Redux': <SiRedux />, 'MobX': <SiMobx />, 'Jest': <SiJest />,
+  'MongoDB': <SiMongodb />, 'PostgreSQL': <SiPostgresql />, 'MySQL': <SiMysql />,
+  'SQLite': <SiSqlite />, 'Redis': <SiRedis />, 'Firebase': <SiFirebase />,
+  'Docker': <FaDocker />, 'Kubernetes': <SiKubernetes />, 'AWS': <FaAws />,
+  'Google Cloud': <SiGooglecloud />, 'Azure': <FaWindows />, 'Heroku': <SiHeroku />,
+  'Netlify': <SiNetlify />, 'Vercel': <SiVercel />, 'DigitalOcean': <SiDigitalocean />,
+  'Python': <FaPython />, 'Java': <FaJava />, 'C#': <FaCode />, 'C++': <SiCplusplus />,
+  'Go': <FaCode />, 'Rust': <FaRust />, 'Ruby': <FaGem />, 'PHP': <FaPhp />, 'Swift': <FaSwift />,
+  'Kotlin': <SiKotlin />, 'Dart': <SiDart />, 'Scala': <SiScala />, 'R': <SiR />,
+  'Bootstrap': <FaBootstrap />, 'Tailwind CSS': <SiTailwindcss />, 'Material-UI': <SiMaterialdesign />,
+  'Chakra UI': <SiChakraui />, 'Ant Design': <SiAntdesign />, 'Bulma': <SiBulma />,
+  'Styled Components': <SiStyledcomponents />, 'Testing Library': <SiTestinglibrary />,
+  'VS Code': <DiVisualstudio />, 'GitHub Actions': <SiGithubactions />, 'PNPM': <SiPnpm />,
+  'Postman': <SiPostman />, 'Figma': <FaFigma />, 'Sketch': <FaSketch />, 'Adobe XD': <SiAdobexd />,
+  'Slack': <FaSlack />, 'Discord': <FaDiscord />, 'Trello': <FaTrello />, 'Jira': <FaJira />,
+  'Confluence': <SiConfluence />, 'Vim': <SiVim />, 'Bash': <FaTerminal />, 'Linux': <FaLinux />,
+  'Windows': <FaWindows />, 'MacOS': <FaApple />, 'Android': <FaAndroid />, 'iOS': <FaAppStoreIos />
+};
+
+const CATEGORIES = ['all', 'plain-colored', 'original', 'line', 'wordmark', 'other'];
+
+const formatName = (name: string) =>
+  name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
 const DeviconBrowser: React.FC = () => {
   const [missingIcons, setMissingIcons] = useState<Set<string>>(new Set());
-  
-  // Helper function to safely render icons
-  const renderIcon = (name: string, icon: any) => {
-    try {
-      // Check if the icon is a valid React element or component
-      if (!icon || typeof icon === 'undefined' || icon === null) {
-        throw new Error(`Icon ${name} is undefined`);
-      }
-      
-      // If it's a string, try to find a matching icon
-      if (typeof icon === 'string') {
-        // Try to find the icon in the available icons
-        const iconComponent = iconComponents[icon];
-        if (iconComponent) {
-          return React.createElement(iconComponent, { size: '2em' });
-        }
-        throw new Error(`Icon ${name} not found`);
-      }
-      
-      // If it's already a React element, return it
-      if (React.isValidElement(icon)) {
-        return icon;
-      }
-      
-      // If it's a component, create an element from it
-      return React.createElement(icon, { size: '2em' });
-      
-    } catch (error) {
-      console.error(`Error rendering icon ${name}:`, error);
-      const updatedMissingIcons = new Set(missingIcons);
-      updatedMissingIcons.add(name);
-      setMissingIcons(updatedMissingIcons);
-      return <MissingIcon name={name} />;
-    }
-  };
-  // State hooks must be called at the top level
   const [searchTerm, setSearchTerm] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
@@ -139,7 +77,6 @@ const DeviconBrowser: React.FC = () => {
   const [testResult, setTestResult] = useState<{success: boolean, message: string} | null>(null);
   const [useReactIcons, setUseReactIcons] = useState(false);
 
-  // List of available Devicon icons with their correct classes
   useEffect(() => {
     // Comprehensive list of Devicon icons with their correct classes
     const iconList = [
@@ -324,18 +261,12 @@ const DeviconBrowser: React.FC = () => {
     setTimeout(() => setCopied(null), 2000);
   }, []);
 
-  const categories = ['all', 'plain-colored', 'original', 'line', 'wordmark', 'other'];
-  
-  const filteredIcons = icons.filter(icon => 
-    searchTerm === '' || 
-    icon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    icon.iconClass.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredIcons = icons.filter(icon =>
+    (!searchTerm || icon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      icon.iconClass.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (activeCategory === 'all' || icon.category === activeCategory)
   );
-
-  // Show all icons by default, or filtered results if search or category is active
-  const displayIcons = showAllIcons && !searchTerm && activeCategory === 'all' 
-    ? icons 
-    : filteredIcons;
+  const displayIcons = showAllIcons && !searchTerm && activeCategory === 'all' ? icons : filteredIcons;
 
   // Test if Devicon CSS is loaded when component mounts
   useEffect(() => {
@@ -353,22 +284,6 @@ const DeviconBrowser: React.FC = () => {
   }, []);
 
   // Test panel functions
-  const formatName = (name: string) => {
-    return name
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-  };
-
-  if (isLoading) {
-    return (
-      <div className="devicon-browser loading">
-        <div className="loading-spinner"></div>
-        <p>Loading Devicon icons...</p>
-      </div>
-    );
-  }
-
   const testIcon = () => {
     // Create a test element to check if the icon renders
     const testElement = document.createElement('i');
@@ -398,6 +313,15 @@ const DeviconBrowser: React.FC = () => {
   const toggleIconSet = () => {
     setUseReactIcons(!useReactIcons);
   };
+
+  if (isLoading) {
+    return (
+      <div className="devicon-browser loading">
+        <div className="loading-spinner"></div>
+        <p>Loading Devicon icons...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="devicon-browser">
@@ -554,7 +478,7 @@ const DeviconBrowser: React.FC = () => {
           </button>
         </div>
         <div className="categories">
-          {categories.map(category => (
+          {CATEGORIES.map(category => (
             <button
               key={category}
               className={`category-tab ${activeCategory === category ? 'active' : ''}`}
@@ -575,137 +499,22 @@ const DeviconBrowser: React.FC = () => {
       </div>
       
       <div className="browser-info">
-        {!isLoading && (
-          <div className="results-count">
-            Showing {displayIcons.length} of {icons.length} icons
-            {(searchTerm || activeCategory !== 'all') && (
-              <button 
-                className="show-all-link" 
-                onClick={() => {
-                  setSearchTerm('');
-                  setActiveCategory('all');
-                  setShowAllIcons(true);
-                }}
-              >
-                Show all icons
-              </button>
-            )}
-          </div>
-        )}
+        <div className="results-count">
+          Showing {displayIcons.length} of {icons.length} icons
+          {(searchTerm || activeCategory !== 'all') && (
+            <button className="show-all-link" onClick={() => { setSearchTerm(''); setActiveCategory('all'); setShowAllIcons(true); }}>
+              Show all icons
+            </button>
+          )}
+        </div>
       </div>
       <div className="icons-grid">
         {useReactIcons ? (
           // Render React Icons
-          Object.entries({
-            // Core Web Technologies
-            'React': <FaReact />,
-            'Vue': <FaVuejs />,
-            'Angular': <FaAngular />,
-            'JavaScript': <FaJs />,
-            'HTML5': <FaHtml5 />,
-            'CSS3': <FaCss3Alt />,
-            'Sass': <FaSass />,
-            'Less': <FaLess />,
-            'Webpack': <SiWebpack />,
-            'Babel': <SiBabel />,
-            'GraphQL': <SiGraphql />,
-            'REST': <FaServer />,
-            'JSON': <FaCode />,
-            'Markdown': <FaMarkdown />,
-            
-            // Version Control
-            'Git': <FaGitAlt />,
-            'GitHub': <FaGithub />,
-            'GitLab': <FaGitlab />,
-            'Bitbucket': <FaBitbucket />,
-            
-            // Package Managers
-            // Package managers already defined above
-            
-            // Backend Technologies
-            'Express': <SiExpress />,
-            'NestJS': <SiNestjs />,
-            'Next.js': <SiNextdotjs />,
-            'Nuxt.js': <SiNuxtdotjs />,
-            'Gatsby': <SiGatsby />,
-            'Redux': <SiRedux />,
-            'MobX': <SiMobx />,
-            'Jest': <SiJest />,
-            
-            // Databases
-            'MongoDB': <SiMongodb />,
-            'PostgreSQL': <SiPostgresql />,
-            'MySQL': <SiMysql />,
-            'SQLite': <SiSqlite />,
-            'Redis': <SiRedis />,
-            'Firebase': <SiFirebase />,
-            
-            // Cloud & DevOps
-            'Docker': <FaDocker />,
-            'Kubernetes': <SiKubernetes />,
-            'AWS': <FaAws />,
-            'Google Cloud': <SiGooglecloud />,
-            'Azure': <FaWindows />,
-            'Heroku': <SiHeroku />,
-            'Netlify': <SiNetlify />,
-            'Vercel': <SiVercel />,
-            'DigitalOcean': <SiDigitalocean />,
-            
-            // Programming Languages
-            'Python': <FaPython />,
-            'Java': <FaJava />,
-            'C#': <FaCode />, // Using FaCode as fallback for C#
-            'C++': <SiCplusplus />,
-            'Go': <FaCode />, // Using FaCode as fallback for Go
-            'Rust': <FaRust />,
-            'Ruby': <FaGem />, // Using FaGem as fallback for Ruby
-            'PHP': <FaPhp />,
-            'Swift': <FaSwift />,
-            'Kotlin': <SiKotlin />,
-            'Dart': <SiDart />,
-            'Scala': <SiScala />,
-            'R': <SiR />,
-            
-            // UI Libraries & Frameworks
-            'Bootstrap': <FaBootstrap />,
-            'Tailwind CSS': <SiTailwindcss />,
-            'Material-UI': <SiMaterialdesign />,
-            'Chakra UI': <SiChakraui />,
-            'Ant Design': <SiAntdesign />,
-            'Bulma': <SiBulma />,
-            'Styled Components': <SiStyledcomponents />,
-            'Emotion': <SiStyledcomponents />,
-            
-            // Testing
-            'Testing Library': <SiTestinglibrary />,
-            
-            // Additional Tools
-            'VS Code': <DiVisualstudio />,
-            'GitHub Actions': <SiGithubactions />,
-            // Package managers already defined above
-            'PNPM': <SiPnpm />,
-            'Postman': <SiPostman />,
-            'Figma': <FaFigma />,
-            'Sketch': <FaSketch />,
-            'Adobe XD': <SiAdobexd />,
-            'Photoshop': <SiAdobexd />,
-            'Illustrator': <SiAdobexd />,
-            'Slack': <FaSlack />,
-            'Discord': <FaDiscord />,
-            'Trello': <FaTrello />,
-            'Jira': <FaJira />,
-            'Confluence': <SiConfluence />,
-            'Vim': <SiVim />,
-            'Bash': <FaTerminal />,
-            'Linux': <FaLinux />,
-            'Windows': <FaWindows />,
-            'MacOS': <FaApple />,
-            'Android': <FaAndroid />,
-            'iOS': <FaAppStoreIos />
-          }).map(([name, Icon]) => (
+          Object.entries(REACT_ICONS).map(([name, Icon]) => (
             <div key={name} className="icon-item">
               <div className="icon-container">
-                {renderIcon(name, Icon)}
+                {Icon}
               </div>
               <div className="icon-name">{name}</div>
               <div className="icon-actions">
