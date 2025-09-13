@@ -20,28 +20,31 @@ const TechnologiesList: React.FC = () => {
   }));
 
   return (
-    <div className={styles.technologiesContainer}>
-      <h3 className={styles.title}>Technologies</h3>
-      <div className={styles.technologiesList}>
-        {technologies.map((tech, index) => (
-          <div 
-            key={tech} 
-            ref={el => {
-              if (el) {
-                itemRefs.current[index] = el;
-              }
-            }}
-            className={styles.techItem}
-          >
-            <div className={styles.techIconWrapper}>
-              <TechIcons techs={[tech]} iconClassName={styles.techIcon} />
-            </div>
-            <span className={styles.techName}>{tech}</span>
-          </div>
-        ))}
-      </div>
+    <>
       <ConnectionLines itemRefs={stableRefs} />
-    </div>
+      <div className={styles.technologiesContainer}>
+        <h3 className={styles.title}>Technologies</h3>
+        <div className={styles.technologiesList}>
+          {technologies.map((tech, index) => (
+            <div 
+              key={tech} 
+              ref={el => {
+                if (el) {
+                  itemRefs.current[index] = el;
+                }
+              }}
+              className={styles.techItem}
+              data-tech={tech}
+            >
+              <div className={styles.techIconWrapper}>
+                <TechIcons techs={[tech]} iconClassName={styles.techIcon} />
+              </div>
+              <span className={styles.techName}>{tech}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 

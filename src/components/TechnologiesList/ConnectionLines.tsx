@@ -7,45 +7,55 @@ interface ConnectionLinesProps {
 
 const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  const center = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-
-  // Update center point when window resizes
+  
+  // Update paths on scroll/resize
   useEffect(() => {
-    const handleResize = () => {
-      if (svgRef.current) {
-        // Force re-render by updating the ref
-        svgRef.current.getBoundingClientRect();
-      }
+    const updatePaths = () => {
+      if (!svgRef.current) return;
+      
+      // Force re-render by toggling a class
+      svgRef.current.classList.toggle('force-update');
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('scroll', updatePaths, { passive: true });
+    window.addEventListener('resize', updatePaths);
+    
+    return () => {
+      window.removeEventListener('scroll', updatePaths);
+      window.removeEventListener('resize', updatePaths);
+    };
   }, []);
 
   // Function to calculate the path for the curve
   const getPath = (startX: number, startY: number) => {
-    // Control points for the curve
-    const cp1x = startX + (center.x - startX) * 0.5;
-    const cp1y = startY;
-    const cp2x = cp1x;
-    const cp2y = center.y;
-
-    return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${center.x} ${center.y}`;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    
+    // Simple quadratic curve
+    const cpX = startX + (centerX - startX) / 2;
+    const cpY = startY;
+    
+    return `M ${startX} ${startY} Q ${cpX} ${cpY}, ${centerX} ${centerY}`;
   };
 
   return (
-    <svg 
-      ref={svgRef} 
-      className={`${styles.connectionLines} ${styles.connectionSvg}`}
-      width="100%" 
-      height="100%"
-    >
+    <div className={styles.connectionLinesWrapper}>
+      <svg 
+        ref={svgRef}
+        className={`${styles.connectionSvg} ${styles.connectionSvgFixed}`}
+        width="100%"
+        height="100%"
+      >
       {itemRefs.map((ref, index) => {
         if (!ref.current) return null;
         
         const rect = ref.current.getBoundingClientRect();
         const startX = rect.left + rect.width / 2;
         const startY = rect.top + rect.height / 2;
+        
+        // Skip if element is not in viewport
+        if (startY < 0 || startY > window.innerHeight) return null;
+        if (startX < 0 || startX > window.innerWidth) return null;
         
         return (
           <path
@@ -55,11 +65,12 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs }) => {
             stroke="rgba(0, 255, 157, 0.3)"
             strokeWidth="1"
             strokeLinecap="round"
-            className={styles.connectionLine}
+            className={`${styles.connectionLine} ${styles.connectionLineAnimated}`}
           />
         );
       })}
-    </svg>
+      </svg>
+    </div>
   );
 };
 
