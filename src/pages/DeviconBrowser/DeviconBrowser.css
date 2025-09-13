@@ -384,7 +384,7 @@
 
 /* Add subtle glow to all icons */
 .icon-container i {
-  filter: drop-shadow(0 0 2px rgba(0, 255, 157, 0.7));
+  /* filter: drop-shadow(0 0 2px rgba(0, 255, 157, 0.7)); */
   transition: all 0.3s ease;
 }
 

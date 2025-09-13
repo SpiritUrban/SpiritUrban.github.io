@@ -1,6 +1,75 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as SiIcons from 'react-icons/si';
+// Import individual icons to reduce bundle size and catch missing icons at compile time
+import {
+  FaReact, FaVuejs, FaAngular, FaJs, FaQuestionCircle, FaNodeJs, FaHtml5, FaCss3Alt,
+  FaSass, FaLess, FaServer, FaCode, FaMarkdown, FaGitAlt, FaGithub, FaGitlab,
+  FaBitbucket, FaNpm, FaYarn, FaDocker, FaAws, FaPython, FaJava, FaRust, FaGem
+} from 'react-icons/fa';
+import { FaPhp } from 'react-icons/fa';
+import { FaSwift } from 'react-icons/fa';
+import { FaBootstrap } from 'react-icons/fa';
+import { FaFigma } from 'react-icons/fa';
+import { FaSketch } from 'react-icons/fa';
+import { FaSlack } from 'react-icons/fa';
+import { FaDiscord } from 'react-icons/fa';
+import { FaTrello } from 'react-icons/fa';
+import { FaJira } from 'react-icons/fa';
+import { FaTerminal } from 'react-icons/fa';
+import { FaLinux } from 'react-icons/fa';
+import { FaWindows } from 'react-icons/fa';
+import { FaApple } from 'react-icons/fa';
+import { FaAndroid } from 'react-icons/fa';
+import { FaAppStoreIos } from 'react-icons/fa';
+
+// Simple Icons
+import { SiExpress } from 'react-icons/si';
+import { SiWebpack } from 'react-icons/si';
+import { SiBabel } from 'react-icons/si';
+import { SiGraphql } from 'react-icons/si';
+import { SiPnpm } from 'react-icons/si';
+// Using SiMicrosoft as fallback for Azure
+// Note: SiMicrosoft might not be available in all versions of react-icons
+import { SiNestjs } from 'react-icons/si';
+import { SiNextdotjs } from 'react-icons/si';
+import { SiNuxtdotjs } from 'react-icons/si';
+import { SiGatsby } from 'react-icons/si';
+import { SiRedux } from 'react-icons/si';
+import { SiMobx } from 'react-icons/si';
+import { SiJest } from 'react-icons/si';
+import { SiMongodb } from 'react-icons/si';
+import { SiPostgresql } from 'react-icons/si';
+import { SiMysql } from 'react-icons/si';
+import { SiSqlite } from 'react-icons/si';
+import { SiRedis } from 'react-icons/si';
+import { SiFirebase } from 'react-icons/si';
+import { SiKubernetes } from 'react-icons/si';
+import { SiGooglecloud } from 'react-icons/si';
+import { SiHeroku } from 'react-icons/si';
+import { SiNetlify } from 'react-icons/si';
+import { SiVercel } from 'react-icons/si';
+import { SiDigitalocean } from 'react-icons/si';
+import { SiCplusplus } from 'react-icons/si';
+import { SiKotlin } from 'react-icons/si';
+import { SiDart } from 'react-icons/si';
+import { SiScala } from 'react-icons/si';
+import { SiR } from 'react-icons/si';
+// Removed unused import
+import { SiTailwindcss } from 'react-icons/si';
+import { SiMaterialdesign } from 'react-icons/si';
+import { SiChakraui } from 'react-icons/si';
+import { SiAntdesign } from 'react-icons/si';
+import { SiBulma } from 'react-icons/si';
+import { SiStyledcomponents } from 'react-icons/si';
+import { SiTestinglibrary } from 'react-icons/si';
+import { SiGithubactions } from 'react-icons/si';
+import { SiPostman } from 'react-icons/si';
+import { SiAdobexd } from 'react-icons/si';
+import { SiConfluence } from 'react-icons/si';
+import { SiNotion } from 'react-icons/si';
+import { SiVim } from 'react-icons/si';
+
+// Devicons
+import { DiVisualstudio } from 'react-icons/di';
 import './DeviconBrowser.css';
 
 // Import Devicon CSS directly from CDN in index.html
@@ -12,7 +81,53 @@ interface Devicon {
   key: string;
 }
 
+// Fallback component for missing icons
+const MissingIcon: React.FC<{ name: string }> = ({ name }) => {
+  return (
+    <div className="missing-icon" title={`Missing icon: ${name}`}>
+      <FaQuestionCircle />
+      <span>{name}</span>
+    </div>
+  );
+};
+
 const DeviconBrowser: React.FC = () => {
+  const [missingIcons, setMissingIcons] = useState<Set<string>>(new Set());
+  
+  // Helper function to safely render icons
+  const renderIcon = (name: string, icon: any) => {
+    try {
+      // Check if the icon is a valid React element or component
+      if (!icon || typeof icon === 'undefined' || icon === null) {
+        throw new Error(`Icon ${name} is undefined`);
+      }
+      
+      // If it's a string, try to find a matching icon
+      if (typeof icon === 'string') {
+        // Try to find the icon in the available icons
+        const iconComponent = iconComponents[icon];
+        if (iconComponent) {
+          return React.createElement(iconComponent, { size: '2em' });
+        }
+        throw new Error(`Icon ${name} not found`);
+      }
+      
+      // If it's already a React element, return it
+      if (React.isValidElement(icon)) {
+        return icon;
+      }
+      
+      // If it's a component, create an element from it
+      return React.createElement(icon, { size: '2em' });
+      
+    } catch (error) {
+      console.error(`Error rendering icon ${name}:`, error);
+      const updatedMissingIcons = new Set(missingIcons);
+      updatedMissingIcons.add(name);
+      setMissingIcons(updatedMissingIcons);
+      return <MissingIcon name={name} />;
+    }
+  };
   // State hooks must be called at the top level
   const [searchTerm, setSearchTerm] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
@@ -286,6 +401,57 @@ const DeviconBrowser: React.FC = () => {
 
   return (
     <div className="devicon-browser">
+      {/* Display missing icons warning */}
+      {missingIcons.size > 0 && (
+        <div className="missing-icons-warning">
+          <h3>Missing Icons ({missingIcons.size})</h3>
+          <div className="missing-icons-list">
+            {Array.from(missingIcons).map((iconName, index) => (
+              <div key={index} className="missing-icon-item">
+                {iconName}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      <style>
+        {`
+          .missing-icons-warning {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+          }
+
+          .missing-icons-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+          }
+
+          .missing-icon-item {
+            background: #ffcdd2;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+          }
+
+          .missing-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #f44336;
+            font-size: 1.5rem;
+          }
+
+          .missing-icon span {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+          }
+        `}
+      </style>
       <div className="icon-set-toggle">
         <button 
           onClick={toggleIconSet}
@@ -431,23 +597,115 @@ const DeviconBrowser: React.FC = () => {
         {useReactIcons ? (
           // Render React Icons
           Object.entries({
-            // Core Web
-            'React': <FaIcons.FaReact />,
-            'Node.js': <FaIcons.FaNode />,
-            'JavaScript': <FaIcons.FaJs />,
-            'TypeScript': <SiIcons.SiTypescript />,
-            'HTML5': <FaIcons.FaHtml5 />,
-            'CSS3': <FaIcons.FaCss3Alt />,
-            'Sass': <FaIcons.FaSass />,
-            'Git': <FaIcons.FaGitAlt />,
-            'GitHub': <FaIcons.FaGithub />,
-            'NPM': <FaIcons.FaNpm />,
-            'Yarn': <FaIcons.FaYarn />,
-            // Add more as needed
+            // Core Web Technologies
+            'React': <FaReact />,
+            'Vue': <FaVuejs />,
+            'Angular': <FaAngular />,
+            'JavaScript': <FaJs />,
+            'HTML5': <FaHtml5 />,
+            'CSS3': <FaCss3Alt />,
+            'Sass': <FaSass />,
+            'Less': <FaLess />,
+            'Webpack': <SiWebpack />,
+            'Babel': <SiBabel />,
+            'GraphQL': <SiGraphql />,
+            'REST': <FaServer />,
+            'JSON': <FaCode />,
+            'Markdown': <FaMarkdown />,
+            
+            // Version Control
+            'Git': <FaGitAlt />,
+            'GitHub': <FaGithub />,
+            'GitLab': <FaGitlab />,
+            'Bitbucket': <FaBitbucket />,
+            
+            // Package Managers
+            // Package managers already defined above
+            
+            // Backend Technologies
+            'Express': <SiExpress />,
+            'NestJS': <SiNestjs />,
+            'Next.js': <SiNextdotjs />,
+            'Nuxt.js': <SiNuxtdotjs />,
+            'Gatsby': <SiGatsby />,
+            'Redux': <SiRedux />,
+            'MobX': <SiMobx />,
+            'Jest': <SiJest />,
+            
+            // Databases
+            'MongoDB': <SiMongodb />,
+            'PostgreSQL': <SiPostgresql />,
+            'MySQL': <SiMysql />,
+            'SQLite': <SiSqlite />,
+            'Redis': <SiRedis />,
+            'Firebase': <SiFirebase />,
+            
+            // Cloud & DevOps
+            'Docker': <FaDocker />,
+            'Kubernetes': <SiKubernetes />,
+            'AWS': <FaAws />,
+            'Google Cloud': <SiGooglecloud />,
+            'Azure': <FaWindows />,
+            'Heroku': <SiHeroku />,
+            'Netlify': <SiNetlify />,
+            'Vercel': <SiVercel />,
+            'DigitalOcean': <SiDigitalocean />,
+            
+            // Programming Languages
+            'Python': <FaPython />,
+            'Java': <FaJava />,
+            'C#': <FaCode />, // Using FaCode as fallback for C#
+            'C++': <SiCplusplus />,
+            'Go': <FaCode />, // Using FaCode as fallback for Go
+            'Rust': <FaRust />,
+            'Ruby': <FaGem />, // Using FaGem as fallback for Ruby
+            'PHP': <FaPhp />,
+            'Swift': <FaSwift />,
+            'Kotlin': <SiKotlin />,
+            'Dart': <SiDart />,
+            'Scala': <SiScala />,
+            'R': <SiR />,
+            
+            // UI Libraries & Frameworks
+            'Bootstrap': <FaBootstrap />,
+            'Tailwind CSS': <SiTailwindcss />,
+            'Material-UI': <SiMaterialdesign />,
+            'Chakra UI': <SiChakraui />,
+            'Ant Design': <SiAntdesign />,
+            'Bulma': <SiBulma />,
+            'Styled Components': <SiStyledcomponents />,
+            'Emotion': <SiStyledcomponents />,
+            
+            // Testing
+            'Testing Library': <SiTestinglibrary />,
+            
+            // Additional Tools
+            'VS Code': <DiVisualstudio />,
+            'GitHub Actions': <SiGithubactions />,
+            // Package managers already defined above
+            'PNPM': <SiPnpm />,
+            'Postman': <SiPostman />,
+            'Figma': <FaFigma />,
+            'Sketch': <FaSketch />,
+            'Adobe XD': <SiAdobexd />,
+            'Photoshop': <SiAdobexd />,
+            'Illustrator': <SiAdobexd />,
+            'Slack': <FaSlack />,
+            'Discord': <FaDiscord />,
+            'Trello': <FaTrello />,
+            'Jira': <FaJira />,
+            'Confluence': <SiConfluence />,
+            'Vim': <SiVim />,
+            'Bash': <FaTerminal />,
+            'Linux': <FaLinux />,
+            'Windows': <FaWindows />,
+            'MacOS': <FaApple />,
+            'Android': <FaAndroid />,
+            'iOS': <FaAppStoreIos />
           }).map(([name, Icon]) => (
             <div key={name} className="icon-item">
               <div className="icon-container">
-                {React.cloneElement(Icon, { size: '2.5em' })}
+                {renderIcon(name, Icon)}
               </div>
               <div className="icon-name">{name}</div>
               <div className="icon-actions">
