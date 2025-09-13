@@ -15,6 +15,7 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
     
     // Function to update all paths
     const updateLines = () => {
+      console.log('Updating lines');
       if (svgRef.current) {
         // Force re-render by toggling a class
         svgRef.current.classList.toggle('force-update');
@@ -24,15 +25,26 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
       }
     };
 
-    // Find the left panel element
+    // Find the left panel element and its scrollable container
     const leftPanel = document.querySelector('.left');
+    console.log(leftPanel);
+    let scrollContainer = leftPanel?.closest('[data-scroll-container]');
     
     // Add scroll event to window
     window.addEventListener('scroll', updateLines, { passive: true });
     
-    // Add scroll event to left panel if it exists
+    // Add scroll event to left panel and its scrollable parent if they exist
     if (leftPanel) {
+      // Listen to scroll on the left panel itself
       leftPanel.addEventListener('scroll', updateLines, { passive: true });
+      
+      // Also listen to scroll on the scrollable container if it's different
+      if (scrollContainer && scrollContainer !== leftPanel) {
+        scrollContainer.addEventListener('scroll', updateLines, { passive: true });
+      }
+      
+      // Initial update with a small delay to ensure DOM is ready
+      requestAnimationFrame(updateLines);
     }
     
     // Initial update
@@ -43,10 +55,17 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
       // Remove event listeners
       window.removeEventListener('scroll', updateLines);
       
-      // Remove left panel listeners
+      // Remove left panel and its container listeners
       const leftPanel = document.querySelector('.left');
+      const scrollContainer = leftPanel?.closest('[data-scroll-container]');
+      
       if (leftPanel) {
         leftPanel.removeEventListener('scroll', updateLines);
+        
+        // Also remove from scroll container if it exists and is different
+        if (scrollContainer && scrollContainer !== leftPanel) {
+          scrollContainer.removeEventListener('scroll', updateLines);
+        }
       }
       
       // Clear any pending updates
