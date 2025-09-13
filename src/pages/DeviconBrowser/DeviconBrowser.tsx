@@ -1,6 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
 import './DeviconBrowser.css';
 
+// Import Devicon CSS directly from CDN in index.html
+
 interface Devicon {
   name: string;
   iconClass: string;
@@ -15,94 +17,52 @@ const DeviconBrowser: React.FC = () => {
   const [icons, setIcons] = useState<Devicon[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load predefined list of popular devicon icons
+  // List of available Devicon icons with their correct classes
   useEffect(() => {
-    const loadIcons = () => {
-      // List of popular devicon icons with their categories
-      const popularIcons = [
-        // JavaScript/TypeScript
-        { name: 'javascript', category: 'plain-colored' },
-        { name: 'typescript', category: 'plain-colored' },
-        { name: 'nodejs', category: 'plain-colored' },
-        { name: 'react', category: 'plain-colored' },
-        { name: 'vuejs', category: 'plain-colored' },
-        { name: 'angular', category: 'plain-colored' },
-        { name: 'svelte', category: 'plain-colored' },
-        { name: 'nextjs', category: 'plain-colored' },
-        { name: 'nuxtjs', category: 'plain-colored' },
-        
-        // Backend
-        { name: 'python', category: 'plain-colored' },
-        { name: 'java', category: 'plain-colored' },
-        { name: 'php', category: 'plain-colored' },
-        { name: 'ruby', category: 'plain-colored' },
-        { name: 'go', category: 'plain-colored' },
-        { name: 'rust', category: 'plain-colored' },
-        { name: 'csharp', category: 'plain-colored' },
-        { name: 'cplusplus', category: 'plain-colored' },
-        
-        // Databases
-        { name: 'mongodb', category: 'plain-colored' },
-        { name: 'postgresql', category: 'plain-colored' },
-        { name: 'mysql', category: 'plain-colored' },
-        { name: 'redis', category: 'plain-colored' },
-        { name: 'sqlite', category: 'plain-colored' },
-        
-        // Cloud & DevOps
-        { name: 'docker', category: 'plain-colored' },
-        { name: 'kubernetes', category: 'plain-colored' },
-        { name: 'aws', category: 'plain-colored' },
-        { name: 'azure', category: 'plain-colored' },
-        { name: 'googlecloud', category: 'plain-colored' },
-        { name: 'firebase', category: 'plain-colored' },
-        { name: 'heroku', category: 'plain-colored' },
-        
-        // Tools & Other
-        { name: 'git', category: 'plain-colored' },
-        { name: 'github', category: 'plain-colored' },
-        { name: 'gitlab', category: 'plain-colored' },
-        { name: 'bitbucket', category: 'plain-colored' },
-        { name: 'vscode', category: 'plain-colored' },
-        { name: 'visualstudio', category: 'plain-colored' },
-        { name: 'intellij', category: 'plain-colored' },
-        { name: 'webstorm', category: 'plain-colored' },
-        { name: 'sass', category: 'plain-colored' },
-        { name: 'less', category: 'plain-colored' },
-        { name: 'bootstrap', category: 'plain-colored' },
-        { name: 'tailwindcss', category: 'plain-colored' },
-        { name: 'materialui', category: 'plain-colored' },
-        { name: 'redux', category: 'plain-colored' },
-        { name: 'graphql', category: 'plain-colored' },
-        { name: 'webpack', category: 'plain-colored' },
-        { name: 'babel', category: 'plain-colored' },
-        { name: 'jest', category: 'plain-colored' },
-        { name: 'mocha', category: 'plain-colored' },
-        { name: 'jasmine', category: 'plain-colored' },
-        { name: 'karma', category: 'plain-colored' },
-        { name: 'nginx', category: 'plain-colored' },
-        { name: 'apache', category: 'plain-colored' },
-        { name: 'linux', category: 'plain-colored' },
-        { name: 'ubuntu', category: 'plain-colored' },
-        { name: 'debian', category: 'plain-colored' },
-        { name: 'windows', category: 'plain-colored' },
-        { name: 'apple', category: 'plain-colored' },
-        { name: 'android', category: 'plain-colored' }
-      ];
-
-      // Transform to the format expected by the component
-      const deviconIcons = popularIcons.map(icon => ({
-        name: icon.name,
-        iconClass: `devicon-${icon.name}-${icon.category}`,
-        category: icon.category
-      }));
-      
-      setIcons(deviconIcons);
-      setIsLoading(false);
-    };
-
-    // Small delay to ensure devicon CSS is loaded
-    const timer = setTimeout(loadIcons, 100);
-    return () => clearTimeout(timer);
+    // Simple list of icons that work with the current setup
+    const iconList = [
+      'devicon-javascript-plain colored',
+      'devicon-typescript-plain colored',
+      'devicon-html5-plain colored',
+      'devicon-css3-plain colored',
+      'devicon-sass-original colored',
+      'devicon-java-plain colored',
+      'devicon-python-plain colored',
+      'devicon-php-plain colored',
+      'devicon-ruby-plain colored',
+      'devicon-c-plain colored',
+      'devicon-cplusplus-plain colored',
+      'devicon-csharp-plain colored',
+      'devicon-go-plain colored',
+      'devicon-rust-plain colored',
+      'devicon-react-original colored',
+      'devicon-vuejs-plain colored',
+      'devicon-angularjs-plain colored',
+      'devicon-bootstrap-plain colored',
+      'devicon-nodejs-plain colored',
+      'devicon-express-original colored',
+      'devicon-mongodb-plain colored',
+      'devicon-mysql-plain colored',
+      'devicon-postgresql-plain colored',
+      'devicon-redis-plain colored',
+      'devicon-docker-plain colored',
+      'devicon-kubernetes-plain colored',
+      'devicon-git-plain colored',
+      'devicon-github-original colored',
+      'devicon-gitlab-plain colored',
+      'devicon-nginx-original colored',
+      'devicon-amazonwebservices-original colored',
+      'devicon-linux-plain colored'
+    ];
+    
+    const deviconIcons = iconList.map(iconClass => ({
+      name: iconClass.split('-')[1], // Extract name from class
+      iconClass,
+      category: 'plain-colored'
+    }));
+    
+    setIcons(deviconIcons);
+    setIsLoading(false);
   }, []);
 
   const copyToClipboard = useCallback((text: string) => {
@@ -113,13 +73,11 @@ const DeviconBrowser: React.FC = () => {
 
   const categories = ['all', 'plain-colored', 'original', 'line', 'wordmark', 'other'];
   
-  const filteredIcons = icons.filter(icon => {
-    const matchesSearch = searchTerm === '' || 
-      icon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      icon.iconClass.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = activeCategory === 'all' || icon.category === activeCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredIcons = icons.filter(icon => 
+    searchTerm === '' || 
+    icon.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    icon.iconClass.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   // Show all icons by default, or filtered results if search or category is active
   const displayIcons = showAllIcons && !searchTerm && activeCategory === 'all' 
