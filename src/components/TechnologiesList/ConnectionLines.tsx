@@ -8,42 +8,15 @@ interface ConnectionLinesProps {
 
 const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRef }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  const leftPanelRef = useRef<HTMLElement | null>(null);
-  const rafId = useRef<number | null>(null);
   
   // Update paths on scroll/resize or when items change
   useEffect(() => {
     if (!svgRef.current) return;
     
-    let lastUpdate = 0;
-    const UPDATE_INTERVAL = 16; // ~60fps
-    
     // Function to update all paths
-    const updateAllPaths = () => {
-      const now = Date.now();
-      if (now - lastUpdate > UPDATE_INTERVAL) {
-        // Force re-render by toggling a class
-        if (svgRef.current) {
-          svgRef.current.classList.toggle('force-update');
-        }
-        lastUpdate = now;
-      }
-    };
-
-    // Throttled update function
-    const throttledUpdate = () => {
-      if (!rafId.current) {
-        rafId.current = requestAnimationFrame(() => {
-          updateAllPaths();
-          rafId.current = null;
-        });
-      }
-    };
-
-    // Force immediate update for scroll events
-    const handleScroll = () => {
-      // Force synchronous update
+    const updateLines = () => {
       if (svgRef.current) {
+        // Force re-render by toggling a class
         svgRef.current.classList.toggle('force-update');
         // Force reflow
         svgRef.current.getBoundingClientRect();
@@ -51,88 +24,32 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
       }
     };
 
-    // Add event listeners
-    const container = containerRef.current;
-    
     // Find the left panel element
-    leftPanelRef.current = document.querySelector('.left');
+    const leftPanel = document.querySelector('.left');
     
-    // Use different approaches for different events
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', throttledUpdate);
+    // Add scroll event to window
+    window.addEventListener('scroll', updateLines, { passive: true });
     
-    // Listen to scroll on the .left panel which contains the technologies list
-    if (leftPanelRef.current) {
-      // Add multiple event types to catch all possible scroll scenarios
-      const scrollEvents = ['scroll', 'wheel', 'touchmove', 'pointermove'];
-      scrollEvents.forEach(event => {
-        leftPanelRef.current?.addEventListener(event, handleScroll, { passive: true });
-      });
-      
-      // Add intersection observer to track when elements come into view
-      const observer = new IntersectionObserver(
-        () => handleScroll(),
-        { root: leftPanelRef.current, threshold: 0.1 }
-      );
-      
-      // Observe all technology items
-      itemRefs.forEach(ref => {
-        if (ref.current) observer.observe(ref.current);
-      });
-      
-      // Initial update with a small delay to ensure DOM is ready
-      const timer = setTimeout(() => {
-        handleScroll();
-      }, 100);
-      
-      // Cleanup function for the observer and timer
-      return () => {
-        clearTimeout(timer);
-        observer.disconnect();
-      };
+    // Add scroll event to left panel if it exists
+    if (leftPanel) {
+      leftPanel.addEventListener('scroll', updateLines, { passive: true });
     }
     
     // Initial update
-    updateAllPaths();
+    updateLines();
     
-    // Set up a more aggressive mutation observer
-    const observer = new MutationObserver(() => {
-      updateAllPaths();
-    });
-    
-    if (container) {
-      observer.observe(container, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        characterData: true,
-        attributeFilter: ['class', 'style']
-      });
-    }
-    
+    // Cleanup function
     return () => {
-      // Clean up
-      if (rafId.current !== null) {
-        cancelAnimationFrame(rafId.current);
-        rafId.current = null;
+      // Remove event listeners
+      window.removeEventListener('scroll', updateLines);
+      
+      // Remove left panel listeners
+      const leftPanel = document.querySelector('.left');
+      if (leftPanel) {
+        leftPanel.removeEventListener('scroll', updateLines);
       }
       
-      // Remove all event listeners
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', throttledUpdate);
-      
-      // Clean up left panel listeners
-      if (leftPanelRef.current) {
-        leftPanelRef.current.removeEventListener('scroll', handleScroll);
-        leftPanelRef.current.removeEventListener('wheel', handleScroll);
-      }
-      
-      // Clean up observer
-      if (containerRef.current) {
-        observer.disconnect();
-      }
-      
-      // Force one final update to clear any pending states
+      // Clear any pending updates
       if (svgRef.current) {
         svgRef.current.classList.remove('force-update');
       }
