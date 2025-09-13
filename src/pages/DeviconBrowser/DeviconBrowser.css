@@ -296,7 +296,18 @@
 }
 
 .icon-item {
-  background: rgba(0, 0, 0, 0.7);
+  background: 
+    linear-gradient(
+      135deg, 
+      rgba(0, 0, 0, 0.9) 0%, 
+      rgba(0, 30, 15, 0.8) 50%, 
+      rgba(0, 60, 30, 0.7) 100%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(0, 255, 157, 0.1) 0%,
+      rgba(0, 0, 0, 0.9) 70%
+    );
   border: 1px solid #00ff9d;
   border-radius: 8px;
   padding: 1.5rem 1rem;
@@ -306,14 +317,28 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 255, 157, 0.1);
 }
 
 .icon-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(0, 255, 157, 0.3);
-  border-color: #00cc7a;
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 25px rgba(0, 255, 157, 0.4);
+  border-color: #00ff9d;
+  background: 
+    linear-gradient(
+      135deg, 
+      rgba(0, 20, 10, 0.9) 0%, 
+      rgba(0, 40, 20, 0.8) 50%, 
+      rgba(0, 80, 40, 0.7) 100%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(0, 255, 157, 0.2) 0%,
+      rgba(0, 10, 5, 0.9) 70%
+    );
 }
 
+/* Icon container with subtle glow */
 .icon-container {
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -322,6 +347,20 @@
   justify-content: center;
   width: 80px;
   height: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Add subtle glow to all icons */
+.icon-container i {
+  filter: drop-shadow(0 0 2px rgba(0, 255, 157, 0.7));
+  transition: all 0.3s ease;
+}
+
+/* Enhance glow on hover */
+.icon-item:hover .icon-container i {
+  filter: drop-shadow(0 0 8px rgba(0, 255, 157, 0.9));
+  transform: scale(1.1);
 }
 
 .icon-name {
