@@ -43,10 +43,21 @@
 
 .techIcon {
   font-size: 1.8rem;
-  margin-right: 1rem;
   color: #00ff9d;
-  min-width: 30px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 100%;
+}
+
+.techIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  width: 30px;
+  height: 30px;
 }
 
 .techName {
@@ -69,6 +80,11 @@
   
   .techIcon {
     font-size: 1.5rem;
+  }
+  
+  .techIconWrapper {
+    width: 25px;
+    height: 25px;
   }
   
   .techName {
