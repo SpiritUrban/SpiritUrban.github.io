@@ -10,12 +10,15 @@ interface Devicon {
 }
 
 const DeviconBrowser: React.FC = () => {
+  // State hooks must be called at the top level
   const [searchTerm, setSearchTerm] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');
   const [showAllIcons, setShowAllIcons] = useState(true);
   const [icons, setIcons] = useState<Devicon[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [testIconClass, setTestIconClass] = useState('devicon-rust-plain colored');
+  const [testResult, setTestResult] = useState<{success: boolean, message: string} | null>(null);
 
   // List of available Devicon icons with their correct classes
   useEffect(() => {
@@ -196,6 +199,8 @@ const DeviconBrowser: React.FC = () => {
     ? icons 
     : filteredIcons;
 
+  // Test panel functions
+
   const formatName = (name: string) => {
     return name
       .split('-')
@@ -212,8 +217,97 @@ const DeviconBrowser: React.FC = () => {
     );
   }
 
+  const testIcon = () => {
+    // Simple test to see if the icon class exists in the stylesheet
+    const styleSheets = document.styleSheets;
+    let found = false;
+    
+    // Check all stylesheets for the icon class
+    for (let i = 0; i < styleSheets.length; i++) {
+      try {
+        const rules = styleSheets[i].cssRules || styleSheets[i].rules;
+        if (rules) {
+          for (let j = 0; j < rules.length; j++) {
+            const rule = rules[j] as CSSStyleRule;
+            if (rule.selectorText && 
+                (rule.selectorText.includes(`.${testIconClass}`) || 
+                 rule.selectorText.includes(`.${testIconClass}::before`))) {
+              found = true;
+              break;
+            }
+          }
+        }
+      } catch (e) {
+        // Skip cross-origin stylesheets
+        continue;
+      }
+      if (found) break;
+    }
+    
+    setTestResult({
+      success: found,
+      message: found 
+        ? '✅ Icon found in stylesheet!' 
+        : '❌ Icon not found. Try a different class.'
+    });
+  };
+
   return (
     <div className="devicon-browser">
+      {/* Test Panel */}
+      <div className="test-panel">
+        <h3>Test Icon Classes</h3>
+        <div className="test-controls">
+          <input
+            type="text"
+            value={testIconClass}
+            onChange={(e) => setTestIconClass(e.target.value)}
+            placeholder="devicon-rust-plain colored"
+            className="test-input"
+          />
+          <button onClick={testIcon} className="test-button">
+            Test Icon
+          </button>
+        </div>
+        {testResult && (
+          <div className={`test-result ${testResult.success ? 'success' : 'error'}`}>
+            {testResult.message}
+            {testResult.success && (
+              <div className="test-icon-preview">
+                <i className={`${testIconClass} test-icon`}></i>
+                <span>{testIconClass}</span>
+              </div>
+            )}
+          </div>
+        )}
+        <div className="test-suggestions">
+          <p>Try these Rust variants:</p>
+          <div className="suggestion-buttons">
+            {[
+              'devicon-rust-plain',
+              'devicon-rust-plain colored',
+              'devicon-rust-original',
+              'devicon-rust-original colored',
+              'devicon-rust-line',
+              'devicon-rust-line colored',
+              'devicon-rust-plain-wordmark',
+              'devicon-rust-original-wordmark'
+            ].map(variant => (
+              <button 
+                key={variant}
+                className="suggestion-button"
+                onClick={() => {
+                  setTestIconClass(variant);
+                  setTimeout(testIcon, 100);
+                }}
+              >
+                {variant}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="browser-header">
         <h1>Devicon Icons Browser</h1>
         <div className="search-container">

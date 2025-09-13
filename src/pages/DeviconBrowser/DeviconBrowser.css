@@ -14,6 +14,122 @@
   background: rgba(19, 96, 42, 0.95);
 }
 
+/* Test Panel Styles */
+.test-panel {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  border: 1px solid #00ff9d;
+}
+
+.test-panel h3 {
+  color: #00ff9d;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.test-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.test-input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #00ff9d;
+  color: #00ff9d;
+  border-radius: 4px;
+  font-family: 'Oxanium', sans-serif;
+}
+
+.test-button {
+  padding: 0.5rem 1.5rem;
+  background: #00ff9d;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.test-button:hover {
+  background: #00cc7a;
+  transform: translateY(-1px);
+}
+
+.test-result {
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.test-result.success {
+  background: rgba(0, 255, 0, 0.1);
+  color: #00ff00;
+  border: 1px solid #00ff00;
+}
+
+.test-result.error {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff5555;
+  border: 1px solid #ff5555;
+}
+
+.test-icon-preview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.test-suggestions {
+  margin-top: 1.5rem;
+}
+
+.test-suggestions p {
+  margin: 0 0 0.5rem 0;
+  color: #00ff9d;
+  font-size: 0.9rem;
+}
+
+.suggestion-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.suggestion-button {
+  padding: 0.3rem 0.8rem;
+  background: rgba(0, 255, 157, 0.1);
+  border: 1px solid #00ff9d;
+  color: #00ff9d;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.suggestion-button:hover {
+  background: rgba(0, 255, 157, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Test icon preview */
+.test-icon {
+  font-size: 2em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Browser Header */
 .browser-header h1 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
