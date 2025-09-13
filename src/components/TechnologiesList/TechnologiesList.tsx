@@ -1,18 +1,38 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { selectUniqueTechnologies } from '../../features/timeline/timelineSelectors';
 import { TechIcons } from '../../utils/techIcons';
+import ConnectionLines from './ConnectionLines';
 import styles from './TechnologiesList.module.css';
 
 const TechnologiesList: React.FC = () => {
   const technologies = useAppSelector(selectUniqueTechnologies);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Initialize refs array
+  if (itemRefs.current.length !== technologies.length) {
+    itemRefs.current = Array(technologies.length).fill(null);
+  }
+
+  // Create a stable array of refs for ConnectionLines
+  const stableRefs = technologies.map((_, i) => ({
+    current: itemRefs.current[i]
+  }));
 
   return (
     <div className={styles.technologiesContainer}>
       <h3 className={styles.title}>Technologies</h3>
       <div className={styles.technologiesList}>
         {technologies.map((tech, index) => (
-          <div key={index} className={styles.techItem}>
+          <div 
+            key={tech} 
+            ref={el => {
+              if (el) {
+                itemRefs.current[index] = el;
+              }
+            }}
+            className={styles.techItem}
+          >
             <div className={styles.techIconWrapper}>
               <TechIcons techs={[tech]} iconClassName={styles.techIcon} />
             </div>
@@ -20,6 +40,7 @@ const TechnologiesList: React.FC = () => {
           </div>
         ))}
       </div>
+      <ConnectionLines itemRefs={stableRefs} />
     </div>
   );
 };

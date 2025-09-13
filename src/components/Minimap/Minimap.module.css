@@ -109,14 +109,14 @@
   transition: top 0.1s ease-out;
   pointer-events: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  clip-path: polygon(
+  /* clip-path: polygon(
     0 15px,
     15px 0,
     100% 0,
     100% 100%,
     15px 100%,
     0 calc(100% - 15px)
-  );
+  ); */
 }
 
 /* Visibility classes */
