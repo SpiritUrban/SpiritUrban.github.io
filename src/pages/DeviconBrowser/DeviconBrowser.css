@@ -6,6 +6,37 @@
   font-family: 'Oxanium', sans-serif;
 }
 
+/* Icon Set Toggle */
+.icon-set-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.toggle-button {
+  padding: 0.5rem 1.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #00ff9d;
+  color: #00ff9d;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.toggle-button:hover {
+  background: rgba(0, 255, 157, 0.1);
+  transform: translateY(-2px);
+}
+
+.toggle-button.active {
+  background: #00ff9d;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.5);
+}
+
 .browser-header {
   margin-bottom: 2rem;
   text-align: center;

@@ -21,6 +21,14 @@ type TechIconProps = {
 export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
   // Map of technology names to their icon components
   const iconMap: { [key: string]: React.ComponentType<IconComponentProps> } = {
+
+    // ...
+    'writing': FaIcons.FaPencilAlt,
+    'mentorship': FaIcons.FaUserGraduate,
+    'mentoring': FaIcons.FaUserGraduate,
+    'ai tools': FaIcons.FaRobot,
+    'web publishing': FaIcons.FaGlobe,
+
     // Core Web
     'react': FaIcons.FaReact,
     'node': FaIcons.FaNode,

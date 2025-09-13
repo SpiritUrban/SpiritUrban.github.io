@@ -1,4 +1,6 @@
-import { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import * as FaIcons from 'react-icons/fa';
+import * as SiIcons from 'react-icons/si';
 import './DeviconBrowser.css';
 
 // Import Devicon CSS directly from CDN in index.html
@@ -20,6 +22,7 @@ const DeviconBrowser: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [testIconClass, setTestIconClass] = useState('devicon-rust-plain colored');
   const [testResult, setTestResult] = useState<{success: boolean, message: string} | null>(null);
+  const [useReactIcons, setUseReactIcons] = useState(false);
 
   // List of available Devicon icons with their correct classes
   useEffect(() => {
@@ -276,8 +279,28 @@ const DeviconBrowser: React.FC = () => {
     });
   };
 
+  // Toggle between icon sets
+  const toggleIconSet = () => {
+    setUseReactIcons(!useReactIcons);
+  };
+
   return (
     <div className="devicon-browser">
+      <div className="icon-set-toggle">
+        <button 
+          onClick={toggleIconSet}
+          className={`toggle-button ${!useReactIcons ? 'active' : ''}`}
+        >
+          Devicon Icons
+        </button>
+        <button 
+          onClick={toggleIconSet}
+          className={`toggle-button ${useReactIcons ? 'active' : ''}`}
+        >
+          React Icons
+        </button>
+      </div>
+      
       {/* Test Panel */}
       <div className="test-panel">
         <h3>Test Icon Classes</h3>
@@ -405,7 +428,41 @@ const DeviconBrowser: React.FC = () => {
         )}
       </div>
       <div className="icons-grid">
-        {displayIcons.length > 0 ? (
+        {useReactIcons ? (
+          // Render React Icons
+          Object.entries({
+            // Core Web
+            'React': <FaIcons.FaReact />,
+            'Node.js': <FaIcons.FaNode />,
+            'JavaScript': <FaIcons.FaJs />,
+            'TypeScript': <SiIcons.SiTypescript />,
+            'HTML5': <FaIcons.FaHtml5 />,
+            'CSS3': <FaIcons.FaCss3Alt />,
+            'Sass': <FaIcons.FaSass />,
+            'Git': <FaIcons.FaGitAlt />,
+            'GitHub': <FaIcons.FaGithub />,
+            'NPM': <FaIcons.FaNpm />,
+            'Yarn': <FaIcons.FaYarn />,
+            // Add more as needed
+          }).map(([name, Icon]) => (
+            <div key={name} className="icon-item">
+              <div className="icon-container">
+                {React.cloneElement(Icon, { size: '2.5em' })}
+              </div>
+              <div className="icon-name">{name}</div>
+              <div className="icon-actions">
+                <button 
+                  onClick={() => copyToClipboard(name)}
+                  className="copy-button"
+                  title="Copy name"
+                >
+                  {copied === name ? 'Copied!' : 'Copy'}
+                </button>
+              </div>
+            </div>
+          ))
+        ) : displayIcons.length > 0 ? (
+          // Render Devicon Icons
           (() => {
             console.log('Rendering', displayIcons.length, 'icons');
             const seenKeys = new Set();
