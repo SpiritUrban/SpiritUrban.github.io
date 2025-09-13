@@ -14,11 +14,18 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
   useEffect(() => {
     if (!svgRef.current) return;
     
+    let lastUpdate = 0;
+    const UPDATE_INTERVAL = 16; // ~60fps
+    
     // Function to update all paths
     const updateAllPaths = () => {
-      // Force re-render by toggling a class
-      if (svgRef.current) {
-        svgRef.current.classList.toggle('force-update');
+      const now = Date.now();
+      if (now - lastUpdate > UPDATE_INTERVAL) {
+        // Force re-render by toggling a class
+        if (svgRef.current) {
+          svgRef.current.classList.toggle('force-update');
+        }
+        lastUpdate = now;
       }
     };
 
@@ -32,27 +39,38 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
       }
     };
 
+    // More aggressive update function for scroll events
+    const handleScroll = () => {
+      updateAllPaths();
+    };
+
     // Add event listeners
     const container = containerRef.current;
-    window.addEventListener('scroll', throttledUpdate, { passive: true });
+    
+    // Use different approaches for different events
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', throttledUpdate);
     
-    // Listen to scroll on container if it exists
+    // Listen to scroll on container with more direct handling
     if (container) {
-      container.addEventListener('scroll', throttledUpdate, { passive: true });
+      container.addEventListener('scroll', handleScroll, { passive: true });
     }
     
     // Initial update
     updateAllPaths();
     
-    // Set up a mutation observer to watch for changes in the container
-    const observer = new MutationObserver(throttledUpdate);
+    // Set up a more aggressive mutation observer
+    const observer = new MutationObserver(() => {
+      updateAllPaths();
+    });
+    
     if (container) {
       observer.observe(container, {
         childList: true,
         subtree: true,
         attributes: true,
-        characterData: true
+        characterData: true,
+        attributeFilter: ['class', 'style']
       });
     }
     
@@ -62,12 +80,21 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
         cancelAnimationFrame(rafId.current);
         rafId.current = null;
       }
-      window.removeEventListener('scroll', throttledUpdate);
+      
+      // Remove all event listeners
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', throttledUpdate);
       
+      // Clean up container listeners
+      const container = containerRef.current;
       if (container) {
-        container.removeEventListener('scroll', throttledUpdate);
+        container.removeEventListener('scroll', handleScroll);
         observer.disconnect();
+      }
+      
+      // Force one final update to clear any pending states
+      if (svgRef.current) {
+        svgRef.current.classList.remove('force-update');
       }
     };
   }, [containerRef, itemRefs]); // Add itemRefs to dependencies
