@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { selectUniqueTechnologies } from '../../features/timeline/timelineSelectors';
 import { TechIcons } from '../../utils/techIcons';
@@ -19,10 +19,12 @@ const TechnologiesList: React.FC = () => {
     current: itemRefs.current[i]
   }));
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  
   return (
     <>
-      <ConnectionLines itemRefs={stableRefs} />
-      <div className={styles.technologiesContainer}>
+      <ConnectionLines itemRefs={stableRefs} containerRef={containerRef} />
+      <div ref={containerRef} className={styles.technologiesContainer}>
         <h3 className={styles.title}>Technologies</h3>
         <div className={styles.technologiesList}>
           {technologies.map((tech, index) => (

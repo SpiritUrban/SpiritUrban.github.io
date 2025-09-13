@@ -112,6 +112,11 @@
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
   transition: all 0.3s ease;
+  opacity: 0.1;
+}
+
+.connectionLine.visible {
+  opacity: 0.3;
 }
 
 .connectionLineAnimated {
