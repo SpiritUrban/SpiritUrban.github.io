@@ -23,34 +23,39 @@ const Minimap: React.FC<MinimapProps> = ({
   const [scrollPosition, setScrollPosition] = useState(0);
   const [indicatorHeight, setIndicatorHeight] = useState('20%');
 
-  // Capture page thumbnail
+  // Capture entire page thumbnail with optimized visibility handling
   const captureThumbnail = useCallback(async () => {
-    if (!contentRef.current) return;
-    
+    // Use document.documentElement to capture the entire page
+    const targetElement = document.documentElement;
     const minimapElement = minimapRef.current;
-    if (minimapElement) {
-      minimapElement.classList.add(styles['hidden']);
+    if (!minimapElement) return;
+    
+    // Only adjust opacity if not already hidden
+    const wasHidden = minimapElement.classList.contains(styles['hidden']);
+    if (!wasHidden) {
+      minimapElement.style.opacity = '0.5';
     }
     
     try {
-      const dataUrl = await toPng(contentRef.current, {
-        width: contentRef.current.offsetWidth,
-        height: contentRef.current.scrollHeight,
+      const dataUrl = await toPng(targetElement, {
+        width: targetElement.offsetWidth,
+        height: targetElement.scrollHeight,
         skipFonts: true,
-        pixelRatio: 1,
+        pixelRatio: 0.5, // Lower resolution for better performance
         cacheBust: true,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        quality: 0.7, // Slightly lower quality for better performance
+        skipAutoScale: true
       });
       
-      setThumbnail(dataUrl);
+      // Only update if the data URL is different to prevent unnecessary re-renders
+      setThumbnail(prev => prev === dataUrl ? prev : dataUrl);
     } catch (error) {
       console.error('Error capturing thumbnail:', error);
-      setThumbnail('');
+      // Keep the existing thumbnail on error
     } finally {
-      if (minimapElement) {
-        setTimeout(() => {
-          minimapElement.classList.remove(styles['hidden']);
-        }, 100);
+      if (!wasHidden) {
+        minimapElement.style.opacity = '1';
       }
     }
   }, [contentRef]);
@@ -104,19 +109,57 @@ const Minimap: React.FC<MinimapProps> = ({
     setScrollPosition(ratio * 100);
   }, [contentRef, viewportRef]);
 
-  // Set up scroll and resize listeners
+  // Set up scroll and resize listeners with optimized screenshot updates
   useEffect(() => {
-    window.addEventListener('scroll', updateScrollPosition, { passive: true });
+    let scrollTimeout: NodeJS.Timeout;
+    let lastScrollY = window.scrollY;
+    let lastCaptureTime = 0;
+    const minCaptureInterval = 2000; // Increased minimum time between captures
+    
+    const handleScroll = () => {
+      // Always update scroll position for smooth indicator movement
+      updateScrollPosition();
+      
+      // Clear any pending screenshot updates
+      clearTimeout(scrollTimeout);
+      
+      // Only update screenshot after scrolling has stopped
+      scrollTimeout = setTimeout(() => {
+        const currentTime = Date.now();
+        const timeSinceLastCapture = currentTime - lastCaptureTime;
+        
+        // Only capture if enough time has passed since last capture
+        if (timeSinceLastCapture > minCaptureInterval) {
+          lastCaptureTime = currentTime;
+          captureThumbnail();
+        }
+      }, 500); // Increased debounce time for smoother experience
+    };
+    
+    // Use requestAnimationFrame to batch scroll events
+    let ticking = false;
+    const handleScrollRAF = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', handleScrollRAF, { passive: true });
     window.addEventListener('resize', updateScrollPosition);
     
     // Initial update
     updateScrollPosition();
     
     return () => {
-      window.removeEventListener('scroll', updateScrollPosition);
+      clearTimeout(scrollTimeout);
+      window.removeEventListener('scroll', handleScrollRAF);
       window.removeEventListener('resize', updateScrollPosition);
     };
-  }, [updateScrollPosition]);
+  }, [updateScrollPosition, captureThumbnail]);
 
   // Handle minimap click/drag with edge detection
   const handleMinimapInteraction = useCallback((e: React.MouseEvent) => {
