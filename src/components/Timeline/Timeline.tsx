@@ -296,11 +296,14 @@ const Timeline: FC = () => {
     <div ref={timelineRef} className={styles.timeline}>
       {reversedExperiences.map((exp, index) => {
         const isExpanded = expandedItems.includes(index);
+        const originalIndex = experiences.length - 1 - index; // Get original index before reverse
         return (
           <div 
             key={index} 
             className={`${styles.timelineItem} ${visibleIndices.includes(index) ? styles.visible : ''} ${isExpanded ? styles.expanded : ''}`}
             onClick={() => toggleExpand(index)}
+            data-card-index={originalIndex}
+            data-card-technologies={exp.technologies}
           >
             <div className={styles.timelineDot}></div>
             <div className={styles.timelineContent}>

@@ -36,7 +36,7 @@ const TechnologiesList: React.FC = () => {
                 }
               }}
               className={styles.techItem}
-              data-tech={tech}
+              data-tech-name={tech}
             >
               <div className={styles.techIconWrapper}>
                 <TechIcons techs={[tech]} iconClassName={styles.techIcon} />

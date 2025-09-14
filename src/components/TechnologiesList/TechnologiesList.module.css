@@ -108,15 +108,28 @@
 .connectionLine {
   fill: none;
   stroke: rgba(0, 255, 157, 0.3);
-  stroke-width: 1;
+  stroke-width: 1.5px;
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
   transition: all 0.3s ease;
-  opacity: 0.1;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .connectionLine.visible {
-  opacity: 0.3;
+  opacity: 0.4;
+  filter: drop-shadow(0 0 2px rgba(0, 255, 157, 0.5));
+}
+
+.connectionLineAnimated {
+  stroke-dasharray: 5, 5;
+  animation: dash 20s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
 }
 
 .connectionLineAnimated {

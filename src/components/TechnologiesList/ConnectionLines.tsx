@@ -1,5 +1,12 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
+import { useAppSelector } from '../../app/hooks';
+import { selectVisibleItems } from '../../features/timeline/timelineSelectors';
 import styles from './TechnologiesList.module.css';
+
+interface TimelineItem {
+  index: number;
+  technologies: Array<{ name: string }>;
+}
 
 interface ConnectionLinesProps {
   itemRefs: Array<{ current: HTMLDivElement | null }>;
@@ -193,51 +200,124 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
     };
   }, [itemRefs, updateLines, timelineRef]);
 
-  // Function to calculate the path for the curve
-  const getPath = useCallback((startX: number, startY: number): string => {
-    const centerX = globalThis.window.innerWidth / 2;
-    const centerY = globalThis.window.innerHeight / 2;
-    
-    const cpX = startX + (centerX - startX) * 0.33;
-    const cpY = startY;
-    const cp2X = cpX + (centerX - cpX) * 0.5;
-    const cp2Y = centerY;
-    
-    return `M ${startX} ${startY} C ${cpX} ${cpY}, ${cp2X} ${cp2Y}, ${centerX} ${centerY}`;
-  }, []);
+  const visibleCards = useAppSelector(selectVisibleItems);
 
-  // Get fresh positions for rendering with proper scroll handling
-  const getPositions = useCallback((): Array<{x: number, y: number, visible: boolean}> => {
+  // Define types for card positions
+  interface CardPosition {
+    x: number;
+    y: number;
+    visible: boolean;
+  }
+
+  // Function to get card positions for a specific technology
+  const getCardPositions = useCallback((techName: string): CardPosition[] => {
+    const cards: CardPosition[] = [];
+    
+    // Find all cards that have this technology in their data-card-technologies attribute
+    const cardElements = document.querySelectorAll(`[data-card-technologies*="${techName}"]`);
+    
+    cardElements.forEach(element => {
+      const rect = element.getBoundingClientRect();
+      cards.push({
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+        visible: true
+      });
+    });
+    
+    console.log(`Found ${cards.length} cards for technology: ${techName}`);
+    return cards;
+  }, [visibleCards]);
+
+  // Define types for connection lines
+  interface ConnectionLine {
+    id: string;
+    startX: number;
+    startY: number;
+    endX: number;
+    endY: number;
+    visible: boolean;
+  }
+
+  // Get all connection lines to render
+  const getConnectionLines = useCallback((): ConnectionLine[] => {
     if (!itemRefs.length) return [];
     
-    // Get viewport dimensions with some padding
-    const viewportPadding = 200; // pixels
-    const viewportTop = -viewportPadding;
-    const viewportBottom = window.innerHeight + viewportPadding;
-    const viewportLeft = -viewportPadding;
-    const viewportRight = window.innerWidth + viewportPadding;
+    const lines: ConnectionLine[] = [];
     
-    return itemRefs
-      .filter((ref): ref is { current: HTMLDivElement } => ref.current !== null)
-      .map(ref => {
-        const rect = ref.current.getBoundingClientRect();
-        const x = rect.left + rect.width / 2;
-        const y = rect.top + rect.height / 2;
+    // Debug: Log all technology items
+    console.log('Technology items:', itemRefs.map(ref => ({
+      hasRef: !!ref.current,
+      techName: ref.current?.getAttribute('data-tech-name'),
+      rect: ref.current?.getBoundingClientRect()
+    })));
+    
+    itemRefs.forEach((ref, index) => {
+      if (!ref.current) {
+        console.log(`Skipping ref at index ${index}: no current element`);
+        return;
+      }
+      
+      const techName = ref.current.getAttribute('data-tech-name');
+      if (!techName) {
+        console.log(`Skipping ref at index ${index}: no data-tech-name attribute`);
+        return;
+      }
+      
+      const techRect = ref.current.getBoundingClientRect();
+      const startX = techRect.left + techRect.width / 2;
+      const startY = techRect.top + techRect.height / 2;
+      
+      // Get all cards that use this technology
+      const cards = getCardPositions(techName);
+      
+      cards.forEach((card, cardIndex) => {
+        const lineId = `line-${index}-${cardIndex}-${techName}`;
+        console.log(`Creating line ${lineId} from (${startX},${startY}) to (${card.x},${card.y})`);
         
-        // Check if element is in or near the viewport
-        const isVisible = (
-          y >= viewportTop && 
-          y <= viewportBottom &&
-          x >= viewportLeft &&
-          x <= viewportRight
-        );
-        
-        return { x, y, visible: isVisible };
+        lines.push({
+          id: lineId,
+          startX,
+          startY,
+          endX: card.x,
+          endY: card.y,
+          visible: true
+        });
       });
-  }, [itemRefs]);
-
-  const positions = getPositions();
+    });
+    
+    console.log(`Generated ${lines.length} connection lines`);
+    return lines;
+  }, [itemRefs, getCardPositions]);
   
+  const connectionLines = getConnectionLines();
+  
+  // Force update when window resizes or scrolls
+  useEffect(() => {
+    const handleResize = () => {
+      setForceUpdate(prev => prev + 1);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleResize, { passive: true });
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleResize);
+    };
+  }, []);
+  
+  // Function to create a curved path between two points
+  const createCurvedPath = (startX: number, startY: number, endX: number, endY: number) => {
+    // Calculate control points for the curve
+    const cp1x = startX + (endX - startX) * 0.5;
+    const cp1y = startY;
+    const cp2x = cp1x;
+    const cp2y = endY;
+    
+    return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+  };
+
   return (
     <div className={styles.connectionLinesWrapper}>
       <svg 
@@ -246,19 +326,35 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
         width="100%"
         height="100%"
         preserveAspectRatio="none"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
       >
-        {positions.map((pos, index) => (
-          <path
-            key={`line-${index}`}
-            d={getPath(pos.x, pos.y)}
-            className={`${styles.connectionLine} ${styles.connectionLineAnimated} ${pos.visible ? styles.visible : ''}`}
-            style={{
-              opacity: pos.visible ? 0.7 : 0,  // Increased opacity for brighter lines
-              transition: 'opacity 0.3s ease',
-              filter: 'drop-shadow(0 0 2px rgba(0, 255, 157, 0.5))'  // Subtle glow effect
-            }}
-          />
-        ))}
+        {connectionLines.map((line, index) => {
+          // Skip invalid lines
+          if (isNaN(line.startX) || isNaN(line.startY) || isNaN(line.endX) || isNaN(line.endY)) {
+            console.warn('Skipping invalid line:', line);
+            return null;
+          }
+          
+          const pathData = createCurvedPath(line.startX, line.startY, line.endX, line.endY);
+          
+          return (
+            <path
+              key={line.id || `line-${index}`}
+              d={pathData}
+              fill="none"
+              className={`${styles.connectionLine} ${styles.connectionLineAnimated} ${styles.visible}`}
+              style={{
+                stroke: 'rgba(0, 255, 157, 0.3)'
+              }}
+            />
+          );
+        })}
       </svg>
     </div>
   );
