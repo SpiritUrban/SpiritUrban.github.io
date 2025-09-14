@@ -244,25 +244,24 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
     if (!itemRefs.length) return [];
     
     const lines: ConnectionLine[] = [];
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const maxY = viewportHeight;
     
-    // Debug: Log all technology items
-    console.log('Technology items:', itemRefs.map(ref => ({
-      hasRef: !!ref.current,
-      techName: ref.current?.getAttribute('data-tech-name'),
-      rect: ref.current?.getBoundingClientRect()
-    })));
+    // Function to check if a point is in the viewport
+    const isInViewport = (y: number): boolean => {
+      return y >= 0 && y <= maxY;
+    };
+    
+    // Function to cap Y coordinate to viewport bounds
+    const capY = (y: number): number => {
+      return Math.max(0, Math.min(y, maxY));
+    };
     
     itemRefs.forEach((ref, index) => {
-      if (!ref.current) {
-        console.log(`Skipping ref at index ${index}: no current element`);
-        return;
-      }
+      if (!ref.current) return;
       
       const techName = ref.current.getAttribute('data-tech-name');
-      if (!techName) {
-        console.log(`Skipping ref at index ${index}: no data-tech-name attribute`);
-        return;
-      }
+      if (!techName) return;
       
       const techRect = ref.current.getBoundingClientRect();
       // Start from the right side of the technology item
@@ -274,21 +273,26 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
       const cards = getCardPositions(techName);
       
       cards.forEach((card, cardIndex) => {
-        const lineId = `line-${index}-${cardIndex}-${techName}`;
-        console.log(`Creating line ${lineId} from (${startX},${startY}) to (${card.x},${card.y})`);
-        
-        lines.push({
-          id: lineId,
-          startX,
-          startY,
-          endX: card.x,
-          endY: card.y,
-          visible: true
-        });
+        // Only draw if either point is in the viewport
+        if (isInViewport(startY) || isInViewport(card.y)) {
+          const lineId = `line-${index}-${cardIndex}-${techName}`;
+          
+          // Cap Y coordinates to viewport bounds
+          const cappedStartY = capY(startY);
+          const cappedEndY = capY(card.y);
+          
+          lines.push({
+            id: lineId,
+            startX,
+            startY: cappedStartY,
+            endX: card.x,
+            endY: cappedEndY,
+            visible: true
+          });
+        }
       });
     });
     
-    console.log(`Generated ${lines.length} connection lines`);
     return lines;
   }, [itemRefs, getCardPositions]);
   
