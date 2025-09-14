@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUniqueTechnologies } from '../../features/timeline/timelineSelectors';
 import type { FC } from 'react';
@@ -25,7 +25,46 @@ const Timeline: FC = () => {
   const uniqueTechs = useSelector(selectUniqueTechnologies);
   const timelineRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
+  const hasAutoScrolled = useRef(false);
   
+  // Auto-scroll page on mount to ensure proper rendering
+  useLayoutEffect(() => {
+    if (typeof window === 'undefined' || hasAutoScrolled.current) return;
+
+    const autoScroll = async () => {
+      try {
+        // Wait for the DOM to be fully loaded
+        await new Promise(resolve => {
+          if (document.readyState === 'complete') {
+            resolve(true);
+          } else {
+            window.addEventListener('load', () => resolve(true));
+          }
+        });
+
+        // Additional delay to ensure everything is ready
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Save current scroll position
+        const startScroll = window.scrollY;
+        const scrollAmount = 200; // Increased scroll amount for page scroll
+
+        // Scroll down and back up to trigger rendering
+        window.scrollTo({ top: startScroll + scrollAmount, behavior: 'smooth' });
+
+        // Scroll back after a delay
+        setTimeout(() => {
+          window.scrollTo({ top: startScroll, behavior: 'smooth' });
+          hasAutoScrolled.current = true;
+        }, 800); // Increased delay for page scroll
+      } catch (error) {
+        console.error('Error during auto-scroll:', error);
+      }
+    };
+
+    autoScroll();
+  }, []);
+
   // Log unique technologies when they change
   useEffect(() => {
     console.log('Unique technologies in store:', uniqueTechs);
