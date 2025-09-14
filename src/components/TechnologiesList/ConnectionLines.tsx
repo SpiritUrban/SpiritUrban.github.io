@@ -7,7 +7,7 @@ interface ConnectionLinesProps {
   timelineRef?: React.RefObject<HTMLElement | null>;
 }
 
-const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs }) => {
+const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRef, timelineRef }) => {
   const [_, setForceUpdate] = useState(0);
   const rafId = useRef<number>();
   
