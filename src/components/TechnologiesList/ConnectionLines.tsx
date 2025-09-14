@@ -4,6 +4,7 @@ import styles from './TechnologiesList.module.css';
 interface ConnectionLinesProps {
   itemRefs: Array<{ current: HTMLDivElement | null }>;
   containerRef: React.RefObject<HTMLElement | null>;
+  timelineRef?: React.RefObject<HTMLElement | null>;
 }
 
 const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs }) => {
@@ -25,23 +26,38 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs }) => {
 
   // Set up scroll and resize listeners with proper dependencies
   useEffect((): (() => void) => {
-    // This effect depends on updateLines and itemRefs
     if (itemRefs.length === 0) {
       return () => {}; // Return a no-op cleanup function
     }
 
     const leftPanel = document.querySelector('.left');
+    const timeline = timelineRef?.current;
     
-    // Add event listeners
-    window.addEventListener('scroll', updateLines, { passive: true });
-    window.addEventListener('resize', updateLines);
+    // Throttle the update function to improve performance
+    let lastUpdate = 0;
+    const throttledUpdate = () => {
+      const now = Date.now();
+      if (now - lastUpdate >= 16) { // ~60fps
+        lastUpdate = now;
+        updateLines();
+      }
+    };
+    
+    // Add event listeners with passive: true for better performance
+    const options = { passive: true } as AddEventListenerOptions;
+    window.addEventListener('scroll', throttledUpdate, options);
+    window.addEventListener('resize', throttledUpdate, options);
     
     if (leftPanel) {
-      leftPanel.addEventListener('scroll', updateLines, { passive: true });
+      leftPanel.addEventListener('scroll', throttledUpdate, options);
     }
     
-    // Initial update
-    updateLines();
+    if (timeline) {
+      timeline.addEventListener('scroll', throttledUpdate, options);
+    }
+    
+    // Initial update with a small delay to ensure all elements are rendered
+    const initTimer = setTimeout(updateLines, 100);
     
     // Cleanup function
     return () => {
@@ -49,14 +65,21 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs }) => {
         cancelAnimationFrame(rafId.current);
       }
       
+      clearTimeout(initTimer);
+      
       // Remove event listeners
-      window.removeEventListener('scroll', updateLines);
+      window.removeEventListener('scroll', throttledUpdate);
+      window.removeEventListener('resize', throttledUpdate);
       
       if (leftPanel) {
-        leftPanel.removeEventListener('scroll', updateLines);
+        leftPanel.removeEventListener('scroll', throttledUpdate);
+      }
+      
+      if (timeline) {
+        timeline.removeEventListener('scroll', throttledUpdate);
       }
     };
-  }, [itemRefs, updateLines]); // Add dependencies to the effect
+  }, [itemRefs, updateLines, timelineRef]);
 
   // Function to calculate the path for the curve
   const getPath = useCallback((startX: number, startY: number): string => {
@@ -71,16 +94,33 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs }) => {
     return `M ${startX} ${startY} C ${cpX} ${cpY}, ${cp2X} ${cp2Y}, ${centerX} ${centerY}`;
   }, []);
 
-  // Get fresh positions for rendering
-  const getPositions = useCallback((): Array<{x: number, y: number}> => {
+  // Get fresh positions for rendering with proper scroll handling
+  const getPositions = useCallback((): Array<{x: number, y: number, visible: boolean}> => {
+    if (!itemRefs.length) return [];
+    
+    // Get viewport dimensions with some padding
+    const viewportPadding = 200; // pixels
+    const viewportTop = -viewportPadding;
+    const viewportBottom = window.innerHeight + viewportPadding;
+    const viewportLeft = -viewportPadding;
+    const viewportRight = window.innerWidth + viewportPadding;
+    
     return itemRefs
       .filter((ref): ref is { current: HTMLDivElement } => ref.current !== null)
       .map(ref => {
         const rect = ref.current.getBoundingClientRect();
-        return {
-          x: rect.left + rect.width / 2,
-          y: rect.top + rect.height / 2
-        };
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        
+        // Check if element is in or near the viewport
+        const isVisible = (
+          y >= viewportTop && 
+          y <= viewportBottom &&
+          x >= viewportLeft &&
+          x <= viewportRight
+        );
+        
+        return { x, y, visible: isVisible };
       });
   }, [itemRefs]);
 
@@ -92,24 +132,19 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs }) => {
         className={`${styles.connectionSvg} ${styles.connectionSvgFixed}`}
         width="100%"
         height="100%"
+        preserveAspectRatio="none"
       >
-        {positions.map((pos, index) => {
-          const { x: startX, y: startY } = pos;
-          const isVisible = (
-            startY >= 0 && 
-            startY <= window.innerHeight && 
-            startX >= 0 && 
-            startX <= window.innerWidth
-          );
-          
-          return (
-            <path
-              key={`line-${index}`}
-              d={getPath(startX, startY)}
-              className={`${styles.connectionLine} ${styles.connectionLineAnimated} ${isVisible ? styles.visible : ''}`}
-            />
-          );
-        })}
+        {positions.map((pos, index) => (
+          <path
+            key={`line-${index}`}
+            d={getPath(pos.x, pos.y)}
+            className={`${styles.connectionLine} ${styles.connectionLineAnimated} ${pos.visible ? styles.visible : ''}`}
+            style={{
+              opacity: pos.visible ? 0.3 : 0,
+              transition: 'opacity 0.3s ease'
+            }}
+          />
+        ))}
       </svg>
     </div>
   );
