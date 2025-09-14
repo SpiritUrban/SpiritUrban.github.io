@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { selectUniqueTechnologies } from '../../features/timeline/timelineSelectors';
 import { TechIcons } from '../../utils/techIcons';
@@ -8,6 +8,12 @@ import styles from './TechnologiesList.module.css';
 const TechnologiesList: React.FC = () => {
   const technologies = useAppSelector(selectUniqueTechnologies);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [hoveredTech, setHoveredTech] = useState<string | null>(null);
+  
+  // Debug hover state changes
+  useEffect(() => {
+    console.log('Hovered tech changed:', hoveredTech);
+  }, [hoveredTech]);
 
   // Initialize refs array
   if (itemRefs.current.length !== technologies.length) {
@@ -23,7 +29,12 @@ const TechnologiesList: React.FC = () => {
   
   return (
     <>
-      <ConnectionLines itemRefs={stableRefs} containerRef={containerRef} />
+      <ConnectionLines 
+        itemRefs={stableRefs} 
+        containerRef={containerRef} 
+        hoveredTech={hoveredTech}
+        key={hoveredTech} // Force re-render when hover changes
+      />
       <div ref={containerRef} className={styles.technologiesContainer}>
         <h3 className={styles.title}>Technologies</h3>
         <div className={styles.technologiesList}>
@@ -35,8 +46,10 @@ const TechnologiesList: React.FC = () => {
                   itemRefs.current[index] = el;
                 }
               }}
-              className={styles.techItem}
+              className={`${styles.techItem} ${hoveredTech === tech ? styles.techItemHovered : ''}`}
               data-tech-name={tech}
+              onMouseEnter={() => setHoveredTech(tech)}
+              onMouseLeave={() => setHoveredTech(null)}
             >
               <div className={styles.techIconWrapper}>
                 <TechIcons techs={[tech]} iconClassName={styles.techIcon} />

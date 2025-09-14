@@ -38,10 +38,33 @@
   border-left: 3px solid #00ff9d;
 }
 
-.techItem:hover {
+.techItem {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease, z-index 0s;
+}
+
+.techItem:hover,
+.techItem.techItemHovered {
   transform: translateX(5px);
-  background: rgba(0, 255, 157, 0.1);
-  box-shadow: 0 0 15px rgba(0, 255, 157, 0.2);
+  background: rgba(0, 255, 157, 0.2);
+  box-shadow: 0 0 25px rgba(0, 255, 157, 0.5);
+  z-index: 10;
+  border-left-color: #00ff9d;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.techItem:hover .techIcon,
+.techItem.techItemHovered .techIcon {
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 10px rgba(0, 255, 157, 1));
+  transition: all 0.2s ease-out;
+}
+
+.techItem:hover .techName,
+.techItem.techItemHovered .techName {
+  color: #00ff9d;
+  text-shadow: 0 0 8px rgba(0, 255, 157, 0.6);
 }
 
 .techIcon {
@@ -105,20 +128,55 @@
   overflow: visible !important;
 }
 
+/* Base connection line style */
 .connectionLine {
   fill: none;
-  stroke: rgba(0, 255, 157, 0.3);
-  stroke-width: 1.5px;
-  stroke-linecap: round;
-  vector-effect: non-scaling-stroke;
-  transition: all 0.3s ease;
-  opacity: 0;
+  stroke: rgba(0, 255, 157, 0.2);
+  stroke-width: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.connectionLine.visible {
-  opacity: 0.4;
-  filter: drop-shadow(0 0 2px rgba(0, 255, 157, 0.5));
+/* Hovered connection line */
+.connectionLine.highlighted {
+  stroke: #00ff9d !important;
+  stroke-width: 3px !important;
+  filter: 
+    drop-shadow(0 0 10px rgba(0, 255, 157, 0.9)) 
+    drop-shadow(0 0 5px rgba(0, 255, 157, 0.7)) !important;
+  opacity: 1 !important;
+  transition: 
+    stroke 0.15s ease-out,
+    stroke-width 0.15s ease-out,
+    filter 0.15s ease-out;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { stroke-width: 3px; }
+  50% { stroke-width: 4px; }
+  100% { stroke-width: 3px; }
+}
+
+/* Ensure the SVG container doesn't block hover events */
+.connectionSvg,
+.connectionSvgFixed {
+  pointer-events: none;
+  overflow: visible !important;
+}
+
+/* Make sure the lines are above other content */
+.connectionLinesWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible !important;
 }
 
 .connectionLineAnimated {
@@ -143,7 +201,7 @@
 
 .connectionLine {
   transition: all 0.3s ease;
-  opacity: 0.3;
+  opacity: 1;
   position: relative;
   z-index: 0;
   pointer-events: none;

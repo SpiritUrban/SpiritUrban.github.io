@@ -3,6 +3,7 @@ import { useAppSelector } from '../../app/hooks';
 import { selectVisibleItems } from '../../features/timeline/timelineSelectors';
 import styles from './TechnologiesList.module.css';
 
+
 interface TimelineItem {
   index: number;
   technologies: Array<{ name: string }>;
@@ -12,9 +13,14 @@ interface ConnectionLinesProps {
   itemRefs: Array<{ current: HTMLDivElement | null }>;
   containerRef: React.RefObject<HTMLElement | null>;
   timelineRef?: React.RefObject<HTMLElement | null>;
+  hoveredTech: string | null;
 }
 
-const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef }) => {
+const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef, hoveredTech }) => {
+  // Debug hover state
+  useEffect(() => {
+    console.log('ConnectionLines - hoveredTech:', hoveredTech);
+  }, [hoveredTech]);
   const [_, setForceUpdate] = useState(0);
   const rafId = useRef<number>();
   const monitorInterval = useRef<NodeJS.Timeout>();
@@ -237,6 +243,7 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
     endX: number;
     endY: number;
     visible: boolean;
+    isHighlighted?: boolean;
   }
 
   // Get all connection lines to render
@@ -257,6 +264,11 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
       return Math.max(0, Math.min(y, maxY));
     };
     
+    // Check if we should highlight lines for the current hovered tech
+    const shouldHighlight = (techName: string): boolean => {
+      return hoveredTech === techName;
+    };
+    
     itemRefs.forEach((ref, index) => {
       if (!ref.current) return;
       
@@ -271,6 +283,7 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
       
       // Get all cards that use this technology
       const cards = getCardPositions(techName);
+      const isHighlighted = shouldHighlight(techName);
       
       cards.forEach((card, cardIndex) => {
         // Only draw if either point is in the viewport
@@ -287,16 +300,23 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
             startY: cappedStartY,
             endX: card.x,
             endY: cappedEndY,
-            visible: true
+            visible: true,
+            isHighlighted
           });
         }
       });
     });
     
     return lines;
-  }, [itemRefs, getCardPositions]);
+  }, [itemRefs, getCardPositions, hoveredTech]);
   
   const connectionLines = getConnectionLines();
+  
+  // Debug connection lines
+  useEffect(() => {
+    console.log('Connection lines updated:', connectionLines.length);
+    console.log('Highlighted lines:', connectionLines.filter(line => line.isHighlighted).length);
+  }, [connectionLines]);
   
   // Force update when window resizes or scrolls
   useEffect(() => {
@@ -356,10 +376,7 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
               key={line.id || `line-${index}`}
               d={pathData}
               fill="none"
-              className={`${styles.connectionLine} ${styles.connectionLineAnimated} ${styles.visible}`}
-              style={{
-                stroke: 'rgba(0, 255, 157, 0.3)'
-              }}
+              className={`${styles.connectionLine} ${styles.connectionLineAnimated} ${styles.visible} ${line.isHighlighted ? styles.highlighted : ''}`}
             />
           );
         })}
