@@ -140,8 +140,9 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, containerRe
             d={getPath(pos.x, pos.y)}
             className={`${styles.connectionLine} ${styles.connectionLineAnimated} ${pos.visible ? styles.visible : ''}`}
             style={{
-              opacity: pos.visible ? 0.3 : 0,
-              transition: 'opacity 0.3s ease'
+              opacity: pos.visible ? 0.7 : 0,  // Increased opacity for brighter lines
+              transition: 'opacity 0.3s ease',
+              filter: 'drop-shadow(0 0 2px rgba(0, 255, 157, 0.5))'  // Subtle glow effect
             }}
           />
         ))}
