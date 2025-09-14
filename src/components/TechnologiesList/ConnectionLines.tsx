@@ -265,7 +265,9 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
       }
       
       const techRect = ref.current.getBoundingClientRect();
-      const startX = techRect.left + techRect.width / 2;
+      // Start from the right side of the technology item
+      const startX = techRect.right;
+      // Keep the vertical center
       const startY = techRect.top + techRect.height / 2;
       
       // Get all cards that use this technology
@@ -310,9 +312,11 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
   // Function to create a curved path between two points
   const createCurvedPath = (startX: number, startY: number, endX: number, endY: number) => {
     // Calculate control points for the curve
-    const cp1x = startX + (endX - startX) * 0.5;
+    // First control point is slightly to the right of the start
+    const cp1x = startX + 50; // 50px to the right of the start
     const cp1y = startY;
-    const cp2x = cp1x;
+    // Second control point is above or below the end point
+    const cp2x = endX - 50; // 50px to the left of the end
     const cp2y = endY;
     
     return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
