@@ -5,6 +5,8 @@ import Cart1 from '../../components/Cart-1/Cart1';
 import Timeline from '../../components/Timeline/Timeline';
 import Minimap from '../../components/Minimap/Minimap';
 import TechnologiesList from '../../components/TechnologiesList/TechnologiesList';
+import TechnologiesProgress from '../../components/TechnologiesProgress/TechnologiesProgress';
+import './Home.css';
 
 const Home: FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -56,12 +58,15 @@ const Home: FC = () => {
         />
       </div>
       <div className="right">
-        <Link to="/dev/icons" className="dev-link">
-          Icons Browser
-        </Link>
-        <Link to="/dev/devicons" className="dev-link">
-          Devicons Browser
-        </Link>
+        <TechnologiesProgress />
+        <div className="right-links">
+          <Link to="/dev/icons" className="dev-link">
+            Icons Browser
+          </Link>
+          <Link to="/dev/devicons" className="dev-link">
+            Devicons Browser
+          </Link>
+        </div>
       </div>
     </div>
   );
