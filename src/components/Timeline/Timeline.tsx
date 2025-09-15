@@ -1,10 +1,9 @@
-import { useEffect, useRef, useCallback, useState, useLayoutEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUniqueTechnologies } from '../../features/timeline/timelineSelectors';
-import type { FC } from 'react';
+import React, { useEffect, useRef, useLayoutEffect, useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { setVisibleItems } from '../../features/timeline/timelineSlice';
+import type { FC, JSX } from 'react';
 import styles from './Timeline.module.css';
 import workExperience from '../../assets/data/work-experience.json';
-import { setVisibleItems } from '../../features/timeline/timelineSlice';
 import { TechIcons } from '../../utils/techIcons';
 
 interface WorkExperience {
@@ -19,10 +18,9 @@ interface WorkExperience {
   aboutProduct: string;
 }
 
-const Timeline: FC = () => {
+const Timeline: FC = (): JSX.Element => {
   const experiences = workExperience as WorkExperience[];
   const dispatch = useDispatch();
-  const uniqueTechs = useSelector(selectUniqueTechnologies);
   const timelineRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
   const hasAutoScrolled = useRef(false);
@@ -65,11 +63,15 @@ const Timeline: FC = () => {
     autoScroll();
   }, []);
 
-  // Log unique technologies when they change
-  useEffect(() => {
-    console.log('Unique technologies in store:', uniqueTechs);
-  }, [uniqueTechs]);
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
+  
+  const toggleExpand = useCallback((index: number) => {
+    setExpandedItems(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index) 
+        : [...prev, index]
+    );
+  }, []);
 
   // Функция для получения координат элемента
   const getElementPosition = (element: Element) => {
@@ -203,27 +205,14 @@ const Timeline: FC = () => {
     }).filter((item): item is VisibleItem => item !== null);
     
     dispatch(setVisibleItems(visibleItems));
-    
-    // Debug logging
-    if (process.env.NODE_ENV === 'development' && visibleItems.length > 0) {
-      console.log('Visible timeline items updated:', {
-        timestamp: new Date().toISOString(),
-        count: visibleItems.length,
-        items: visibleItems.map(item => ({
-          index: item.index,
-          title: item.title,
-          year: item.year,
-          visibility: item.visibility,
-          technologies: item.technologies.map(t => t.name)
-        }))
-      });
-    }
   }, [dispatch]);
 
-  // Эффект для обновления видимых элементов при монтировании и скролле
+  // Track visible items with IntersectionObserver
+  const [visibleIndices, setVisibleIndices] = useState<number[]>([]);
+
+  // Effect for updating visible items on mount and scroll
   useEffect(() => {
     if (isFirstRender.current) {
-      console.log('Timeline mounted');
       isFirstRender.current = false;
     }
 
@@ -252,17 +241,6 @@ const Timeline: FC = () => {
       window.removeEventListener('resize', updateVisibleItems);
     };
   }, [updateVisibleItems]);
-
-  const toggleExpand = useCallback((index: number) => {
-    setExpandedItems((prev: number[]) => 
-      prev.includes(index)
-        ? prev.filter((i: number) => i !== index)
-        : [...prev, index]
-    );
-  }, []);
-
-  // Track visible items with IntersectionObserver
-  const [visibleIndices, setVisibleIndices] = useState<number[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

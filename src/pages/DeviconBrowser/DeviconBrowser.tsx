@@ -235,11 +235,9 @@ const DeviconBrowser: React.FC = () => {
         key: iconClass.replace(/ /g, '-')
       }));
     
-    // Log any duplicates found
+    // Handle any duplicates
     if (duplicates.length > 0) {
-      console.group('Duplicate Icons Removed');
-      duplicates.forEach(dup => console.warn(dup));
-      console.groupEnd();
+      // Silently handle duplicates without logging
     }
     
     setIcons(deviconIcons);
@@ -267,8 +265,8 @@ const DeviconBrowser: React.FC = () => {
     testIcon.style.left = '-9999px';
     document.body.appendChild(testIcon);
     
-    const isLoaded = window.getComputedStyle(testIcon, '::before').content !== 'normal';
-    console.log('Devicon CSS loaded:', isLoaded);
+    // Test if Devicon CSS is loaded
+    window.getComputedStyle(testIcon, '::before').content;
     
     // Clean up
     setTimeout(() => document.body.removeChild(testIcon), 100);
@@ -522,12 +520,9 @@ const DeviconBrowser: React.FC = () => {
         ) : displayIcons.length > 0 ? (
           // Render Devicon Icons
           (() => {
-            console.log('Rendering', displayIcons.length, 'icons');
             const seenKeys = new Set();
             return displayIcons.map((icon) => {
-              if (seenKeys.has(icon.key)) {
-                console.error(`❌ Duplicate key in render: ${icon.key} (${icon.iconClass})`);
-              } else {
+              if (!seenKeys.has(icon.key)) {
                 seenKeys.add(icon.key);
               }
               return (

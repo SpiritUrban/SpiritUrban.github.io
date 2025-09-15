@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { selectUniqueTechnologies } from '../../features/timeline/timelineSelectors';
 import { TechIcons } from '../../utils/techIcons';
@@ -9,12 +9,6 @@ const TechnologiesList: React.FC = () => {
   const technologies = useAppSelector(selectUniqueTechnologies);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
-  
-  // Debug hover state changes
-  useEffect(() => {
-    console.log('Hovered tech changed:', hoveredTech);
-  }, [hoveredTech]);
-
   // Initialize refs array
   if (itemRefs.current.length !== technologies.length) {
     itemRefs.current = Array(technologies.length).fill(null);

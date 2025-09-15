@@ -13,10 +13,6 @@ interface ConnectionLinesProps {
 }
 
 const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef, hoveredTech }) => {
-  // Debug hover state
-  useEffect(() => {
-    console.log('ConnectionLines - hoveredTech:', hoveredTech);
-  }, [hoveredTech]);
   const [_, setForceUpdate] = useState(0);
   const rafId = useRef<number | null>(null);
   const monitorInterval = useRef<NodeJS.Timeout | null>(null);
@@ -227,7 +223,6 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
       });
     });
     
-    console.log(`Found ${cards.length} cards for technology: ${techName}`);
     return cards;
   }, [visibleCards]);
 
@@ -308,11 +303,6 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
   
   const connectionLines = getConnectionLines();
   
-  // Debug connection lines
-  useEffect(() => {
-    console.log('Connection lines updated:', connectionLines.length);
-    console.log('Highlighted lines:', connectionLines.filter(line => line.isHighlighted).length);
-  }, [connectionLines]);
   
   // Force update when window resizes or scrolls
   useEffect(() => {
@@ -361,7 +351,6 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
         {connectionLines.map((line, index) => {
           // Skip invalid lines
           if (isNaN(line.startX) || isNaN(line.startY) || isNaN(line.endX) || isNaN(line.endY)) {
-            console.warn('Skipping invalid line:', line);
             return null;
           }
           

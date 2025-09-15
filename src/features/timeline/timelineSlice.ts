@@ -62,34 +62,17 @@ const timelineSlice = createSlice({
   initialState,
   reducers: {
     setVisibleItems(state, action: PayloadAction<TimelineItem[]>) {
-      console.log('=== setVisibleItems called ===');
       state.visibleItems = action.payload;
       state.lastUpdated = new Date().toISOString();
       
-      console.log('Processing', action.payload.length, 'timeline items');
-      
       // Extract and deduplicate technologies
-      const allTechnologies = action.payload.flatMap((item, index) => {
-        console.log(`\nItem ${index}:`, item.title);
-        console.log('Raw technologies:', item.technologies);
-        
-        const techNames = item.technologies.map(tech => {
-          console.log('Tech object:', tech);
-          return tech.name || 'Unknown';
-        });
-        
-        console.log('Extracted tech names:', techNames);
-        return techNames;
+      const allTechnologies = action.payload.flatMap((item) => {
+        return item.technologies.map(tech => tech.name || 'Unknown');
       });
       
-      console.log('\nAll technologies before dedupe:', allTechnologies);
-      
-      const uniqueTechs = Array.from(new Set(allTechnologies))
+      state.uniqueTechnologies = Array.from(new Set(allTechnologies))
         .filter(Boolean)
         .sort((a, b) => a.localeCompare(b));
-        
-      console.log('Unique technologies after processing:', uniqueTechs);
-      state.uniqueTechnologies = uniqueTechs;
     },
     clearVisibleItems(state) {
       state.visibleItems = [];
