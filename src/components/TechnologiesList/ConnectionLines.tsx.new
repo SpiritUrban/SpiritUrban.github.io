@@ -24,6 +24,16 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
   const rafId = useRef<number | null>(null);
   const isMounted = useRef(true);
 
+  // Handle cleanup on unmount
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
+    };
+  }, []);
+
   // Generate connection lines between tech items and cards
   const connectionLines = useMemo(() => {
     const lines: ConnectionLine[] = [];
@@ -104,16 +114,6 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleResize);
-      if (rafId.current) {
-        cancelAnimationFrame(rafId.current);
-      }
-    };
-  }, []);
-
-  // Handle cleanup on unmount
-  useEffect(() => {
-    return () => {
-      isMounted.current = false;
       if (rafId.current) {
         cancelAnimationFrame(rafId.current);
       }
