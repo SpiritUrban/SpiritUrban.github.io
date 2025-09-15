@@ -29,10 +29,10 @@ const Minimap: React.FC<MinimapProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  // Guards for capture
-  const capturingRef = useRef(false);
+  // Performance optimization refs
   const lastCaptureAtRef = useRef(0);
-  const lastDataUrlRef = useRef<string>('');
+  const lastDataUrlRef = useRef('');
+  const rafId = useRef<number>();
 
   const idle = (cb: () => void, timeout = 1500) => {
     if (typeof window.requestIdleCallback === 'function') {
@@ -41,42 +41,59 @@ const Minimap: React.FC<MinimapProps> = ({
     return window.setTimeout(cb, timeout);
   };
 
+  // Optimized thumbnail capture with throttling and lower resource usage
   const captureThumbnail = useCallback(async () => {
     const targetElement = document.documentElement;
     const minimapElement = minimapRef.current;
-    if (!minimapElement || capturingRef.current) return;
+    if (!minimapElement || document.visibilityState !== 'visible') return;
 
-    // throttle captures
+    // Throttle captures
     const now = Date.now();
-    const MIN_INTERVAL = 2500; // реже снимаем, чем раньше
-    if (now - lastCaptureAtRef.current < MIN_INTERVAL) return;
-
-    capturingRef.current = true;
+    if (now - lastCaptureAtRef.current < 3000) return; // Max once every 3 seconds
     lastCaptureAtRef.current = now;
 
-    const prevOpacity = minimapElement.style.opacity;
-    minimapElement.style.opacity = '0.5';
-
+    // Only show loading state if not already hidden
+    const wasHidden = minimapElement.classList.contains(styles['hidden']);
+    if (!wasHidden) {
+      minimapElement.style.opacity = '0.5';
+      // Force repaint before capture
+      await new Promise(resolve => requestAnimationFrame(resolve));
+    }
+    
     try {
       const dataUrl = await toPng(targetElement, {
-        width: targetElement.scrollWidth || targetElement.offsetWidth,
-        height: targetElement.scrollHeight,
+        width: Math.min(1920, targetElement.offsetWidth), // Cap max width
+        height: Math.min(8000, targetElement.scrollHeight), // Cap max height
         skipFonts: true,
-        pixelRatio: 0.4,           // ещё чуть ниже ради скорости
-        cacheBust: true,
+        pixelRatio: 0.3, // Further reduced for better performance
+        cacheBust: false, // Disable cache busting for better performance
         backgroundColor: 'transparent',
+        quality: 0.5, // Lower quality for better performance
+        skipAutoScale: true,
+        filter: (node) => {
+          // Skip hidden elements
+          if (node instanceof HTMLElement) {
+            const style = window.getComputedStyle(node);
+            if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') {
+              return false;
+            }
+          }
+          return true;
+        }
       });
-      if (dataUrl && dataUrl !== lastDataUrlRef.current) {
-        lastDataUrlRef.current = dataUrl;
+      
+      // Only update if the data URL is different to prevent unnecessary re-renders
+      if (lastDataUrlRef.current !== dataUrl) {
         setThumbnail(dataUrl);
+        lastDataUrlRef.current = dataUrl;
       }
-    } catch (e) {
-      // тихо игнорим — оставляем старый thumbnail
-      // console.warn('Minimap capture failed', e);
+    } catch (error) {
+      console.warn('Minimap capture failed:', error);
     } finally {
-      minimapElement.style.opacity = prevOpacity;
-      capturingRef.current = false;
-    }
+      if (!wasHidden) {
+        minimapElement.style.opacity = '1';
+      }
+    }  
   }, []);
 
   // content changes -> recapture (idle)
@@ -102,31 +119,34 @@ const Minimap: React.FC<MinimapProps> = ({
     };
   }, [contentRef, captureThumbnail]);
 
-  // indicator update — fast, every scroll
+  // Debounced scroll position update with optimized performance
   const updateScrollPosition = useCallback(() => {
     if (!minimapRef.current) return;
-
-    const doc = document.documentElement;
-    const scrollTop = Math.max(0, window.scrollY || doc.scrollTop || 0);
-    const scrollHeight = Math.max(doc.scrollHeight, document.body.scrollHeight);
-    const viewportHeight = viewportRef?.current?.clientHeight || window.innerHeight;
-
-    const maxScroll = Math.max(1, scrollHeight - viewportHeight);
-    let ratio = scrollTop / maxScroll;
-    if (!Number.isFinite(ratio)) ratio = 0;
-    ratio = Math.min(Math.max(ratio, 0), 1);
-
-    const indicator = minimapRef.current.querySelector(`.${styles['minimap-indicator']}`) as HTMLElement | null;
-    if (indicator) {
-      const indicatorHeightValue = Math.min(100, Math.max(0, (viewportHeight / scrollHeight) * 100));
-      const maxPosition = Math.max(0, 100 - indicatorHeightValue);
-      const position = Math.min(maxPosition, Math.max(0, ratio * maxPosition));
-
-      indicator.style.setProperty('--indicator-top', `${position}%`);
-      indicator.style.setProperty('--indicator-height', `${indicatorHeightValue}%`);
-    }
-
-    setScrollPosition(Math.round(ratio * 100));
+    
+    // Use requestAnimationFrame for smooth updates
+    requestAnimationFrame(() => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = Math.max(
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight
+      );
+      const viewportHeight = viewportRef?.current?.clientHeight || window.innerHeight;
+      const maxScroll = Math.max(1, scrollHeight - viewportHeight);
+      const ratio = maxScroll > 0 ? Math.min(Math.max(scrollTop / maxScroll, 0), 1) : 0;
+      
+      const indicator = minimapRef.current?.querySelector<HTMLElement>(`.${styles['minimap-indicator']}`);
+      if (indicator) {
+        const indicatorHeightValue = Math.min(100, Math.max(0, (viewportHeight / scrollHeight) * 100));
+        const maxPosition = Math.max(0, 100 - indicatorHeightValue);
+        const position = Math.min(maxPosition, Math.max(0, ratio * maxPosition));
+        
+        // Use transform for better performance than top/height
+        indicator.style.transform = `translateY(${position}%)`;
+        indicator.style.height = `${indicatorHeightValue}%`;
+      }
+      
+      setScrollPosition(Math.round(ratio * 100));
+    });
   }, [viewportRef]);
 
   // scroll/resize listeners with debounce recapture
