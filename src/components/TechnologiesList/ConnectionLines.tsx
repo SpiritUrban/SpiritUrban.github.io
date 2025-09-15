@@ -13,6 +13,11 @@ interface ConnectionLinesProps {
 }
 
 const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef, hoveredTech }) => {
+  console.group('ConnectionLines - Initial Render');
+  console.log('Item Refs:', itemRefs);
+  console.log('Timeline Ref:', timelineRef?.current);
+  console.log('Hovered Tech:', hoveredTech);
+  console.groupEnd();
   const [_, setForceUpdate] = useState(0);
   const rafId = useRef<number | null>(null);
   const monitorInterval = useRef<NodeJS.Timeout | null>(null);
@@ -209,21 +214,33 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
 
   // Function to get card positions for a specific technology
   const getCardPositions = useCallback((techName: string): CardPosition[] => {
+    console.group(`getCardPositions for "${techName}"`);
     const cards: CardPosition[] = [];
     
-    // Find all cards that have this technology in their data-card-technologies attribute
-    const cardElements = document.querySelectorAll(`[data-card-technologies*="${techName}"]`);
-    
-    cardElements.forEach(element => {
-      const rect = element.getBoundingClientRect();
-      cards.push({
-        x: rect.left + rect.width / 2,
-        y: rect.top + rect.height / 2,
-        visible: true
+    try {
+      // Find all cards that have this technology in their data-card-technologies attribute
+      const selector = `[data-card-technologies*="${techName}"]`;
+      console.log('Using selector:', selector);
+      
+      const cardElements = document.querySelectorAll(selector);
+      console.log(`Found ${cardElements.length} cards for "${techName}"`);
+      
+      cardElements.forEach((element, index) => {
+        const rect = element.getBoundingClientRect();
+        const cardPos = {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+          visible: true
+        };
+        console.log(`Card ${index + 1} position:`, cardPos, 'Rect:', rect);
+        cards.push(cardPos);
       });
-    });
-    
-    return cards;
+      
+      return cards;
+    } catch (error) {
+      console.error('Error getting card positions:', error);
+      return [];
+    }
   }, [visibleCards]);
 
   // Define types for connection lines
@@ -239,8 +256,15 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
 
   // Get all connection lines to render
   const getConnectionLines = useCallback((): ConnectionLine[] => {
-    if (!itemRefs.length) return [];
+    console.group('getConnectionLines');
     
+    if (!itemRefs.length) {
+      console.log('No item refs available, returning empty lines');
+      console.groupEnd();
+      return [];
+    }
+    
+    console.log(`Processing ${itemRefs.length} tech items`);
     const lines: ConnectionLine[] = [];
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     const maxY = viewportHeight;
@@ -260,32 +284,79 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
       return hoveredTech === techName;
     };
     
+    console.group('Processing itemRefs');
     itemRefs.forEach((ref, index) => {
-      if (!ref.current) return;
+      console.group(`Item ${index}`);
+      
+      if (!ref.current) {
+        console.log('Skipping - ref.current is null');
+        console.groupEnd();
+        return;
+      }
       
       const techName = ref.current.getAttribute('data-tech-name');
-      if (!techName) return;
+      console.log('Tech name from data attribute:', techName);
+      
+      if (!techName) {
+        console.log('Skipping - no tech name found');
+        console.groupEnd();
+        return;
+      }
       
       const techRect = ref.current.getBoundingClientRect();
+      console.log('Tech element rect:', {
+        top: techRect.top,
+        right: techRect.right,
+        bottom: techRect.bottom,
+        left: techRect.left,
+        width: techRect.width,
+        height: techRect.height
+      });
+      
       // Start from the right side of the technology item
       const startX = techRect.right;
       // Keep the vertical center
       const startY = techRect.top + techRect.height / 2;
       
+      console.log('Line start position (x, y):', startX, startY);
+      
       // Get all cards that use this technology
+      console.log('Getting card positions for:', techName);
       const cards = getCardPositions(techName);
       const isHighlighted = shouldHighlight(techName);
       
+      console.log(`Found ${cards.length} cards for ${techName}`, {
+        isHighlighted,
+        cards: cards.map((c, i) => ({
+          index: i,
+          x: c.x,
+          y: c.y,
+          visible: c.visible
+        }))
+      });
+      
       cards.forEach((card, cardIndex) => {
-        // Only draw if either point is in the viewport
-        if (isInViewport(startY) || isInViewport(card.y)) {
+        console.group(`Card ${cardIndex}`);
+        const startInView = isInViewport(startY);
+        const endInView = isInViewport(card.y);
+        const shouldDraw = startInView || endInView;
+        
+        console.log('Checking viewport visibility:', {
+          startY,
+          endY: card.y,
+          startInView,
+          endInView,
+          shouldDraw
+        });
+        
+        if (shouldDraw) {
           const lineId = `line-${index}-${cardIndex}-${techName}`;
           
           // Cap Y coordinates to viewport bounds
           const cappedStartY = capY(startY);
           const cappedEndY = capY(card.y);
           
-          lines.push({
+          const line = {
             id: lineId,
             startX,
             startY: cappedStartY,
@@ -293,17 +364,49 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
             endY: cappedEndY,
             visible: true,
             isHighlighted
-          });
+          };
+          
+          console.log('Adding line:', line);
+          lines.push(line);
+        } else {
+          console.log('Skipping line - both points outside viewport');
         }
+        console.groupEnd();
       });
+      console.groupEnd(); // End card loop group
     });
+    console.groupEnd(); // End itemRefs group
     
+    console.log('Generated Lines:', lines);
+    console.groupEnd();
     return lines;
   }, [itemRefs, getCardPositions, hoveredTech]);
   
-  const connectionLines = getConnectionLines();
+  // Get connection lines with logging
+  const connectionLines = (() => {
+    console.group('Generating Connection Lines');
+    try {
+      const lines = getConnectionLines();
+      console.log('Connection Lines Generated:', lines.length);
+      return lines;
+    } catch (error) {
+      console.error('Error generating connection lines:', error);
+      return [];
+    } finally {
+      console.groupEnd();
+    }
+  })();
   
   
+  // Log when connection lines change
+  useEffect(() => {
+    console.log('Connection Lines Updated:', {
+      count: connectionLines.length,
+      hasHighlighted: connectionLines.some(line => line.isHighlighted),
+      lines: connectionLines
+    });
+  }, [connectionLines]);
+
   // Force update when window resizes or scrolls
   useEffect(() => {
     const handleResize = () => {
