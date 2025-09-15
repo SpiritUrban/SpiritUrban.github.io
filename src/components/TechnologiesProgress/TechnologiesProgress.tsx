@@ -139,18 +139,26 @@ const TechnologiesProgress: React.FC = () => {
       });
     });
 
-    // Convert to array and calculate percentages
-    const totalYears = Array.from(techMap.values()).reduce((sum, val) => sum + val, 0);
-    const techArray: TechnologyUsage[] = Array.from(techMap.entries())
+    // Convert to array and calculate relative percentages
+    const techArray = Array.from(techMap.entries())
       .map(([name, duration]) => ({
         name,
         duration,
-        percentage: Math.round((duration / totalYears) * 1000) / 10, // One decimal place
         color: COLORS[name as keyof typeof COLORS] || COLORS.default,
+      }));
+      
+    // Find the maximum duration to use as 100%
+    const maxDuration = Math.max(...techArray.map(tech => tech.duration));
+    
+    // Calculate relative percentages and sort
+    const techArrayWithPercentages: TechnologyUsage[] = techArray
+      .map(tech => ({
+        ...tech,
+        percentage: Math.round((tech.duration / maxDuration) * 1000) / 10, // One decimal place, relative to max
       }))
       .sort((a, b) => b.percentage - a.percentage); // Sort by percentage descending
 
-    return techArray;
+    return techArrayWithPercentages;
   }, []);
 
   return (
