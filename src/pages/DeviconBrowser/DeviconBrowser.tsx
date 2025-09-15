@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
-  FaReact, FaVuejs, FaAngular, FaJs, FaQuestionCircle, FaNodeJs, FaHtml5, FaCss3Alt,
+  FaReact, FaVuejs, FaAngular, FaJs, FaNode, FaHtml5, FaCss3Alt,
   FaSass, FaLess, FaServer, FaCode, FaMarkdown, FaGitAlt, FaGithub, FaGitlab,
-  FaBitbucket, FaNpm, FaYarn, FaDocker, FaAws, FaPython, FaJava, FaRust, FaGem,
+  FaBitbucket, FaDocker, FaPython, FaJava, FaRust, FaGem,
   FaPhp, FaSwift, FaBootstrap, FaFigma, FaSketch, FaSlack, FaDiscord, FaTrello,
   FaJira, FaTerminal, FaLinux, FaWindows, FaApple, FaAndroid, FaAppStoreIos
 } from 'react-icons/fa';
@@ -12,7 +12,7 @@ import {
   SiRedis, SiFirebase, SiKubernetes, SiGooglecloud, SiHeroku, SiNetlify, SiVercel,
   SiDigitalocean, SiCplusplus, SiKotlin, SiDart, SiScala, SiR, SiTailwindcss,
   SiMaterialdesign, SiChakraui, SiAntdesign, SiBulma, SiStyledcomponents,
-  SiTestinglibrary, SiGithubactions, SiPostman, SiAdobexd, SiConfluence, SiNotion, SiVim
+  SiTestinglibrary, SiGithubactions, SiPostman, SiAdobexd, SiConfluence, SiVim
 } from 'react-icons/si';
 import { DiVisualstudio } from 'react-icons/di';
 import './DeviconBrowser.css';
@@ -24,27 +24,18 @@ interface Devicon {
   key: string;
 }
 
-// Fallback component for missing icons
-const MissingIcon: React.FC<{ name: string }> = ({ name }) => {
-  return (
-    <div className="missing-icon" title={`Missing icon: ${name}`}>
-      <FaQuestionCircle />
-      <span>{name}</span>
-    </div>
-  );
-};
+// Fallback component for missing icons - removed unused component
 
-const REACT_ICONS: Record<string, JSX.Element> = {
+const REACT_ICONS: Record<string, React.ReactNode> = {
   'React': <FaReact />, 'Vue': <FaVuejs />, 'Angular': <FaAngular />, 'JavaScript': <FaJs />,
   'HTML5': <FaHtml5 />, 'CSS3': <FaCss3Alt />, 'Sass': <FaSass />, 'Less': <FaLess />,
   'Webpack': <SiWebpack />, 'Babel': <SiBabel />, 'GraphQL': <SiGraphql />, 'REST': <FaServer />,
   'JSON': <FaCode />, 'Markdown': <FaMarkdown />, 'Git': <FaGitAlt />, 'GitHub': <FaGithub />,
-  'GitLab': <FaGitlab />, 'Bitbucket': <FaBitbucket />, 'Express': <SiExpress />,
-  'NestJS': <SiNestjs />, 'Next.js': <SiNextdotjs />, 'Nuxt.js': <SiNuxtdotjs />,
+  'GitLab': <FaGitlab />, 'Bitbucket': <FaBitbucket />, 'Node.js': <FaNode />, 'Express': <SiExpress />, 'NestJS': <SiNestjs />, 'Next.js': <SiNextdotjs />, 'Nuxt.js': <SiNuxtdotjs />,
   'Gatsby': <SiGatsby />, 'Redux': <SiRedux />, 'MobX': <SiMobx />, 'Jest': <SiJest />,
   'MongoDB': <SiMongodb />, 'PostgreSQL': <SiPostgresql />, 'MySQL': <SiMysql />,
   'SQLite': <SiSqlite />, 'Redis': <SiRedis />, 'Firebase': <SiFirebase />,
-  'Docker': <FaDocker />, 'Kubernetes': <SiKubernetes />, 'AWS': <FaAws />,
+  'Docker': <FaDocker />, 'Kubernetes': <SiKubernetes />, 'AWS': <FaServer />,
   'Google Cloud': <SiGooglecloud />, 'Azure': <FaWindows />, 'Heroku': <SiHeroku />,
   'Netlify': <SiNetlify />, 'Vercel': <SiVercel />, 'DigitalOcean': <SiDigitalocean />,
   'Python': <FaPython />, 'Java': <FaJava />, 'C#': <FaCode />, 'C++': <SiCplusplus />,
@@ -66,7 +57,7 @@ const formatName = (name: string) =>
   name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 
 const DeviconBrowser: React.FC = () => {
-  const [missingIcons, setMissingIcons] = useState<Set<string>>(new Set());
+  const [missingIcons] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('all');

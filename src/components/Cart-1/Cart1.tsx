@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Cart1.module.css';
+import photo from '@/assets/images/photo.jpg';
 
 interface Cart1Props {
     title?: string;
@@ -47,8 +48,8 @@ const Cart1: React.FC<Cart1Props> = ({
                     <div className={styles.shadowWrap}>
                         <div className={styles.imageContainer}>
                             <img
-                                src="/src/assets/photo.jpg"
-                                alt="Project"
+                                src={photo}
+                                alt="Profile"
                                 className={styles.image}
                             />
                         </div>

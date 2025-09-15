@@ -21,7 +21,6 @@ const Minimap: React.FC<MinimapProps> = ({
   const [thumbnail, setThumbnail] = useState<string>('');
   const [isDragging, setIsDragging] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [indicatorHeight, setIndicatorHeight] = useState('20%');
 
   // Capture entire page thumbnail with optimized visibility handling
   const captureThumbnail = useCallback(async () => {
@@ -112,7 +111,7 @@ const Minimap: React.FC<MinimapProps> = ({
   // Set up scroll and resize listeners with optimized screenshot updates
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
-    let lastScrollY = window.scrollY;
+    window.scrollY; // Track last scroll position
     let lastCaptureTime = 0;
     const minCaptureInterval = 2000; // Increased minimum time between captures
     

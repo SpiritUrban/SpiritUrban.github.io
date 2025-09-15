@@ -4,11 +4,7 @@ import { selectVisibleItems } from '../../features/timeline/timelineSelectors';
 import styles from './TechnologiesList.module.css';
 
 
-interface TimelineItem {
-  index: number;
-  technologies: Array<{ name: string }>;
-}
-
+// TimelineItem interface removed as it's not used
 interface ConnectionLinesProps {
   itemRefs: Array<{ current: HTMLDivElement | null }>;
   containerRef: React.RefObject<HTMLElement | null>;
@@ -22,22 +18,22 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
     console.log('ConnectionLines - hoveredTech:', hoveredTech);
   }, [hoveredTech]);
   const [_, setForceUpdate] = useState(0);
-  const rafId = useRef<number>();
-  const monitorInterval = useRef<NodeJS.Timeout>();
+  const rafId = useRef<number | null>(null);
+  const monitorInterval = useRef<NodeJS.Timeout | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const isMounted = useRef(true);
   
   // Memoize the update function to prevent unnecessary re-renders
   const updateLines = useCallback((): void => {
-    const currentRafId = rafId.current;
-    if (currentRafId !== undefined) {
-      cancelAnimationFrame(currentRafId);
+    if (rafId.current !== null) {
+      cancelAnimationFrame(rafId.current);
     }
-    const frameId = requestAnimationFrame((): void => {
-      setForceUpdate(prev => prev + 1);
+    rafId.current = requestAnimationFrame((): void => {
+      if (isMounted.current) {
+        setForceUpdate(prev => prev + 1);
+      }
     });
-    rafId.current = frameId;
-  }, [rafId]); // Include rafId in deps to satisfy TypeScript
+  }, []);
   
 
   // Auto-scroll timeline to ensure proper rendering
@@ -106,7 +102,7 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, timelineRef
   
   // Monitor for missing paths and force redraw if needed
   useEffect(() => {
-    const checkAndFixMissingPaths = (isInitial = false) => {
+    const checkAndFixMissingPaths = (_isInitial = false) => {
       if (!svgRef.current || !isMounted.current) return false;
       
       // Check if there are any path elements
