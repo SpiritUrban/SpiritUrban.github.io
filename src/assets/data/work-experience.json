@@ -118,7 +118,7 @@
 		"years": "2017",
 		"title": "Web-developer",
 		"company": "Support and development - skladovka.ua ",
-		"technologies": "HTML5, CSS(Scss/sass), JavaScript, AngularJS, NodeJS, ExpressJS, PHP, MongoDB, MongooseJS",
+		"technologies": "HTML5, \"CSS(Scss/sass)\", JavaScript, AngularJS, NodeJS, ExpressJS, PHP, MongoDB, MongooseJS",
 		"product": "Storage booking",
 		"aboutProduct": "Storage booking calculator"
 	},
@@ -127,7 +127,7 @@
 		"years": "2017",
 		"title": "Web-developer",
 		"company": "OMNIE",
-		"technologies": "JavaScript, AngularJS, Angular, NodeJS, ExpressJS, Web-design, HTML5, CSS(Less), JADE, MongoDB, MongooseJS, Three.js",
+		"technologies": "JavaScript, AngularJS, Angular, NodeJS, ExpressJS, \"Web-design\", HTML5, \"CSS(Less)\", JADE, MongoDB, MongooseJS, Three.js",
 		"product": "Registration system",
 		"aboutProduct": "Customer registration system for beauty salons"
 	},

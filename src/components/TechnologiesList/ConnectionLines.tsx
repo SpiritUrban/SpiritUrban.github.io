@@ -30,20 +30,31 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
     const buildIndex = () => {
       const idx = new Map<string, Set<Element>>();
       const all = document.querySelectorAll('[data-card-technologies]');
+      
       all.forEach((el) => {
         const raw = el.getAttribute('data-card-technologies') || '';
-        // Поддержка разделителей: запятая/пробел/точка с запятой
+        console.log('Raw technologies:', raw);
+        
+        // Split by comma and trim whitespace
         const tokens = raw
-          .split(/[,\s;]+/)
-          .map((s) => s.trim())
+          .split(',')
+          .map(tech => tech.trim())
           .filter(Boolean);
+          
+        console.log('Processed tokens:', tokens);
 
         tokens.forEach((name) => {
-          const key = name.toLowerCase();
-          if (!idx.has(key)) idx.set(key, new Set());
+          const key = name.toLowerCase().trim();
+          if (!idx.has(key)) {
+            idx.set(key, new Set());
+          }
           idx.get(key)!.add(el);
+          console.log(`Added card for technology: "${key}". Total cards for this tech:`, idx.get(key)?.size);
         });
       });
+      
+      // Log the complete index for debugging
+      console.log('Technology index:', Object.fromEntries(idx));
       cardsIndexRef.current = idx;
     };
 
@@ -60,9 +71,6 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
     const lines: ConnectionLine[] = [];
     if (typeof window === 'undefined') return lines;
 
-    const viewportH = window.innerHeight || document.documentElement.clientHeight;
-    const inViewY = (y: number) => y >= 0 && y <= viewportH;
-
     itemRefs.forEach((ref, index) => {
       const el = ref.current;
       if (!el) return;
@@ -77,9 +85,30 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
       const startX = rect.right;
       const startY = rect.top + rect.height / 2;
 
-      // Берём карточки из подготовленного индекса по точному токену (lowercase)
-      const cards = cardsIndexRef.current.get(techName.toLowerCase());
-      if (!cards || cards.size === 0) return;
+      // Normalize the technology name for matching (case-insensitive, trim, and handle special chars)
+      const normalizeForMatching = (str: string) => 
+        str.toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9]/g, ''); // Remove all non-alphanumeric chars
+      
+      const normalizedTechName = normalizeForMatching(techName);
+      console.log(`Looking up technology: "${techName}" (normalized: "${normalizedTechName}") in index`);
+      
+      // Find all matching technologies (case-insensitive, ignoring special chars)
+      let cards: Set<Element> | undefined;
+      for (const [tech, elements] of cardsIndexRef.current.entries()) {
+        if (normalizeForMatching(tech) === normalizedTechName) {
+          cards = elements;
+          break;
+        }
+      }
+      
+      if (!cards || cards.size === 0) {
+        console.warn(`No cards found for technology: "${techName}" (normalized: "${normalizedTechName}")`);
+        console.log('Available technologies:', Array.from(cardsIndexRef.current.keys()));
+        return;
+      }
+      console.log(`Found ${cards.size} cards for technology: "${normalizedTechName}"`);
 
       let i = 0;
       cards.forEach((cardEl) => {
@@ -87,17 +116,15 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
         const endX = r.left + r.width / 2;
         const endY = r.top + r.height / 2;
 
-        if (inViewY(startY) || inViewY(endY)) {
-          lines.push({
-            id: `line-${index}-${i++}-${techName}`,
-            startX,
-            startY,
-            endX,
-            endY,
-            visible: true,
-            isHighlighted,
-          });
-        }
+        lines.push({
+          id: `line-${index}-${i++}-${techName}`,
+          startX,
+          startY,
+          endX,
+          endY,
+          visible: true,
+          isHighlighted,
+        });
       });
     });
 
