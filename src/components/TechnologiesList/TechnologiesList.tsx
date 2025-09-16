@@ -150,7 +150,7 @@ const TechnologiesList: React.FC = () => {
               </div>
               <span className={styles.techName}>
                 {tech} 
-                <span className={styles.connectionCount}>({techConnections[tech] || 0})</span>
+                <span className={styles.connectionCount}>{techConnections[tech] || 0}</span>
               </span>
             </div>
           ))}
