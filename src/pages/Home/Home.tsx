@@ -47,8 +47,6 @@ const Home: FC = () => {
         <Minimap
           contentRef={minimapContentRef}
           viewportRef={minimapViewportRef}
-          width={120}
-          height={300}
           aria-valuenow={0}
           aria-valuemin={0}
           aria-valuemax={100}
