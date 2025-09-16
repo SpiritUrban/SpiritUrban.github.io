@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useLayoutEffect, useState, useCallback } from 'react';
+import { useEffect, useRef, useLayoutEffect, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { setVisibleItems } from '../../features/timeline/timelineSlice';
 import type { FC, JSX } from 'react';

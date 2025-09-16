@@ -10,18 +10,13 @@ interface MinimapProps {
   className?: string;
 }
 
-declare global {
-  interface Window {
-    requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-    cancelIdleCallback?: (id: number) => void;
-  }
-}
+// Use existing TypeScript DOM types for requestIdleCallback
 
 const Minimap: React.FC<MinimapProps> = ({
   contentRef,
   viewportRef,
-  width = 200,
-  height = 400,
+  width: _unusedWidth = 200,
+  height: _unusedHeight = 400,
   className = ''
 }) => {
   const minimapRef = useRef<HTMLDivElement>(null);
@@ -32,7 +27,6 @@ const Minimap: React.FC<MinimapProps> = ({
   // Performance optimization refs
   const lastCaptureAtRef = useRef(0);
   const lastDataUrlRef = useRef('');
-  const rafId = useRef<number>();
 
   const idle = (cb: () => void, timeout = 1500) => {
     if (typeof window.requestIdleCallback === 'function') {
