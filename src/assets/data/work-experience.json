@@ -97,7 +97,7 @@
 		"company": "?",
 		"companySite": "",
 		"aboutCompany": "Product company",
-		"technologies": "Web-design, WordPress, HTML5(JADE), CSS(Sass), JavaScript, TypeScrip, NodeJS, AngularJS, Angular 2, MongoDB, MongooseJS, WebRTC, Socket.IO ",
+		"technologies": "Web-design, WordPress, HTML5(JADE), CSS(Sass), JavaScript, TypeScrip, NodeJS, AngularJS, Angular, MongoDB, MongooseJS, WebRTC, Socket.IO ",
 		"product": "Web cam service",
 		"productSite": "",
 		"aboutProduct": "Web cam models online"
@@ -109,7 +109,7 @@
 		"company": "Arsum(UA,Danmark)",
 		"aboutCompany": "Arsum is full stack development services provider with a strong focus on product and business consulting.",
 		"companySite": "https://www.arsum.com/",
-		"technologies": "HTML5, CSS(Scss), JavaScript, JQuery, AngularJS, Angular 2,  NodeJS, ExpressJS, MongoDB, MongooseJS",
+		"technologies": "HTML5, CSS(Scss), JavaScript, JQuery, AngularJS, Angular,  NodeJS, ExpressJS, MongoDB, MongooseJS",
 		"product": "Automation of personnel selection",
 		"aboutProduct": "Specialist search service for companies"
 	},
@@ -127,7 +127,7 @@
 		"years": "2017",
 		"title": "Web-developer",
 		"company": "OMNIE",
-		"technologies": "JavaScript, AngularJS, Angular 4, NodeJS, ExpressJS 3, Web-design, HTML5, CSS(Less), JADE, MongoDB, MongooseJS, Three.js",
+		"technologies": "JavaScript, AngularJS, Angular, NodeJS, ExpressJS, Web-design, HTML5, CSS(Less), JADE, MongoDB, MongooseJS, Three.js",
 		"product": "Registration system",
 		"aboutProduct": "Customer registration system for beauty salons"
 	},
@@ -136,7 +136,7 @@
 		"years": "2018",
 		"title": "Web-developer",
 		"company": "uboro.io",
-		"technologies": "JavaScript, AngularJS, Angular 5, NodeJS, ExpressJS 4, MongoDB, MongooseJS",
+		"technologies": "JavaScript, AngularJS, Angular, NodeJS, ExpressJS, MongoDB, MongooseJS",
 		"product": "Uboro Tracker",
 		"aboutProduct": "Uboro Tracker is a mobile application (backend mail microservice)"
 	},
@@ -145,7 +145,7 @@
 		"years": "2018-2019",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "JavaScript, c++, Angular 6-7-8, React, NodeJS, ExpressJS 4, MongoDB, MongooseJS, Passport.js, WebRTC, blockchain, cryptocurrency, ethereum, web3.js, metamask, matter.js, Electron.js, security, optimization, PWA, ssl, CentOS, VPS",
+		"technologies": "JavaScript, c++, Angular, React, NodeJS, ExpressJS, MongoDB, MongooseJS, Passport.js, WebRTC, blockchain, cryptocurrency, ethereum, web3.js, metamask, matter.js, Electron.js, security, optimization, PWA, ssl, CentOS, VPS",
 		"product": "Community site, Teaching",
 		"aboutProduct": "Site with video lessons and my students"
 	},
@@ -163,7 +163,7 @@
 		"years": "2022-2023",
 		"title": "Mentor, Web-developer",
 		"company": "iBanan",
-		"technologies": "JavaScript, NuxtJS,  NodeJS, ExpressJS 4, MongoDB, MongooseJS",
+		"technologies": "JavaScript, NuxtJS,  NodeJS, ExpressJS, MongoDB, MongooseJS",
 		"product": "Online store, Teaching",
 		"aboutProduct": "Selling covers for mobile phones and other accessories."
 	},
@@ -197,7 +197,7 @@
 		"title": "Mentor, Web-developer",
 		"company": "Own",
 		"technologies": "JavaScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js",
-		"product": "Video lessons and exploaring, Teaching",
+		"product": "Video lessons and exploring, Teaching",
 		"companyAdditionalSources": [
 			"https://www.youtube.com/watch?v=JrDoYdbOYxQ&list=PLpemT0gHXC9v9FYs2oOeyRZ0dC6BsWGOO&ab_channel=STRONGEST%21%21%21",
 			"https://www.youtube.com/watch?v=ufAZjYtJB-w&list=PLpemT0gHXC9sJPjQuavc8mvNEU8VDxskW&ab_channel=STRONGEST%21%21%21",
@@ -215,7 +215,7 @@
 		"years": "2024",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "Vue, NuxtJS, Socket.IO, ...",
+		"technologies": "Vue, NuxtJS, Socket.IO",
 		"product": "'MENTOR-JS' project (site and lessons), Teaching",
 		"productSite": "https://mentor-js.vercel.app/",
 		"aboutProduct": "NuxtJS (Vue + SSR) lessons and site with this videos."
@@ -225,8 +225,8 @@
 		"years": "2024",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "Jest, AWS, Three.js, Godot, ... ",
-		"product": "Video lessons and exploaring, Teaching",
+		"technologies": "Jest, AWS, Three.js, Godot",
+		"product": "Video lessons and exploring, Teaching",
 		"companyAdditionalSources": [
 			"https://www.youtube.com/watch?v=qCEiq4P9tf0&list=PLpemT0gHXC9uWsjcaKbsyMC1pbbjuv9at&ab_channel=STRONGEST%21%21%21",
 			"https://www.youtube.com/watch?v=MksvaoirdJI&list=PLpemT0gHXC9tC_8Tdd9B18kXCHftTEy7j&index=2&ab_channel=STRONGEST%21%21%21",
@@ -243,7 +243,7 @@
 		"years": "2024",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "React, RTK, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render, ...",
+		"technologies": "React, RTK, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render",
 		"product": "'JS-MANTRA' community project, Teaching",
 		"productSite": "https://js-mantra.vercel.app/",
 		"aboutProduct": "Resources for web development, trainings, community organization."
@@ -253,8 +253,8 @@
 		"years": "2024",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "AI APIs, Machine Learning, Google AI API Gemini, OpenAI API ChatGPT, ReactFlow, React, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render, ...",
-		"product": "Video lessons and exploaring, Teaching",
+		"technologies": "AI APIs, ReactFlow, React, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render",
+		"product": "Video lessons and exploring, Teaching",
 		"companyAdditionalSources": [
 			"https://www.youtube.com/watch?v=XlcgsRjU0aA&list=PLpemT0gHXC9v0DKgFGdEKnR-Q4B4Dy1W-&ab_channel=STRONGEST%21%21%21",
 			"https://www.youtube.com/watch?v=nRO4OB6HLGE&list=PLpemT0gHXC9sHIAdTw5vqMEZusUoDxTdK&ab_channel=STRONGEST%21%21%21",
@@ -267,7 +267,7 @@
 		"years": "2025",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "JavaScript, NodeJS, GitHub Pages, reader.js, LocalStorage, HTML5/CSS, Markdown",
+		"technologies": "JavaScript, NodeJS, HTML5/CSS",
 		"product": "Books Online — static catalog & reader",
 		"productSite": "https://spiriturban.github.io/books-online/",
 		"aboutProduct": "Онлайн-каталог книг и учебных материалов: минимальный статик на GitHub Pages; сборщик на Node.js; рендер страниц на лету через reader.js; сохранение прогресса (LocalStorage); теги, фильтры, хоткеи; аккуратная типографика; аудит и оптимизация. YouTube анонсы — @strongest8359"
@@ -277,27 +277,27 @@
 		"years": "2025",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "AI APIs, OpenAI API, Google Gemini, JavaScript/TypeScript, ReactFlow, NextJS, GitHub Pages",
+		"technologies": "AI APIs, JavaScript/TypeScript, ReactFlow, NextJS",
 		"product": "Учебник «Новое программирование: ИИ» (course + book)",
 		"productSite": "https://spiriturban.github.io/books-online/books/uchebnik-novoe-programmirovanie-ii/",
 		"aboutProduct": "Серия видео/текстов о работе с ИИ как о новом типе программирования: уровни владения ИИ, контексты, пайплайны, прототипирование, интеграция в веб-проекты. YouTube — @strongest8359"
 	},
 	{
 		"year": "2025",
-		"years": "2025–",
+		"years": "2025",
 		"title": "System Architect, Mentor",
 		"company": "Own",
-		"technologies": "NodeJS, CLI, JSON/YAML, GitHub, Modular Architecture, AI Tooling",
+		"technologies": "NodeJS, AI tools",
 		"product": "NIVORA — modular ecosystem & CLI (n.js)",
 		"productSite": "",
 		"aboutProduct": "Модульная архитектура (core + modules), автономные узлы, генерация артефактов/доков, социальная карта, послед. интеграция ИИ. CLI-команды: init/refresh/scan/clean. Этап 1 — автономные узлы; этап 2 — интеграция."
 	},
 	{
-		"year": "2017",
-		"years": "2017–2025",
+		"year": "2025",
+		"years": "2025",
 		"title": "Author, Mentor",
 		"company": "Own",
-		"technologies": "Writing, Mentorship, AI tools, Web publishing",
+		"technologies": "Writing, Mentorship, AI tools",
 		"product": "Series of books «НАСТАВНИК» (18+ volumes)",
 		"productSite": "https://spiriturban.github.io/books-online/",
 		"aboutProduct": "Автобиографическая и образовательная серия книг (2017–2025). 18 томов фиксируют семилетний путь внутренней трансформации, наставничества и практики в IT. Новые книги продолжают линию: «НАСТАВНИК 11 — Личная Победа», «НАСТАВНИК 12 — Первый Мухомор», «НАСТАВНИК 19 — Уничтожить мерзость и вознести мир»."

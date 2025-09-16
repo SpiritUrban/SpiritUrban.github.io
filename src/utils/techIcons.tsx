@@ -4,7 +4,15 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as SiIcons from 'react-icons/si';
+import { SiNuxtdotjs } from 'react-icons/si';
 import styles from '../components/Timeline/Timeline.module.css';
+
+// Custom Nuxt icon component using react-icons
+const NuxtIcon = ({ className = '' }: { className?: string }) => (
+  <div className={styles.techIconContainer} title="Nuxt.js">
+    <SiNuxtdotjs className={className} />
+  </div>
+);
 
 // Default icon for technologies without a specific match
 const DefaultIcon = ({ className = '' }: { className?: string; title?: string }) => (
@@ -16,6 +24,8 @@ type IconComponentProps = {
   title?: string;
 };
 
+type IconComponent = React.ComponentType<IconComponentProps>;
+
 type TechIconProps = {
   name: string;
   className?: string;
@@ -23,13 +33,14 @@ type TechIconProps = {
 
 export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
   // Map of technology names to their icon components
-  const iconMap: { [key: string]: React.ComponentType<IconComponentProps> } = {
+  const iconMap: { [key: string]: IconComponent } = {
 
     // ...
     'writing': FaIcons.FaPencilAlt,
     'mentorship': FaIcons.FaUserGraduate,
     'mentoring': FaIcons.FaUserGraduate,
     'ai tools': FaIcons.FaRobot,
+    'ai apis': FaIcons.FaRobot,
     'web publishing': FaIcons.FaGlobe,
 
     // Core Web
@@ -52,6 +63,9 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
     
     // Frameworks & Libraries
     'next': SiIcons.SiNextdotjs,
+    'nuxt': NuxtIcon,
+    'nuxt.js': NuxtIcon,
+    'nuxtjs': NuxtIcon,
     'next.js': SiIcons.SiNextdotjs,
     'nextjs': SiIcons.SiNextdotjs,
     'redux': SiIcons.SiRedux,
@@ -147,10 +161,10 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
     );
 
     if (entry && entry[1]) {
-      const [_, IconComponent] = entry;
+      const [_, Icon] = entry;
       return (
         <div className={styles.techIconContainer} title={name}>
-          <IconComponent className={`${styles.techIcon} ${className}`} />
+          <Icon className={`${styles.techIcon} ${className}`} />
         </div>
       );
     }

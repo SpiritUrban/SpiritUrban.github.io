@@ -6,6 +6,29 @@
   color: #e0e0e0;
 }
 
+/* Devicon Nuxt.js styles */
+.nuxtIcon {
+  font-size: 1.5em;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Nuxt.js icon styles */
+.devicon-nuxtjs-plain.colored {
+  font-size: 1.5em;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Ensure the icon container aligns properly */
+.techIconContainer > .devicon-nuxtjs-plain {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+
 .timeline::after {
   content: '';
   position: absolute;
@@ -17,7 +40,6 @@
   margin-left: -2px;
   border-radius: 2px;
 }
-
 .timelineItem {
   padding: 10px 40px;
   position: relative;
