@@ -4,24 +4,17 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as SiIcons from 'react-icons/si';
-import { SiNuxtdotjs } from 'react-icons/si';
-import styles from '../components/Timeline/Timeline.module.css';
-
-// Custom Nuxt icon component using react-icons
-const NuxtIcon = ({ className = '' }: { className?: string }) => (
-  <div className={styles.techIconContainer} title="Nuxt.js">
-    <SiNuxtdotjs className={className} />
-  </div>
-);
+import styles from '../components/TechIcons/TechIcons.module.css';
 
 // Default icon for technologies without a specific match
 const DefaultIcon = ({ className = '' }: { className?: string; title?: string }) => (
-  <div className={`${styles.techIcon} ${className}`}>💻</div>
+  <div className={`${styles.defaultIcon} ${className}`}>💻</div>
 );
 
 type IconComponentProps = {
   className?: string;
   title?: string;
+  style?: React.CSSProperties;
 };
 
 type IconComponent = React.ComponentType<IconComponentProps>;
@@ -42,6 +35,11 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
     'ai tools': FaIcons.FaRobot,
     'ai apis': FaIcons.FaRobot,
     'web publishing': FaIcons.FaGlobe,
+    'vercel': SiIcons.SiVercel,
+    'render': SiIcons.SiRender,
+    'netlify': SiIcons.SiNetlify,
+    'rtk': SiIcons.SiRedux,
+
 
     // Core Web
     'react': FaIcons.FaReact,
@@ -63,14 +61,16 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
     
     // Frameworks & Libraries
     'next': SiIcons.SiNextdotjs,
-    'nuxt': NuxtIcon,
-    'nuxt.js': NuxtIcon,
-    'nuxtjs': NuxtIcon,
+    'nuxt': SiIcons.SiNuxtdotjs,
+    'nuxt.js':  SiIcons.SiNuxtdotjs,
+    'nuxtjs':  SiIcons.SiNuxtdotjs,
     'next.js': SiIcons.SiNextdotjs,
     'nextjs': SiIcons.SiNextdotjs,
     'redux': SiIcons.SiRedux,
     'graphql': SiIcons.SiGraphql,
     'express': SiIcons.SiExpress,
+    'expressjs': SiIcons.SiExpress,
+    'express.js': SiIcons.SiExpress,
     'nest': SiIcons.SiNestjs,
     'nestjs': SiIcons.SiNestjs,
     'vue': FaIcons.FaVuejs,
@@ -163,23 +163,23 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
     if (entry && entry[1]) {
       const [_, Icon] = entry;
       return (
-        <div className={styles.techIconContainer} title={name}>
-          <Icon className={`${styles.techIcon} ${className}`} />
+        <div className={styles.iconContainer} title={name}>
+          <Icon className={`${styles.icon} ${className}`} />
         </div>
       );
     }
     
     // Fallback to default icon if no match found
     return (
-      <div className={styles.techIconContainer} title={name}>
-        <DefaultIcon className={className} />
+      <div className={styles.iconContainer} title={name}>
+        <DefaultIcon />
       </div>
     );
   } catch (error) {
     console.error(`Error rendering icon for ${name}:`, error);
     return (
-      <div className={styles.techIconContainer} title={name}>
-        <div className={`${styles.techIcon} ${className}`}>💻</div>
+      <div className={styles.iconContainer} title={name}>
+        <div className={styles.icon}>💻</div>
       </div>
     );
   }
@@ -203,12 +203,12 @@ export const TechIcons: React.FC<TechIconsProps> = ({
     : techs.split(',').map(t => t.trim()).filter(Boolean);
 
   return (
-    <div className={`${className}`}>
+    <div className={`${styles.iconsList} ${className}`}>
       {techArray.map((tech, index) => (
         <TechIcon 
           key={`${tech}-${index}`} 
           name={tech} 
-          className={`${iconClassName} ${styles.techIconContainer}`} 
+          className={iconClassName}
         />
       ))}
     </div>
