@@ -1,4 +1,4 @@
-[
+﻿[
 	{
 		"year": "2007",
 		"years": "2007-2007",
@@ -73,7 +73,7 @@
 			"https://www.youtube.com/watch?v=dGko7n0tBvw",
 			"https://www.youtube.com/watch?v=J8ahv6xQctc"
 		],
-		"technologies": "Web-design, sometimes HTML5(JADE), CSS(Sass), JavaScript, LiveScript, NodeJS, AngularJS, MongoDB, MongooseJS",
+		"technologies": "Web-design, sometimes HTML5(JADE), CSS(Sass), JavaScript/TypeScript, LiveScript, NodeJS, AngularJS, MongoDB, MongooseJS",
 		"product": "Tour & Activity booking",
 		"productSite": "https://adventurebucketlist.com/",
 		"aboutProduct": "A Reservation System Built for Tour & Activity Companies"
@@ -85,7 +85,7 @@
 		"company": "Prosco",
 		"companySite": "https://prosco.kiev.ua/",
 		"aboutCompany": "Startup",
-		"technologies": "Web-design, HTML5(JADE), CSS(Sass), JavaScript, TypeScript, NodeJS, AngularJS, MongoDB, MongooseJS, Socket.IO ",
+		"technologies": "Web-design, HTML5(JADE), CSS(Sass), JavaScript/TypeScript, TypeScript, NodeJS, AngularJS, MongoDB, MongooseJS, Socket.IO ",
 		"product": "Automation of internal business processes",
 		"productSite": "?",
 		"aboutProduct": "Automation of translations between clients with expert supervision"
@@ -97,7 +97,7 @@
 		"company": "?",
 		"companySite": "",
 		"aboutCompany": "Product company",
-		"technologies": "Web-design, WordPress, HTML5(JADE), CSS(Sass), JavaScript, TypeScrip, NodeJS, AngularJS, Angular, MongoDB, MongooseJS, WebRTC, Socket.IO ",
+		"technologies": "Web-design, WordPress, HTML5(JADE), CSS(Sass), JavaScript/TypeScript, TypeScrip, NodeJS, AngularJS, Angular, MongoDB, MongooseJS, WebRTC, Socket.IO ",
 		"product": "Web cam service",
 		"productSite": "",
 		"aboutProduct": "Web cam models online"
@@ -109,7 +109,7 @@
 		"company": "Arsum(UA,Danmark)",
 		"aboutCompany": "Arsum is full stack development services provider with a strong focus on product and business consulting.",
 		"companySite": "https://www.arsum.com/",
-		"technologies": "HTML5, CSS(Scss), JavaScript, JQuery, AngularJS, Angular,  NodeJS, ExpressJS, MongoDB, MongooseJS",
+		"technologies": "HTML5, CSS(Scss), JavaScript/TypeScript, JQuery, AngularJS, Angular,  NodeJS, ExpressJS, MongoDB, MongooseJS",
 		"product": "Automation of personnel selection",
 		"aboutProduct": "Specialist search service for companies"
 	},
@@ -127,7 +127,7 @@
 		"years": "2017",
 		"title": "Web-developer",
 		"company": "OMNIE",
-		"technologies": "JavaScript, AngularJS, Angular, NodeJS, ExpressJS, \"Web-design\", HTML5, \"CSS(Less)\", JADE, MongoDB, MongooseJS, Three.js",
+		"technologies": "JavaScript/TypeScript, AngularJS, Angular, NodeJS, ExpressJS, \"Web-design\", HTML5, \"CSS(Less)\", JADE, MongoDB, MongooseJS, Three.js",
 		"product": "Registration system",
 		"aboutProduct": "Customer registration system for beauty salons"
 	},
@@ -136,7 +136,7 @@
 		"years": "2018",
 		"title": "Web-developer",
 		"company": "uboro.io",
-		"technologies": "JavaScript, AngularJS, Angular, NodeJS, ExpressJS, MongoDB, MongooseJS",
+		"technologies": "JavaScript/TypeScript, AngularJS, Angular, NodeJS, ExpressJS, MongoDB, MongooseJS",
 		"product": "Uboro Tracker",
 		"aboutProduct": "Uboro Tracker is a mobile application (backend mail microservice)"
 	},
@@ -145,7 +145,7 @@
 		"years": "2018-2019",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "JavaScript, c++, Angular, React, NodeJS, ExpressJS, MongoDB, MongooseJS, Passport.js, WebRTC, blockchain, cryptocurrency, ethereum, web3.js, metamask, matter.js, Electron.js, security, optimization, PWA, ssl, CentOS, VPS",
+		"technologies": "JavaScript/TypeScript, c++, Angular, React, NodeJS, ExpressJS, MongoDB, MongooseJS, Passport.js, WebRTC, blockchain, cryptocurrency, ethereum, web3.js, metamask, matter.js, Electron.js, security, optimization, PWA, ssl, CentOS, VPS",
 		"product": "Community site, Teaching",
 		"aboutProduct": "Site with video lessons and my students"
 	},
@@ -154,7 +154,7 @@
 		"years": "2020-2022",
 		"title": "Web-developer",
 		"company": "Feron",
-		"technologies": "JavaScript, Angular, NodeJS, ExpressJS, MongoDB, MongooseJS, Passport.js, security, optimization, PWA, ssl, Ubuntu, VPS, PM2, Cloud APIs",
+		"technologies": "JavaScript/TypeScript, Angular, NodeJS, ExpressJS, MongoDB, MongooseJS, Passport.js, security, optimization, PWA, ssl, Ubuntu, VPS, PM2, Cloud APIs",
 		"product": "Automation services",
 		"aboutProduct": "System of automation and expansion of hotel services."
 	},
@@ -163,7 +163,7 @@
 		"years": "2022-2023",
 		"title": "Mentor, Web-developer",
 		"company": "iBanan",
-		"technologies": "JavaScript, NuxtJS,  NodeJS, ExpressJS, MongoDB, MongooseJS",
+		"technologies": "JavaScript/TypeScript, NuxtJS,  NodeJS, ExpressJS, MongoDB, MongooseJS",
 		"product": "Online store, Teaching",
 		"aboutProduct": "Selling covers for mobile phones and other accessories."
 	},
@@ -172,7 +172,7 @@
 		"years": "2023",
 		"title": "Mentor, Web-developer",
 		"company": "Gubus",
-		"technologies": "JavaScript, Telegram API, Whatsapp API, Google Apps Script, Google Sheets, NodeJS",
+		"technologies": "JavaScript/TypeScript, Telegram API, Whatsapp API, Google Apps Script, Google Sheets, NodeJS",
 		"product": "Chat bots, Teaching",
 		"productSite": "",
 		"aboutProduct": "For business process automation staff."
@@ -182,7 +182,7 @@
 		"years": "2023",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "JavaScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js",
+		"technologies": "JavaScript/TypeScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js",
 		"product": "Portfolio n my project sites, Teaching",
 		"productSite": "https://spiriturban.github.io/",
 		"companyAdditionalSources": [
@@ -196,7 +196,7 @@
 		"years": "2023",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "JavaScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js",
+		"technologies": "JavaScript/TypeScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js",
 		"product": "Video lessons and exploring, Teaching",
 		"companyAdditionalSources": [
 			"https://www.youtube.com/watch?v=JrDoYdbOYxQ&list=PLpemT0gHXC9v9FYs2oOeyRZ0dC6BsWGOO&ab_channel=STRONGEST%21%21%21",
@@ -267,8 +267,8 @@
 		"years": "2025",
 		"title": "Mentor, Web-developer",
 		"company": "Own",
-		"technologies": "JavaScript, NodeJS, HTML5/CSS",
 		"product": "Books Online — static catalog & reader",
+		"technologies": "JavaScript/TypeScript, NodeJS, HTML5/CSS",
 		"productSite": "https://spiriturban.github.io/books-online/",
 		"aboutProduct": "Онлайн-каталог книг и учебных материалов: минимальный статик на GitHub Pages; сборщик на Node.js; рендер страниц на лету через reader.js; сохранение прогресса (LocalStorage); теги, фильтры, хоткеи; аккуратная типографика; аудит и оптимизация. YouTube анонсы — @strongest8359"
 	},
