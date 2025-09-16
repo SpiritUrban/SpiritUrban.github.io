@@ -74,7 +74,7 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
     'photoshop': SiIcons.SiAdobephotoshop  ,
     'illustrator': SiIcons.SiAdobeillustrator ,
     'adobe': SiIcons.SiAdobe,
-    // 'godot': SiIcons.SiGodot,
+    'godot': SiIcons.SiGodotengine ,
     // 'unity': SiIcons.SiUnity,
 
 
