@@ -66,7 +66,7 @@ const Cart1: React.FC<Cart1Props> = ({
                         </p>
                     </div>
                     <button
-                        className={styles.button}
+                        className={`${styles.button} glitch-button glitch-6 `}
                         onClick={onAddToCart}
                     >
                         My GitHub

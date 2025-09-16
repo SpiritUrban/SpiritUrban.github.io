@@ -125,39 +125,10 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   width: fit-content;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
   box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
 }
 
 .button:hover {
-  animation: glitch-1 0.3s infinite;
-  box-shadow: 
-    0.3em 0 0 0 var(--accent-1, #00f0ff),
-    -0.3em 0 0 0 var(--accent-2, #ff2a6d);
-  text-shadow: 
-    0.05em 0 0 var(--accent-1, #00f0ff),
-    -0.05em -0.025em 0 var(--accent-2, #ff2a6d);
-}
-
-.button::before,
-.button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 45%, var(--accent-1, #00f0ff) 45%, var(--accent-1, #00f0ff) 55%, transparent 0);
-  background-size: 0.3em 0.3em;
-  opacity: 0.3;
-  z-index: -1;
-  transition: all 0.3s ease;
-}
-
-.button::after {
-  background: linear-gradient(-45deg, transparent 45%, var(--accent-2, #ff2a6d) 45%, var(--accent-2, #ff2a6d) 55%, transparent 0);
-  background-size: 0.25em 0.25em;
-  opacity: 0.4;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 240, 255, 0.5);
 }

@@ -231,6 +231,140 @@ button:hover {
   animation: glitch-4 2s infinite linear alternate-reverse;
 }
 
+/* New Expressive Glitch Effects */
+
+@keyframes glitch-5 {
+  0% {
+    text-shadow: 
+      0.05em 0 0 var(--accent-1),
+      -0.025em -0.05em 0 var(--accent-2),
+      -0.05em 0.025em 0 var(--accent-3);
+    transform: translate(0);
+  }
+  15% {
+    text-shadow: 
+      0.05em 0 0 var(--accent-1),
+      -0.05em -0.025em 0 var(--accent-2);
+  }
+  16% {
+    text-shadow: 
+      -0.05em -0.025em 0 var(--accent-1), 
+      0.025em 0.025em 0 var(--accent-2);
+  }
+  49% {
+    text-shadow: 
+      -0.05em -0.025em 0 var(--accent-1), 
+      0.025em 0.025em 0 var(--accent-2);
+  }
+  50% {
+    text-shadow: 
+      0.025em 0.05em 0 var(--accent-1), 
+      0.05em 0 0 var(--accent-2), 
+      -0.025em -0.05em 0 var(--accent-3);
+  }
+  99% {
+    text-shadow: 
+      0.025em 0.05em 0 var(--accent-1), 
+      0.05em 0 0 var(--accent-2), 
+      -0.025em -0.05em 0 var(--accent-3);
+  }
+  100% {
+    text-shadow: 
+      -0.025em 0 0 var(--accent-1), 
+      -0.025em -0.025em 0 var(--accent-2);
+    transform: translate(0);
+  }
+}
+
+.glitch-5 {
+  position: relative;
+  animation: glitch-5 2s infinite;
+  text-shadow: 0 0 5px var(--accent-1);
+}
+
+.glitch-5::before,
+.glitch-5::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-5::before {
+  left: 3px;
+  text-shadow: -3px 0 #ff00c1;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-5 3s infinite linear alternate-reverse;
+}
+
+.glitch-5::after {
+  left: -3px;
+  text-shadow: -3px 0 #00fff9, 3px 3px #ff00c1;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-5 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-6 {
+  0% {
+    transform: translate(0);
+    text-shadow: 
+      0.05em 0 0 var(--accent-1),
+      -0.05em 0 0 var(--accent-2);
+  }
+  15% {
+    transform: translate(-0.05em, 0.05em);
+    text-shadow: 
+      0.1em 0 0 var(--accent-1),
+      -0.1em 0 0 var(--accent-2);
+  }
+  30% {
+    transform: translate(0.05em, -0.05em);
+    text-shadow: 
+      -0.1em 0 0 var(--accent-1),
+      0.1em 0 0 var(--accent-2);
+  }
+  45%, 85% {
+    transform: translate(0);
+    text-shadow: 
+      0.05em 0 0 var(--accent-1),
+      -0.05em 0 0 var(--accent-2);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch-6 {
+  position: relative;
+  animation: glitch-6 1.5s infinite;
+  text-shadow: 0 0 3px var(--accent-1);
+}
+
+.glitch-6::before,
+.glitch-6::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.glitch-6::before {
+  color: #ff00c1;
+  animation: glitch-6 2s infinite alternate-reverse;
+}
+
+.glitch-6::after {
+  color: #00fff9;
+  animation: glitch-6 1.5s infinite alternate-reverse;
+}
+
 /* Button Glitch Effect */
 .glitch-button {
   position: relative;
