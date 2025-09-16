@@ -4,6 +4,7 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as SiIcons from 'react-icons/si';
+import * as RiIcons from 'react-icons/ri';
 import styles from '../components/TechIcons/TechIcons.module.css';
 
 // Default icon for technologies without a specific match
@@ -39,6 +40,42 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
     'render': SiIcons.SiRender,
     'netlify': SiIcons.SiNetlify,
     'rtk': SiIcons.SiRedux,
+    'cloud apis': SiIcons.SiGooglecloud,
+    'google apps script': SiIcons.SiGoogleappsscript,
+    'google sheets': SiIcons.SiGoogleappsscript,
+    'mongoosejs': SiIcons.SiMongoose,
+    'passport.js': SiIcons.SiPassport,
+    'pwa': SiIcons.SiPwa,
+    'vps': FaIcons.FaServer,
+    'ssl': FaIcons.FaLock,
+    'centos': FaIcons.FaCentos,
+    'ubuntu': FaIcons.FaUbuntu,
+    'pm2': SiIcons.SiPm2,
+    'webrtc': SiIcons.SiWebrtc,
+    'whatsapp api': SiIcons.SiWhatsapp,
+    'telegram api': SiIcons.SiTelegram,
+    'web3.js': SiIcons.SiWeb3Dotjs,
+    'security': SiIcons.SiSpringsecurity,
+    'optimization': FaIcons.FaDev,
+    'blockchain': SiIcons.SiHiveBlockchain,
+    'cryptocurrency': SiIcons.SiEthereum,
+    'c++': FaIcons.FaPlus,
+    'electron.js': SiIcons.SiElectron,
+    'webgl': SiIcons.SiWebgl,
+    'ethereum': SiIcons.SiEthereum,
+    'matter.js': SiIcons.SiMaterialdesign ,
+    'metamask': SiIcons.SiEthereum,
+    'web-design': RiIcons.RiPaintBrushFill ,
+    'jade': SiIcons.SiHtml5 ,
+    'wordpress': SiIcons.SiWordpress,
+    'livescript': SiIcons.SiAwslambda ,
+    '3dmax': SiIcons.SiNintendogamecube ,
+    'coreldraw': SiIcons.SiCoreldraw,
+    'photoshop': SiIcons.SiAdobephotoshop  ,
+    'illustrator': SiIcons.SiAdobeillustrator ,
+    'adobe': SiIcons.SiAdobe,
+    // 'godot': SiIcons.SiGodot,
+    // 'unity': SiIcons.SiUnity,
 
 
     // Core Web
@@ -135,11 +172,11 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
     
     // Design
     'figma': FaIcons.FaFigma,
-    'photoshop': FaIcons.FaImage,  // Using image icon for Photoshop
-    'illustrator': FaIcons.FaPaintBrush,  // Using paint brush for Illustrator
+    // 'photoshop': FaIcons.FaImage,  // Using image icon for Photoshop
+    // 'illustrator': FaIcons.FaPaintBrush,  // Using paint brush for Illustrator
     'xd': FaIcons.FaVectorSquare,  // Using vector square for XD
     'adobe xd': FaIcons.FaVectorSquare,  // Using vector square for XD
-    'adobe': FaIcons.FaImage,  // Using image icon for Adobe
+    // 'adobe': FaIcons.FaImage,  // Using image icon for Adobe
     
     // OS
     'linux': FaIcons.FaLinux,
