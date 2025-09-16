@@ -1,305 +1,305 @@
-﻿[
-	{
-		"year": "2007",
-		"years": "2007-2007",
-		"title": "Designer, 3D-modeler",
-		"company": "Nika(Ukraine)",
-		"aboutCompany": "Production of banners, flags, clothes, interior elements.",
-		"technologies": "Photoshop, CorelDRAW, 3DMax",
-		"product": "Banners, Prints, 3D models",
-		"aboutProduct": "Graphics for printing on fabrics"
-	},
-	{
-		"year": "2007",
-		"years": "2007-2008",
-		"title": "Designer",
-		"company": "Юнас-EL",
-		"aboutCompany": "Advertising agency. Production of business cards, banners, booklets.",
-		"companySite": "https://list.in.ua/%D0%A0%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%BD%D1%96-%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%B0/107983/%D0%AE%D0%BD%D0%B0%D1%81-EL-%D0%A5%D0%BC%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D1%86%D1%8C%D0%BA%D0%B8%D0%B9",
-		"technologies": "Photoshop, Illustrator",
-		"product": "Site designs, UI, 3D models, Illustrations",
-		"aboutProduct": "Promotional products for local small businesses"
-	},
-	{
-		"year": "2008",
-		"years": "2008-2009",
-		"title": "Designer, 3D-modeler",
-		"company": "Web-City",
-		"aboutCompany": "Web studio. Creation of web sites.",
-		"technologies": "Photoshop, Illustrator, 3DMax",
-		"product": "Site designs, 3D models",
-		"aboutProduct": "Sites for international companies."
-	},
-	{
-		"year": "2009",
-		"years": "2009-2014",
-		"title": "Designer, 3D-modeler",
-		"company": "Freelance",
-		"aboutCompany": "Web design and game graphics for companies from different parts of the world.",
-		"technologies": "Photoshop, Illustrator, 3DMax",
-		"product": "Site designs, UI, 3D models, Game elements, Logos, Icons, Tutorials, T-Shots illustrations",
-		"aboutProduct": "Huge design experience"
-	},
-	{
-		"year": "2014",
-		"years": "2014-2014 (6 month)",
-		"title": "Web-Designer",
-		"company": "WebMozaica",
-		"aboutCompany": "UX\\UI Design",
-		"companySite": "https://web-mosaica.art/",
-		"technologies": "Photoshop, Illustrator, Bootstrap",
-		"product": "Site designs",
-		"aboutProduct": "Half a hundred site designs. Mainly landing pages"
-	},
-	{
-		"year": "2014",
-		"years": "2014-2015",
-		"title": "Web-Designer",
-		"company": "Freelance",
-		"aboutCompany": "Web design for companies from different parts of the world.",
-		"technologies": "Photoshop, Illustrator, Bootstrap, Material Design",
-		"product": "Site designs",
-		"aboutProduct": "Sites, Shops, Admin pages, UI Kits"
-	},
-	{
-		"year": "2015",
-		"years": "2015-2015",
-		"title": "Web-developer",
-		"company": "Adventure Bucket List(US)",
-		"aboutCompany": "Worked with Andriy Stegno",
-		"companySite": "https://cyberacademy.dev/speakers/andreystegno",
-		"companyAdditionalSources": [
-			"https://www.youtube.com/watch?v=0RkT7bzaFi0",
-			"https://www.youtube.com/watch?v=dGko7n0tBvw",
-			"https://www.youtube.com/watch?v=J8ahv6xQctc"
-		],
-		"technologies": "Web-design, sometimes HTML5(JADE), CSS(Sass), JavaScript/TypeScript, LiveScript, NodeJS, AngularJS, MongoDB, MongooseJS",
-		"product": "Tour & Activity booking",
-		"productSite": "https://adventurebucketlist.com/",
-		"aboutProduct": "A Reservation System Built for Tour & Activity Companies"
-	},
-	{
-		"year": "2015",
-		"years": "2015-2016",
-		"title": "Web-developer",
-		"company": "Prosco",
-		"companySite": "https://prosco.kiev.ua/",
-		"aboutCompany": "Startup",
-		"technologies": "Web-design, HTML5(JADE), CSS(Sass), JavaScript/TypeScript, TypeScript, NodeJS, AngularJS, MongoDB, MongooseJS, Socket.IO ",
-		"product": "Automation of internal business processes",
-		"productSite": "?",
-		"aboutProduct": "Automation of translations between clients with expert supervision"
-	},
-	{
-		"year": "2016",
-		"years": "2016-2017",
-		"title": "Web-developer",
-		"company": "?",
-		"companySite": "",
-		"aboutCompany": "Product company",
-		"technologies": "Web-design, WordPress, HTML5(JADE), CSS(Sass), JavaScript/TypeScript, TypeScrip, NodeJS, AngularJS, Angular, MongoDB, MongooseJS, WebRTC, Socket.IO ",
-		"product": "Web cam service",
-		"productSite": "",
-		"aboutProduct": "Web cam models online"
-	},
-	{
-		"year": "2017",
-		"years": "2017 (6 month)",
-		"title": "Web-developer",
-		"company": "Arsum(UA,Danmark)",
-		"aboutCompany": "Arsum is full stack development services provider with a strong focus on product and business consulting.",
-		"companySite": "https://www.arsum.com/",
-		"technologies": "HTML5, CSS(Scss), JavaScript/TypeScript, JQuery, AngularJS, Angular,  NodeJS, ExpressJS, MongoDB, MongooseJS",
-		"product": "Automation of personnel selection",
-		"aboutProduct": "Specialist search service for companies"
-	},
-	{
-		"year": "2017",
-		"years": "2017",
-		"title": "Web-developer",
-		"company": "Support and development - skladovka.ua ",
-		"technologies": "HTML5, \"CSS(Scss/sass)\", JavaScript, AngularJS, NodeJS, ExpressJS, PHP, MongoDB, MongooseJS",
-		"product": "Storage booking",
-		"aboutProduct": "Storage booking calculator"
-	},
-	{
-		"year": "2017",
-		"years": "2017",
-		"title": "Web-developer",
-		"company": "OMNIE",
-		"technologies": "JavaScript/TypeScript, AngularJS, Angular, NodeJS, ExpressJS, \"Web-design\", HTML5, \"CSS(Less)\", JADE, MongoDB, MongooseJS, Three.js",
-		"product": "Registration system",
-		"aboutProduct": "Customer registration system for beauty salons"
-	},
-	{
-		"year": "2018",
-		"years": "2018",
-		"title": "Web-developer",
-		"company": "uboro.io",
-		"technologies": "JavaScript/TypeScript, AngularJS, Angular, NodeJS, ExpressJS, MongoDB, MongooseJS",
-		"product": "Uboro Tracker",
-		"aboutProduct": "Uboro Tracker is a mobile application (backend mail microservice)"
-	},
-	{
-		"year": "2018",
-		"years": "2018-2019",
-		"title": "Mentor, Web-developer",
-		"company": "Own",
-		"technologies": "JavaScript/TypeScript, c++, Angular, React, NodeJS, ExpressJS, MongoDB, MongooseJS, Passport.js, WebRTC, blockchain, cryptocurrency, ethereum, web3.js, metamask, matter.js, Electron.js, security, optimization, PWA, ssl, CentOS, VPS",
-		"product": "Community site, Teaching",
-		"aboutProduct": "Site with video lessons and my students"
-	},
-	{
-		"year": "2020",
-		"years": "2020-2022",
-		"title": "Web-developer",
-		"company": "Feron",
-		"technologies": "JavaScript/TypeScript, Angular, NodeJS, ExpressJS, MongoDB, MongooseJS, Passport.js, security, optimization, PWA, ssl, Ubuntu, VPS, PM2, Cloud APIs",
-		"product": "Automation services",
-		"aboutProduct": "System of automation and expansion of hotel services."
-	},
-	{
-		"year": "2022",
-		"years": "2022-2023",
-		"title": "Mentor, Web-developer",
-		"company": "iBanan",
-		"technologies": "JavaScript/TypeScript, NuxtJS,  NodeJS, ExpressJS, MongoDB, MongooseJS",
-		"product": "Online store, Teaching",
-		"aboutProduct": "Selling covers for mobile phones and other accessories."
-	},
-	{
-		"year": "2023",
-		"years": "2023",
-		"title": "Mentor, Web-developer",
-		"company": "Gubus",
-		"technologies": "JavaScript/TypeScript, Telegram API, Whatsapp API, Google Apps Script, Google Sheets, NodeJS",
-		"product": "Chat bots, Teaching",
-		"productSite": "",
-		"aboutProduct": "For business process automation staff."
-	},
-	{
-		"year": "2023",
-		"years": "2023",
-		"title": "Mentor, Web-developer",
-		"company": "Own",
-		"technologies": "JavaScript/TypeScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js",
-		"product": "Portfolio n my project sites, Teaching",
-		"productSite": "https://spiriturban.github.io/",
-		"companyAdditionalSources": [
-			"https://spiriturban.github.io/about-me/#en",
-			"https://spiriturban.github.io/constructor-universe/"
-		],
-		"aboutProduct": "Portfolio about my experience and projects."
-	},
-	{
-		"year": "2023",
-		"years": "2023",
-		"title": "Mentor, Web-developer",
-		"company": "Own",
-		"technologies": "JavaScript/TypeScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js",
-		"product": "Video lessons and exploring, Teaching",
-		"companyAdditionalSources": [
-			"https://www.youtube.com/watch?v=JrDoYdbOYxQ&list=PLpemT0gHXC9v9FYs2oOeyRZ0dC6BsWGOO&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=ufAZjYtJB-w&list=PLpemT0gHXC9sJPjQuavc8mvNEU8VDxskW&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=oqDM876vmjQ&list=PLpemT0gHXC9sSN0YHyJrNGpfo7Br-7oVm&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=KOPe7ZRCf3s&list=PLpemT0gHXC9u9oRKxNyYxSK8lmrIlakY4&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=FW_wBA8DAs0&list=PLpemT0gHXC9umTj-cc0ounWRqWKaFOtfP&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=uVjHg90dSGo&list=PLpemT0gHXC9u7NSiZP_spHD-Yl2NWd2Qk&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=KtCc5dRKsJ4&list=PLpemT0gHXC9vyVE2mGXp0ckJdkBZbjSXt&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=6p-hJIQBQns&list=PLpemT0gHXC9vejvHvQd4xtuN7MysO7vV1&ab_channel=STRONGEST%21%21%21"
-		],
-		"aboutProduct": "Portfolio about my experience and projects."
-	},
-	{
-		"year": "2024",
-		"years": "2024",
-		"title": "Mentor, Web-developer",
-		"company": "Own",
-		"technologies": "Vue, NuxtJS, Socket.IO",
-		"product": "'MENTOR-JS' project (site and lessons), Teaching",
-		"productSite": "https://mentor-js.vercel.app/",
-		"aboutProduct": "NuxtJS (Vue + SSR) lessons and site with this videos."
-	},
-	{
-		"year": "2024",
-		"years": "2024",
-		"title": "Mentor, Web-developer",
-		"company": "Own",
-		"technologies": "Jest, AWS, Three.js, Godot",
-		"product": "Video lessons and exploring, Teaching",
-		"companyAdditionalSources": [
-			"https://www.youtube.com/watch?v=qCEiq4P9tf0&list=PLpemT0gHXC9uWsjcaKbsyMC1pbbjuv9at&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=MksvaoirdJI&list=PLpemT0gHXC9tC_8Tdd9B18kXCHftTEy7j&index=2&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=h4e_l3U7vio&list=PLpemT0gHXC9uO0GLh85Hx6EWXBJnO5Pa-&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=5XpsAqCDaUQ&list=PLpemT0gHXC9svDnzhzMAyqe_WD8pRNgWm&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=D491I0CazXQ&list=PLpemT0gHXC9s3apxeXQfwFoqT0IVmORBf&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=fwE5kHL7USY&list=PLpemT0gHXC9v2Pz-CLanu5kZFfL_H6Gql&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=vzNzj0oVQVo&list=PLpemT0gHXC9vSgbwZemvrRU1OQuHaoh0f&ab_channel=STRONGEST%21%21%21"
-		],
-		"aboutProduct": "A series of video lessons about web development."
-	},
-	{
-		"year": "2024",
-		"years": "2024",
-		"title": "Mentor, Web-developer",
-		"company": "Own",
-		"technologies": "React, RTK, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render",
-		"product": "'JS-MANTRA' community project, Teaching",
-		"productSite": "https://js-mantra.vercel.app/",
-		"aboutProduct": "Resources for web development, trainings, community organization."
-	},
-	{
-		"year": "2024",
-		"years": "2024",
-		"title": "Mentor, Web-developer",
-		"company": "Own",
-		"technologies": "AI APIs, ReactFlow, React, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render",
-		"product": "Video lessons and exploring, Teaching",
-		"companyAdditionalSources": [
-			"https://www.youtube.com/watch?v=XlcgsRjU0aA&list=PLpemT0gHXC9v0DKgFGdEKnR-Q4B4Dy1W-&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=nRO4OB6HLGE&list=PLpemT0gHXC9sHIAdTw5vqMEZusUoDxTdK&ab_channel=STRONGEST%21%21%21",
-			"https://www.youtube.com/watch?v=ObZXh5IeYw0&list=PLpemT0gHXC9tSikxDy3zjZEoPHBm3olQT&ab_channel=STRONGEST%21%21%21"
-		],
-		"aboutProduct": "A series of video lessons about: AI APIs and other technologies."
-	},
-	{
-		"year": "2025",
-		"years": "2025",
-		"title": "Mentor, Web-developer",
-		"company": "Own",
-		"product": "Books Online — static catalog & reader",
-		"technologies": "JavaScript/TypeScript, NodeJS, HTML5/CSS",
-		"productSite": "https://spiriturban.github.io/books-online/",
-		"aboutProduct": "Онлайн-каталог книг и учебных материалов: минимальный статик на GitHub Pages; сборщик на Node.js; рендер страниц на лету через reader.js; сохранение прогресса (LocalStorage); теги, фильтры, хоткеи; аккуратная типографика; аудит и оптимизация. YouTube анонсы — @strongest8359"
-	},
-	{
-		"year": "2025",
-		"years": "2025",
-		"title": "Mentor, Web-developer",
-		"company": "Own",
-		"technologies": "AI APIs, JavaScript/TypeScript, ReactFlow, NextJS",
-		"product": "Учебник «Новое программирование: ИИ» (course + book)",
-		"productSite": "https://spiriturban.github.io/books-online/books/uchebnik-novoe-programmirovanie-ii/",
-		"aboutProduct": "Серия видео/текстов о работе с ИИ как о новом типе программирования: уровни владения ИИ, контексты, пайплайны, прототипирование, интеграция в веб-проекты. YouTube — @strongest8359"
-	},
-	{
-		"year": "2025",
-		"years": "2025",
-		"title": "System Architect, Mentor",
-		"company": "Own",
-		"technologies": "NodeJS, AI tools",
-		"product": "NIVORA — modular ecosystem & CLI (n.js)",
-		"productSite": "",
-		"aboutProduct": "Модульная архитектура (core + modules), автономные узлы, генерация артефактов/доков, социальная карта, послед. интеграция ИИ. CLI-команды: init/refresh/scan/clean. Этап 1 — автономные узлы; этап 2 — интеграция."
-	},
-	{
-		"year": "2025",
-		"years": "2025",
-		"title": "Author, Mentor",
-		"company": "Own",
-		"technologies": "Writing, Mentor, AI tools",
-		"product": "Series of books «НАСТАВНИК» (18+ volumes)",
-		"productSite": "https://spiriturban.github.io/books-online/",
-		"aboutProduct": "Автобиографическая и образовательная серия книг (2017–2025). 18 томов фиксируют семилетний путь внутренней трансформации, наставничества и практики в IT. Новые книги продолжают линию: «НАСТАВНИК 11 — Личная Победа», «НАСТАВНИК 12 — Первый Мухомор», «НАСТАВНИК 19 — Уничтожить мерзость и вознести мир»."
-	}
+[
+    {
+        "year":  "2007",
+        "years":  "2007-2007",
+        "title":  "Designer, 3D-modeler",
+        "company":  "Nika(Ukraine)",
+        "aboutCompany":  "Production of banners, flags, clothes, interior elements.",
+        "technologies":  "Photoshop, CorelDRAW, 3DMax",
+        "product":  "Banners, Prints, 3D models",
+        "aboutProduct":  "Graphics for printing on fabrics"
+    },
+    {
+        "year":  "2007",
+        "years":  "2007-2008",
+        "title":  "Designer",
+        "company":  "Юнас-EL",
+        "aboutCompany":  "Advertising agency. Production of business cards, banners, booklets.",
+        "companySite": "https://list.in.ua/Рекламні-агенства/107983/Юнас-EL-Хмельницький",
+        "technologies":  "Photoshop, Illustrator",
+        "product":  "Site designs, UI, 3D models, Illustrations",
+        "aboutProduct":  "Promotional products for local small businesses"
+    },
+    {
+        "year":  "2008",
+        "years":  "2008-2009",
+        "title":  "Designer, 3D-modeler",
+        "company":  "Web-City",
+        "aboutCompany":  "Web studio. Creation of web sites.",
+        "technologies":  "Photoshop, Illustrator, 3DMax",
+        "product":  "Site designs, 3D models",
+        "aboutProduct":  "Sites for international companies."
+    },
+    {
+        "year":  "2009",
+        "years":  "2009-2014",
+        "title":  "Designer, 3D-modeler",
+        "company":  "Freelance",
+        "aboutCompany":  "Web design and game graphics for companies from different parts of the world.",
+        "technologies":  "Photoshop, Illustrator, 3DMax",
+        "product":  "Site designs, UI, 3D models, Game elements, Logos, Icons, Tutorials, T-Shots illustrations",
+        "aboutProduct":  "Huge design experience"
+    },
+    {
+        "year":  "2014",
+        "years":  "2014-2014 (6 month)",
+        "title":  "Web-Designer",
+        "company":  "WebMozaica",
+        "aboutCompany":  "UX\\UI Design",
+        "companySite":  "https://web-mosaica.art/",
+        "technologies":  "Photoshop, Illustrator, Bootstrap",
+        "product":  "Site designs",
+        "aboutProduct":  "Half a hundred site designs. Mainly landing pages"
+    },
+    {
+        "year":  "2014",
+        "years":  "2014-2015",
+        "title":  "Web-Designer",
+        "company":  "Freelance",
+        "aboutCompany":  "Web design for companies from different parts of the world.",
+        "technologies":  "Photoshop, Illustrator, Bootstrap, Material Design",
+        "product":  "Site designs",
+        "aboutProduct":  "Sites, Shops, Admin pages, UI Kits"
+    },
+    {
+        "year":  "2015",
+        "years":  "2015-2015",
+        "title":  "Web-developer",
+        "company":  "Adventure Bucket List(US)",
+        "aboutCompany":  "Worked with Andriy Stegno",
+        "companySite":  "https://cyberacademy.dev/speakers/andreystegno",
+        "companyAdditionalSources":  [
+                                         "https://www.youtube.com/watch?v=0RkT7bzaFi0",
+                                         "https://www.youtube.com/watch?v=dGko7n0tBvw",
+                                         "https://www.youtube.com/watch?v=J8ahv6xQctc"
+                                     ],
+        "technologies":  "Web-design, sometimes HTML5(JADE), CSS(Sass), JavaScript/TypeScript, LiveScript, NodeJS, AngularJS, MongoDB, MongooseJS",
+        "product":  "Tour \u0026 Activity booking",
+        "productSite":  "https://adventurebucketlist.com/",
+        "aboutProduct":  "A Reservation System Built for Tour \u0026 Activity Companies"
+    },
+    {
+        "year":  "2015",
+        "years":  "2015-2016",
+        "title":  "Web-developer",
+        "company":  "Prosco",
+        "companySite":  "https://prosco.kiev.ua/",
+        "aboutCompany":  "Startup",
+        "technologies":  "Web-design, HTML5(JADE), CSS(Sass), JavaScript/TypeScript, TypeScript, NodeJS, AngularJS, MongoDB, MongooseJS, Socket.IO ",
+        "product":  "Automation of internal business processes",
+        "productSite":  "?",
+        "aboutProduct":  "Automation of translations between clients with expert supervision"
+    },
+    {
+        "year":  "2016",
+        "years":  "2016-2017",
+        "title":  "Web-developer",
+        "company":  "?",
+        "companySite":  "",
+        "aboutCompany":  "Product company",
+        "technologies":  "Web-design, WordPress, HTML5(JADE), CSS(Sass), JavaScript/TypeScript, TypeScrip, NodeJS, AngularJS, Angular, MongoDB, MongooseJS, WebRTC, Socket.IO ",
+        "product":  "Web cam service",
+        "productSite":  "",
+        "aboutProduct":  "Web cam models online"
+    },
+    {
+        "year":  "2017",
+        "years":  "2017 (6 month)",
+        "title":  "Web-developer",
+        "company":  "Arsum(UA,Danmark)",
+        "aboutCompany":  "Arsum is full stack development services provider with a strong focus on product and business consulting.",
+        "companySite":  "https://www.arsum.com/",
+        "technologies":  "HTML5, CSS(Scss), JavaScript/TypeScript, JQuery, AngularJS, Angular,  NodeJS, ExpressJS, MongoDB, MongooseJS",
+        "product":  "Automation of personnel selection",
+        "aboutProduct":  "Specialist search service for companies"
+    },
+    {
+        "year":  "2017",
+        "years":  "2017",
+        "title":  "Web-developer",
+        "company":  "Support and development - skladovka.ua ",
+        "technologies":  "HTML5, \"CSS(Scss/sass)\", JavaScript, AngularJS, NodeJS, ExpressJS, PHP, MongoDB, MongooseJS",
+        "product":  "Storage booking",
+        "aboutProduct":  "Storage booking calculator"
+    },
+    {
+        "year":  "2017",
+        "years":  "2017",
+        "title":  "Web-developer",
+        "company":  "OMNIE",
+        "technologies":  "JavaScript/TypeScript, AngularJS, Angular, NodeJS, ExpressJS, \"Web-design\", HTML5, \"CSS(Less)\", JADE, MongoDB, MongooseJS, Three.js",
+        "product":  "Registration system",
+        "aboutProduct":  "Customer registration system for beauty salons"
+    },
+    {
+        "year":  "2018",
+        "years":  "2018",
+        "title":  "Web-developer",
+        "company":  "uboro.io",
+        "technologies":  "JavaScript/TypeScript, AngularJS, Angular, NodeJS, ExpressJS, MongoDB, MongooseJS",
+        "product":  "Uboro Tracker",
+        "aboutProduct":  "Uboro Tracker is a mobile application (backend mail microservice)"
+    },
+    {
+        "year":  "2018",
+        "years":  "2018-2019",
+        "title":  "Mentor, Web-developer",
+        "company":  "Own",
+        "technologies":  "JavaScript/TypeScript, c++, Angular, React, NodeJS, ExpressJS, MongoDB, MongooseJS, Passport.js, WebRTC, blockchain, cryptocurrency, ethereum, web3.js, metamask, matter.js, Electron.js, security, optimization, PWA, ssl, CentOS, VPS, Mentor",
+        "product":  "Community site, Teaching",
+        "aboutProduct":  "Site with video lessons and my students"
+    },
+    {
+        "year":  "2020",
+        "years":  "2020-2022",
+        "title":  "Web-developer",
+        "company":  "Feron",
+        "technologies":  "JavaScript/TypeScript, Angular, NodeJS, ExpressJS, MongoDB, MongooseJS, Passport.js, security, optimization, PWA, ssl, Ubuntu, VPS, PM2, Cloud APIs",
+        "product":  "Automation services",
+        "aboutProduct":  "System of automation and expansion of hotel services."
+    },
+    {
+        "year":  "2022",
+        "years":  "2022-2023",
+        "title":  "Mentor, Web-developer",
+        "company":  "iBanan",
+        "technologies":  "JavaScript/TypeScript, NuxtJS,  NodeJS, ExpressJS, MongoDB, MongooseJS, Mentor",
+        "product":  "Online store, Teaching",
+        "aboutProduct":  "Selling covers for mobile phones and other accessories."
+    },
+    {
+        "year":  "2023",
+        "years":  "2023",
+        "title":  "Mentor, Web-developer",
+        "company":  "Gubus",
+        "technologies":  "JavaScript/TypeScript, Telegram API, Whatsapp API, Google Apps Script, Google Sheets, NodeJS, Mentor",
+        "product":  "Chat bots, Teaching",
+        "productSite":  "",
+        "aboutProduct":  "For business process automation staff."
+    },
+    {
+        "year":  "2023",
+        "years":  "2023",
+        "title":  "Mentor, Web-developer",
+        "company":  "Own",
+        "technologies":  "JavaScript/TypeScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js, Mentor",
+        "product":  "Portfolio n my project sites, Teaching",
+        "productSite":  "https://spiriturban.github.io/",
+        "companyAdditionalSources":  [
+                                         "https://spiriturban.github.io/about-me/#en",
+                                         "https://spiriturban.github.io/constructor-universe/"
+                                     ],
+        "aboutProduct":  "Portfolio about my experience and projects."
+    },
+    {
+        "year":  "2023",
+        "years":  "2023",
+        "title":  "Mentor, Web-developer",
+        "company":  "Own",
+        "technologies":  "JavaScript/TypeScript, Vue, GitHub Pages, Socket.IO, Docker, Docker Compose, Three.js, Mentor",
+        "product":  "Video lessons and exploring, Teaching",
+        "companyAdditionalSources":  [
+                                         "https://www.youtube.com/watch?v=JrDoYdbOYxQ\u0026list=PLpemT0gHXC9v9FYs2oOeyRZ0dC6BsWGOO\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=ufAZjYtJB-w\u0026list=PLpemT0gHXC9sJPjQuavc8mvNEU8VDxskW\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=oqDM876vmjQ\u0026list=PLpemT0gHXC9sSN0YHyJrNGpfo7Br-7oVm\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=KOPe7ZRCf3s\u0026list=PLpemT0gHXC9u9oRKxNyYxSK8lmrIlakY4\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=FW_wBA8DAs0\u0026list=PLpemT0gHXC9umTj-cc0ounWRqWKaFOtfP\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=uVjHg90dSGo\u0026list=PLpemT0gHXC9u7NSiZP_spHD-Yl2NWd2Qk\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=KtCc5dRKsJ4\u0026list=PLpemT0gHXC9vyVE2mGXp0ckJdkBZbjSXt\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=6p-hJIQBQns\u0026list=PLpemT0gHXC9vejvHvQd4xtuN7MysO7vV1\u0026ab_channel=STRONGEST%21%21%21"
+                                     ],
+        "aboutProduct":  "Portfolio about my experience and projects."
+    },
+    {
+        "year":  "2024",
+        "years":  "2024",
+        "title":  "Mentor, Web-developer",
+        "company":  "Own",
+        "technologies":  "Vue, NuxtJS, Socket.IO, Mentor",
+        "product":  "\u0027MENTOR-JS\u0027 project (site and lessons), Teaching",
+        "productSite":  "https://mentor-js.vercel.app/",
+        "aboutProduct":  "NuxtJS (Vue + SSR) lessons and site with this videos."
+    },
+    {
+        "year":  "2024",
+        "years":  "2024",
+        "title":  "Mentor, Web-developer",
+        "company":  "Own",
+        "technologies":  "Jest, AWS, Three.js, Godot, Mentor",
+        "product":  "Video lessons and exploring, Teaching",
+        "companyAdditionalSources":  [
+                                         "https://www.youtube.com/watch?v=qCEiq4P9tf0\u0026list=PLpemT0gHXC9uWsjcaKbsyMC1pbbjuv9at\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=MksvaoirdJI\u0026list=PLpemT0gHXC9tC_8Tdd9B18kXCHftTEy7j\u0026index=2\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=h4e_l3U7vio\u0026list=PLpemT0gHXC9uO0GLh85Hx6EWXBJnO5Pa-\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=5XpsAqCDaUQ\u0026list=PLpemT0gHXC9svDnzhzMAyqe_WD8pRNgWm\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=D491I0CazXQ\u0026list=PLpemT0gHXC9s3apxeXQfwFoqT0IVmORBf\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=fwE5kHL7USY\u0026list=PLpemT0gHXC9v2Pz-CLanu5kZFfL_H6Gql\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=vzNzj0oVQVo\u0026list=PLpemT0gHXC9vSgbwZemvrRU1OQuHaoh0f\u0026ab_channel=STRONGEST%21%21%21"
+                                     ],
+        "aboutProduct":  "A series of video lessons about web development."
+    },
+    {
+        "year":  "2024",
+        "years":  "2024",
+        "title":  "Mentor, Web-developer",
+        "company":  "Own",
+        "technologies":  "React, RTK, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render, Mentor",
+        "product":  "\u0027JS-MANTRA\u0027 community project, Teaching",
+        "productSite":  "https://js-mantra.vercel.app/",
+        "aboutProduct":  "Resources for web development, trainings, community organization."
+    },
+    {
+        "year":  "2024",
+        "years":  "2024",
+        "title":  "Mentor, Web-developer",
+        "company":  "Own",
+        "technologies":  "AI APIs, ReactFlow, React, NextJS, Vue, Nuxt, NodeJS, ExpessJS, Vercel, Render, Mentor",
+        "product":  "Video lessons and exploring, Teaching",
+        "companyAdditionalSources":  [
+                                         "https://www.youtube.com/watch?v=XlcgsRjU0aA\u0026list=PLpemT0gHXC9v0DKgFGdEKnR-Q4B4Dy1W-\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=nRO4OB6HLGE\u0026list=PLpemT0gHXC9sHIAdTw5vqMEZusUoDxTdK\u0026ab_channel=STRONGEST%21%21%21",
+                                         "https://www.youtube.com/watch?v=ObZXh5IeYw0\u0026list=PLpemT0gHXC9tSikxDy3zjZEoPHBm3olQT\u0026ab_channel=STRONGEST%21%21%21"
+                                     ],
+        "aboutProduct":  "A series of video lessons about: AI APIs and other technologies."
+    },
+    {
+        "year":  "2025",
+        "years":  "2025",
+        "title":  "Mentor, Web-developer",
+        "company":  "Own",
+        "product":  "Books Online — static catalog \u0026 reader",
+        "technologies":  "JavaScript/TypeScript, NodeJS, HTML5/CSS, Mentor",
+        "productSite":  "https://spiriturban.github.io/books-online/",
+        "aboutProduct":  "Онлайн-каталог книг и учебных материалов: минимальный статик на GitHub Pages; сборщик на Node.js; рендер страниц на лету через reader.js; сохранение прогресса (LocalStorage); теги, фильтры, хоткеи; аккуратная типографика; аудит и оптимизация. YouTube анонсы — @strongest8359"
+    },
+    {
+        "year":  "2025",
+        "years":  "2025",
+        "title":  "Mentor, Web-developer",
+        "company":  "Own",
+        "technologies":  "AI APIs, JavaScript/TypeScript, ReactFlow, NextJS, Mentor",
+        "product":  "Учебник «Новое программирование: ИИ» (course + book)",
+        "productSite":  "https://spiriturban.github.io/books-online/books/uchebnik-novoe-programmirovanie-ii/",
+        "aboutProduct":  "Серия видео/текстов о работе с ИИ как о новом типе программирования: уровни владения ИИ, контексты, пайплайны, прототипирование, интеграция в веб-проекты. YouTube — @strongest8359"
+    },
+    {
+        "year":  "2025",
+        "years":  "2025",
+        "title":  "System Architect, Mentor",
+        "company":  "Own",
+        "technologies":  "NodeJS, AI tools, Mentor",
+        "product":  "NIVORA — modular ecosystem \u0026 CLI (n.js)",
+        "productSite":  "",
+        "aboutProduct":  "Модульная архитектура (core + modules), автономные узлы, генерация артефактов/доков, социальная карта, послед. интеграция ИИ. CLI-команды: init/refresh/scan/clean. Этап 1 — автономные узлы; этап 2 — интеграция."
+    },
+    {
+        "year":  "2025",
+        "years":  "2025",
+        "title":  "Author, Mentor",
+        "company":  "Own",
+        "technologies":  "Writing, Mentor, AI tools",
+        "product":  "Series of books «НАСТАВНИК» (18+ volumes)",
+        "productSite":  "https://spiriturban.github.io/books-online/",
+        "aboutProduct":  "Автобиографическая и образовательная серия книг (2017–2025). 18 томов фиксируют семилетний путь внутренней трансформации, наставничества и практики в IT. Новые книги продолжают линию: «НАСТАВНИК 11 — Личная Победа», «НАСТАВНИК 12 — Первый Мухомор», «НАСТАВНИК 19 — Уничтожить мерзость и вознести мир»."
+    }
 ]
