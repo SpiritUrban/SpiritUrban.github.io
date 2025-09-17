@@ -79,6 +79,8 @@ const TechnologiesList: React.FC = () => {
 
   // Контейнер (для делегирования событий и для ConnectionLines)
   const containerRef = useRef<HTMLDivElement>(null);
+  // Таймаут для мобильного «тап-подсветки»
+  const tapTimeoutRef = useRef<number | null>(null);
 
   /**
    * Стабильные refs по имени технологии (а не по индексу):
@@ -113,6 +115,30 @@ const TechnologiesList: React.FC = () => {
     if (!leftToItem) setHoveredTech(null);
   }, []);
 
+  // Тап/клик по элементу — кратковременная подсветка линий
+  const handleItemTap = useCallback((tech: string) => {
+    // Сразу активируем подсветку
+    setHoveredTech(tech);
+    // Сброс предыдущего таймера
+    if (tapTimeoutRef.current) {
+      window.clearTimeout(tapTimeoutRef.current);
+      tapTimeoutRef.current = null;
+    }
+    // Выключаем подсветку через 1200 мс
+    tapTimeoutRef.current = window.setTimeout(() => {
+      setHoveredTech(null);
+      tapTimeoutRef.current = null;
+    }, 1200);
+  }, []);
+
+  // Очистка таймера при размонтировании
+  useEffect(() => () => {
+    if (tapTimeoutRef.current) {
+      window.clearTimeout(tapTimeoutRef.current);
+      tapTimeoutRef.current = null;
+    }
+  }, []);
+
   return (
     <>
       {/* Больше НЕ ремоунтим на каждый hover */}
@@ -144,6 +170,7 @@ const TechnologiesList: React.FC = () => {
               }}
               className={`${styles.techItem} ${hoveredTech === tech ? styles.techItemHovered : ''}`}
               data-tech-name={tech}
+              onClick={() => handleItemTap(tech)}
             >
               <div className={styles.techIconWrapper}>
                 <TechIcons techs={[tech]} iconClassName={styles.techIcon} />
