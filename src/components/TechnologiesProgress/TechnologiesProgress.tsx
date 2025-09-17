@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import workExperienceData from '../../assets/data/work-experience.json';
+import personalSkillsData from '../../assets/data/personal-skills.json';
 import './TechnologiesProgress.css';
 
 interface WorkExperience {
@@ -116,6 +117,8 @@ const COLORS = {
 } as const;
 
 const TechnologiesProgress: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'percentage' | 'years'>('percentage');
+
   // Process work experience data to calculate technology usage
   const technologies = useMemo(() => {
     const techMap = new Map<string, number>();
@@ -161,19 +164,135 @@ const TechnologiesProgress: React.FC = () => {
     return techArrayWithPercentages;
   }, []);
 
+  // Helper: parse a details string into years as number
+  const parseYears = (detailsRaw: string): number => {
+    if (!detailsRaw) return 0;
+    const details = detailsRaw.toLowerCase();
+
+    // e.g., "(13+)" inside parentheses
+    const parenNumber = details.match(/\((\d+)\+?\)/);
+    if (parenNumber) {
+      return parseFloat(parenNumber[1]);
+    }
+
+    // e.g., "10+" or "10 +"
+    const plusNumber = details.match(/\b(\d+)\s*\+\b/);
+    if (plusNumber) {
+      return parseFloat(plusNumber[1]);
+    }
+
+    // e.g., "10 years", "3 year"
+    const yearsMatch = details.match(/\b(\d+)\s*(years|year)\b/);
+    if (yearsMatch) {
+      return parseFloat(yearsMatch[1]);
+    }
+
+    // e.g., "half year"
+    if (/half\s*year/.test(details)) {
+      return 0.5;
+    }
+
+    // e.g., "2 month", "3 months"
+    const monthsMatch = details.match(/\b(\d+)\s*(months|month)\b/);
+    if (monthsMatch) {
+      return Math.round((parseFloat(monthsMatch[1]) / 12) * 10) / 10;
+    }
+
+    // e.g., "from 2016" -> approximate: currentYear - 2016
+    const fromYear = details.match(/from\s*(\d{4})/);
+    if (fromYear) {
+      const year = parseInt(fromYear[1], 10);
+      const currentYear = new Date().getFullYear();
+      if (year <= currentYear) {
+        return Math.max(0, currentYear - year);
+      }
+    }
+
+    // e.g., plain number like "2" in some entries (treat as years)
+    const loneNumber = details.match(/\b(\d+)\b/);
+    if (loneNumber) {
+      return parseFloat(loneNumber[1]);
+    }
+
+    return 0;
+  };
+
+  // Build technologies by years from personal-skills.json
+  const yearsTechnologies = useMemo(() => {
+    type Section = { type: string; data: { title: string; details: string }[] };
+    const techMap = new Map<string, number>();
+
+    (personalSkillsData as Section[]).forEach((section) => {
+      section.data.forEach((item) => {
+        const years = parseYears(item.details || '');
+        if (years > 0) {
+          const key = item.title.trim();
+          techMap.set(key, (techMap.get(key) || 0) + years);
+        }
+      });
+    });
+
+    const techArray = Array.from(techMap.entries()).map(([name, duration]) => ({
+      name,
+      duration,
+      color: COLORS[name as keyof typeof COLORS] || COLORS.default,
+    }));
+
+    if (techArray.length === 0) return [] as TechnologyUsage[];
+
+    const maxDuration = Math.max(...techArray.map((t) => t.duration));
+
+    const withPercentages: TechnologyUsage[] = techArray
+      .map((t) => ({
+        ...t,
+        percentage: Math.round((t.duration / maxDuration) * 1000) / 10,
+      }))
+      .sort((a, b) => b.duration - a.duration);
+
+    return withPercentages;
+  }, []);
+
+  const formatYearsEn = (years: number) => {
+    const n = Math.round(years * 10) / 10;
+    const int = Math.floor(n);
+    const frac = Math.round((n - int) * 10);
+    if (frac !== 0) return `${n} years`;
+    return `${int} ${int === 1 ? 'year' : 'years'}`;
+  };
+
   return (
     <div className="technologies-progress">
       <h3>Technology Experience</h3>
+      <div className="tabs">
+        <button
+          type="button"
+          className={`tab ${activeTab === 'percentage' ? 'active' : ''}`}
+          onClick={() => setActiveTab('percentage')}
+        >
+          Percentage
+        </button>
+        <button
+          type="button"
+          className={`tab ${activeTab === 'years' ? 'active' : ''}`}
+          onClick={() => setActiveTab('years')}
+        >
+          Years
+        </button>
+      </div>
       <div className="progress-bars">
-        {technologies.map((tech) => (
-          <div key={tech.name} className="progress-item">
+        {(activeTab === 'percentage' ? technologies : yearsTechnologies).map((tech) => (
+          <div key={`${activeTab}-${tech.name}`} className="progress-item">
             <div className="tech-info">
               <span className="tech-name">{tech.name}</span>
-              <span className="tech-percentage">{tech.percentage}%</span>
+              {activeTab === 'percentage' ? (
+                <span className="tech-percentage">{tech.percentage}%</span>
+              ) : (
+                <span className="tech-percentage">{formatYearsEn(tech.duration)}</span>
+              )}
             </div>
             <div className="progress-bar">
-              <div 
-                className="progress-fill" 
+              <div
+                className="progress-fill"
                 style={{
                   width: `${tech.percentage}%`,
                   backgroundColor: tech.color,
