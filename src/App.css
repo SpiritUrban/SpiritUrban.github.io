@@ -12,6 +12,7 @@
     flex-direction: row;
     /* height: 100vh; */
     gap: 2rem;
+    margin-right: 80px;
 }
 
 .base-container .left {

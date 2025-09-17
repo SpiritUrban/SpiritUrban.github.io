@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import workExperienceData from '../../assets/data/work-experience.json';
 import personalSkillsData from '../../assets/data/personal-skills.json';
+import skillsYears from '../../assets/data/skills-years.json';
 import './TechnologiesProgress.css';
 
 interface WorkExperience {
@@ -208,29 +209,103 @@ const TechnologiesProgress: React.FC = () => {
       }
     }
 
-    // e.g., plain number like "2" in some entries (treat as years)
-    const loneNumber = details.match(/\b(\d+)\b/);
-    if (loneNumber) {
-      return parseFloat(loneNumber[1]);
+    // Strict bare number or with 'y' suffix (e.g., "2" or "2 y")
+    const strictBare = details.match(/^\s*(\d+)\s*(y|yr|yrs)?\s*$/);
+    if (strictBare) {
+      return parseFloat(strictBare[1]);
     }
 
     return 0;
   };
 
-  // Build technologies by years from personal-skills.json
+  // Normalize technology names for consistent coloring
+  const normalizeTechName = (raw: string): string => {
+    const name = raw.trim();
+    const map: Record<string, string> = {
+      'NodeJS': 'Node.js',
+      'NodeJs': 'Node.js',
+      'Node': 'Node.js',
+      'Express.js': 'Express',
+      'Next': 'Next.js',
+      'NuxtJS': 'Nuxt',
+      'ThreeJS': 'Three.js',
+      'ReactJS': 'React',
+      'AngularJs': 'AngularJS',
+      '3DSMax': '3DMax',
+      'CorelDrow': 'CorelDraw',
+    };
+    return map[name] || name;
+  };
+
+  // Build technologies by years (prefer flat list skills-years.json, fallback to personal-skills.json parsing)
   const yearsTechnologies = useMemo(() => {
     type Section = { type: string; data: { title: string; details: string }[] };
     const techMap = new Map<string, number>();
 
-    (personalSkillsData as Section[]).forEach((section) => {
-      section.data.forEach((item) => {
-        const years = parseYears(item.details || '');
-        if (years > 0) {
-          const key = item.title.trim();
-          techMap.set(key, (techMap.get(key) || 0) + years);
-        }
-      });
+    // Allowed sections/categories where numeric values represent durations
+    const allowedSet = new Set<string>([
+      'Job-related skills',
+      'Frameworks',
+      'Server Administration',
+      'Graphics',
+      'Other experience',
+      'Intensive practice during study',
+      // For object schema (category keys)
+      'Core Stack',
+      'Frontend',
+      'Backend',
+    ]);
+
+    // 1) Prefer explicit flat list if provided
+    type FlatItem = { title: string; years: number };
+    const flatList = (skillsYears as unknown as FlatItem[]) || [];
+    flatList.forEach((it) => {
+      if (!it || !it.title) return;
+      const years = typeof it.years === 'number' ? it.years : 0;
+      if (years > 0) {
+        const key = normalizeTechName(it.title);
+        const prev = techMap.get(key) || 0;
+        techMap.set(key, Math.max(prev, years));
+      }
     });
+
+    // 2) If flat list is empty, fallback to legacy parsing
+    if (techMap.size === 0) {
+      const data: unknown = personalSkillsData as unknown;
+
+      if (Array.isArray(data)) {
+        // Array-of-sections schema
+        (data as Section[]).forEach((section) => {
+          if (!allowedSet.has(section.type)) return;
+          section.data.forEach((item) => {
+            const years = parseYears(item.details || '');
+            if (years > 0) {
+              const key = normalizeTechName(item.title);
+              const prev = techMap.get(key) || 0;
+              techMap.set(key, Math.max(prev, years));
+            }
+          });
+        });
+      } else if (data && typeof data === 'object') {
+        // Object-with-categories schema
+        const obj = data as Record<string, string[]>;
+        Object.entries(obj).forEach(([category, entries]) => {
+          if (!allowedSet.has(category)) return;
+          if (!Array.isArray(entries)) return;
+          entries.forEach((line) => {
+            // Expect pattern like "Tech — details"
+            const parts = String(line).split('—');
+            const title = normalizeTechName((parts[0] || '').trim());
+            const details = (parts[1] || '').trim();
+            const years = parseYears(details);
+            if (title && years > 0) {
+              const prev = techMap.get(title) || 0;
+              techMap.set(title, Math.max(prev, years));
+            }
+          });
+        });
+      }
+    }
 
     const techArray = Array.from(techMap.entries()).map(([name, duration]) => ({
       name,
@@ -263,17 +338,21 @@ const TechnologiesProgress: React.FC = () => {
   return (
     <div className="technologies-progress">
       <h3>Technology Experience</h3>
-      <div className="tabs">
+      <div className="tech-tabs" role="tablist" aria-label="Technology experience view">
         <button
           type="button"
-          className={`tab ${activeTab === 'percentage' ? 'active' : ''}`}
+          className={`tech-tab ${activeTab === 'percentage' ? 'active' : ''}`}
+          role="tab"
+          aria-selected={activeTab === 'percentage' ? 'true' : 'false'}
           onClick={() => setActiveTab('percentage')}
         >
           Percentage
         </button>
         <button
           type="button"
-          className={`tab ${activeTab === 'years' ? 'active' : ''}`}
+          className={`tech-tab ${activeTab === 'years' ? 'active' : ''}`}
+          role="tab"
+          aria-selected={activeTab === 'years' ? 'true' : 'false'}
           onClick={() => setActiveTab('years')}
         >
           Years
