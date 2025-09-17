@@ -28,8 +28,19 @@ body {
   padding: 2rem;
 }
 
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+}
+
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text-primary);
   font-weight: 600;
   line-height: 1.2;
@@ -118,45 +129,85 @@ button:hover {
 
 /* Cyberpunk Glitch Effects */
 @keyframes glitch-1 {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    transform: translate(-2px, -2px);
+  }
+
+  60% {
+    transform: translate(2px, 2px);
+  }
+
+  80% {
+    transform: translate(2px, -2px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
 }
 
 @keyframes glitch-2 {
-  0% { 
+  0% {
     text-shadow: 0.05em 0 0 var(--accent-1), -0.05em -0.025em 0 var(--accent-2);
   }
+
   14% {
     text-shadow: 0.05em 0 0 var(--accent-1), -0.05em -0.025em 0 var(--accent-2);
   }
+
   15% {
     text-shadow: -0.05em -0.025em 0 var(--accent-1), 0.025em 0.025em 0 var(--accent-2);
   }
+
   49% {
     text-shadow: -0.05em -0.025em 0 var(--accent-1), 0.025em 0.025em 0 var(--accent-2);
   }
+
   50% {
     text-shadow: 0.025em 0.05em 0 var(--accent-1), 0.05em 0 0 var(--accent-2), -0.025em -0.05em 0 var(--accent-3);
   }
+
   99% {
     text-shadow: 0.025em 0.05em 0 var(--accent-1), 0.05em 0 0 var(--accent-2), -0.025em -0.05em 0 var(--accent-3);
   }
+
   100% {
     text-shadow: -0.025em 0 0 var(--accent-1), -0.025em -0.025em 0 var(--accent-2);
   }
 }
 
 @keyframes glitch-3 {
-  0% { clip-path: inset(80% 0 23% 0); }
-  20% { clip-path: inset(10% 0 65% 0); }
-  40% { clip-path: inset(40% 0 16% 0); }
-  60% { clip-path: inset(25% 0 58% 0); }
-  80% { clip-path: inset(54% 0 7% 0); }
-  100% { clip-path: inset(58% 0 43% 0); }
+  0% {
+    clip-path: inset(80% 0 23% 0);
+  }
+
+  20% {
+    clip-path: inset(10% 0 65% 0);
+  }
+
+  40% {
+    clip-path: inset(40% 0 16% 0);
+  }
+
+  60% {
+    clip-path: inset(25% 0 58% 0);
+  }
+
+  80% {
+    clip-path: inset(54% 0 7% 0);
+  }
+
+  100% {
+    clip-path: inset(58% 0 43% 0);
+  }
 }
 
 @keyframes glitch-4 {
@@ -164,21 +215,27 @@ button:hover {
     text-shadow: 0.05em 0 0 var(--accent-1), -0.05em -0.025em 0 var(--accent-2);
     transform: translate(0);
   }
+
   15% {
     text-shadow: 0.05em 0 0 var(--accent-1), -0.05em -0.025em 0 var(--accent-2);
   }
+
   16% {
     text-shadow: -0.05em -0.025em 0 var(--accent-1), 0.025em 0.025em 0 var(--accent-2);
   }
+
   49% {
     text-shadow: -0.05em -0.025em 0 var(--accent-1), 0.025em 0.025em 0 var(--accent-2);
   }
+
   50% {
     text-shadow: 0.025em 0.05em 0 var(--accent-1), 0.05em 0 0 var(--accent-2), -0.025em -0.05em 0 var(--accent-3);
   }
+
   99% {
     text-shadow: 0.025em 0.05em 0 var(--accent-1), 0.05em 0 0 var(--accent-2), -0.025em -0.05em 0 var(--accent-3);
   }
+
   100% {
     text-shadow: -0.025em 0 0 var(--accent-1), -0.025em -0.025em 0 var(--accent-2);
     transform: translate(0);
@@ -235,42 +292,48 @@ button:hover {
 
 @keyframes glitch-5 {
   0% {
-    text-shadow: 
+    text-shadow:
       0.05em 0 0 var(--accent-1),
       -0.025em -0.05em 0 var(--accent-2),
       -0.05em 0.025em 0 var(--accent-3);
     transform: translate(0);
   }
+
   15% {
-    text-shadow: 
+    text-shadow:
       0.05em 0 0 var(--accent-1),
       -0.05em -0.025em 0 var(--accent-2);
   }
+
   16% {
-    text-shadow: 
-      -0.05em -0.025em 0 var(--accent-1), 
+    text-shadow:
+      -0.05em -0.025em 0 var(--accent-1),
       0.025em 0.025em 0 var(--accent-2);
   }
+
   49% {
-    text-shadow: 
-      -0.05em -0.025em 0 var(--accent-1), 
+    text-shadow:
+      -0.05em -0.025em 0 var(--accent-1),
       0.025em 0.025em 0 var(--accent-2);
   }
+
   50% {
-    text-shadow: 
-      0.025em 0.05em 0 var(--accent-1), 
-      0.05em 0 0 var(--accent-2), 
+    text-shadow:
+      0.025em 0.05em 0 var(--accent-1),
+      0.05em 0 0 var(--accent-2),
       -0.025em -0.05em 0 var(--accent-3);
   }
+
   99% {
-    text-shadow: 
-      0.025em 0.05em 0 var(--accent-1), 
-      0.05em 0 0 var(--accent-2), 
+    text-shadow:
+      0.025em 0.05em 0 var(--accent-1),
+      0.05em 0 0 var(--accent-2),
       -0.025em -0.05em 0 var(--accent-3);
   }
+
   100% {
-    text-shadow: 
-      -0.025em 0 0 var(--accent-1), 
+    text-shadow:
+      -0.025em 0 0 var(--accent-1),
       -0.025em -0.025em 0 var(--accent-2);
     transform: translate(0);
   }
@@ -310,28 +373,33 @@ button:hover {
 @keyframes glitch-6 {
   0% {
     transform: translate(0);
-    text-shadow: 
+    text-shadow:
       0.05em 0 0 var(--accent-1),
       -0.05em 0 0 var(--accent-2);
   }
+
   15% {
     transform: translate(-0.05em, 0.05em);
-    text-shadow: 
+    text-shadow:
       0.1em 0 0 var(--accent-1),
       -0.1em 0 0 var(--accent-2);
   }
+
   30% {
     transform: translate(0.05em, -0.05em);
-    text-shadow: 
+    text-shadow:
       -0.1em 0 0 var(--accent-1),
       0.1em 0 0 var(--accent-2);
   }
-  45%, 85% {
+
+  45%,
+  85% {
     transform: translate(0);
-    text-shadow: 
+    text-shadow:
       0.05em 0 0 var(--accent-1),
       -0.05em 0 0 var(--accent-2);
   }
+
   100% {
     transform: translate(0);
   }
@@ -375,10 +443,10 @@ button:hover {
 
 .glitch-button:hover {
   animation: glitch-1 0.3s infinite;
-  box-shadow: 
+  box-shadow:
     0.3em 0 0 0 var(--accent-1),
     -0.3em 0 0 0 var(--accent-2);
-  text-shadow: 
+  text-shadow:
     0.05em 0 0 var(--accent-1),
     -0.05em -0.025em 0 var(--accent-2);
 }

@@ -114,7 +114,11 @@
 
   .right.open { transform: translateX(0); }
 
-  .right-close { display: grid; }
+  .right-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .right-links {
     flex-direction: row;

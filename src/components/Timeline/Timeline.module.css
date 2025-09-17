@@ -23,7 +23,7 @@
 }
 
 /* Ensure the icon container aligns properly */
-.techIconContainer > .devicon-nuxtjs-plain {
+.techIconContainer>.devicon-nuxtjs-plain {
   display: inline-block;
   line-height: 1;
   vertical-align: middle;
@@ -40,6 +40,7 @@
   margin-left: -2px;
   border-radius: 2px;
 }
+
 .timelineItem {
   padding: 10px 40px;
   position: relative;
@@ -70,12 +71,29 @@
 }
 
 @keyframes glitch-hover {
-  0% { transform: translateY(-2px); }
-  20% { transform: translate(-4px, -2px); }
-  40% { transform: translate(-4px, -4px); }
-  60% { transform: translate(4px, -2px); }
-  80% { transform: translate(4px, -4px); }
-  100% { transform: translateY(-2px); }
+  0% {
+    transform: translateY(-2px);
+  }
+
+  20% {
+    transform: translate(-4px, -2px);
+  }
+
+  40% {
+    transform: translate(-4px, -4px);
+  }
+
+  60% {
+    transform: translate(4px, -2px);
+  }
+
+  80% {
+    transform: translate(4px, -4px);
+  }
+
+  100% {
+    transform: translateY(-2px);
+  }
 }
 
 .timelineItem::before,
@@ -110,8 +128,13 @@
 }
 
 @keyframes glitch-scan {
-  0% { background-position: 0 0; }
-  100% { background-position: 100% 100%; }
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
 }
 
 .timelineItem.visible {
@@ -184,8 +207,13 @@
 }
 
 @keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
 }
 
 .timelineItem.expanded .timelineContent {
@@ -375,24 +403,39 @@
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  .timeline::after {
-    left: 31px;
+  .timeline {
+    padding: 10px 0px;
   }
-  
+
+  .timeline::after {
+    left: 10px;
+  }
+
   .timelineItem {
     width: 100%;
-    padding-left: 70px;
+    padding-left: 40px;
     padding-right: 25px;
     text-align: left !important;
   }
-  
+
   .timelineItem:nth-child(even) {
     left: 0;
-    padding-left: 70px;
+    padding-left: 30px;
   }
-  
+
+  .timelineItem:nth-child(odd) {
+    left: 0;
+
+    padding-right: 30px;
+  }
+
   .timelineDot {
-    left: 21px !important;
+    left: 0px !important;
     right: auto !important;
   }
+
+  .timelineContent {
+    padding: 10px;
+  }
+
 }

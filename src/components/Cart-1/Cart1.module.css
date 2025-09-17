@@ -132,3 +132,21 @@
   transform: translateY(-2px);
   box-shadow: 0 5px 20px rgba(0, 240, 255, 0.5);
 }
+
+@media (max-width: 768px) {
+  .leftSection {
+    padding: .5rem 0rem;
+  }
+  
+  .rightSection {
+    padding: 0rem .5rem .5rem 1rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+  
+  .description {
+    font-size: .9rem;
+  }
+}
