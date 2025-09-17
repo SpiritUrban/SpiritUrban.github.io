@@ -35,6 +35,7 @@ export const TechIcon: React.FC<TechIconProps> = ({ name, className = '' }) => {
     'mentoring': FaIcons.FaUserGraduate,
     'ai tools': FaIcons.FaRobot,
     'ai apis': FaIcons.FaRobot,
+    'ai assistant': FaIcons.FaRobot,
     'web publishing': FaIcons.FaGlobe,
     'vercel': SiIcons.SiVercel,
     'render': SiIcons.SiRender,

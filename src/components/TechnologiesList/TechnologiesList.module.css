@@ -31,7 +31,8 @@
   align-items: center;
   padding: 0.4rem 0.8rem;
   min-height: 36px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.7);
+  border: solid #00800040 1px;
   border-left: 2px solid #00ff9d;
   border-radius: 4px;
   transition: all 0.3s ease;
@@ -90,6 +91,9 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .connectionCount {
@@ -98,7 +102,7 @@
   background: rgba(0, 255, 157, 0.1);
   padding: 0.1rem 0.4rem;
   border-radius: 10px;
-  border: 1px solid rgba(0, 255, 157, 0.3);
+  /* border: 1px solid rgba(0, 255, 157, 0.3); */
   transition: all 0.2s ease;
 }
 

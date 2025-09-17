@@ -18,10 +18,11 @@ interface TechnologyUsage {
 
 // Colors for different technology categories
 const COLORS = {
+  'JavaScript/TypeScript': '#f0db4f',
   'JavaScript': '#f0db4f',
   'TypeScript': '#007acc',
   'React': '#61dafb',
-  'Node.js': '#68a063',
+  'Node.js': '#83CD29',
   'HTML': '#e34c26',
   'CSS': '#264de4',
   'Sass': '#cc6699',
@@ -34,6 +35,8 @@ const COLORS = {
   'Webpack': '#8dd6f9',
   'Jest': '#c21325',
   'Cypress': '#17202C',
+  'AngularJS': '#dd0031',
+  'jQuery': '#0769ad',
   'Photoshop': '#001e36',
   'Illustrator': '#330000',
   '3DMax': '#2d5f8d',
@@ -41,19 +44,21 @@ const COLORS = {
   'Blender': '#ea7600',
   'Bootstrap': '#563d7c',
   'Tailwind': '#38b2ac',
-  'Next.js': '#000000',
+  'Next.js': '#00e7ff',
   'NestJS': '#e0234e',
-  'Express': '#000000',
+  'Express': '#47b5f9',
   'Mongoose': '#880000',
   'D3.js': '#f9a03c',
-  'Three.js': '#000000',
+  'Three.js': '#8deaff',
+  'Electron.js': '#47848F',
   'PixiJS': '#f9a01b',
   'MobX': '#ff9955',
-  'JWT': '#000000',
+  'JWT': '#f0ad00',
+  'Socket.IO': '#ffffff',
   'OAuth': '#eb5424',
   'REST': '#6e5494',
   'WebSockets': '#00e5ff',
-  'WebRTC': '#333333',
+  'WebRTC': '#00c2ff',
   'PWA': '#5a0fc8',
   'Jira': '#0052cc',
   'Confluence': '#172b4d',
@@ -61,17 +66,17 @@ const COLORS = {
   'Slack': '#4a154b',
   'VS Code': '#0078d7',
   'WebStorm': '#00cdff',
-  'GitHub': '#181717',
+  'GitHub': '#ffffff',
   'GitLab': '#fca121',
   'Bitbucket': '#0052cc',
   'npm': '#cb3837',
   'Yarn': '#2c8ebb',
   'Linux': '#fcc624',
   'Windows': '#0078d7',
-  'macOS': '#000000',
+  'macOS': '#ffffff',
   'AWS': '#ff9900',
   'Firebase': '#ffca28',
-  'Vercel': '#000000',
+  'Vercel': '#ffffff',
   'Netlify': '#00c7b7',
   'Heroku': '#430098',
   'DigitalOcean': '#0080ff',
@@ -91,6 +96,10 @@ const COLORS = {
   'Zapier': '#ff4a00',
   'Make': '#00a9ff',
   'Airtable': '#18bfff',
+  'React Flow': '#00e5a8',
+  'Passport.js': '#34e27a',
+  'Material Design': '#4285f4',
+  'Jade': '#00a86b',
   'Notion': '#000000',
   'ClickUp': '#7b68ee',
   'Asana': '#ff6b6b',
@@ -102,23 +111,36 @@ const COLORS = {
   'GSAP': '#88ce02',
   'Framer Motion': '#0055ff',
   'React Spring': '#ff6d6d',
-  'React Three Fiber': '#000000',
-  'React Three Drei': '#000000',
-  'React Three Cannon': '#000000',
-  'React Three A11y': '#000000',
-  'React Three Postprocessing': '#000000',
-  'React Three Fiber Drei': '#000000',
-  'React Three Fiber Postprocessing': '#000000',
-  'React Three Fiber A11y': '#000000',
-  'React Three Fiber Cannon': '#000000',
-  'React Three Fiber Drei Postprocessing': '#000000',
-  'React Three Fiber Drei A11y': '#000000',
-  'React Three Fiber Drei Cannon': '#000000',
-  'default': '#6c757d', // Default color for technologies not in the list
+  'React Three Fiber': '#00d8ff',
+  'React Three Drei': '#00d8ff',
+  'React Three Cannon': '#00d8ff',
+  'React Three A11y': '#00d8ff',
+  'React Three Postprocessing': '#00d8ff',
+  'React Three Fiber Drei': '#00d8ff',
+  'React Three Fiber Postprocessing': '#00d8ff',
+  'React Three Fiber A11y': '#00d8ff',
+  'React Three Fiber Cannon': '#00d8ff',
+  'React Three Fiber Drei Postprocessing': '#00d8ff',
+  'React Three Fiber Drei A11y': '#00d8ff',
+  'React Three Fiber Drei Cannon': '#00d8ff',
+  'default': '#47b5f9', // Default color for technologies not in the list
 } as const;
 
 const TechnologiesProgress: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'percentage' | 'years'>('percentage');
+
+  // Fallback: generate a bright, distinct color from a name (stable hashing)
+  const colorFromName = (name: string): string => {
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+      hash = (hash << 5) - hash + name.charCodeAt(i);
+      hash |= 0;
+    }
+    const hue = Math.abs(hash) % 360; // 0..359
+    const sat = 75; // vibrant
+    const light = 55; // bright enough on dark bg
+    return `hsl(${hue} ${sat}% ${light}%)`;
+  };
 
   // Process work experience data to calculate technology usage
   const technologies = useMemo(() => {
@@ -145,11 +167,10 @@ const TechnologiesProgress: React.FC = () => {
 
     // Convert to array and calculate relative percentages
     const techArray = Array.from(techMap.entries())
-      .map(([name, duration]) => ({
-        name,
-        duration,
-        color: COLORS[name as keyof typeof COLORS] || COLORS.default,
-      }));
+      .map(([name, duration]) => {
+        const color = (COLORS as Record<string, string>)[name] || colorFromName(name);
+        return { name, duration, color };
+      });
       
     // Find the maximum duration to use as 100%
     const maxDuration = Math.max(...techArray.map(tech => tech.duration));
@@ -220,21 +241,48 @@ const TechnologiesProgress: React.FC = () => {
 
   // Normalize technology names for consistent coloring
   const normalizeTechName = (raw: string): string => {
-    const name = raw.trim();
+    let name = raw.replace(/^["']|["']$/g, '').trim();
+    // Common patterns from data
+    if (/java\s*script\s*\/\s*type\s*script/i.test(name)) return 'JavaScript/TypeScript';
+    if (/typescript?\b/i.test(name)) return 'TypeScript'; // also fixes TypeScrip typo
+    if (/javascript\b/i.test(name)) return 'JavaScript';
+
+    // HTML/CSS/Preprocessors
+    if (/html/i.test(name)) return 'HTML';
+    if (/css/i.test(name)) {
+      if (/sass|scss/i.test(name)) return 'Sass';
+      return 'CSS';
+    }
+    if (/less\b/i.test(name)) return 'CSS';
+    if (/jade/i.test(name)) return 'Jade';
+
+    // Libraries/Frameworks naming variants & typos
     const map: Record<string, string> = {
       'NodeJS': 'Node.js',
       'NodeJs': 'Node.js',
       'Node': 'Node.js',
-      'Express.js': 'Express',
       'Next': 'Next.js',
+      'NextJS': 'Next.js',
       'NuxtJS': 'Nuxt',
       'ThreeJS': 'Three.js',
       'ReactJS': 'React',
       'AngularJs': 'AngularJS',
-      '3DSMax': '3DMax',
-      'CorelDrow': 'CorelDraw',
+      'Express.js': 'Express',
+      'ExpressJS': 'Express',
+      'ExpessJS': 'Express',
+      'MongooseJS': 'Mongoose',
+      'JQuery': 'jQuery',
+      'Electron': 'Electron.js',
+      'SocketIO': 'Socket.IO',
     };
-    return map[name] || name;
+    if (map[name]) return map[name];
+
+    // Service/Tools aliases
+    if (/docker compose/i.test(name)) return 'Docker';
+    if (/passport\.js/i.test(name)) return 'Passport.js';
+    if (/react\s*flow/i.test(name)) return 'React Flow';
+
+    return name;
   };
 
   // Build technologies by years (prefer flat list skills-years.json, fallback to personal-skills.json parsing)
@@ -310,7 +358,7 @@ const TechnologiesProgress: React.FC = () => {
     const techArray = Array.from(techMap.entries()).map(([name, duration]) => ({
       name,
       duration,
-      color: COLORS[name as keyof typeof COLORS] || COLORS.default,
+      color: (COLORS as Record<string, string>)[name] || colorFromName(name),
     }));
 
     if (techArray.length === 0) return [] as TechnologyUsage[];
