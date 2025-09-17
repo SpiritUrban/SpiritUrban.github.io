@@ -6,12 +6,18 @@ interface MinimapProps {
   contentRef: React.RefObject<HTMLElement>;
   viewportRef?: React.RefObject<HTMLElement>;
   className?: string;
+  /** How the screenshot should scale inside the minimap: 'contain' | 'cover' | '100% auto' | 'auto 100%' */
+  fit?: 'contain' | 'cover' | '100% auto' | 'auto 100%';
+  /** Background position, e.g. 'center', 'top center' */
+  position?: string;
 }
 
 const Minimap: React.FC<MinimapProps> = ({
   contentRef,
   viewportRef,
-  className = ''
+  className = '',
+  fit = 'cover',
+  position = 'center',
 }) => {
   const minimapRef = useRef<HTMLDivElement>(null);
   const [thumbnail, setThumbnail] = useState<string>('');
@@ -223,6 +229,8 @@ const Minimap: React.FC<MinimapProps> = ({
         {
           // размеры только из CSS; передаём сюда лишь фон
           '--minimap-thumbnail-bg': thumbnail ? `url(${thumbnail})` : 'none',
+          '--minimap-fit': fit,
+          '--minimap-position': position,
         } as React.CSSProperties
       }
       role="region"

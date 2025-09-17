@@ -5,6 +5,9 @@
   --indicator-height: 20%;
   --indicator-top: 0%;
   --minimap-thumbnail-bg: none;
+  /* New: control how the thumbnail fits inside the container */
+  --minimap-fit: contain; /* contain | cover | 100% auto | auto 100% */
+  --minimap-position: top center; /* e.g., center, top center */
   --minimap-bg-color: rgba(16, 18, 27, 0.5);
   --minimap-border-color: rgba(255, 255, 255, 0.1);
   --indicator-bg-color: rgba(66, 153, 225, 0.3);
@@ -46,9 +49,9 @@
   overflow: hidden;
   background-color: rgba(16, 18, 27, 0.5);
   background-image: var(--minimap-thumbnail-bg);
-  background-size: contain;
+  background-size: var(--minimap-fit);
   background-repeat: no-repeat;
-  background-position: top center;
+  background-position: var(--minimap-position);
   background-origin: border-box;
   background-blend-mode: overlay;
   -webkit-backdrop-filter: blur(4px);
@@ -89,6 +92,17 @@
 .has-custom-height { height: var(--minimap-height) !important; }
 
 /* Удалены неиспользуемые .hasCustomWidth/.hasCustomHeight/.minimap/.minimapContainer */
+
+/*
+  Utility sizing classes to control the screenshot behavior without TS changes
+  Usage example: <Minimap className={`${styles['minimap--cover']} ${styles['minimap--center']}`} />
+*/
+.minimap--contain { --minimap-fit: contain; }
+.minimap--cover { --minimap-fit: cover; }
+.minimap--fitHeight { --minimap-fit: auto 100%; }
+.minimap--fitWidth { --minimap-fit: 100% auto; }
+.minimap--center { --minimap-position: center; }
+.minimap--top { --minimap-position: top center; }
 
 .viewportIndicator { /* оставлено для совместимости, если используется где-то в проекте */
   opacity: 0; pointer-events: none;
