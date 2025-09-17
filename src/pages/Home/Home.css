@@ -78,6 +78,9 @@
   user-select: none;
   line-height: 1;
   white-space: nowrap;
+  display: inline-block;
+  transform: rotate(180deg);
+  transform-origin: center;
 }
 
 /* Close button inside right panel */
