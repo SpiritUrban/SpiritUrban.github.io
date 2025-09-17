@@ -168,8 +168,25 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .technologiesContainer { padding: 1rem; }
-  .techItem { padding: 0.6rem 0.8rem; }
-  .techIcon { font-size: 1.5rem; }
-  .techIconWrapper { width: 25px; height: 25px; }
+  .title { display: none; }
+  .technologiesContainer { padding: 0.25rem 0.25rem; }
+  .technologiesList { gap: 0.35rem; }
+  .techItem {
+    padding: 0.35rem 0.5rem;
+    min-height: 30px;
+    transform: none;
+  }
+  .techIconWrapper { width: 22px; height: 22px; margin-right: 0.25rem; }
+  .techIcon { font-size: 1.2rem; width: 20px; height: 20px; margin-right: 0.25rem; }
+  /* Hide label text but keep counter visible */
+  .techName {
+    color: transparent;
+    text-shadow: none;
+    justify-content: flex-end;
+  }
+  .connectionCount {
+    color: #cfcfcf;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
 }

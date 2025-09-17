@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import type { RefObject, FC } from 'react';
 import { Link } from 'react-router-dom';
 import Cart1 from '../../components/Cart-1/Cart1';
@@ -11,6 +11,7 @@ import './Home.css';
 const Home: FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
+  const [isRightOpen, setIsRightOpen] = useState(false);
 
   // Create type-safe refs for the Minimap component
   const minimapContentRef = contentRef as unknown as RefObject<HTMLElement>;
@@ -55,7 +56,19 @@ const Home: FC = () => {
           aria-label="Document scroll position"
         />
       </div>
-      <div className="right">
+      <div
+        id="right-panel"
+        className={`right ${isRightOpen ? 'open' : ''}`}
+        role="dialog"
+      >
+        <button
+          type="button"
+          className="right-close"
+          aria-label="Close details panel"
+          onClick={() => setIsRightOpen(false)}
+        >
+          ✕
+        </button>
         <TechnologiesProgress />
         <div className="right-links">
           <Link to="/dev/icons" className="dev-link">
@@ -66,6 +79,17 @@ const Home: FC = () => {
           </Link>
         </div>
       </div>
+
+      {/* Mobile spine trigger */}
+      <button
+        type="button"
+        className="right-spine"
+        aria-label="Open details panel"
+        aria-controls="right-panel"
+        onClick={() => setIsRightOpen(true)}
+      >
+        ▎
+      </button>
     </div>
   );
 };

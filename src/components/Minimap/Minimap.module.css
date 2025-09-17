@@ -127,3 +127,7 @@
 
 @keyframes pulse { 0%{opacity:.7} 50%{opacity:.3} 100%{opacity:.7} }
 .minimap-thumbnail:hover .viewportIndicator { animation: pulse 2s infinite; }
+
+@media (max-width: 768px) {
+  .minimap-container { display: none !important; }
+}
