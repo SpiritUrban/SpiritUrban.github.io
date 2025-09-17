@@ -84,11 +84,11 @@ const Home: FC = () => {
       <button
         type="button"
         className="right-spine"
-        aria-label="Open details panel"
+        aria-label="Открыть панель прогресса"
         aria-controls="right-panel"
         onClick={() => setIsRightOpen(true)}
       >
-        ▎
+        <span className="right-spine-label" title="Открыть панель прогресса">Open Progress Panel</span>
       </button>
     </div>
   );

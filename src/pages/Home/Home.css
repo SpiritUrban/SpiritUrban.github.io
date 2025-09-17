@@ -46,10 +46,12 @@
 .right-spine {
   position: fixed;
   right: 0;
-  top: 50%;
+  top: 65%;
   transform: translateY(-50%);
-  width: 18px;
-  height: 80px;
+  width: 33px;
+  height: auto;
+  min-height: 110px;
+  padding: 8px 4px;
   background: rgba(45, 45, 45, 0.9);
   color: #cfcfcf;
   border: 1px solid #333;
@@ -63,6 +65,20 @@
 }
 
 .right-spine:active { transform: translateY(-50%) scale(0.98); }
+
+/* Vertical label inside the spine */
+.right-spine-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #e5e5e5;
+  -webkit-user-select: none;
+  user-select: none;
+  line-height: 1;
+  white-space: nowrap;
+}
 
 /* Close button inside right panel */
 .right-close {
