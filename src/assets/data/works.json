@@ -4,6 +4,12 @@
     "data": [
       {
         "shutdowned": "",
+        "title": "New Portfolio Website",
+        "link": "https://spiriturban.github.io/",
+        "details": "Современный интерактивный сайт-портфолио с анимациями, минимапом, корзиной проектов и адаптивным дизайном. React, TypeScript, Redux, NextJS, CSS Modules, Framer Motion."
+      },
+      {
+        "shutdowned": "",
         "title": "books-online",
         "link": "https://spiriturban.github.io/books-online/",
         "details": "Онлайн-каталог книг и учебных материалов (GitHub Pages, reader.js, LocalStorage, теги/фильтры)."

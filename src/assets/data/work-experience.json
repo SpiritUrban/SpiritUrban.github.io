@@ -301,5 +301,15 @@
         "product":  "Series of books «НАСТАВНИК» (18+ volumes)",
         "productSite":  "https://spiriturban.github.io/books-online/",
         "aboutProduct":  "Автобиографическая и образовательная серия книг (2017–2025). 18 томов фиксируют семилетний путь внутренней трансформации, наставничества и практики в IT. Новые книги продолжают линию: «НАСТАВНИК 11 — Личная Победа», «НАСТАВНИК 12 — Первый Мухомор», «НАСТАВНИК 19 — Уничтожить мерзость и вознести мир»."
+    },
+    {
+        "year":  "2025",
+        "years":  "2025",
+        "title":  "Full Stack Developer, UI/UX Designer",
+        "company":  "Own",
+        "technologies":  "React, TypeScript, RTK, GitHub Pages, AI Assistant",
+        "product":  "New Portfolio Website (Interactive Resume/CV)",
+        "productSite":  "https://spiriturban.github.io/",
+        "aboutProduct":  "С упором на ИИ генерирование но управляя с знанием дела.Современный интерактивный сайт-портфолио с анимациями, минимапом, корзиной проектов и адаптивным дизайном. Разработан с использованием React, TypeScript и современных технологий для создания впечатляющего представления опыта и проектов."
     }
 ]
