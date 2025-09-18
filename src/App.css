@@ -23,7 +23,9 @@
     width: 16%;
     height: 100vh;
     overflow-y: auto;
+    overflow-x: visible; /* avoid clipping counters/badges */
     padding: 1rem;
+    padding-right: 1.25rem; /* extra breathing room for counters near the scrollbar */
     box-sizing: border-box;
     /* background-color: rgba(0, 0, 0, 0.9); */
     scrollbar-width: thin;
@@ -67,7 +69,7 @@
 
   .base-container .left {
     width: 58px;
-    padding: 0.5rem 0.4rem;
+    padding: 0.5rem 0.6rem 0.8rem 0.4rem; /* a bit more right padding to avoid clipping */
     scrollbar-width: none;
   }
   .base-container .left::-webkit-scrollbar { display: none; }
