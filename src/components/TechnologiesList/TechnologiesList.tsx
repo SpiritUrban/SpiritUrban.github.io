@@ -6,29 +6,34 @@ import ConnectionLines from './ConnectionLines';
 import styles from './TechnologiesList.module.css';
 
 const TechnologiesList: React.FC = () => {
+  // Может зависеть от видимых карточек, оставляем как есть (для базового порядка),
+  // но СЧЁТЧИК теперь считаем по всему DOM, а не по этому списку.
   const technologies = useAppSelector(selectUniqueTechnologies);
+
   const [sortedTechnologies, setSortedTechnologies] = useState<string[]>([]);
   const [techConnections, setTechConnections] = useState<Record<string, number>>({});
 
-  // Ховер — кратковременная подсветка (как было)
+  // Ховер — кратковременная подсветка
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
   // NEW: выбранная (зафиксированная) технология
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
   // NEW: пинованные технологии (не исчезают из списка при динамике)
   const [pinnedTechs, setPinnedTechs] = useState<Set<string>>(new Set());
 
-  // Создаем MutationObserver для отслеживания изменений в DOM с карточками
+  /**
+   * Подсчёт связей (ЛИНИЙ) по всему DOM:
+   * - собираем все [data-card-technologies]
+   * - для каждого tech инкрементим счётчик
+   * - НЕ привязано к текущему Redux-списку
+   */
   useEffect(() => {
     const updateConnections = () => {
-      const connections: Record<string, number> = {};
+      // 1) Собираем все карточки на странице
       const allCards = document.querySelectorAll('[data-card-technologies]');
 
-      // Инициализируем счетчики для всех технологий
-      technologies.forEach(tech => {
-        connections[tech] = 0;
-      });
+      // 2) Строим общий счётчик для ВСЕХ обнаруженных технологий
+      const connections: Record<string, number> = {};
 
-      // Считаем количество карточек для каждой технологии
       allCards.forEach(card => {
         const raw = card.getAttribute('data-card-technologies') || '';
         const techs = raw
@@ -37,26 +42,24 @@ const TechnologiesList: React.FC = () => {
           .filter(Boolean);
 
         techs.forEach(tech => {
-          if (Object.prototype.hasOwnProperty.call(connections, tech)) {
-            connections[tech]++;
-          }
+          connections[tech] = (connections[tech] || 0) + 1;
         });
       });
 
       setTechConnections(connections);
 
-      // Сортируем технологии по количеству соединений (по убыванию)
+      // 3) Сортируем ТЕКУЩИЙ Redux-список по количеству связей (по убыванию).
+      // Если теха нет в connections (редкий случай) — считаем 0.
       const sorted = [...technologies].sort((a, b) => {
         return (connections[b] || 0) - (connections[a] || 0);
       });
-
       setSortedTechnologies(sorted);
     };
 
-    // Инициализируем начальную сортировку
+    // Инициализация
     updateConnections();
 
-    // Настраиваем MutationObserver для отслеживания изменений в DOM
+    // Следим за структурой DOM (карточки появляются/исчезают, меняются атрибуты)
     const observer = new MutationObserver(updateConnections);
     observer.observe(document.body, {
       childList: true,
@@ -65,23 +68,21 @@ const TechnologiesList: React.FC = () => {
       attributeFilter: ['data-card-technologies']
     });
 
-    // Обновляем сортировку при изменении списка технологий
-    const techObserver = new MutationObserver(updateConnections);
-    const techContainer = document.querySelector('.technologiesList');
-    if (techContainer) {
-      techObserver.observe(techContainer, { childList: true, subtree: true });
-    }
+    // На случай динамической подгрузки и редких пересчётов — небольшой fallback
+    window.addEventListener('resize', updateConnections);
+    window.addEventListener('scroll', updateConnections, { passive: true });
 
     return () => {
       observer.disconnect();
-      techObserver.disconnect();
+      window.removeEventListener('resize', updateConnections);
+      window.removeEventListener('scroll', updateConnections);
     };
   }, [technologies]);
 
   // Базовый список для отображения
   const baseList = sortedTechnologies.length > 0 ? sortedTechnologies : technologies;
 
-  // Итоговый список: выбранная (если есть) → все pinned → базовый (без дублей)
+  // Итоговый список: выбранная → pinned → базовый (без дублей)
   const displayTechnologies = useMemo(() => {
     const union = new Set<string>([
       ...(selectedTech ? [selectedTech] : []),
@@ -117,15 +118,12 @@ const TechnologiesList: React.FC = () => {
     const target = e.target as HTMLElement;
     const item = target.closest(`.${styles.techItem}`) as HTMLDivElement | null;
     const name = item?.dataset?.techName || null;
-    // если есть зафиксированная — hover не обязателен, но не мешает
     if (!selectedTech && name !== hoveredTech) setHoveredTech(name);
   }, [hoveredTech, selectedTech]);
 
   const handleMouseOut = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const related = e.relatedTarget as HTMLElement | null;
     const leftToItem = related?.closest?.(`.${styles.techItem}`);
-    // Если ушли за пределы списка или не над .techItem — сбрасываем
-    // НО: при наличии selectedTech подсветку не гасим
     if (!leftToItem && !selectedTech) setHoveredTech(null);
   }, [selectedTech]);
 
@@ -150,7 +148,7 @@ const TechnologiesList: React.FC = () => {
         itemRefs={itemRefs}
         containerRef={containerRef}
         hoveredTech={hoveredTech}
-        selectedTech={selectedTech} // NEW
+        selectedTech={selectedTech}
       />
 
       <div
@@ -166,7 +164,6 @@ const TechnologiesList: React.FC = () => {
             <div
               key={tech}
               ref={(el) => {
-                // Прямо присваиваем в устойчивый ref-объект по ключу
                 if (!refsByTech.current[tech]) {
                   refsByTech.current[tech] = { current: el };
                 } else {
@@ -186,7 +183,9 @@ const TechnologiesList: React.FC = () => {
               </div>
               <span className={styles.techName}>
                 {tech}
-                <span className={styles.connectionCount}>{techConnections[tech] || 0}</span>
+                <span className={styles.connectionCount}>
+                  {techConnections[tech] ?? 0}
+                </span>
               </span>
             </div>
           ))}
