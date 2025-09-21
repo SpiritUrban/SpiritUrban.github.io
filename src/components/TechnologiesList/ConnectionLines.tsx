@@ -6,6 +6,7 @@ interface ConnectionLinesProps {
   containerRef: React.RefObject<HTMLElement | null>;
   timelineRef?: React.RefObject<HTMLElement | null>;
   hoveredTech: string | null;
+  selectedTech?: string | null; // NEW
 }
 
 type ConnectionLine = {
@@ -18,7 +19,7 @@ type ConnectionLine = {
   isHighlighted?: boolean;
 };
 
-const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech }) => {
+const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech, selectedTech }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [_, setForceUpdate] = useState(0);
   const rafId = useRef<number | null>(null);
@@ -30,18 +31,14 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
     const buildIndex = () => {
       const idx = new Map<string, Set<Element>>();
       const all = document.querySelectorAll('[data-card-technologies]');
-      
+
       all.forEach((el) => {
         const raw = el.getAttribute('data-card-technologies') || '';
-        console.log('Raw technologies:', raw);
-        
         // Split by comma and trim whitespace
         const tokens = raw
           .split(',')
           .map(tech => tech.trim())
           .filter(Boolean);
-          
-        console.log('Processed tokens:', tokens);
 
         tokens.forEach((name) => {
           const key = name.toLowerCase().trim();
@@ -49,12 +46,9 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
             idx.set(key, new Set());
           }
           idx.get(key)!.add(el);
-          console.log(`Added card for technology: "${key}". Total cards for this tech:`, idx.get(key)?.size);
         });
       });
-      
-      // Log the complete index for debugging
-      console.log('Technology index:', Object.fromEntries(idx));
+
       cardsIndexRef.current = idx;
     };
 
@@ -78,22 +72,23 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
       const techName = el.getAttribute('data-tech-name');
       if (!techName) return;
 
-      // ВАЖНО: изолированная подсветка — строго равенство
-      const isHighlighted = hoveredTech !== null && hoveredTech === techName;
+      // Подсветка: по hover ИЛИ по выбранной технологии
+      const isHighlighted =
+        (hoveredTech !== null && hoveredTech === techName) ||
+        (selectedTech !== null && selectedTech === techName);
 
       const rect = el.getBoundingClientRect();
       const startX = rect.right;
       const startY = rect.top + rect.height / 2;
 
-      // Normalize the technology name for matching (case-insensitive, trim, and handle special chars)
-      const normalizeForMatching = (str: string) => 
+      // Normalize for robust matching
+      const normalizeForMatching = (str: string) =>
         str.toLowerCase()
           .trim()
-          .replace(/[^a-z0-9]/g, ''); // Remove all non-alphanumeric chars
-      
+          .replace(/[^a-z0-9]/g, '');
+
       const normalizedTechName = normalizeForMatching(techName);
-      console.log(`Looking up technology: "${techName}" (normalized: "${normalizedTechName}") in index`);
-      
+
       // Find all matching technologies (case-insensitive, ignoring special chars)
       let cards: Set<Element> | undefined;
       for (const [tech, elements] of cardsIndexRef.current.entries()) {
@@ -102,13 +97,10 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
           break;
         }
       }
-      
+
       if (!cards || cards.size === 0) {
-        console.warn(`No cards found for technology: "${techName}" (normalized: "${normalizedTechName}")`);
-        console.log('Available technologies:', Array.from(cardsIndexRef.current.keys()));
         return;
       }
-      console.log(`Found ${cards.size} cards for technology: "${normalizedTechName}"`);
 
       let i = 0;
       cards.forEach((cardEl) => {
@@ -129,7 +121,7 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
     });
 
     return lines;
-  }, [itemRefs, hoveredTech]);
+  }, [itemRefs, hoveredTech, selectedTech]);
 
   /** 3) S-кривая */
   const createCurvedPath = (x1: number, y1: number, x2: number, y2: number) => {
@@ -159,7 +151,7 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
   return (
     <svg
       ref={svgRef}
-      className={styles.connectionSvg} 
+      className={styles.connectionSvg}
       width="100%"
       height="100%"
       style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 1 }}
@@ -170,8 +162,6 @@ const ConnectionLines: React.FC<ConnectionLinesProps> = ({ itemRefs, hoveredTech
           d={createCurvedPath(line.startX, line.startY, line.endX, line.endY)}
           className={`${styles.connectionLine} ${line.isHighlighted ? styles.highlighted : ''}`}
           fill="none"
-          // ширину теперь лучше контролировать в CSS через .highlighted (для анимации),
-          // но оставляем fallback, чтобы не ломать существующее поведение
           strokeWidth={line.isHighlighted ? 3 : 1}
         />
       ))}

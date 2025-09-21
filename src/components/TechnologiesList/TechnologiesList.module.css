@@ -50,16 +50,13 @@
   z-index: 10;
 }
 
-.techItem:hover .techIcon,
-.techItem.techItemHovered .techIcon {
-  transform: scale(1.3);
-  filter: drop-shadow(0 0 10px rgba(0, 255, 157, 1));
-}
-
-.techItem:hover .techName,
-.techItem.techItemHovered .techName {
-  color: #00ff9d;
-  text-shadow: 0 0 8px rgba(0, 255, 157, 0.6);
+/* NEW: Перманентно выбранный элемент (как "прилипший" hover) */
+.techItemSelected {
+  transform: translateX(5px);
+  background: rgba(0, 255, 157, 0.22);
+  box-shadow: 0 0 25px rgba(0, 255, 157, 0.55);
+  border-left-color: #00ff9d;
+  z-index: 12;
 }
 
 .techIconWrapper {
@@ -83,6 +80,13 @@
   transition: all 0.2s ease;
 }
 
+.techItem:hover .techIcon,
+.techItem.techItemHovered .techIcon,
+.techItemSelected .techIcon {
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 10px rgba(0, 255, 157, 1));
+}
+
 .techName {
   font: 0.9rem/1.2 'Oxanium', sans-serif;
   color: #fff;
@@ -96,6 +100,13 @@
   justify-content: space-between;
 }
 
+.techItem:hover .techName,
+.techItem.techItemHovered .techName,
+.techItemSelected .techName {
+  color: #00ff9d;
+  text-shadow: 0 0 8px rgba(0, 255, 157, 0.6);
+}
+
 .connectionCount {
   font-size: 0.7rem;
   color: #00ff9d;
@@ -107,7 +118,8 @@
 }
 
 .techItem:hover .connectionCount,
-.techItem.techItemHovered .connectionCount {
+.techItem.techItemHovered .connectionCount,
+.techItemSelected .connectionCount {
   background: rgba(0, 255, 157, 0.2);
   box-shadow: 0 0 8px rgba(0, 255, 157, 0.3);
 }
@@ -132,7 +144,7 @@
 
 .connectionLine {
   fill: none;
-  stroke: rgba(0, 255, 157, 0.1);
+  stroke: rgba(0, 255, 157, 0.3);
   stroke-width: 1px;
   stroke-linecap: round;
   stroke-linejoin: round;

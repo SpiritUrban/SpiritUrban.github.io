@@ -9,21 +9,25 @@ const TechnologiesList: React.FC = () => {
   const technologies = useAppSelector(selectUniqueTechnologies);
   const [sortedTechnologies, setSortedTechnologies] = useState<string[]>([]);
   const [techConnections, setTechConnections] = useState<Record<string, number>>({});
-  
-  // Ховер — единственный стейт
+
+  // Ховер — кратковременная подсветка (как было)
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
-  
+  // NEW: выбранная (зафиксированная) технология
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
+  // NEW: пинованные технологии (не исчезают из списка при динамике)
+  const [pinnedTechs, setPinnedTechs] = useState<Set<string>>(new Set());
+
   // Создаем MutationObserver для отслеживания изменений в DOM с карточками
   useEffect(() => {
     const updateConnections = () => {
       const connections: Record<string, number> = {};
       const allCards = document.querySelectorAll('[data-card-technologies]');
-      
+
       // Инициализируем счетчики для всех технологий
       technologies.forEach(tech => {
         connections[tech] = 0;
       });
-      
+
       // Считаем количество карточек для каждой технологии
       allCards.forEach(card => {
         const raw = card.getAttribute('data-card-technologies') || '';
@@ -31,56 +35,64 @@ const TechnologiesList: React.FC = () => {
           .split(',')
           .map(t => t.trim())
           .filter(Boolean);
-          
+
         techs.forEach(tech => {
-          if (connections.hasOwnProperty(tech)) {
+          if (Object.prototype.hasOwnProperty.call(connections, tech)) {
             connections[tech]++;
           }
         });
       });
-      
+
       setTechConnections(connections);
-      
+
       // Сортируем технологии по количеству соединений (по убыванию)
       const sorted = [...technologies].sort((a, b) => {
         return (connections[b] || 0) - (connections[a] || 0);
       });
-      
+
       setSortedTechnologies(sorted);
     };
-    
+
     // Инициализируем начальную сортировку
     updateConnections();
-    
+
     // Настраиваем MutationObserver для отслеживания изменений в DOM
     const observer = new MutationObserver(updateConnections);
-    observer.observe(document.body, { 
-      childList: true, 
-      subtree: true, 
-      attributes: true, 
-      attributeFilter: ['data-card-technologies'] 
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-card-technologies']
     });
-    
+
     // Обновляем сортировку при изменении списка технологий
     const techObserver = new MutationObserver(updateConnections);
     const techContainer = document.querySelector('.technologiesList');
     if (techContainer) {
       techObserver.observe(techContainer, { childList: true, subtree: true });
     }
-    
+
     return () => {
       observer.disconnect();
       techObserver.disconnect();
     };
   }, [technologies]);
-  
-  // Используем отсортированный список или оригинальный, если еще не отсортировали
-  const displayTechnologies = sortedTechnologies.length > 0 ? sortedTechnologies : technologies;
+
+  // Базовый список для отображения
+  const baseList = sortedTechnologies.length > 0 ? sortedTechnologies : technologies;
+
+  // Итоговый список: выбранная (если есть) → все pinned → базовый (без дублей)
+  const displayTechnologies = useMemo(() => {
+    const union = new Set<string>([
+      ...(selectedTech ? [selectedTech] : []),
+      ...Array.from(pinnedTechs),
+      ...baseList,
+    ]);
+    return Array.from(union);
+  }, [baseList, pinnedTechs, selectedTech]);
 
   // Контейнер (для делегирования событий и для ConnectionLines)
   const containerRef = useRef<HTMLDivElement>(null);
-  // Таймаут для мобильного «тап-подсветки»
-  const tapTimeoutRef = useRef<number | null>(null);
 
   /**
    * Стабильные refs по имени технологии (а не по индексу):
@@ -105,47 +117,40 @@ const TechnologiesList: React.FC = () => {
     const target = e.target as HTMLElement;
     const item = target.closest(`.${styles.techItem}`) as HTMLDivElement | null;
     const name = item?.dataset?.techName || null;
-    if (name !== hoveredTech) setHoveredTech(name);
-  }, [hoveredTech]);
+    // если есть зафиксированная — hover не обязателен, но не мешает
+    if (!selectedTech && name !== hoveredTech) setHoveredTech(name);
+  }, [hoveredTech, selectedTech]);
 
   const handleMouseOut = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const related = e.relatedTarget as HTMLElement | null;
     const leftToItem = related?.closest?.(`.${styles.techItem}`);
     // Если ушли за пределы списка или не над .techItem — сбрасываем
-    if (!leftToItem) setHoveredTech(null);
-  }, []);
+    // НО: при наличии selectedTech подсветку не гасим
+    if (!leftToItem && !selectedTech) setHoveredTech(null);
+  }, [selectedTech]);
 
-  // Тап/клик по элементу — кратковременная подсветка линий
-  const handleItemTap = useCallback((tech: string) => {
-    // Сразу активируем подсветку
-    setHoveredTech(tech);
-    // Сброс предыдущего таймера
-    if (tapTimeoutRef.current) {
-      window.clearTimeout(tapTimeoutRef.current);
-      tapTimeoutRef.current = null;
-    }
-    // Выключаем подсветку через 1200 мс
-    tapTimeoutRef.current = window.setTimeout(() => {
-      setHoveredTech(null);
-      tapTimeoutRef.current = null;
-    }, 1200);
-  }, []);
-
-  // Очистка таймера при размонтировании
-  useEffect(() => () => {
-    if (tapTimeoutRef.current) {
-      window.clearTimeout(tapTimeoutRef.current);
-      tapTimeoutRef.current = null;
-    }
+  // Клик по элементу — переключение фиксации технологии + пин
+  const handleItemClick = useCallback((tech: string) => {
+    setHoveredTech(tech); // мгновенный отклик
+    setSelectedTech(prev => {
+      const next = prev === tech ? null : tech;
+      setPinnedTechs(prevPins => {
+        const pins = new Set(prevPins);
+        if (next) pins.add(tech); else pins.delete(tech);
+        return pins;
+      });
+      return next;
+    });
   }, []);
 
   return (
     <>
-      {/* Больше НЕ ремоунтим на каждый hover */}
+      {/* Рисуем линии один раз, меняем только входные данные */}
       <ConnectionLines
         itemRefs={itemRefs}
         containerRef={containerRef}
         hoveredTech={hoveredTech}
+        selectedTech={selectedTech} // NEW
       />
 
       <div
@@ -168,15 +173,19 @@ const TechnologiesList: React.FC = () => {
                   refsByTech.current[tech].current = el;
                 }
               }}
-              className={`${styles.techItem} ${hoveredTech === tech ? styles.techItemHovered : ''}`}
+              className={[
+                styles.techItem,
+                hoveredTech === tech ? styles.techItemHovered : '',
+                selectedTech === tech ? styles.techItemSelected : '',
+              ].join(' ')}
               data-tech-name={tech}
-              onClick={() => handleItemTap(tech)}
+              onClick={() => handleItemClick(tech)}
             >
               <div className={styles.techIconWrapper}>
                 <TechIcons techs={[tech]} iconClassName={styles.techIcon} />
               </div>
               <span className={styles.techName}>
-                {tech} 
+                {tech}
                 <span className={styles.connectionCount}>{techConnections[tech] || 0}</span>
               </span>
             </div>
