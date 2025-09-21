@@ -7,6 +7,8 @@ import IconsBrowser from './pages/IconsBrowser/IconsBrowser';
 import DeviconBrowser from './pages/DeviconBrowser/DeviconBrowser';
 import './pages/IconsBrowser/IconsBrowser.css';
 import './pages/DeviconBrowser/DeviconBrowser.css';
+import Dev from './pages/Dev/Dev';
+import './pages/Dev/Dev.css';
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <div className="app-container">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/dev" element={<Dev />} />
             <Route path="/dev/icons" element={<IconsBrowser />} />
             <Route path="/dev/devicons" element={<DeviconBrowser />} />
             {/* Add more routes as needed */}

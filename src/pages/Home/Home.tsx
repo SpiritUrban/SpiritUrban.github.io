@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import type { RefObject, FC } from 'react';
-import { Link } from 'react-router-dom';
 import Cart1 from '../../components/Cart-1/Cart1';
 import Timeline from '../../components/Timeline/Timeline';
 import Minimap from '../../components/Minimap/Minimap';
@@ -70,14 +69,6 @@ const Home: FC = () => {
           ✕
         </button>
         <TechnologiesProgress />
-        <div className="right-links">
-          <Link to="/dev/icons" className="dev-link">
-            Icons Browser
-          </Link>
-          <Link to="/dev/devicons" className="dev-link">
-            Devicons Browser
-          </Link>
-        </div>
       </div>
 
       {/* Mobile spine trigger */}
