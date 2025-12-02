@@ -1,14 +1,165 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cyberpunk Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виталий Дячук | Книги и Тренинги</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+<body>
+
+    <div class="bg-lines"></div>
+
+    <header>
+        <h1>Виталий Дячук</h1>
+        <div class="subtitle">Книги • Тренинги • Самопознание</div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Книги</h2>
+        <div class="grid" id="books-container">
+            </div>
+
+        <h2 class="section-title">Тренинги и Курсы</h2>
+        <div class="grid" id="courses-container">
+            </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Vitaliy Dyachuk. All rights reserved.<br>
+        Путь к себе начинается здесь.
+    </footer>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2 id="modalTitle">Название товара</h2>
+            <span class="modal-item-price" id="modalPrice">0 $</span>
+            <p class="modal-desc" id="modalDesc">Описание товара...</p>
+            <a href="#" target="_blank" class="btn telegram-btn" id="tgLink">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.665 3.717L2.923 10.558C1.713 11.044 1.719 11.72 2.702 12.022L7.257 13.443L17.794 6.793C18.293 6.49 18.749 6.655 18.374 6.988L9.846 14.678H9.844L9.846 14.681L9.532 19.37C9.991 19.37 10.194 19.16 10.45 18.913L12.65 16.776L17.224 20.153C18.067 20.617 18.673 20.378 18.883 19.373L21.889 5.213C22.197 3.979 21.417 3.42 20.665 3.717Z" fill="white"/>
+                </svg>
+                Связаться через Telegram
+            </a>
+        </div>
+    </div>
+
+    <script>
+        /* --- ДАННЫЕ (JSON) --- */
+        /* Вы можете редактировать этот список, добавлять новые книги и курсы */
+        const products = [
+            {
+                id: 1,
+                type: "book",
+                title: "Тайны Подсознания",
+                price: "15 $",
+                description: "Глубокое погружение в работу с подсознанием. Методики, практики и личный опыт.",
+                // Если есть ссылка на картинку, вставьте её вместо null, например: 'images/book1.jpg'
+                image: null 
+            },
+            {
+                id: 2,
+                type: "book",
+                title: "Путь Воина Духа",
+                price: "20 $",
+                description: "Книга о том, как закалить характер и найти свой стержень в современном мире.",
+                image: null
+            },
+            {
+                id: 3,
+                type: "course",
+                title: "Курс 'Пробуждение'",
+                price: "150 $",
+                description: "4-недельный онлайн интенсив. Групповые занятия, медитации и разбор личных ситуаций.",
+                image: null
+            },
+            {
+                id: 4,
+                type: "course",
+                title: "Личная консультация",
+                price: "100 $",
+                description: "Индивидуальная работа по вашему запросу. Длительность 60 минут.",
+                image: null
+            }
+        ];
+
+        /* --- ЛОГИКА САЙТА --- */
+        const booksContainer = document.getElementById('books-container');
+        const coursesContainer = document.getElementById('courses-container');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const closeModal = document.getElementById('closeModal');
+        
+        // Элементы модального окна
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDesc = document.getElementById('modalDesc');
+        const tgLink = document.getElementById('tgLink');
+
+        // Ваш Telegram username (без @)
+        const tgUsername = "SpiritUrban";
+
+        // Функция отрисовки карточек
+        function renderProducts() {
+            products.forEach(item => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                
+                // Если картинки нет, используем заглушку, иначе реальное фото
+                const bgStyle = item.image ? `background-image: url('${item.image}')` : '';
+                const imgContent = item.image ? '' : '<span>✦</span>';
+
+                card.innerHTML = `
+                    <div class="card-img-placeholder" style="${bgStyle}">${imgContent}</div>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                    <div class="price">${item.price}</div>
+                    <button class="btn" onclick="openModal(${item.id})">Купить</button>
+                `;
+
+                if (item.type === 'book') {
+                    booksContainer.appendChild(card);
+                } else {
+                    coursesContainer.appendChild(card);
+                }
+            });
+        }
+
+        // Открытие модального окна
+        window.openModal = function(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            modalTitle.textContent = `Покупка: ${product.title}`;
+            modalPrice.textContent = product.price;
+            modalDesc.textContent = `Вы выбрали "${product.title}". Нажмите кнопку ниже, чтобы перейти в Telegram. Сообщение будет сформировано автоматически.`;
+
+            // Формируем ссылку для Telegram
+            // Текст: Здравствуйте! Я хочу купить [Название] за [Цена].
+            const message = `Здравствуйте, Виталий! Я хочу купить "${product.title}" за ${product.price}.`;
+            const encodedMessage = encodeURIComponent(message);
+            tgLink.href = `https://t.me/${tgUsername}?text=${encodedMessage}`;
+
+            modalOverlay.classList.add('active');
+        }
+
+        // Закрытие модального окна
+        closeModal.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+        });
+
+        // Закрытие по клику вне окна
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
+
+        // Запуск
+        renderProducts();
+
+    </script>
+</body>
 </html>

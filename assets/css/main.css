@@ -1,0 +1,301 @@
+/* --- CSS STYLES --- */
+:root {
+    --bg-color: #03181b; /* Темный глубокий тил */
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --text-color: #e0f7fa;
+    --accent-gold: #ffc857; /* Золото */
+    --accent-glow: #ffae00;
+    --font-main: 'Montserrat', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(circle at 50% 0%, #0d4a52 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, #062b30 0%, transparent 50%);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Декоративные линии (волны) на фоне */
+.bg-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.3;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(255, 200, 87, 0.05) 40px,
+        rgba(255, 200, 87, 0.05) 41px
+    );
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeIn 1.5s ease;
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--accent-gold);
+    text-shadow: 0 0 20px rgba(255, 200, 87, 0.3);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* SECTIONS */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin: 60px 0 30px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-gold);
+    margin: 10px auto 0;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding-bottom: 60px;
+}
+
+/* CARDS */
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                0 0 20px rgba(255, 200, 87, 0.1);
+}
+
+.card-img-placeholder {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #072e33, #021214);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.2);
+    font-size: 3rem;
+    /* Если есть реальное фото, оно перекроет это через CSS background-image */
+    background-size: cover;
+    background-position: center;
+}
+
+.card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.card p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 200, 87, 0.3);
+}
+
+/* BUTTONS */
+.btn {
+    background: linear-gradient(45deg, #d4af37, #ffae00);
+    color: #03181b;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 174, 0, 0.4);
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(255, 174, 0, 0.6);
+    filter: brightness(1.1);
+}
+
+/* MODAL (POPUP) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal {
+    background: linear-gradient(135deg, #062b30, #021214);
+    border: 1px solid var(--accent-gold);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(255, 200, 87, 0.2);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--accent-gold);
+}
+
+.modal h2 {
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.modal-item-price {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.modal-desc {
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.telegram-btn {
+    background: linear-gradient(45deg, #229ED9, #0088cc);
+    color: white;
+    box-shadow: 0 4px 15px rgba(34, 158, 217, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.telegram-btn:hover {
+    box-shadow: 0 6px 25px rgba(34, 158, 217, 0.6);
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.5;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    h1 { font-size: 2.2rem; }
+    .section-title { font-size: 2rem; }
+    .card { padding: 20px; }
+}
