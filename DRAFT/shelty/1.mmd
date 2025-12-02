@@ -1,0 +1,27 @@
+flowchart TD
+    A[Login] --> B[Dashboard]
+    A --> C[Sign Up]
+    C --> B
+    B --> D[Property Create/Edit]
+    B --> E[Property Details]
+    E --> F[Expenses]
+    E --> G[Meters]
+    E --> H[Documents]
+    E --> I[Filters / Reports]
+    F --> J[Expense Details]
+    G --> K[Add Reading]
+    H --> L[Add Document]
+    B --> M[Payments Calendar]
+    B --> N[Statistics]
+    B --> O[Profile]
+    O --> P[Notifications]
+    O --> Q[Billing]
+    O --> R[Export/Import]
+    O --> S[Archive]
+    O --> T[Security]
+    O --> U[Email Integration]
+    O --> V[Help / Support]
+    %% Ошибки
+    A -.-> X[Error 404]
+    C -.-> X
+    B -.-> X
