@@ -44,38 +44,40 @@ const products = [
 ];
 
 
-/* --- ЛОГИКА САЙТА --- */
+/* --- ЛОГИКА --- */
 const booksContainer = document.getElementById('books-container');
 const coursesContainer = document.getElementById('courses-container');
 const modalOverlay = document.getElementById('modalOverlay');
 const closeModal = document.getElementById('closeModal');
 
-// Элементы модального окна
 const modalTitle = document.getElementById('modalTitle');
 const modalPrice = document.getElementById('modalPrice');
 const modalDesc = document.getElementById('modalDesc');
 const tgLink = document.getElementById('tgLink');
+const toast = document.getElementById('toast');
 
-// Ваш Telegram username (без @)
+// Ваш Telegram username
 const tgUsername = "SpiritUrban";
 
-// Функция отрисовки карточек
+// Переменная для хранения текущего сообщения
+let currentMessage = "";
+
+// Отрисовка
 function renderProducts() {
     products.forEach(item => {
         const card = document.createElement('div');
         card.classList.add('card');
-        
-        // Если картинки нет, используем заглушку, иначе реальное фото
+
         const bgStyle = item.image ? `background-image: url('${item.image}')` : '';
         const imgContent = item.image ? '' : '<span>✦</span>';
 
         card.innerHTML = `
-            <div class="card-img-placeholder" style="${bgStyle}">${imgContent}</div>
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
-            <div class="price">${item.price}</div>
-            <button class="btn" onclick="openModal(${item.id})">Купить</button>
-        `;
+                    <div class="card-img-placeholder" style="${bgStyle}">${imgContent}</div>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                    <div class="price">${item.price}</div>
+                    <button class="btn" onclick="openModal(${item.id})">Купить</button>
+                `;
 
         if (item.type === 'book') {
             booksContainer.appendChild(card);
@@ -86,34 +88,52 @@ function renderProducts() {
 }
 
 // Открытие модального окна
-window.openModal = function(id) {
+window.openModal = function (id) {
     const product = products.find(p => p.id === id);
     if (!product) return;
 
     modalTitle.textContent = `Покупка: ${product.title}`;
     modalPrice.textContent = product.price;
-    modalDesc.textContent = `Вы выбрали "${product.title}". Нажмите кнопку ниже, чтобы перейти в Telegram. Сообщение будет сформировано автоматически.`;
+    modalDesc.textContent = `Вы выбрали "${product.title}". Нажмите кнопку, чтобы перейти в Telegram. Текст заказа будет скопирован автоматически.`;
 
-    // Формируем ссылку для Telegram
-    // Текст: Здравствуйте! Я хочу купить [Название] за [Цена].
-    const message = `Здравствуйте, Виталий! Я хочу купить "${product.title}" за ${product.price}.`;
-    const encodedMessage = encodeURIComponent(message);
+    // Формируем сообщение
+    currentMessage = `Здравствуйте, Виталий! Я хочу купить "${product.title}" за ${product.price}.`;
+
+    // Формируем ссылку (на всякий случай оставляем параметр text)
+    const encodedMessage = encodeURIComponent(currentMessage);
     tgLink.href = `https://t.me/${tgUsername}?text=${encodedMessage}`;
 
     modalOverlay.classList.add('active');
 }
 
-// Закрытие модального окна
+// Обработка клика по кнопке Telegram
+tgLink.addEventListener('click', (e) => {
+    // 1. Копируем текст в буфер
+    navigator.clipboard.writeText(currentMessage).then(() => {
+        showToast();
+    }).catch(err => {
+        console.error('Ошибка копирования: ', err);
+    });
+
+    // 2. Ссылка открывается стандартно (переход в ТГ) благодаря href
+});
+
+// Функция показа уведомления
+function showToast() {
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000); // Убираем через 3 секунды
+}
+
 closeModal.addEventListener('click', () => {
     modalOverlay.classList.remove('active');
 });
 
-// Закрытие по клику вне окна
 modalOverlay.addEventListener('click', (e) => {
     if (e.target === modalOverlay) {
         modalOverlay.classList.remove('active');
     }
 });
 
-// Запуск
 renderProducts();

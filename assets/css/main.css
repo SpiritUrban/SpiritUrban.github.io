@@ -299,3 +299,28 @@ footer {
     .section-title { font-size: 2rem; }
     .card { padding: 20px; }
 }
+
+
+/* Уведомление о копировании */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-gold);
+            color: #03181b;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            bottom: 50px; /* Небольшое движение вверх */
+        }
