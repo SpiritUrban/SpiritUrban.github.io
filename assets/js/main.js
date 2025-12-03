@@ -106,16 +106,32 @@ window.openModal = function (id) {
     modalOverlay.classList.add('active');
 }
 
-// Обработка клика по кнопке Telegram
-tgLink.addEventListener('click', (e) => {
-    // 1. Копируем текст в буфер
-    navigator.clipboard.writeText(currentMessage).then(() => {
-        showToast();
-    }).catch(err => {
-        console.error('Ошибка копирования: ', err);
-    });
 
-    // 2. Ссылка открывается стандартно (переход в ТГ) благодаря href
+
+// Обработка клика по кнопке Telegram с задержкой
+tgLink.addEventListener('click', (e) => {
+    // 1. Останавливаем мгновенный переход
+    e.preventDefault();
+
+    // Сохраняем ссылку, куда надо перейти
+    const targetUrl = tgLink.href;
+
+    // 2. Копируем текст
+    navigator.clipboard.writeText(currentMessage).then(() => {
+        // Меняем текст уведомления, чтобы было понятно, что сейчас будет переход
+        toast.textContent = "Текст скопирован! Открываю Telegram...";
+        showToast();
+
+        // 3. Ждем 2 секунды и переходим
+        setTimeout(() => {
+            window.location.href = targetUrl;
+        }, 2000);
+
+    }).catch(err => {
+        // Если вдруг копирование не сработало, все равно переходим, чтобы не ломать кнопку
+        console.error('Ошибка копирования: ', err);
+        window.location.href = targetUrl;
+    });
 });
 
 // Функция показа уведомления
