@@ -1,30 +1,106 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Виталий Дячук | Книги и Тренинги</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
 
+    <style>
+        a {
+            color: antiquewhite;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
 </head>
+
 <body>
 
     <div class="bg-lines"></div>
 
     <header>
         <h1>Виталий Дячук</h1>
-        <div class="subtitle">Книги • Тренинги • Самопознание</div>
+        <div class="subtitle">Наставник • Разработчик • Дизайнер</div>
     </header>
 
+
     <div class="container">
-        <h2 class="section-title">Книги</h2>
-        <div class="grid" id="books-container">
+
+        <h2 class="section-title">Обо мне</h2>
+        <div class="grid" id="main">
+            <div class="card" style="text-align: left; align-items: flex-start;">
+                <!-- <div class="card-img-placeholder" style="background-image: url('assets/img/content/b-01/3.webp')"></div> -->
+
+                <h3>Разработка (веб) и Дизайн. Опыт 20 лет</h3>
+                <p>
+                    Привет! Меня зовут Виталий Дячук.<br><br>
+                    Я веб-разработчик и дизайнер с опытом более 20 лет.<br>
+                    За это время я работал над множеством проектов, от небольших сайтов до крупных веб-приложений.<br><br>
+                    Мои ключевые навыки включают в себя:<br>
+                    - Веб-разработка (HTML, CSS, JavaScript, React, Node.js)<br>
+                    - Веб-дизайн и UX/UI<br>
+                    - Оптимизация производительности веб-сайтов<br>
+                    - Адаптивный дизайн<br><br>
+                    Я всегда стремлюсь создавать качественные и эффективные решения для своих клиентов.<br>
+                    Моя цель - помочь бизнесам и индивидуальным клиентам достичь их целей через инноваативные веб-решения.<br><br>
+
+                    <a href="https://spiriturban.github.io/experience/" target="_blank"> Потробнее о моем опыте, проектам, технологиям</a>
+                </p>
+
+
+                <h3>Ментор-Наставник. Консультации.</h3>
+                <p>
+                    <br>
+
+                    Более 10 лет коммерческого опыта в роли разработчика и 6 лет менторства.
+                    <br>
+                    Около 10 лет в роли дизайнера.
+                    <br><br>
+
+                    Как разработчик, специализируюсь на: JavaScript (TypeScript), React, NodeJS, AI, Дизайн.<br>
+                    Работал с множеством популярных технологий: React, Vue, Angular, Node JS, Next, Nuxt, Three JS, AI
+                    API, Web3 ...<br><br>
+
+
+                    В данный момент занимаюсь развитием собственных проектов и разработкой на заказ.<br>
+                    Так как для регулярного репетиторства мой прайс дорой, осуществляю наставническую поддержку
+                    начинающих разработчиков.<br>
+                    В наш час информации много но от того не легче, так как большая часть это шум, обман, устаревшее и
+                    искажения.<br><br>
+
+                    Консультация, наставническая поддержка (направляю, проясняю): 300 грн за пол часа.<br><br>
+
+
+                    Мои ютуб каналы:<br>
+                    <a href="https://www.youtube.com/@%D0%9F%D1%80%D0%B8%D1%81%D1%83%D1%82%D1%81%D1%82%D0%B2%D1%83%D1%8E%D1%89%D0%B8%D0%B9_%D0%9F%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BD%D0%B8%D0%BA"
+                        target="_blank" >YouTube: "Живой Человек" (основной)</a><br>
+                    <a href="https://www.youtube.com/@hacknroll-x" target="_blank" >YouTube: "ИТ Разговоры и
+                        Технологии"</a><br><br>
+
+                    <a href="https://t.me/SpiritUrban" >Telegram: t.me/SpiritUrban</a>
+
+                </p>
+                <!-- <div class="price">15 $</div>
+                <button class="btn" onclick="openModal(1)">Купить</button> -->
             </div>
+        </div>
+
+
+        <h2 class="section-title">Мои Книги</h2>
+        <div class="grid" id="books-container">
+        </div>
 
         <h2 class="section-title">Тренинги и Курсы</h2>
         <div class="grid" id="courses-container">
-            </div>
+        </div>
     </div>
 
     <footer>
@@ -40,7 +116,9 @@
             <p class="modal-desc" id="modalDesc">Описание товара...</p>
             <a href="#" target="_blank" class="btn telegram-btn" id="tgLink">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20.665 3.717L2.923 10.558C1.713 11.044 1.719 11.72 2.702 12.022L7.257 13.443L17.794 6.793C18.293 6.49 18.749 6.655 18.374 6.988L9.846 14.678H9.844L9.846 14.681L9.532 19.37C9.991 19.37 10.194 19.16 10.45 18.913L12.65 16.776L17.224 20.153C18.067 20.617 18.673 20.378 18.883 19.373L21.889 5.213C22.197 3.979 21.417 3.42 20.665 3.717Z" fill="white"/>
+                    <path
+                        d="M20.665 3.717L2.923 10.558C1.713 11.044 1.719 11.72 2.702 12.022L7.257 13.443L17.794 6.793C18.293 6.49 18.749 6.655 18.374 6.988L9.846 14.678H9.844L9.846 14.681L9.532 19.37C9.991 19.37 10.194 19.16 10.45 18.913L12.65 16.776L17.224 20.153C18.067 20.617 18.673 20.378 18.883 19.373L21.889 5.213C22.197 3.979 21.417 3.42 20.665 3.717Z"
+                        fill="white" />
                 </svg>
                 Связаться через Telegram
             </a>
@@ -51,4 +129,5 @@
 
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>
