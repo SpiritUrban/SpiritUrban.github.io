@@ -1,133 +1,179 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Виталий Дячук | Книги и Тренинги</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css">
-
+    <title>Віталій Дячук | Наставник • Розробник</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        a {
-            color: antiquewhite;
-            text-decoration: none;
+        body {
+            font-family: 'Inter', sans-serif;
         }
-        a:hover {
-            text-decoration: underline;
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #0a0f1c 0%, #1a2338 100%);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.3);
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(to right, #10b981, transparent);
+            bottom: -8px;
+            left: 0;
         }
     </style>
-
 </head>
+<body class="bg-zinc-950 text-zinc-200">
 
-<body>
-
-    <div class="bg-lines"></div>
-
-    <header>
-        <h1>Виталий Дячук</h1>
-        <div class="subtitle">Наставник • Разработчик • Дизайнер</div>
-    </header>
-
-
-    <div class="container">
-
-        <h2 class="section-title">Обо мне</h2>
-        <div class="grid" id="main">
-            <div class="card" style="text-align: left; align-items: flex-start;">
-                <!-- <div class="card-img-placeholder" style="background-image: url('assets/img/content/b-01/3.webp')"></div> -->
-
-                <h3>Разработка (веб) и Дизайн. Опыт 20 лет</h3>
-                <p>
-                    Привет! Меня зовут Виталий Дячук.<br><br>
-                    Я веб-разработчик и дизайнер с опытом более 20 лет.<br>
-                    За это время я работал над множеством проектов, от небольших сайтов до крупных веб-приложений.<br><br>
-                    Мои ключевые навыки включают в себя:<br>
-                    - Веб-разработка (HTML, CSS, JavaScript, React, Node.js)<br>
-                    - Веб-дизайн и UX/UI<br>
-                    - Оптимизация производительности веб-сайтов<br>
-                    - Адаптивный дизайн<br><br>
-                    Я всегда стремлюсь создавать качественные и эффективные решения для своих клиентов.<br>
-                    Моя цель - помочь бизнесам и индивидуальным клиентам достичь их целей через инноваативные веб-решения.<br><br>
-
-                    <a href="https://spiriturban.github.io/experience/" target="_blank"> Потробнее о моем опыте, проектам, технологиям</a>
+    <!-- Hero -->
+    <section class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(at_center,#10b98110_0%,transparent_70%)]"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <!-- Ліва частина -->
+            <div class="space-y-8">
+                <p class="text-emerald-400 tracking-[3px] text-sm font-medium">НАСТАВНИК • ПРОВІДНИК • РОЗРОБНИК</p>
+                
+                <h1 class="heading-font text-6xl md:text-7xl leading-none font-medium">
+                    Віталій Дячук
+                </h1>
+                
+                <p class="text-2xl md:text-3xl text-zinc-300">
+                    Допомагаю Mid+ розробникам рости технічно<br>і залишатися цілісними.
                 </p>
 
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://t.me/SpiritUrban" 
+                       class="bg-emerald-500 hover:bg-emerald-400 text-white px-9 py-5 rounded-2xl text-lg font-medium transition-all duration-300">
+                        Записатися на консультацію
+                    </a>
+                    <a href="#formats" 
+                       class="border border-zinc-400 hover:border-white px-8 py-5 rounded-2xl text-lg font-medium transition-all">
+                        Переглянути формати
+                    </a>
+                </div>
 
-                <h3>Ментор-Наставник. Консультации.</h3>
-                <p>
-                    <br>
+                <div class="flex gap-10 text-sm pt-6">
+                    <div><span class="text-emerald-400">11</span> років розробки</div>
+                    <div><span class="text-emerald-400">6</span> років менторства</div>
+                    <div>Валеологія + енергопрактика</div>
+                </div>
+            </div>
 
-                    Более 10 лет коммерческого опыта в роли разработчика и 6 лет менторства.
-                    <br>
-                    Около 10 лет в роли дизайнера.
-                    <br><br>
-
-                    Как разработчик, специализируюсь на: JavaScript (TypeScript), React, NodeJS, AI, Дизайн.<br>
-                    Работал с множеством популярных технологий: React, Vue, Angular, Node JS, Next, Nuxt, Three JS, AI
-                    API, Web3 ...<br><br>
-
-
-                    В данный момент занимаюсь развитием собственных проектов и разработкой на заказ.<br>
-                    Так как для регулярного репетиторства мой прайс дорой, осуществляю наставническую поддержку
-                    начинающих разработчиков.<br>
-                    В наш час информации много но от того не легче, так как большая часть это шум, обман, устаревшее и
-                    искажения.<br><br>
-
-                    Консультация, наставническая поддержка (направляю, проясняю): 300 грн за пол часа.<br><br>
-
-
-                    Мои ютуб каналы:<br>
-                    <a href="https://www.youtube.com/@%D0%9F%D1%80%D0%B8%D1%81%D1%83%D1%82%D1%81%D1%82%D0%B2%D1%83%D1%8E%D1%89%D0%B8%D0%B9_%D0%9F%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BD%D0%B8%D0%BA"
-                        target="_blank" >YouTube: "Живой Человек" (основной)</a><br>
-                    <a href="https://www.youtube.com/@hacknroll-x" target="_blank" >YouTube: "ИТ Разговоры и
-                        Технологии"</a><br><br>
-
-                    <a href="https://t.me/SpiritUrban" >Telegram: t.me/SpiritUrban</a>
-
-                </p>
-                <!-- <div class="price">15 $</div>
-                <button class="btn" onclick="openModal(1)">Купить</button> -->
+            <!-- Права частина - Фото -->
+            <div class="flex justify-center md:justify-end">
+                <div class="relative">
+                    <img src="assets/img/iam.jpg" 
+                         alt="Віталій Дячук"
+                         class="w-80 md:w-96 rounded-3xl shadow-2xl glow-emerald object-cover">
+                    <div class="absolute -inset-4 border border-emerald-500/30 rounded-[2.5rem] -z-10"></div>
+                </div>
             </div>
         </div>
+    </section>
 
-
-        <h2 class="section-title">Мои Книги</h2>
-        <div class="grid" id="books-container">
+    <!-- Хто я -->
+    <section class="py-24 border-t border-zinc-800">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="heading-font text-5xl mb-10 text-center section-title">Хто я</h2>
+            <div class="prose prose-invert text-lg leading-relaxed max-w-none">
+                <p class="mb-6">
+                    З 2015 року — JavaScript Fullstack розробник (React, Next.js, Node.js, TypeScript). 
+                    До цього 8 років працював дизайнером сайтів і 3D-графіки. 
+                    В IT свідомо — понад 30 років.
+                </p>
+                <p>
+                    Мені 44, але виглядаю значно молодше. Це результат свідомого шляху, в якому технічний розвиток 
+                    йде пліч-о-пліч з роботою над тілом, енергією та психікою.
+                </p>
+            </div>
+            <div class="text-center mt-10">
+                <a href="/experience/" class="text-emerald-400 hover:text-emerald-300 underline decoration-dotted">
+                    Детальніше про досвід і проекти →
+                </a>
+            </div>
         </div>
+    </section>
 
-        <h2 class="section-title">Тренинги и Курсы</h2>
-        <div class="grid" id="courses-container">
+    <!-- Чим відрізняюся -->
+    <section class="bg-zinc-900 py-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="heading-font text-5xl mb-16 text-center section-title">Моя унікальність</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-800/70 p-9 rounded-3xl hover:bg-zinc-800 transition-all group">
+                    <div class="text-4xl mb-6">💻</div>
+                    <h3 class="text-2xl font-medium mb-4">Технічна майстерність</h3>
+                    <p class="text-zinc-400">Глибокі знання React/Next.js екосистеми, архітектури, кар'єрного росту та співбесід.</p>
+                </div>
+                <div class="bg-zinc-800/70 p-9 rounded-3xl hover:bg-zinc-800 transition-all group">
+                    <div class="text-4xl mb-6">🌱</div>
+                    <h3 class="text-2xl font-medium mb-4">Валеологія та тіло</h3>
+                    <p class="text-zinc-400">Вища освіта з фізкультури та валеології. Розумію, як фізіологія впливає на продуктивність і код.</p>
+                </div>
+                <div class="bg-zinc-800/70 p-9 rounded-3xl hover:bg-zinc-800 transition-all group">
+                    <div class="text-4xl mb-6">⟡</div>
+                    <h3 class="text-2xl font-medium mb-4">Енергетичний супровід</h3>
+                    <p class="text-zinc-400">Бачу та допомагаю вирішувати проблеми, які ховаються за технічними труднощами — вигорання, блоки, дисбаланс.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        &copy; 2025 Vitaliy Dyachuk. All rights reserved.<br>
-        Путь к себе начинается здесь.
-    </footer>
+    <!-- Формати -->
+    <section id="formats" class="py-28">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="heading-font text-5xl mb-16 text-center section-title">Формати роботи</h2>
+            
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-zinc-900 border border-zinc-700 hover:border-emerald-500 p-12 rounded-3xl transition-all glow-emerald">
+                    <h3 class="text-3xl mb-4">Практичні сесії 1-на-1</h3>
+                    <p class="text-zinc-400 mb-8 text-lg">Робота за екраном: код, архітектура, розбір задач, підготовка до співбесід.</p>
+                    <div class="text-5xl font-semibold mb-10">500 грн / година</div>
+                    <a href="https://t.me/SpiritUrban" class="block w-full text-center bg-emerald-600 hover:bg-emerald-500 py-5 rounded-2xl text-lg transition-all">
+                        Записатися
+                    </a>
+                </div>
 
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <span class="close-btn" id="closeModal">&times;</span>
-            <h2 id="modalTitle">Название товара</h2>
-            <span class="modal-item-price" id="modalPrice">0 $</span>
-            <p class="modal-desc" id="modalDesc">Описание товара...</p>
-            <a href="#" target="_blank" class="btn telegram-btn" id="tgLink">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M20.665 3.717L2.923 10.558C1.713 11.044 1.719 11.72 2.702 12.022L7.257 13.443L17.794 6.793C18.293 6.49 18.749 6.655 18.374 6.988L9.846 14.678H9.844L9.846 14.681L9.532 19.37C9.991 19.37 10.194 19.16 10.45 18.913L12.65 16.776L17.224 20.153C18.067 20.617 18.673 20.378 18.883 19.373L21.889 5.213C22.197 3.979 21.417 3.42 20.665 3.717Z"
-                        fill="white" />
-                </svg>
-                Связаться через Telegram
+                <div class="bg-zinc-900 border border-zinc-700 hover:border-emerald-500 p-12 rounded-3xl transition-all glow-emerald">
+                    <h3 class="text-3xl mb-4">Наставницький супровід</h3>
+                    <p class="text-zinc-400 mb-8 text-lg">Регулярні короткі зустрічі. Корекція шляху, прибирання шуму, підтримка фокусу та мотивації.</p>
+                    <div class="text-5xl font-semibold mb-10">250 грн / 30 хв</div>
+                    <a href="https://t.me/SpiritUrban" class="block w-full text-center bg-emerald-600 hover:bg-emerald-500 py-5 rounded-2xl text-lg transition-all">
+                        Записатися
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Заключний блок -->
+    <section class="py-20 bg-gradient-to-b from-transparent to-emerald-950/20">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <p class="text-xl text-zinc-300 mb-10">
+                Якщо ти відчуваєш, що готовий до наступного рівня —<br>
+                але хочеш йти туди цілісним і сильним — я буду хорошим провідником.
+            </p>
+            <a href="https://t.me/SpiritUrban" 
+               class="inline-block bg-white text-zinc-900 px-12 py-6 rounded-3xl text-xl font-medium hover:scale-105 transition-transform">
+                Написати @SpiritUrban
             </a>
         </div>
-    </div>
+    </section>
 
-    <div id="toast" class="toast">Текст сообщения скопирован!</div>
+    <footer class="py-10 text-center text-zinc-500 text-sm">
+        © 2026 Віталій Дячук • spiriturban.github.io
+    </footer>
 
-    <script src="assets/js/main.js"></script>
 </body>
-
 </html>
