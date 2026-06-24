@@ -38,8 +38,11 @@ export type StatsBlock = {
   type: "stats";
   label: string;
   title: string;
+  projectName: string;
   text: string;
   items: StatItem[];
+  footerText: string;
+  action: Action;
 };
 
 export type TextBlock = {
@@ -63,6 +66,12 @@ export type Block =
   | TextBlock
   | CTABlock;
 
+export type SiteMeta = {
+  title: string;
+  description: string;
+};
+
 export type SiteContent = {
+  meta: SiteMeta;
   blocks: Block[];
 };

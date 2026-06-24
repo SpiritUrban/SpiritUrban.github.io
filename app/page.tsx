@@ -1,12 +1,8 @@
-import { BlockRenderer } from "@/components/BlockRenderer";
-import { siteContent } from "@/lib/content";
+import { SitePage } from "@/components/SitePage";
+import { getPageMetadata } from "@/lib/content";
+
+export const metadata = getPageMetadata("uk");
 
 export default function Home() {
-  return (
-    <main>
-      {siteContent.blocks.map((block, index) => (
-        <BlockRenderer key={`${block.type}-${index}`} block={block} />
-      ))}
-    </main>
-  );
+  return <SitePage locale="uk" />;
 }

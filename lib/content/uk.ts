@@ -1,6 +1,11 @@
-import type { SiteContent } from "./types";
+import type { SiteContent } from "@/lib/types";
 
-export const siteContent: SiteContent = {
+export const ukContent: SiteContent = {
+  meta: {
+    title: "Віталій Дячук | Fullstack Developer & Mentor",
+    description:
+      "20 років у вебі. Від дизайну і 3D до Next.js, SEO-систем, веб-сервісів і технічного наставництва.",
+  },
   blocks: [
     {
       type: "hero",
@@ -29,16 +34,24 @@ export const siteContent: SiteContent = {
     },
     {
       type: "stats",
-      label: "Real System",
-      title: "Системи, які ростуть",
-      text: "My Transfer — SEO-платформа для міжнародних трансферів між Україною, Польщею та Європою.",
+      label: "Реальний проєкт",
+      title: "Приклад реального проєкту",
+      projectName: "My Transfer",
+      text: "My Transfer — сайт для міжнародних трансферів, який побудований не як одна сторінка, а як масштабована SEO-система.",
       items: [
-        { value: "400+", label: "маршрутів" },
-        { value: "5", label: "мов" },
-        { value: "SEO", label: "архітектура" },
-        { value: "API", label: "інтеграції" },
-        { value: "∞", label: "масштабування" },
+        { value: "400+", label: "сторінок маршрутів" },
+        { value: "5", label: "мовних версій" },
+        { value: "SEO", label: "структура під Google" },
+        { value: "API", label: "інтеграції з сервісами" },
+        { value: "∞", label: "можна розширювати далі" },
       ],
+      footerText:
+        "Це не просто візитка для бізнесу. Це система, яку можна масштабувати: додавати нові міста, маршрути, мови, SEO-сторінки та інтеграції без перебудови сайту з нуля.",
+      action: {
+        label: "Переглянути проєкт",
+        url: "https://my-transfer.com.ua/",
+        variant: "primary",
+      },
     },
     {
       type: "cards",
