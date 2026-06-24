@@ -101,10 +101,79 @@ export const enContent: SiteContent = {
       ],
     },
     {
-      type: "text",
-      label: "Mentoring",
-      title: "Mentoring for developers",
-      text: "Practical 1-on-1 sessions: code, architecture, React, Next.js, Node.js, interviews, real tasks. 500 UAH/hour.",
+      type: "pricing",
+      label: "Pricing",
+      title: "Collaboration formats",
+      text: "You can start with a consultation, a mentoring session, or full development. The format depends on the task, scale, and level of responsibility.",
+      items: [
+        {
+          title: "Mentoring",
+          price: "500 UAH / hour",
+          description: "Practical 1-on-1 sessions for developers.",
+          features: [
+            "React, Next.js, Node.js",
+            "code review",
+            "architecture",
+            "interview prep",
+            "real-world tasks",
+          ],
+          action: {
+            label: "Book a session",
+            url: "https://t.me/SpiritUrban",
+          },
+        },
+        {
+          title: "Consultation",
+          price: "from 1000 UAH",
+          description: "A quick technical review of your site, idea, or project.",
+          features: [
+            "site structure",
+            "SEO logic",
+            "architecture issues",
+            "growth plan",
+            "complexity estimate",
+          ],
+          action: {
+            label: "Request a review",
+            url: "https://t.me/SpiritUrban",
+          },
+          highlighted: true,
+        },
+        {
+          title: "Website development",
+          price: "from 10 000 UAH",
+          description:
+            "Business websites, personal sites, SEO structures, and service pages.",
+          features: [
+            "design and structure",
+            "responsive layout",
+            "Next.js / React",
+            "basic SEO",
+            "ready to grow",
+          ],
+          action: {
+            label: "Discuss a website",
+            url: "https://t.me/SpiritUrban",
+          },
+        },
+        {
+          title: "Complex systems",
+          price: "custom pricing",
+          description:
+            "Web services, dashboards, admin panels, APIs, SEO platforms, and long-term development.",
+          features: [
+            "APIs and integrations",
+            "database",
+            "user accounts",
+            "page generation",
+            "support and growth",
+          ],
+          action: {
+            label: "Discuss a system",
+            url: "https://t.me/SpiritUrban",
+          },
+        },
+      ],
     },
     {
       type: "cta",

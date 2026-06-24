@@ -59,11 +59,29 @@ export type CTABlock = {
   action: Action;
 };
 
+export type PricingItem = {
+  title: string;
+  price: string;
+  description: string;
+  features: string[];
+  action: Action;
+  highlighted?: boolean;
+};
+
+export type PricingBlock = {
+  type: "pricing";
+  label?: string;
+  title: string;
+  text: string;
+  items: PricingItem[];
+};
+
 export type Block =
   | HeroBlock
   | CardsBlock
   | StatsBlock
   | TextBlock
+  | PricingBlock
   | CTABlock;
 
 export type SiteMeta = {

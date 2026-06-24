@@ -4,6 +4,7 @@ import { Cards } from "./sections/Cards";
 import { Stats } from "./sections/Stats";
 import { Text } from "./sections/Text";
 import { CTA } from "./sections/CTA";
+import { PricingSection } from "./sections/PricingSection";
 
 export function BlockRenderer({ block }: { block: Block }) {
   switch (block.type) {
@@ -15,6 +16,8 @@ export function BlockRenderer({ block }: { block: Block }) {
       return <Stats block={block} />;
     case "text":
       return <Text block={block} />;
+    case "pricing":
+      return <PricingSection block={block} />;
     case "cta":
       return <CTA block={block} />;
     default:

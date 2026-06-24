@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "clean": "node -e \"const fs=require('fs');['.next','out'].forEach((d)=>{try{fs.rmSync(d,{recursive:true,force:true,maxRetries:3,retryDelay:100})}catch(e){}})\"",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run clean && next build",
     "start": "next start",
     "lint": "next lint"
   },
