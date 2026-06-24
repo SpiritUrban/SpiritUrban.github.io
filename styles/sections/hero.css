@@ -9,7 +9,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.hero > .container {
+.hero>.container {
   height: 100%;
 }
 
@@ -124,12 +124,27 @@
     min-height: 100svh;
     padding-top: 76px;
     padding-bottom: 0;
+    gap: 0;
   }
+
+
 
   .hero__photo {
     order: -1;
     height: auto;
     max-height: 52svh;
+    /* border-bottom: 4px solid #120a20; */
+    /* box-shadow: 0 8px 12px -8px #120a20; */
+  }
+
+  .hero__photo::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, #120a20 26%, #120a20 80%, transparent 100%);
   }
 
   .hero__photo img {

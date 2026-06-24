@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getNavItems, isSituationPath } from "@/data/navigation";
+import { getResolvedNavEntries } from "@/data/navigation";
 import { localeLabels } from "@/lib/i18n/config";
 import {
   getAlternateLocales,
@@ -23,109 +23,87 @@ function NavSeparator() {
 export function HudNav() {
   const pathname = usePathname();
   const locale = getLocaleFromPathname(pathname);
-  const nav = getNavItems(locale);
+  const items = getResolvedNavEntries(locale);
   const path = stripLocaleFromPathname(pathname).replace(/\/$/, "") || "/";
   const isHome = path === "/" || path === "";
+  const lastIndex = items.length - 1;
 
   return (
-    <nav className="hud-nav" aria-label={locale === "uk" ? "Навігація" : "Navigation"}>
+    <nav
+      className="hud-nav"
+      aria-label={locale === "uk" ? "Навігація" : "Navigation"}
+    >
       <div className="container hud-nav__inner">
         <ul className="hud-nav__list">
-          <li className="hud-nav__item">
-            <Link
-              href={nav.home.href}
-              className={`hud-nav__link${isHome ? " hud-nav__link--active" : ""}`}
-            >
-              {nav.home.label}
-            </Link>
-          </li>
+          {items.map((entry, index) => {
+            const showSeparator = index < lastIndex;
 
-          <NavSeparator />
+            if (entry.type === "dropdown") {
+              return (
+                <li
+                  key={entry.id}
+                  className="hud-nav__item hud-nav__item--dropdown"
+                >
+                  <button
+                    type="button"
+                    className={`hud-nav__trigger${
+                      entry.matchPath(pathname) ? " hud-nav__trigger--active" : ""
+                    }`}
+                    aria-haspopup="true"
+                  >
+                    {entry.label}
+                    <span className="hud-nav__caret" aria-hidden="true">
+                      ▾
+                    </span>
+                  </button>
+                  {showSeparator && <NavSeparator />}
+                  <ul className="hud-nav__dropdown">
+                    {entry.items.map((item) => (
+                      <li key={item.id}>
+                        <Link
+                          href={item.href}
+                          className={`hud-nav__dropdown-link${
+                            item.matchPath(path)
+                              ? " hud-nav__dropdown-link--active"
+                              : ""
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            }
 
-          <li className="hud-nav__item hud-nav__item--dropdown">
-            <button
-              type="button"
-              className={`hud-nav__trigger${isSituationPath(pathname) ? " hud-nav__trigger--active" : ""}`}
-              aria-haspopup="true"
-            >
-              {nav.situations.label}
-              <span className="hud-nav__caret" aria-hidden="true">
-                ▾
-              </span>
-            </button>
-            <ul className="hud-nav__dropdown">
-              {nav.situations.items.map((item) => {
-                const itemPath = stripLocaleFromPathname(item.href).replace(
-                  /\/$/,
-                  "",
-                );
-                const isActive = path === itemPath;
-
-                return (
-                  <li key={item.slug}>
-                    <Link
-                      href={item.href}
-                      className={`hud-nav__dropdown-link${isActive ? " hud-nav__dropdown-link--active" : ""}`}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </li>
-
-          <NavSeparator />
-
-          <li className="hud-nav__item">
-            <Link
-              href={nav.cases.href}
-              className={`hud-nav__link${
-                path.includes("cases/my-transfer")
-                  ? " hud-nav__link--active"
-                  : ""
-              }`}
-            >
-              {nav.cases.label}
-            </Link>
-          </li>
-
-          <NavSeparator />
-
-          <li className="hud-nav__item">
-            <Link
-              href={nav.mentoring.href}
-              className={`hud-nav__link${
-                path.includes("mentoring") ? " hud-nav__link--active" : ""
-              }`}
-            >
-              {nav.mentoring.label}
-            </Link>
-          </li>
-
-          <NavSeparator />
-
-          <li className="hud-nav__item">
-            <Link
-              href={nav.about.href}
-              className={`hud-nav__link${isHome ? "" : ""}`}
-            >
-              {nav.about.label}
-            </Link>
-          </li>
-
-          <NavSeparator />
-
-          <li className="hud-nav__item">
-            <a
-              href={nav.contact.href}
-              className="hud-nav__link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {nav.contact.label}
-            </a>
-          </li>
+            return (
+              <li key={entry.id} className="hud-nav__item">
+                {entry.external ? (
+                  <a
+                    href={entry.href}
+                    className="hud-nav__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {entry.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={entry.href}
+                    className={`hud-nav__link${
+                      entry.matchPath?.(path, isHome)
+                        ? " hud-nav__link--active"
+                        : ""
+                    }`}
+                  >
+                    {entry.label}
+                  </Link>
+                )}
+                {showSeparator && <NavSeparator />}
+              </li>
+            );
+          })}
         </ul>
 
         <ul className="hud-nav__lang" aria-label="Language">
