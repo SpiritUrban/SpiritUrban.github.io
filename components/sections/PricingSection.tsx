@@ -1,5 +1,5 @@
-import type { PricingBlock } from "@/lib/types";
-import "./pricing.css";
+import type { PricingBlock } from "@/data/types";
+import "@/styles/sections/pricing.css";
 
 export function PricingSection({ block }: { block: PricingBlock }) {
   return (

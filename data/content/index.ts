@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n/config";
 import { locales } from "@/lib/i18n/config";
 import { getLocalePath } from "@/lib/i18n/routing";
-import type { SiteContent } from "@/lib/types";
+import type { SiteContent } from "@/data/types";
 import { enContent } from "./en";
 import { ukContent } from "./uk";
 

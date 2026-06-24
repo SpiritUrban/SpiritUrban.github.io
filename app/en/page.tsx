@@ -1,5 +1,5 @@
 import { SitePage } from "@/components/SitePage";
-import { getPageMetadata } from "@/lib/content";
+import { getPageMetadata } from "@/data/content";
 
 export const metadata = getPageMetadata("en");
 

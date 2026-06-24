@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "clean": "node -e \"const fs=require('fs');['.next','out'].forEach((d)=>{try{fs.rmSync(d,{recursive:true,force:true,maxRetries:3,retryDelay:100})}catch(e){}})\"",
+    "clean": "node -e \"const fs=require('fs');['.next','out','node_modules/.cache'].forEach((d)=>{try{fs.rmSync(d,{recursive:true,force:true,maxRetries:5,retryDelay:200})}catch(e){}})\"",
     "dev": "next dev",
     "build": "npm run clean && next build",
     "start": "next start",

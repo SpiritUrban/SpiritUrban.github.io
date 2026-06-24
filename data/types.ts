@@ -11,22 +11,21 @@ export type HeroBlock = {
   text: string;
   image: string;
   imageAlt: string;
-  code: string;
   actions: Action[];
 };
 
-export type CardItem = {
-  kicker?: string;
-  title: string;
-  text: string;
-};
-
-export type CardsBlock = {
-  type: "cards";
+export type PainBlock = {
+  type: "pain";
   label?: string;
   title: string;
-  text?: string;
-  items: CardItem[];
+  items: string[];
+};
+
+export type SolutionBlock = {
+  type: "solution";
+  label?: string;
+  title: string;
+  text: string;
 };
 
 export type StatItem = {
@@ -45,18 +44,16 @@ export type StatsBlock = {
   action: Action;
 };
 
-export type TextBlock = {
-  type: "text";
-  label: string;
+export type ProcessStep = {
   title: string;
   text: string;
 };
 
-export type CTABlock = {
-  type: "cta";
+export type ProcessBlock = {
+  type: "process";
+  label?: string;
   title: string;
-  text: string;
-  action: Action;
+  steps: ProcessStep[];
 };
 
 export type PricingItem = {
@@ -76,12 +73,28 @@ export type PricingBlock = {
   items: PricingItem[];
 };
 
+export type TrustBlock = {
+  type: "trust";
+  label?: string;
+  title: string;
+  items: string[];
+};
+
+export type CTABlock = {
+  type: "cta";
+  title: string;
+  text: string;
+  action: Action;
+};
+
 export type Block =
   | HeroBlock
-  | CardsBlock
+  | PainBlock
+  | SolutionBlock
   | StatsBlock
-  | TextBlock
+  | ProcessBlock
   | PricingBlock
+  | TrustBlock
   | CTABlock;
 
 export type SiteMeta = {
@@ -92,4 +105,17 @@ export type SiteMeta = {
 export type SiteContent = {
   meta: SiteMeta;
   blocks: Block[];
+};
+
+export type SeoPageContent = {
+  meta: SiteMeta;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  problems: string[];
+  helpTitle: string;
+  helpItems: string[];
+  ctaTitle: string;
+  ctaText: string;
+  ctaLabel: string;
 };

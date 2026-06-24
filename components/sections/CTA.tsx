@@ -1,4 +1,4 @@
-import type { CTABlock } from "@/lib/types";
+import type { CTABlock } from "@/data/types";
 
 export function CTA({ block }: { block: CTABlock }) {
   return (

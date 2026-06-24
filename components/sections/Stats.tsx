@@ -1,4 +1,4 @@
-import type { StatsBlock } from "@/lib/types";
+import type { StatsBlock } from "@/data/types";
 
 export function Stats({ block }: { block: StatsBlock }) {
   return (
