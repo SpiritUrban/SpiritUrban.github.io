@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2X2Q2JX0M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-X2X2Q2JX0M');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Віталій Дячук | Fullstack Developer, SEO Architect & Mentor</title>
+    <meta name="description" content="Віталій Дячук — Fullstack JavaScript розробник, SEO Architect та ментор. Створюю сайти як системи: Next.js, React, Node.js, TypeScript, SEO-структури, MVP та веб-сервіси.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #07080a;
+            --bg-soft: #0c0d10;
+            --panel: #111318;
+            --panel-2: #151821;
+            --text: #f4f4f5;
+            --muted: #a1a1aa;
+            --dim: #71717a;
+            --line: rgba(255,255,255,.09);
+            --line-strong: rgba(255,255,255,.16);
+            --accent: #7dd3fc;
+            --accent-2: #a78bfa;
+            --accent-warm: #f5d36c;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at 14% 8%, rgba(125, 211, 252, .10), transparent 28%),
+                radial-gradient(circle at 85% 12%, rgba(167, 139, 250, .10), transparent 28%),
+                linear-gradient(180deg, #090a0d 0%, #050608 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        body:before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: linear-gradient(to bottom, black 0%, transparent 72%);
+            z-index: -1;
+        }
+
+        ::selection {
+            background: rgba(125, 211, 252, .25);
+        }
+
+        .wrap {
+            width: min(1120px, calc(100% - 32px));
+            margin-inline: auto;
+        }
+
+        .nav-shell {
+            background: rgba(8, 9, 12, .82);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 80px rgba(0,0,0,.25);
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--line-strong);
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(125,211,252,.16), rgba(167,139,250,.10));
+            font-weight: 900;
+            letter-spacing: -.08em;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            padding: 14px 20px;
+            font-weight: 800;
+            transition: transform .2s ease, border-color .2s ease, background .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: #050608;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--line-strong);
+            color: var(--text);
+            background: rgba(255,255,255,.035);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(125, 211, 252, .45);
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: .22em;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 8vw, 92px);
+            line-height: .91;
+            letter-spacing: -.075em;
+            font-weight: 900;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .panel {
+            background: linear-gradient(180deg, rgba(17, 19, 24, .92), rgba(9, 10, 13, .96));
+            border: 1px solid var(--line);
+            border-radius: 28px;
+        }
+
+        .card {
+            background: rgba(255,255,255,.035);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            transition: transform .2s ease, border-color .2s ease, background .2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(125, 211, 252, .38);
+            background: rgba(255,255,255,.055);
+        }
+
+        .stat {
+            border-top: 1px solid var(--line);
+            padding-top: 18px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 32px;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(125,211,252,.20), rgba(167,139,250,.08), rgba(255,255,255,.04));
+            border: 1px solid var(--line-strong);
+        }
+
+        .photo-card img {
+            border-radius: 24px;
+            width: 100%;
+            max-height: 620px;
+            object-fit: cover;
+            filter: grayscale(8%) contrast(1.04);
+        }
+
+        .identity-card {
+            position: absolute;
+            left: 28px;
+            right: 28px;
+            bottom: 28px;
+            background: rgba(7, 8, 10, .82);
+            border: 1px solid var(--line-strong);
+            border-radius: 22px;
+            padding: 20px;
+            backdrop-filter: blur(16px);
+        }
+
+        .code-card {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.65;
+            color: #d4d4d8;
+            white-space: pre-wrap;
+        }
+
+        .section {
+            padding: 112px 0;
+            border-top: 1px solid rgba(255,255,255,.055);
+        }
+
+        .section-title {
+            font-size: clamp(38px, 5vw, 64px);
+            line-height: .98;
+            letter-spacing: -.06em;
+            font-weight: 900;
+        }
+
+        .number {
+            color: var(--accent);
+            font-weight: 900;
+            letter-spacing: -.04em;
+        }
+
+        .quote {
+            font-size: clamp(28px, 4vw, 48px);
+            line-height: 1.08;
+            letter-spacing: -.055em;
+            font-weight: 900;
+        }
+
+        .muted { color: var(--muted); }
+        .dim { color: var(--dim); }
+
+        @media (max-width: 768px) {
+            .section { padding: 80px 0; }
+            .identity-card { position: static; margin-top: 12px; }
+            .photo-card { padding: 10px; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="fixed top-0 left-0 right-0 z-50 px-4 py-4">
+        <div class="wrap nav-shell rounded-2xl px-5 py-4 flex items-center justify-between gap-5">
+            <a href="#" class="flex items-center gap-3 text-white font-black tracking-tight">
+                <span class="brand-mark">SU</span>
+                <span>Spirit<span class="gradient-text">Urban</span></span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-7 text-sm text-zinc-400">
+                <a href="#work" class="hover:text-white">Що роблю</a>
+                <a href="#approach" class="hover:text-white">Підхід</a>
+                <a href="#experience" class="hover:text-white">Досвід</a>
+                <a href="#mentoring" class="hover:text-white">Менторство</a>
+                <a href="https://spiriturban.github.io/projects/#" target="_blank" class="hover:text-white font-bold text-sky-300">Портфоліо</a>
+            </nav>
+
+            <a href="https://t.me/SpiritUrban" class="btn btn-primary text-sm px-5 py-3">
+                Telegram
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="min-h-screen flex items-center pt-28 pb-20">
+            <div class="wrap grid lg:grid-cols-[1.05fr_.95fr] gap-14 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[.035] px-4 py-2 mb-8">
+                        <span class="w-2 h-2 rounded-full bg-sky-300"></span>
+                        <span class="text-sm text-zinc-300">Fullstack Developer • SEO Architect • Mentor</span>
+                    </div>
+
+                    <h1 class="hero-title mb-8">
+                        Я будую<br>
+                        <span class="gradient-text">веб-системи</span>,<br>
+                        а не просто сторінки.
+                    </h1>
+
+                    <p class="text-xl md:text-2xl text-zinc-300 leading-relaxed mb-6 max-w-2xl">
+                        Я Віталій Дячук. Проєктую сайти так, щоб вони тягнули SEO, бізнес-логіку і майбутній розвиток.
+                    </p>
+
+                    <p class="text-lg muted leading-relaxed mb-10 max-w-2xl">
+                        20 років у вебі: від дизайну й 3D до JavaScript, Next.js, Node.js, SEO-структур, MVP та менторства. Не продаю “гарну картинку” — збираю технічну основу, яку можна масштабувати.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mb-14">
+                        <a href="https://t.me/SpiritUrban" class="btn btn-primary text-lg px-8 py-5">
+                            Обговорити проєкт
+                        </a>
+                        <a href="https://spiriturban.github.io/projects/#" target="_blank" class="btn btn-secondary text-lg px-8 py-5">
+                            Дивитись портфоліо
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
+                        <div class="stat">
+                            <div class="text-3xl font-black number">20</div>
+                            <div class="text-sm dim">років у вебі</div>
+                        </div>
+                        <div class="stat">
+                            <div class="text-3xl font-black number">11+</div>
+                            <div class="text-sm dim">років розробки</div>
+                        </div>
+                        <div class="stat">
+                            <div class="text-3xl font-black number">6+</div>
+                            <div class="text-sm dim">років менторства</div>
+                        </div>
+                        <div class="stat">
+                            <div class="text-3xl font-black number">SEO</div>
+                            <div class="text-sm dim">архітектура</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="assets/img/iam.jpg" alt="Віталій Дячук — Fullstack Developer та Mentor">
+                    <div class="identity-card">
+                        <p class="text-sm dim mb-3">Моя позиція</p>
+                        <div class="code-card">const project = {
+  design: "clear",
+  seo: true,
+  speed: true,
+  scalable: true,
+  maintainable: true
+}</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="section">
+            <div class="wrap">
+                <div class="max-w-3xl mb-16">
+                    <p class="eyebrow mb-4">What I do</p>
+                    <h2 class="section-title mb-6">Чим я корисний</h2>
+                    <p class="text-xl muted leading-relaxed">
+                        Не “закриваю таски заради тасок”. Я допомагаю зробити сайт або сервіс, який має нормальну структуру, швидкість, SEO і зрозумілу логіку розвитку.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <article class="card p-7">
+                        <div class="text-sm dim mb-6">01</div>
+                        <h3 class="text-2xl font-black tracking-tight mb-4">SEO-системи</h3>
+                        <p class="muted leading-relaxed">Масові сторінки, маршрути, міста, категорії, мета-дані, шаблони, перелінковка, генерація контенту.</p>
+                    </article>
+
+                    <article class="card p-7">
+                        <div class="text-sm dim mb-6">02</div>
+                        <h3 class="text-2xl font-black tracking-tight mb-4">Бізнес-сайти</h3>
+                        <p class="muted leading-relaxed">Лендінги, корпоративні сторінки, структура послуг, адаптив, швидкість, аналітика і нормальна технічна база.</p>
+                    </article>
+
+                    <article class="card p-7">
+                        <div class="text-sm dim mb-6">03</div>
+                        <h3 class="text-2xl font-black tracking-tight mb-4">MVP та сервіси</h3>
+                        <p class="muted leading-relaxed">Адмінки, кабінети, API, бази даних, інтеграції, CRM-логіка і кастомні веб-інструменти.</p>
+                    </article>
+
+                    <article class="card p-7">
+                        <div class="text-sm dim mb-6">04</div>
+                        <h3 class="text-2xl font-black tracking-tight mb-4">Розбір і ремонт</h3>
+                        <p class="muted leading-relaxed">Аудит сайту, SEO, коду, структури, помилок, зайвих рішень і план нормального розвитку.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="approach" class="section bg-white/[.018]">
+            <div class="wrap grid lg:grid-cols-[.85fr_1.15fr] gap-14 items-start">
+                <div>
+                    <p class="eyebrow mb-4">Approach</p>
+                    <h2 class="section-title mb-8">Я не продаю кількість сторінок</h2>
+                    <p class="text-xl muted leading-relaxed">
+                        400 сторінок можуть бути місяцем ручної роботи, а можуть бути грамотною системою генерації за пару днів. Тому я оцінюю не обсяг, а архітектуру.
+                    </p>
+                </div>
+
+                <div class="grid gap-5">
+                    <div class="panel p-7">
+                        <h3 class="text-2xl font-black tracking-tight mb-3">Спочатку структура, потім дизайн</h3>
+                        <p class="muted leading-relaxed">URL, дані, шаблони, компоненти, SEO-блоки і сценарії розвитку важливіші за випадкову красу першого екрана.</p>
+                    </div>
+
+                    <div class="panel p-7">
+                        <h3 class="text-2xl font-black tracking-tight mb-3">Сайт має жити після запуску</h3>
+                        <p class="muted leading-relaxed">Нормальний проєкт можна доповнювати, локалізувати, масштабувати, просувати і не боятися кожної нової сторінки.</p>
+                    </div>
+
+                    <div class="panel p-7">
+                        <h3 class="text-2xl font-black tracking-tight mb-3">ШІ — інструмент, не магія</h3>
+                        <p class="muted leading-relaxed">Використовую ШІ там, де він реально прискорює роботу: структура контенту, варіанти текстів, SEO-заготовки, аналіз, генерація ідей.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="wrap">
+                <div class="panel p-8 md:p-12">
+                    <div class="grid lg:grid-cols-[1fr_1.2fr] gap-12 items-start">
+                        <div>
+                            <p class="eyebrow mb-4">Experience</p>
+                            <h2 class="section-title mb-8">Досвід, який видно в рішеннях</h2>
+                            <p class="text-xl muted leading-relaxed">
+                                Я прийшов у розробку не з нуля “після курсів”, а з довгого шляху у вебі: дизайн, 3D, верстка, JavaScript, фреймворки, бекенд, SEO і навчання людей.
+                            </p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div class="card p-6">
+                                <div class="number text-4xl mb-3">2006</div>
+                                <p class="muted">старт у веб-індустрії: дизайн, графіка, візуальні рішення</p>
+                            </div>
+                            <div class="card p-6">
+                                <div class="number text-4xl mb-3">2015</div>
+                                <p class="muted">активний перехід у програмування і JavaScript-розробку</p>
+                            </div>
+                            <div class="card p-6">
+                                <div class="number text-4xl mb-3">2018</div>
+                                <p class="muted">менторство, навчання, розбір коду і розвиток розробників</p>
+                            </div>
+                            <div class="card p-6">
+                                <div class="number text-4xl mb-3">Now</div>
+                                <p class="muted">Next.js, React, Node.js, TypeScript, SEO-системи, MVP</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mentoring" class="section bg-white/[.018]">
+            <div class="wrap grid lg:grid-cols-2 gap-10 items-start">
+                <div>
+                    <p class="eyebrow mb-4">Mentoring</p>
+                    <h2 class="section-title mb-8">Менторство без води</h2>
+                    <p class="text-xl muted leading-relaxed mb-8">
+                        Працюємо з реальним кодом, архітектурою, React, Next.js, Node.js, співбесідами, задачами і мисленням розробника.
+                    </p>
+                    <a href="https://t.me/SpiritUrban" class="btn btn-primary text-lg px-8 py-5">Записатися на сесію</a>
+                </div>
+
+                <div class="panel p-8 md:p-10">
+                    <div class="flex items-end justify-between gap-6 mb-8">
+                        <div>
+                            <p class="dim mb-2">Формат</p>
+                            <h3 class="text-3xl font-black tracking-tight">1-на-1</h3>
+                        </div>
+                        <div class="text-right">
+                            <p class="dim mb-2">Вартість</p>
+                            <div class="text-5xl font-black tracking-tight">500 грн</div>
+                            <p class="dim">за годину</p>
+                        </div>
+                    </div>
+                    <div class="grid gap-4 text-zinc-300">
+                        <p class="border-t border-white/10 pt-4">• розбір коду і технічних рішень</p>
+                        <p class="border-t border-white/10 pt-4">• план розвитку під твій рівень</p>
+                        <p class="border-t border-white/10 pt-4">• підготовка до реальних задач і співбесід</p>
+                        <p class="border-t border-white/10 pt-4">• робота з мисленням, а не тільки з синтаксисом</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <div class="panel p-8 md:p-14 text-center">
+                    <p class="eyebrow mb-5">Contact</p>
+                    <h2 class="quote max-w-4xl mx-auto mb-8">
+                        Потрібен сайт, сервіс, SEO-структура або чесний технічний розбір?
+                    </h2>
+                    <p class="text-xl muted max-w-3xl mx-auto leading-relaxed mb-10">
+                        Напиши в Telegram. Коротко покажи задачу, сайт або ідею — я скажу, що реально потрібно робити і з чого краще почати.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://t.me/SpiritUrban" class="btn btn-primary text-lg px-8 py-5">Написати @SpiritUrban</a>
+                        <a href="https://github.com/SpiritUrban" target="_blank" class="btn btn-secondary text-lg px-8 py-5">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/10 py-10">
+        <div class="wrap flex flex-col md:flex-row justify-between items-center gap-5 text-sm dim">
+            <div>© 2026 Віталій Дячук • Fullstack Developer, SEO Architect & Mentor</div>
+            <div class="flex gap-5">
+                <a href="https://www.youtube.com/@UA_Tech_Mentor" class="hover:text-white">YouTube</a>
+                <a href="https://t.me/SpiritUrban" class="hover:text-white">Telegram</a>
+                <a href="https://github.com/SpiritUrban" class="hover:text-white">GitHub</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

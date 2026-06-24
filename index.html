@@ -1,400 +1,173 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2X2Q2JX0M"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-X2X2Q2JX0M');
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Віталій Дячук | Fullstack Developer & Mentor</title>
-    <meta name="description" content="Fullstack JavaScript розробник та ментор. Створюю швидкі SEO-сайти, веб-сервіси, MVP та допомагаю розробникам рости професійно. Next.js, React, Node.js, TypeScript.">
+  <title>Віталій Дячук | Fullstack Developer & Mentor</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background:
-                radial-gradient(circle at top left, rgba(16, 185, 129, 0.12), transparent 35%),
-                radial-gradient(circle at top right, rgba(59, 130, 246, 0.10), transparent 30%),
-                #05070d;
-        }
-
-        .heading-font {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .noise {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.035;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            z-index: 100;
-        }
-
-        .glass {
-            background: linear-gradient(180deg, rgba(24, 24, 27, 0.78), rgba(9, 9, 11, 0.72));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(18px);
-        }
-
-        .premium-card {
-            background:
-                linear-gradient(180deg, rgba(39, 39, 42, 0.82), rgba(10, 10, 12, 0.9));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
-        }
-
-        .premium-card:hover {
-            border-color: rgba(16, 185, 129, 0.45);
-            transform: translateY(-4px);
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #f8fafc, #a7f3d0, #93c5fd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .grid-bg {
-            background-image:
-                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-            background-size: 48px 48px;
-        }
-
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 65%;
-            height: 2px;
-            background: linear-gradient(to right, #10b981, transparent);
-            bottom: -12px;
-            left: 0;
-        }
-        /* акцент */
-        .accent {
-            color: #10b981;
-            font-weight: 600;
-        }
-        .accent:hover {
-            color: #a7f3d0;
-        }
-
-    </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link id="theme-css" rel="stylesheet" href="./themes/cyberpunk.css" />
 </head>
 
-<body class="text-zinc-200">
-    <div class="noise"></div>
+<body>
+  <div id="app"></div>
 
-    <header class="fixed top-0 left-0 right-0 z-50 px-4 py-4">
-        <div class="max-w-6xl mx-auto glass rounded-2xl px-5 py-4 flex items-center justify-between">
-            <a href="#" class="font-bold tracking-wide text-white">
-                Spirit<span class="text-emerald-400">Urban</span>
+  <script src="./content.js"></script>
+
+  <script>
+    const app = document.getElementById("app");
+
+    const el = (tag, className = "", html = "") => {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (html) node.innerHTML = html;
+      return node;
+    };
+
+    function renderHero(block) {
+      const section = el("section", "section hero");
+
+      section.innerHTML = `
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">${block.label}</p>
+
+            <h1>${block.title}</h1>
+
+            <p class="lead">${block.text}</p>
+
+            <div class="actions">
+              ${block.actions.map(a => `
+                <a class="btn ${a.variant || ""}" href="${a.url}" target="_blank">
+                  ${a.label}
+                </a>
+              `).join("")}
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <img src="${block.image}" alt="${block.imageAlt}">
+
+            <div class="code-card">
+              <pre>${block.code}</pre>
+            </div>
+          </div>
+        </div>
+      `;
+
+      return section;
+    }
+
+    function renderCards(block) {
+      const section = el("section", "section");
+
+      section.innerHTML = `
+        <div class="container">
+          <p class="eyebrow">${block.label || ""}</p>
+
+          <h2>${block.title}</h2>
+
+          ${block.text ? `<p class="section-text">${block.text}</p>` : ""}
+
+          <div class="cards">
+            ${block.items.map(item => `
+              <article class="card">
+                ${item.kicker ? `<p class="card-kicker">${item.kicker}</p>` : ""}
+                <h3>${item.title}</h3>
+                <p>${item.text}</p>
+              </article>
+            `).join("")}
+          </div>
+        </div>
+      `;
+
+      return section;
+    }
+
+    function renderStats(block) {
+      const section = el("section", "section section-accent");
+
+      section.innerHTML = `
+        <div class="container">
+          <p class="eyebrow">${block.label}</p>
+
+          <h2>${block.title}</h2>
+
+          <p class="section-text">${block.text}</p>
+
+          <div class="stats">
+            ${block.items.map(item => `
+              <div class="stat">
+                <strong>${item.value}</strong>
+                <span>${item.label}</span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+
+      return section;
+    }
+
+    function renderText(block) {
+      const section = el("section", "section");
+
+      section.innerHTML = `
+        <div class="container narrow">
+          <p class="eyebrow">${block.label}</p>
+          <h2>${block.title}</h2>
+          <p class="lead">${block.text}</p>
+        </div>
+      `;
+
+      return section;
+    }
+
+    function renderCTA(block) {
+      const section = el("section", "section");
+
+      section.innerHTML = `
+        <div class="container">
+          <div class="cta">
+            <h2>${block.title}</h2>
+            <p>${block.text}</p>
+
+            <a class="btn primary" href="${block.action.url}" target="_blank">
+              ${block.action.label}
             </a>
-
-            <nav class="hidden md:flex items-center gap-7 text-sm text-zinc-400">
-                <a href="#services" class="hover:text-white">Послуги</a>
-                <a href="#approach" class="hover:text-white">Підхід</a>
-                <a href="#pricing" class="hover:text-white">Ціни</a>
-                <a href="#mentoring" class="hover:text-white">Менторство</a>
-                <a href="https://spiriturban.github.io/projects/#" target="_blank" class="hover:text-white"><b class="accent">Портфоліо</b></a>
-            </nav>
-
-            <a href="https://t.me/SpiritUrban" class="bg-emerald-500 hover:bg-emerald-400 text-white px-5 py-3 rounded-xl text-sm font-semibold">
-                Написати
-            </a>
+          </div>
         </div>
-    </header>
+      `;
 
-    <section class="relative min-h-screen flex items-center overflow-hidden grid-bg pt-28">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#05070d]/70 to-[#05070d]"></div>
+      return section;
+    }
 
-        <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center relative z-10 py-20">
-            <div>
-                <div class="inline-flex items-center gap-3 glass rounded-full px-4 py-2 mb-8">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    <span class="text-sm text-zinc-300">Fullstack Developer • Mentor • Web Architect</span>
-                </div>
+    const renderers = {
+      hero: renderHero,
+      cards: renderCards,
+      stats: renderStats,
+      text: renderText,
+      cta: renderCTA
+    };
 
-                <h1 class="heading-font text-6xl md:text-8xl leading-[0.95] font-semibold mb-8">
-                    Сайти, які<br>
-                    <span class="gradient-text">можна розвивати</span>
-                </h1>
+    function renderSite(data) {
+      app.innerHTML = "";
 
-                <p class="text-xl md:text-2xl text-zinc-300 leading-relaxed mb-6 max-w-2xl">
-                    Я Віталій Дячук. Створюю швидкі SEO-сайти, веб-сервіси та MVP на Next.js, React і Node.js.
-                </p>
+      data.blocks.forEach(block => {
+        const render = renderers[block.type];
 
-                <p class="text-lg text-zinc-500 leading-relaxed mb-10 max-w-2xl">
-                    Працюю як розробник для бізнесу і як наставник для розробників. Не просто “верстаю сторінки”, а допомагаю будувати нормальну технічну основу.
-                </p>
+        if (!render) return;
 
-                <div class="flex flex-wrap gap-4 mb-12">
-                    <a href="https://t.me/SpiritUrban" class="bg-emerald-500 hover:bg-emerald-400 text-white px-8 py-5 rounded-2xl text-lg font-semibold transition-all">
-                        Обговорити проєкт
-                    </a>
+        app.appendChild(render(block));
+      });
+    }
 
-                    <a href="#services" class="glass hover:border-emerald-400 px-8 py-5 rounded-2xl text-lg font-semibold transition-all">
-                        Що я роблю
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div class="glass rounded-2xl p-4">
-                        <div class="text-2xl font-bold text-emerald-400">11+</div>
-                        <div class="text-sm text-zinc-500">років розробки</div>
-                    </div>
-                    <div class="glass rounded-2xl p-4">
-                        <div class="text-2xl font-bold text-emerald-400">6+</div>
-                        <div class="text-sm text-zinc-500">років менторства</div>
-                    </div>
-                    <div class="glass rounded-2xl p-4">
-                        <div class="text-2xl font-bold text-emerald-400">100+</div>
-                        <div class="text-sm text-zinc-500">учнів</div>
-                    </div>
-                    <div class="glass rounded-2xl p-4">
-                        <div class="text-2xl font-bold text-emerald-400">SEO</div>
-                        <div class="text-sm text-zinc-500">структури</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="relative">
-                <div class="absolute -inset-8 bg-emerald-500/10 blur-3xl rounded-full"></div>
-
-                <div class="relative premium-card rounded-[2rem] p-5">
-                    <img src="assets/img/iam.jpg" alt="Віталій Дячук" class="rounded-[1.5rem] w-full object-cover max-h-[620px]">
-
-                    <div class="absolute left-8 right-8 bottom-8 glass rounded-2xl p-5" style="transform: translateY(6rem);">
-                        <p class="text-sm text-zinc-400 mb-2">Позиціонування</p>
-                        <p class="text-xl font-semibold text-white">
-                            Розробник, який думає про бізнес, SEO і майбутній розвиток проєкту.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-28">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-16">
-                <p class="text-emerald-400 uppercase tracking-[3px] text-sm mb-4">Services</p>
-                <h2 class="heading-font text-5xl md:text-6xl section-title">Послуги розробки</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="premium-card rounded-3xl p-8 transition-all">
-                    <div class="text-4xl mb-6">⚡</div>
-                    <h3 class="text-2xl font-bold mb-4">Сайти для бізнесу</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        Лендінги, корпоративні сайти, сторінки послуг, адаптив, структура, дизайн і нормальна технічна база.
-                    </p>
-                </div>
-
-                <div class="premium-card rounded-3xl p-8 transition-all">
-                    <div class="text-4xl mb-6">🔎</div>
-                    <h3 class="text-2xl font-bold mb-4">SEO-системи</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        Масові сторінки, маршрути, міста, категорії, мета-дані, шаблони, генерація контенту і внутрішня перелінковка.
-                    </p>
-                </div>
-
-                <div class="premium-card rounded-3xl p-8 transition-all">
-                    <div class="text-4xl mb-6">🧩</div>
-                    <h3 class="text-2xl font-bold mb-4">MVP та сервіси</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        Адмінки, кабінети, API, бази даних, інтеграції, CRM-логіка та кастомні веб-інструменти.
-                    </p>
-                </div>
-
-                <div class="premium-card rounded-3xl p-8 transition-all">
-                    <div class="text-4xl mb-6">🛠</div>
-                    <h3 class="text-2xl font-bold mb-4">Доопрацювання</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        Підхоплюю існуючі проєкти: виправлення, редизайн, оптимізація, рефакторинг, нові сторінки.
-                    </p>
-                </div>
-
-                <div class="premium-card rounded-3xl p-8 transition-all">
-                    <div class="text-4xl mb-6">🚀</div>
-                    <h3 class="text-2xl font-bold mb-4">Next.js / React</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        Сучасний стек: Next.js, React, TypeScript, Node.js, MongoDB, PostgreSQL, Tailwind.
-                    </p>
-                </div>
-
-                <div class="premium-card rounded-3xl p-8 transition-all">
-                    <div class="text-4xl mb-6">🧠</div>
-                    <h3 class="text-2xl font-bold mb-4">Технічний розбір</h3>
-                    <p class="text-zinc-400 leading-relaxed">
-                        Аналіз сайту, структури, SEO, коду, помилок, зайвих рішень і реального плану розвитку.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="approach" class="py-28 bg-zinc-950/60">
-        <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-start">
-            <div>
-                <p class="text-emerald-400 uppercase tracking-[3px] text-sm mb-4">Approach</p>
-                <h2 class="heading-font text-5xl md:text-6xl mb-8">
-                    Не продаю “кількість сторінок”
-                </h2>
-                <p class="text-xl text-zinc-400 leading-relaxed">
-                    400 сторінок можуть бути місяцем ручної роботи, а можуть бути грамотною генерацією за пару днів. Тому я оцінюю не сторінки, а систему.
-                </p>
-            </div>
-
-            <div class="space-y-5">
-                <div class="glass rounded-3xl p-7">
-                    <h3 class="text-xl font-bold mb-3">Архітектура важливіша за обсяг</h3>
-                    <p class="text-zinc-400">
-                        Правильний шаблон, структура даних і генерація часто дають більше, ніж ручне множення сторінок.
-                    </p>
-                </div>
-
-                <div class="glass rounded-3xl p-7">
-                    <h3 class="text-xl font-bold mb-3">SEO треба закладати одразу</h3>
-                    <p class="text-zinc-400">
-                        URL, заголовки, мета-дані, перелінковка, контентні блоки — це не косметика, а фундамент.
-                    </p>
-                </div>
-
-                <div class="glass rounded-3xl p-7">
-                    <h3 class="text-xl font-bold mb-3">Проєкт має жити після запуску</h3>
-                    <p class="text-zinc-400">
-                        Сайт повинен бути не одноразовою картинкою, а системою, яку можна розширювати.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing" class="py-28">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <p class="text-emerald-400 uppercase tracking-[3px] text-sm mb-4">Pricing</p>
-                <h2 class="heading-font text-5xl md:text-6xl section-title">Орієнтири по вартості</h2>
-                <p class="text-zinc-500 mt-8 text-lg">
-                    Це не калькулятор. Нормальна оцінка робиться після короткого розбору задачі.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="premium-card rounded-3xl p-7">
-                    <h3 class="text-xl font-bold mb-3">Лендінг</h3>
-                    <div class="text-4xl font-extrabold text-emerald-400 mb-5">від $300</div>
-                    <p class="text-zinc-500 text-sm">Одна сильна сторінка для послуги, продукту або реклами.</p>
-                </div>
-
-                <div class="premium-card rounded-3xl p-7">
-                    <h3 class="text-xl font-bold mb-3">Бізнес-сайт</h3>
-                    <div class="text-4xl font-extrabold text-emerald-400 mb-5">від $700</div>
-                    <p class="text-zinc-500 text-sm">Кілька сторінок, структура, адаптив, базове SEO.</p>
-                </div>
-
-                <div class="premium-card rounded-3xl p-7 border-emerald-500/40">
-                    <h3 class="text-xl font-bold mb-3">SEO-сайт</h3>
-                    <div class="text-4xl font-extrabold text-emerald-400 mb-5">від $1000</div>
-                    <p class="text-zinc-500 text-sm">Багато сторінок, генерація, маршрути, міста, категорії.</p>
-                </div>
-
-                <div class="premium-card rounded-3xl p-7">
-                    <h3 class="text-xl font-bold mb-3">Веб-сервіс</h3>
-                    <div class="text-4xl font-extrabold text-emerald-400 mb-5">від $2000</div>
-                    <p class="text-zinc-500 text-sm">Кабінети, API, база даних, ролі, інтеграції, адмінка.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="mentoring" class="py-28 bg-zinc-950/60">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-16">
-                <p class="text-emerald-400 uppercase tracking-[3px] text-sm mb-4">Mentoring</p>
-                <h2 class="heading-font text-5xl md:text-6xl section-title">Наставництво</h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="premium-card rounded-3xl p-10 transition-all">
-                    <h3 class="text-3xl font-bold mb-5">Практичні сесії 1-на-1</h3>
-                    <p class="text-zinc-400 text-lg leading-relaxed mb-8">
-                        Код, архітектура, React, Next.js, Node.js, співбесіди, реальні задачі, робота за екраном.
-                    </p>
-                    <div class="text-5xl font-extrabold mb-8">500 грн/год</div>
-                    <a href="https://t.me/SpiritUrban" class="block text-center bg-emerald-500 hover:bg-emerald-400 rounded-2xl py-5 font-bold">
-                        Записатися
-                    </a>
-                </div>
-
-                <!-- <div class="premium-card rounded-3xl p-10 transition-all">
-                    <h3 class="text-3xl font-bold mb-5">Наставницький супровід</h3>
-                    <p class="text-zinc-400 text-lg leading-relaxed mb-8">
-                        Фокус, план розвитку, технічні питання, розбір помилок, підтримка руху і професійного напрямку.
-                    </p>
-                    <div class="text-5xl font-extrabold mb-8">250 грн</div>
-                    <a href="https://t.me/SpiritUrban" class="block text-center bg-emerald-500 hover:bg-emerald-400 rounded-2xl py-5 font-bold">
-                        Записатися
-                    </a>
-                </div> -->
-            </div>
-        </div>
-    </section>
-
-    <section class="py-28">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="premium-card rounded-[2rem] p-10 md:p-14 text-center relative overflow-hidden">
-                <div class="absolute inset-0 bg-emerald-500/5"></div>
-
-                <div class="relative z-10">
-                    <h2 class="heading-font text-5xl md:text-6xl mb-8">
-                        Потрібен сайт або технічний розбір?
-                    </h2>
-
-                    <p class="text-xl text-zinc-400 max-w-3xl mx-auto leading-relaxed mb-10">
-                        Напиши в Telegram. Коротко покажи задачу, сайт або ідею — я скажу, що реально потрібно робити і з чого краще почати.
-                    </p>
-
-                    <a href="https://t.me/SpiritUrban" class="inline-block bg-white text-zinc-950 px-10 py-5 rounded-2xl text-lg font-bold hover:scale-105 transition-transform">
-                        Написати @SpiritUrban
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="border-t border-white/10 py-10">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-5 text-sm text-zinc-500">
-            <div>
-                © 2026 Віталій Дячук • Fullstack Developer & Mentor
-            </div>
-
-            <div class="flex gap-5">
-                <a href="https://www.youtube.com/@UA_Tech_Mentor" class="hover:text-white">YouTube</a>
-                <a href="https://t.me/SpiritUrban" class="hover:text-white">Telegram</a>
-                <a href="https://github.com/SpiritUrban" class="hover:text-white">GitHub</a>
-            </div>
-        </div>
-    </footer>
+    if (typeof siteContent !== "undefined") {
+      renderSite(siteContent);
+    } else {
+      console.error("siteContent не знайдено. Перевір, що content.js підключений перед inline-скриптом.");
+    }
+  </script>
 </body>
 </html>
