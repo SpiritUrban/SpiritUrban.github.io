@@ -101,13 +101,27 @@
   margin: 0;
   padding: 8px 0;
   list-style: none;
+
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);
+
   transition:
     opacity 0.2s ease,
     transform 0.2s ease,
     visibility 0.2s ease;
+
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  border-radius: 12px;
 }
 
 .hud-nav__item--dropdown:hover .hud-nav__dropdown,
